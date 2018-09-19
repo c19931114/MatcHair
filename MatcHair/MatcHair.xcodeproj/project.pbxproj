@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4264DBA5EF9E6C724DD9828 /* Pods_MatcHair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23CA9D31BC2C6961C35F9E2 /* Pods_MatcHair.framework */; };
 		F139AA062151EF3700B5B0D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA052151EF3700B5B0D4 /* AppDelegate.swift */; };
 		F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA072151EF3700B5B0D4 /* ViewController.swift */; };
 		F139AA0B2151EF3700B5B0D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA092151EF3700B5B0D4 /* Main.storyboard */; };
@@ -21,9 +22,16 @@
 		F139AA2B2151FB2A00B5B0D4 /* Like.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */; };
 		F139AA2D2151FB3900B5B0D4 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2C2151FB3900B5B0D4 /* Chat.storyboard */; };
 		F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */; };
+		F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1621522DD6009AB3ED /* FacebookManager.swift */; };
+		F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1C215231A4009AB3ED /* MatcHairError.swift */; };
+		F1546C1F21523244009AB3ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1E21523244009AB3ED /* User.swift */; };
+		F1546C2621524D73009AB3ED /* UIView+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C2521524D73009AB3ED /* UIView+Crystal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B23CA9D31BC2C6961C35F9E2 /* Pods_MatcHair.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MatcHair.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B95A55F15F9234D82EDC18BB /* Pods-MatcHair.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatcHair.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair.debug.xcconfig"; sourceTree = "<group>"; };
+		E2AED2B853FE316240AEACF8 /* Pods-MatcHair.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatcHair.release.xcconfig"; path = "Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair.release.xcconfig"; sourceTree = "<group>"; };
 		F139AA022151EF3700B5B0D4 /* MatcHair.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatcHair.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F139AA052151EF3700B5B0D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F139AA072151EF3700B5B0D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +48,10 @@
 		F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Like.storyboard; sourceTree = "<group>"; };
 		F139AA2C2151FB3900B5B0D4 /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		F1546C1621522DD6009AB3ED /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
+		F1546C1C215231A4009AB3ED /* MatcHairError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatcHairError.swift; sourceTree = "<group>"; };
+		F1546C1E21523244009AB3ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F1546C2521524D73009AB3ED /* UIView+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Crystal.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +59,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4264DBA5EF9E6C724DD9828 /* Pods_MatcHair.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1441CC733EBCF1052207712F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B95A55F15F9234D82EDC18BB /* Pods-MatcHair.debug.xcconfig */,
+				E2AED2B853FE316240AEACF8 /* Pods-MatcHair.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7E56CEA841F120B18ACEC10B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B23CA9D31BC2C6961C35F9E2 /* Pods_MatcHair.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F139A9F92151EF3700B5B0D4 = {
 			isa = PBXGroup;
 			children = (
 				F139AA042151EF3700B5B0D4 /* MatcHair */,
 				F139AA032151EF3700B5B0D4 /* Products */,
+				1441CC733EBCF1052207712F /* Pods */,
+				7E56CEA841F120B18ACEC10B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +104,7 @@
 		F139AA042151EF3700B5B0D4 /* MatcHair */ = {
 			isa = PBXGroup;
 			children = (
+				F1546C1221522C57009AB3ED /* Model */,
 				F139AA252151F9B500B5B0D4 /* Extension */,
 				F139AA1C2151F59B00B5B0D4 /* Controller */,
 				F139AA172151EF4600B5B0D4 /* Storyboard */,
@@ -111,8 +144,51 @@
 			isa = PBXGroup;
 			children = (
 				F139AA232151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift */,
+				F1546C2521524D73009AB3ED /* UIView+Crystal.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		F1546C1221522C57009AB3ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F1546C2221524114009AB3ED /* HTTP */,
+				F1546C1B2152317D009AB3ED /* Error */,
+				F1546C1821523093009AB3ED /* User */,
+				F1546C1321522C6C009AB3ED /* Facebook */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F1546C1321522C6C009AB3ED /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				F1546C1621522DD6009AB3ED /* FacebookManager.swift */,
+			);
+			path = Facebook;
+			sourceTree = "<group>";
+		};
+		F1546C1821523093009AB3ED /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F1546C1E21523244009AB3ED /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		F1546C1B2152317D009AB3ED /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				F1546C1C215231A4009AB3ED /* MatcHairError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		F1546C2221524114009AB3ED /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HTTP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F139AA142151EF3A00B5B0D4 /* Build configuration list for PBXNativeTarget "MatcHair" */;
 			buildPhases = (
+				4FB974894AB808D13907FE68 /* [CP] Check Pods Manifest.lock */,
 				F139A9FE2151EF3700B5B0D4 /* Sources */,
 				F139A9FF2151EF3700B5B0D4 /* Frameworks */,
 				F139AA002151EF3700B5B0D4 /* Resources */,
+				95AC200CD1FF7310E3C5D298 /* [CP] Embed Pods Frameworks */,
+				F139AA3121521D6400B5B0D4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -187,16 +266,86 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4FB974894AB808D13907FE68 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MatcHair-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95AC200CD1FF7310E3C5D298 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F139AA3121521D6400B5B0D4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F139A9FE2151EF3700B5B0D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F139AA222151F87200B5B0D4 /* TabBarViewController.swift in Sources */,
+				F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */,
 				F139AA1E2151F5B800B5B0D4 /* LoginViewController.swift in Sources */,
 				F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */,
+				F1546C1F21523244009AB3ED /* User.swift in Sources */,
+				F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */,
 				F139AA062151EF3700B5B0D4 /* AppDelegate.swift in Sources */,
 				F139AA242151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift in Sources */,
+				F1546C2621524D73009AB3ED /* UIView+Crystal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +489,7 @@
 		};
 		F139AA152151EF3A00B5B0D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B95A55F15F9234D82EDC18BB /* Pods-MatcHair.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -358,6 +508,7 @@
 		};
 		F139AA162151EF3A00B5B0D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2AED2B853FE316240AEACF8 /* Pods-MatcHair.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

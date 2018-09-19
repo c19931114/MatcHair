@@ -1,0 +1,6 @@
+framework module Pods_MatcHair {
+  umbrella header "Pods-MatcHair-umbrella.h"
+
+  export *
+  module * { export * }
+}

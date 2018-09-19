@@ -7,25 +7,25 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
-    
-    
-    
+
+    private let fbLoginManager = FBSDKLoginManager()
+
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var skipNowButton: UIButton!
     
     @IBAction func login(_ sender: Any) {
 
-        
+        fbLogin()
     }
+
     @IBAction func skipNow(_ sender: Any) {
         
-        
     }
     
-    
-
 }
 
 extension LoginViewController {
@@ -48,4 +48,43 @@ extension LoginViewController {
 //        skipNowButton.layer.cornerRadius = 5
         
     }
+
+    func fbLogin() {
+
+        fbLoginManager.logIn(
+            withReadPermissions: ["public_profile", "email"],
+            from: self, handler: { (logInAction, error) in
+
+                if logInAction != nil {
+
+                    guard let cancel = logInAction?.isCancelled else { return }
+
+                    let fbTokenInfo = logInAction?.token
+                    let userID = fbTokenInfo?.userID
+
+                    let fbTokenString = fbTokenInfo?.tokenString
+                    print("\(String(describing: userID))")
+
+                    if !cancel {
+                        print("登入成功")
+
+                        AppDelegate.shared?.window?.rootViewController
+                            = UIStoryboard.homeStoryboard().instantiateInitialViewController()
+
+                        guard let facebookToken = fbTokenString else {
+                            print("no token")
+                            return
+                        }
+                        print(facebookToken)
+
+                    }
+
+                } else {
+
+                    print(error as Any)
+                }
+        })
+
+    }
+
 }

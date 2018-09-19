@@ -9,10 +9,17 @@
 import UIKit
 import FBSDKLoginKit
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
 
     private let fbLoginManager = FBSDKLoginManager()
+
+    // Get a reference to the storage service using the default Firebase App
+    // Create a storage reference from our storage service
+    let storageRef = Storage.storage().reference()
+//    var ref: DatabaseReference!
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var skipNowButton: UIButton!
@@ -23,7 +30,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func skipNow(_ sender: Any) {
-        
+        AppDelegate.shared?.window?.rootViewController
+            = UIStoryboard.mainStoryboard().instantiateInitialViewController()
     }
     
 }
@@ -32,21 +40,9 @@ extension LoginViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        setUpLayout()
-        
-    }
-    
-    func setUpLayout() {
-        
-        loginButton.layer.borderColor = #colorLiteral(red: 0.9246133566, green: 0.9246349931, blue: 0.9246233106, alpha: 1)
-        loginButton.layer.borderWidth = 1
-//        loginButton.layer.cornerRadius = 5
-        
-        skipNowButton.layer.borderColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
-        skipNowButton.layer.borderWidth = 1
-//        skipNowButton.layer.cornerRadius = 5
-        
+
+//        ref = Database.database().reference()
+
     }
 
     func fbLogin() {
@@ -60,23 +56,25 @@ extension LoginViewController {
                     guard let cancel = logInAction?.isCancelled else { return }
 
                     let fbTokenInfo = logInAction?.token
-                    let userID = fbTokenInfo?.userID
-
-                    let fbTokenString = fbTokenInfo?.tokenString
-                    print("\(String(describing: userID))")
+//                    let userID = fbTokenInfo?.userID
+//                    print("\(String(describing: userID))")
 
                     if !cancel {
                         print("登入成功")
 
                         AppDelegate.shared?.window?.rootViewController
-                            = UIStoryboard.homeStoryboard().instantiateInitialViewController()
+                            = UIStoryboard.mainStoryboard().instantiateInitialViewController()
 
-                        guard let facebookToken = fbTokenString else {
+                        guard let facebookToken = fbTokenInfo?.tokenString else {
                             print("no token")
                             return
                         }
                         print(facebookToken)
 
+                        self.getUserDetails()
+
+                    } else {
+                        print("cancel")
                     }
 
                 } else {
@@ -85,6 +83,54 @@ extension LoginViewController {
                 }
         })
 
+    }
+
+    func getUserDetails() {
+
+        FBSDKGraphRequest(
+            graphPath: "me",
+            parameters: ["fields": "id, name, first_name, last_name, email, picture"])?.start(
+                completionHandler: { (connection, result, error) in
+
+                    if error != nil {
+
+                        print("Error: \(String(describing: error))")
+                    } else {
+
+                        guard let userInfo = result as? [String: Any] else { return }
+
+//                        guard let userName = userInfo["name"] as? String else { return }
+//                        guard let userEmail = userInfo["email"] as? String else { return }
+
+                        guard let userPictureInfo = userInfo["picture"] as? [String: Any] else { return }
+                        guard let userPictureData = userPictureInfo["data"] as? [String: Any] else { return }
+                        guard let userPictureURLString = userPictureData["url"] as? String else { return }
+                        self.uploadUserPicture(with: userPictureURLString)
+
+                    }
+            })
+
+    }
+
+    func uploadUserPicture(with urlString: String) {
+
+        if let photoData = try? Data(contentsOf: URL(string: urlString)!) {
+
+            if let photo = UIImage(data: photoData) {
+
+                print(photo)
+
+            }
+
+        } else {
+            print("error")
+
+        }
+
+
+
+
+        
     }
 
 }

@@ -1,6 +1,7 @@
 disabled_rules:
   - trailing_whitespace
   - todo
+  - identifier_name
 
 identifier_name:
   min_length: # only min_length

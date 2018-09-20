@@ -8,6 +8,8 @@
 
 import UIKit
 import FBSDKLoginKit
+//import FBSDKCoreKit
+import Firebase
 import FBSDKCoreKit
 
 @UIApplicationMain
@@ -19,12 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+
+        FirebaseApp.configure() // 放後面會 crash
+
         switchToLoginStoryBoard()
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FBSDKSettings.setAppID("1934375866856449")
-        
+
         return true
     }
     

@@ -18,4 +18,4 @@ excluded:
   - Source/ExcludedFolder
   - Source/ExcludedFile.swift
   - Source/*/ExcludedFile.swift
-
+  - Pods

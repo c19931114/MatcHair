@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B4264DBA5EF9E6C724DD9828 /* Pods_MatcHair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23CA9D31BC2C6961C35F9E2 /* Pods_MatcHair.framework */; };
+		F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1365CFA21533224009419F5 /* UILabel+Crystal.swift */; };
 		F139AA062151EF3700B5B0D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA052151EF3700B5B0D4 /* AppDelegate.swift */; };
 		F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA072151EF3700B5B0D4 /* ViewController.swift */; };
 		F139AA0B2151EF3700B5B0D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA092151EF3700B5B0D4 /* Main.storyboard */; };
@@ -27,12 +28,14 @@
 		F1546C1F21523244009AB3ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1E21523244009AB3ED /* User.swift */; };
 		F1546C2621524D73009AB3ED /* UIView+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C2521524D73009AB3ED /* UIView+Crystal.swift */; };
 		F1546C2921525705009AB3ED /* MatcHairColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C2821525705009AB3ED /* MatcHairColor.swift */; };
+		F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B23CA9D31BC2C6961C35F9E2 /* Pods_MatcHair.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MatcHair.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95A55F15F9234D82EDC18BB /* Pods-MatcHair.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatcHair.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair.debug.xcconfig"; sourceTree = "<group>"; };
 		E2AED2B853FE316240AEACF8 /* Pods-MatcHair.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatcHair.release.xcconfig"; path = "Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair.release.xcconfig"; sourceTree = "<group>"; };
+		F1365CFA21533224009419F5 /* UILabel+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Crystal.swift"; sourceTree = "<group>"; };
 		F139AA022151EF3700B5B0D4 /* MatcHair.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatcHair.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F139AA052151EF3700B5B0D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F139AA072151EF3700B5B0D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 		F1546C1E21523244009AB3ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F1546C2521524D73009AB3ED /* UIView+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Crystal.swift"; sourceTree = "<group>"; };
 		F1546C2821525705009AB3ED /* MatcHairColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatcHairColor.swift; sourceTree = "<group>"; };
+		F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 				F139AA0C2151EF3A00B5B0D4 /* Assets.xcassets */,
 				F139AA0E2151EF3A00B5B0D4 /* LaunchScreen.storyboard */,
 				F139AA112151EF3A00B5B0D4 /* Info.plist */,
+				F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */,
 			);
 			path = MatcHair;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 			children = (
 				F139AA232151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift */,
 				F1546C2521524D73009AB3ED /* UIView+Crystal.swift */,
+				F1365CFA21533224009419F5 /* UILabel+Crystal.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -270,6 +276,7 @@
 				F139AA102151EF3A00B5B0D4 /* LaunchScreen.storyboard in Resources */,
 				F139AA0D2151EF3A00B5B0D4 /* Assets.xcassets in Resources */,
 				F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */,
+				F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */,
 				F139AA2D2151FB3900B5B0D4 /* Chat.storyboard in Resources */,
 				F139AA0B2151EF3700B5B0D4 /* Main.storyboard in Resources */,
 			);
@@ -350,6 +357,7 @@
 			files = (
 				F1546C2921525705009AB3ED /* MatcHairColor.swift in Sources */,
 				F139AA222151F87200B5B0D4 /* TabBarViewController.swift in Sources */,
+				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
 				F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */,
 				F139AA1E2151F5B800B5B0D4 /* LoginViewController.swift in Sources */,
 				F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */,

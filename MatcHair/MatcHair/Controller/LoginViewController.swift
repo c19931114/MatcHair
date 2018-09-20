@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     // Get a reference to the storage service using the default Firebase App
     // Create a storage reference from our storage service
     let storageRef = Storage.storage().reference()
-//    var ref: DatabaseReference!
+    var ref: DatabaseReference!
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var skipNowButton: UIButton!
@@ -41,7 +41,7 @@ extension LoginViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        ref = Database.database().reference()
+        ref = Database.database().reference()
 
     }
 
@@ -55,23 +55,40 @@ extension LoginViewController {
 
                     guard let cancel = logInAction?.isCancelled else { return }
 
-                    let fbTokenInfo = logInAction?.token
-//                    let userID = fbTokenInfo?.userID
-//                    print("\(String(describing: userID))")
-
                     if !cancel {
                         print("登入成功")
 
                         AppDelegate.shared?.window?.rootViewController
                             = UIStoryboard.mainStoryboard().instantiateInitialViewController()
 
-                        guard let facebookToken = fbTokenInfo?.tokenString else {
-                            print("no token")
-                            return
-                        }
-                        print(facebookToken)
+                        // Log in Firebase
+                        let credential =
+                            FacebookAuthProvider.credential(
+                                withAccessToken: FBSDKAccessToken.current().tokenString)
 
-                        self.getUserDetails()
+                        Auth.auth().signInAndRetrieveData(with: credential) { (authDataResult, error) in
+
+                            if let error = error {
+
+                                print("Can't Login: \(error)")
+                                return
+
+                            } else {
+
+                                guard let uid = Auth.auth().currentUser?.uid else {return }
+
+                                guard let userName
+                                    = Auth.auth().currentUser?.displayName else { return }
+
+                                guard let photoURL
+                                    = Auth.auth().currentUser?.photoURL else { return }
+
+                                print(Auth.auth().currentUser?.description)
+
+                                self.uploadUserPictureToStorage(with: uid, and: userName, and: photoURL)
+
+                            }
+                        }
 
                     } else {
                         print("cancel")
@@ -79,6 +96,7 @@ extension LoginViewController {
 
                 } else {
 
+                    print("取消登入")
                     print(error as Any)
                 }
         })
@@ -105,32 +123,49 @@ extension LoginViewController {
                         guard let userPictureInfo = userInfo["picture"] as? [String: Any] else { return }
                         guard let userPictureData = userPictureInfo["data"] as? [String: Any] else { return }
                         guard let userPictureURLString = userPictureData["url"] as? String else { return }
-                        self.uploadUserPicture(with: userPictureURLString)
+//                        self.uploadUserPicture(with: userPictureURLString)
 
                     }
             })
 
     }
 
-    func uploadUserPicture(with urlString: String) {
+    func uploadUserPictureToStorage(with uid: String, and userName: String, and photoURL: URL) {
 
-        if let photoData = try? Data(contentsOf: URL(string: urlString)!) {
+        guard let photoData = try? Data(contentsOf: photoURL) else { return }
 
-            if let photo = UIImage(data: photoData) {
+        guard let photo = UIImage(data: photoData),
+            let uploadData =  photo.jpegData(compressionQuality: 0.5) else {
 
-                print(photo)
+                print("no image")
+                return
+        }
 
-            }
+        storageRef
+            .child("\(userName).jpg")
+            .putData(uploadData, metadata: nil) { (metadata, error) in
 
-        } else {
-            print("error")
+                guard metadata != nil else {
+                // Uh-oh, an error occurred!
+                    print(error as Any)
+                    return
+                }
+
+                self.uploadUserInfoToDatabase(with: uid , and: userName, and: photoURL)
 
         }
 
+    }
 
+    func uploadUserInfoToDatabase(with uid: String, and userName: String, and photoURL: URL) {
 
+        ref.child("users/\(uid)").setValue(
+            [
+                "user": userName,
+                "photo": photoURL.absoluteString
+            ]
+        )
 
-        
     }
 
 }

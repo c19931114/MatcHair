@@ -77,16 +77,6 @@
                                             <action selector="toggleFlash:" destination="36v-2J-Gpy" eventType="touchUpInside" id="Po0-3s-URK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Krs-As-EoP">
-                                        <rect key="frame" x="328" y="337" width="31" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="相簿">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="choosePhoto:" destination="36v-2J-Gpy" eventType="touchUpInside" id="haP-GG-KCb"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0U-gJ-PQ6">
                                         <rect key="frame" x="314" y="61" width="45" height="45"/>
                                         <constraints>
@@ -128,6 +118,19 @@
                                     <action selector="captureImage:" destination="36v-2J-Gpy" eventType="touchUpInside" id="xed-xG-XIq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Krs-As-EoP">
+                                <rect key="frame" x="327" y="615" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="EHN-Gw-lE9"/>
+                                    <constraint firstAttribute="height" constant="32" id="XJq-Ex-Mxa"/>
+                                </constraints>
+                                <state key="normal" image="Album Camera Icon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="choosePhoto:" destination="36v-2J-Gpy" eventType="touchUpInside" id="haP-GG-KCb"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4uC-3d-KyF">
                                 <rect key="frame" x="16" y="602" width="45" height="45"/>
                                 <constraints>
@@ -150,6 +153,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4uC-3d-KyF" firstAttribute="leading" secondItem="pPA-Uc-YWx" secondAttribute="leading" constant="16" id="DxT-vL-VE4"/>
+                            <constraint firstItem="pPA-Uc-YWx" firstAttribute="trailing" secondItem="Krs-As-EoP" secondAttribute="trailing" constant="16" id="GA7-EO-avQ"/>
                             <constraint firstItem="vrD-vN-Lfe" firstAttribute="leading" secondItem="pPA-Uc-YWx" secondAttribute="leading" constant="16" id="Jhs-T3-HxH"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="leading" secondItem="pPA-Uc-YWx" secondAttribute="leading" id="Pnr-06-k6a"/>
                             <constraint firstItem="pPA-Uc-YWx" firstAttribute="bottom" secondItem="54h-go-Exs" secondAttribute="bottom" constant="20" id="WAG-I3-OXF"/>
@@ -158,6 +162,7 @@
                             <constraint firstItem="4uC-3d-KyF" firstAttribute="top" secondItem="vrD-vN-Lfe" secondAttribute="bottom" id="hYm-1S-5DP"/>
                             <constraint firstItem="54h-go-Exs" firstAttribute="centerX" secondItem="kB2-4a-s35" secondAttribute="centerX" id="lV3-cD-oDa"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="top" secondItem="pPA-Uc-YWx" secondAttribute="top" id="waT-OS-vgH"/>
+                            <constraint firstItem="pPA-Uc-YWx" firstAttribute="bottom" secondItem="Krs-As-EoP" secondAttribute="bottom" constant="20" id="zCc-wZ-5SY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pPA-Uc-YWx"/>
                     </view>
@@ -284,6 +289,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Album Camera Icon" width="32" height="32"/>
         <image name="Flash Off Icon" width="24" height="24"/>
         <image name="Photo Camera Icon" width="24" height="24"/>
         <image name="Rear Camera Icon" width="24" height="24"/>

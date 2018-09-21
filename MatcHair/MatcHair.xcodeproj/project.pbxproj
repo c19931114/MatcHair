@@ -157,10 +157,10 @@
 				F139AA182151F18300B5B0D4 /* Login.storyboard */,
 				F139AA262151FB0D00B5B0D4 /* Home.storyboard */,
 				F139AA282151FB2000B5B0D4 /* Appointment.storyboard */,
-				F139AA2C2151FB3900B5B0D4 /* Chat.storyboard */,
+				F1C2C3D62153CD2F0065E4EB /* Post.storyboard */,
 				F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */,
 				F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */,
-				F1C2C3D62153CD2F0065E4EB /* Post.storyboard */,
+				F139AA2C2151FB3900B5B0D4 /* Chat.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";

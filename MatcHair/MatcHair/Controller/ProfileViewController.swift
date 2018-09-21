@@ -26,12 +26,6 @@ class ProfileViewController: UIViewController {
     @IBAction func set(_ sender: Any) {
 
     }
-    @IBAction func addPost(_ sender: Any) {
-
-        let postViewController = UIStoryboard.postStoryboard().instantiateInitialViewController()!
-        self.present(postViewController, animated: true)
-        
-    }
 
 }
 

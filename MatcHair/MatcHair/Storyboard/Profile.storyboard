@@ -88,34 +88,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqT-si-Aql">
-                                <rect key="frame" x="305" y="597" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="Obm-aE-2J3"/>
-                                    <constraint firstAttribute="height" constant="40" id="lJd-QC-3oY"/>
-                                </constraints>
-                                <state key="normal" image="btn_add_post"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="addPost:" destination="aaa-6I-2HB" eventType="touchUpInside" id="3cS-nQ-q7H"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zfh-LB-PgH" firstAttribute="bottom" secondItem="hPw-1d-WJq" secondAttribute="bottom" id="47G-Zw-EPH"/>
                             <constraint firstItem="hPw-1d-WJq" firstAttribute="trailing" secondItem="pze-R6-Xu8" secondAttribute="trailing" constant="16" id="5UP-7u-Vo6"/>
-                            <constraint firstItem="hPw-1d-WJq" firstAttribute="trailing" secondItem="zqT-si-Aql" secondAttribute="trailing" constant="30" id="7bx-iy-euz"/>
                             <constraint firstItem="zfh-LB-PgH" firstAttribute="trailing" secondItem="hPw-1d-WJq" secondAttribute="trailing" id="9Af-ly-XvJ"/>
                             <constraint firstItem="H18-R1-eYR" firstAttribute="top" secondItem="hPw-1d-WJq" secondAttribute="top" constant="16" id="BCT-im-s7U"/>
                             <constraint firstItem="84Q-Ub-ekj" firstAttribute="top" secondItem="hPw-1d-WJq" secondAttribute="top" constant="25" id="KgT-2o-VMI"/>
@@ -123,7 +100,6 @@
                             <constraint firstItem="pze-R6-Xu8" firstAttribute="leading" secondItem="H18-R1-eYR" secondAttribute="trailing" constant="16" id="aXK-iV-2gJ"/>
                             <constraint firstItem="H18-R1-eYR" firstAttribute="leading" secondItem="hPw-1d-WJq" secondAttribute="leading" constant="16" id="bIq-wm-K87"/>
                             <constraint firstItem="zfh-LB-PgH" firstAttribute="leading" secondItem="hPw-1d-WJq" secondAttribute="leading" id="ekE-Uo-Uht"/>
-                            <constraint firstItem="hPw-1d-WJq" firstAttribute="bottom" secondItem="zqT-si-Aql" secondAttribute="bottom" constant="30" id="tM6-gd-Odb"/>
                             <constraint firstItem="zfh-LB-PgH" firstAttribute="top" secondItem="H18-R1-eYR" secondAttribute="bottom" constant="16" id="z7b-ww-l8c"/>
                             <constraint firstItem="pze-R6-Xu8" firstAttribute="top" secondItem="84Q-Ub-ekj" secondAttribute="bottom" constant="20" id="zZW-Ed-K0V"/>
                         </constraints>
@@ -143,7 +119,4 @@
             <point key="canvasLocation" x="690" y="7"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="btn_add_post" width="32" height="32"/>
-    </resources>
 </document>

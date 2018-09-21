@@ -12,7 +12,7 @@ private enum Tab {
     
     case home
     case appointment
-    case chat
+    case post
     case like
     case profile
     
@@ -32,10 +32,10 @@ private enum Tab {
                 .appointmentStoryboard()
                 .instantiateInitialViewController()!
             
-        case .chat:
+        case .post:
             
             return UIStoryboard
-                .chatStoryboard()
+                .postStoryboard()
                 .instantiateInitialViewController()!
             
         case .like:
@@ -62,7 +62,7 @@ private enum Tab {
 
         case .appointment: return #imageLiteral(resourceName: "tab_appointment_normal")
 
-        case .chat: return #imageLiteral(resourceName: "tab_chat_normal")
+        case .post: return #imageLiteral(resourceName: "tab_post")
 
         case .like: return #imageLiteral(resourceName: "tab_like_normal")
 
@@ -80,7 +80,7 @@ private enum Tab {
 
         case .appointment: return #imageLiteral(resourceName: "tab_appointment_normal").withRenderingMode(.alwaysTemplate)
 
-        case .chat: return #imageLiteral(resourceName: "tab_chat_normal").withRenderingMode(.alwaysTemplate)
+        case .post: return #imageLiteral(resourceName: "tab_post").withRenderingMode(.alwaysTemplate)
 
         case .like: return #imageLiteral(resourceName: "tab_like_normal").withRenderingMode(.alwaysTemplate)
 
@@ -124,7 +124,7 @@ class TabBarController: UITabBarController {
 
         var controllers = [UIViewController]()
 
-        let tabs: [Tab] = [.home, .appointment, .chat, .like, .profile]
+        let tabs: [Tab] = [.home, .appointment, .post, .like, .profile]
 
         for tab in tabs {
 

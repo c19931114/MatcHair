@@ -16,5 +16,6 @@ target 'MatcHair' do
    pod 'Firebase/Auth'
    pod 'Firebase/Storage'
    pod 'FirebaseDatabase'
+   pod 'Kingfisher', '~> 4.0'
 
 end

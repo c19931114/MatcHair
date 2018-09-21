@@ -30,7 +30,11 @@ extension UILabel {
         }
 
         get {
-            if let currentLetterSpace = attributedText?.attribute(NSAttributedString.Key.kern, at: 0, effectiveRange: .none) as? CGFloat {
+            if let currentLetterSpace =
+                attributedText?.attribute(
+                    NSAttributedString.Key.kern,
+                    at: 0, effectiveRange: .none) as? CGFloat {
+                
                 return currentLetterSpace
             }
             else {

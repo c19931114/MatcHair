@@ -2,6 +2,8 @@ disabled_rules:
   - trailing_whitespace
   - todo
   - identifier_name
+  - statement_position
+  - unused_closure_parameter
 
 identifier_name:
   min_length: # only min_length

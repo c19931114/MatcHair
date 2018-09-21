@@ -9,20 +9,141 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="GSy-cJ-Gj0">
             <objects>
-                <viewController id="aaa-6I-2HB" sceneMemberID="viewController">
+                <viewController id="aaa-6I-2HB" customClass="ProfileViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gVW-OS-4Kv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H18-R1-eYR">
+                                <rect key="frame" x="16" y="36" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="UaY-zR-My6"/>
+                                    <constraint firstAttribute="height" constant="80" id="xsW-rx-yac"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84Q-Ub-ekj">
+                                <rect key="frame" x="116" y="45" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pze-R6-Xu8">
+                                <rect key="frame" x="112" y="86" width="247" height="30"/>
+                                <state key="normal" title="編輯個人檔案">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="set:" destination="aaa-6I-2HB" eventType="touchUpInside" id="W1h-oi-kbN"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zfh-LB-PgH">
+                                <rect key="frame" x="0.0" y="132" width="375" height="535"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lxn-qp-a2E">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="則" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22c-z1-7Zg">
+                                <rect key="frame" x="336" y="45" width="23" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="貼文數" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jac-AL-FSj">
+                                <rect key="frame" x="276" y="45" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqT-si-Aql">
+                                <rect key="frame" x="305" y="597" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Obm-aE-2J3"/>
+                                    <constraint firstAttribute="height" constant="40" id="lJd-QC-3oY"/>
+                                </constraints>
+                                <state key="normal" image="btn_add_post"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addPost:" destination="aaa-6I-2HB" eventType="touchUpInside" id="3cS-nQ-q7H"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zfh-LB-PgH" firstAttribute="bottom" secondItem="hPw-1d-WJq" secondAttribute="bottom" id="47G-Zw-EPH"/>
+                            <constraint firstItem="hPw-1d-WJq" firstAttribute="trailing" secondItem="pze-R6-Xu8" secondAttribute="trailing" constant="16" id="5UP-7u-Vo6"/>
+                            <constraint firstItem="hPw-1d-WJq" firstAttribute="trailing" secondItem="zqT-si-Aql" secondAttribute="trailing" constant="30" id="7bx-iy-euz"/>
+                            <constraint firstItem="zfh-LB-PgH" firstAttribute="trailing" secondItem="hPw-1d-WJq" secondAttribute="trailing" id="9Af-ly-XvJ"/>
+                            <constraint firstItem="H18-R1-eYR" firstAttribute="top" secondItem="hPw-1d-WJq" secondAttribute="top" constant="16" id="BCT-im-s7U"/>
+                            <constraint firstItem="84Q-Ub-ekj" firstAttribute="top" secondItem="hPw-1d-WJq" secondAttribute="top" constant="25" id="KgT-2o-VMI"/>
+                            <constraint firstItem="84Q-Ub-ekj" firstAttribute="leading" secondItem="H18-R1-eYR" secondAttribute="trailing" constant="20" id="QUG-uF-DyJ"/>
+                            <constraint firstItem="pze-R6-Xu8" firstAttribute="leading" secondItem="H18-R1-eYR" secondAttribute="trailing" constant="16" id="aXK-iV-2gJ"/>
+                            <constraint firstItem="H18-R1-eYR" firstAttribute="leading" secondItem="hPw-1d-WJq" secondAttribute="leading" constant="16" id="bIq-wm-K87"/>
+                            <constraint firstItem="zfh-LB-PgH" firstAttribute="leading" secondItem="hPw-1d-WJq" secondAttribute="leading" id="ekE-Uo-Uht"/>
+                            <constraint firstItem="hPw-1d-WJq" firstAttribute="bottom" secondItem="zqT-si-Aql" secondAttribute="bottom" constant="30" id="tM6-gd-Odb"/>
+                            <constraint firstItem="zfh-LB-PgH" firstAttribute="top" secondItem="H18-R1-eYR" secondAttribute="bottom" constant="16" id="z7b-ww-l8c"/>
+                            <constraint firstItem="pze-R6-Xu8" firstAttribute="top" secondItem="84Q-Ub-ekj" secondAttribute="bottom" constant="20" id="zZW-Ed-K0V"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hPw-1d-WJq"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ahf-c4-Egr"/>
+                    <connections>
+                        <outlet property="postCollectionView" destination="zfh-LB-PgH" id="HVq-7J-rRE"/>
+                        <outlet property="postCountLabel" destination="jac-AL-FSj" id="Y2J-xO-tWq"/>
+                        <outlet property="setButton" destination="pze-R6-Xu8" id="DDe-AU-kc3"/>
+                        <outlet property="userNameLabel" destination="84Q-Ub-ekj" id="WyI-1s-PaI"/>
+                        <outlet property="userPhotoImage" destination="H18-R1-eYR" id="Nru-9X-u2b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTT-Q4-t8D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-329" y="18"/>
+            <point key="canvasLocation" x="690" y="7"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_add_post" width="32" height="32"/>
+    </resources>
 </document>

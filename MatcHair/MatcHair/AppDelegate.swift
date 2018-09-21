@@ -8,7 +8,6 @@
 
 import UIKit
 import FBSDKLoginKit
-//import FBSDKCoreKit
 import Firebase
 import FBSDKCoreKit
 
@@ -24,10 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure() // 放後面會 crash
 
-        switchToLoginStoryBoard()
-
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKApplicationDelegate.sharedInstance().application(
+            application,
+            didFinishLaunchingWithOptions: launchOptions)
+        
         FBSDKSettings.setAppID("1934375866856449")
+
+        guard UserManager.shared.getUserToken() == nil else {
+            switchToMainStoryBoard()
+            return true
+        }
 
         return true
     }
@@ -47,19 +52,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIStoryboard.loginStoryboard().instantiateInitialViewController()
     }
 
-    func switchToHomeStoryBoard() {
+    func switchToMainStoryBoard() {
 
         guard Thread.current.isMainThread else {
 
             DispatchQueue.main.async { [weak self] in
 
-                self?.switchToHomeStoryBoard()
+                self?.switchToMainStoryBoard()
             }
 
             return
         }
 
-        window?.rootViewController = UIStoryboard.homeStoryboard().instantiateInitialViewController()
+        window?.rootViewController = UIStoryboard.mainStoryboard().instantiateInitialViewController()
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

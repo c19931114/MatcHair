@@ -16,7 +16,7 @@
 		F139AA102151EF3A00B5B0D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA0E2151EF3A00B5B0D4 /* LaunchScreen.storyboard */; };
 		F139AA192151F18300B5B0D4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA182151F18300B5B0D4 /* Login.storyboard */; };
 		F139AA1E2151F5B800B5B0D4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA1D2151F5B800B5B0D4 /* LoginViewController.swift */; };
-		F139AA222151F87200B5B0D4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA212151F87200B5B0D4 /* TabBarViewController.swift */; };
+		F139AA222151F87200B5B0D4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA212151F87200B5B0D4 /* TabBarController.swift */; };
 		F139AA242151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA232151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift */; };
 		F139AA272151FB0D00B5B0D4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA262151FB0D00B5B0D4 /* Home.storyboard */; };
 		F139AA292151FB2000B5B0D4 /* Appointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA282151FB2000B5B0D4 /* Appointment.storyboard */; };
@@ -29,6 +29,18 @@
 		F1546C2621524D73009AB3ED /* UIView+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C2521524D73009AB3ED /* UIView+Crystal.swift */; };
 		F1546C2921525705009AB3ED /* MatcHairColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C2821525705009AB3ED /* MatcHairColor.swift */; };
 		F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */; };
+		F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C2C3D62153CD2F0065E4EB /* Post.storyboard */; };
+		F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */; };
+		F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */; };
+		F1C2C3DF2153CED20065E4EB /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DE2153CED20065E4EB /* CameraController.swift */; };
+		F1C2C3E12154B3170065E4EB /* SwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E02154B3170065E4EB /* SwipeController.swift */; };
+		F1C2C3E32154B4180065E4EB /* SegueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E22154B4180065E4EB /* SegueController.swift */; };
+		F1C2C3E52154B8AE0065E4EB /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E42154B8AE0065E4EB /* PostViewController.swift */; };
+		F1C2C3E72154C9660065E4EB /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E62154C9660065E4EB /* NavigationController.swift */; };
+		F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */; };
+		F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */; };
+		F1DD3F3521536D3D00BBE710 /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */; };
+		F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F38215388A400BBE710 /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +57,7 @@
 		F139AA112151EF3A00B5B0D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F139AA182151F18300B5B0D4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F139AA1D2151F5B800B5B0D4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		F139AA212151F87200B5B0D4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		F139AA212151F87200B5B0D4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F139AA232151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Crystal.swift"; sourceTree = "<group>"; };
 		F139AA262151FB0D00B5B0D4 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		F139AA282151FB2000B5B0D4 /* Appointment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Appointment.storyboard; sourceTree = "<group>"; };
@@ -58,6 +70,18 @@
 		F1546C2521524D73009AB3ED /* UIView+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Crystal.swift"; sourceTree = "<group>"; };
 		F1546C2821525705009AB3ED /* MatcHairColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatcHairColor.swift; sourceTree = "<group>"; };
 		F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1C2C3D62153CD2F0065E4EB /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
+		F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
+		F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPictureViewController.swift; sourceTree = "<group>"; };
+		F1C2C3DE2153CED20065E4EB /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		F1C2C3E02154B3170065E4EB /* SwipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeController.swift; sourceTree = "<group>"; };
+		F1C2C3E22154B4180065E4EB /* SegueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueController.swift; sourceTree = "<group>"; };
+		F1C2C3E42154B8AE0065E4EB /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		F1C2C3E62154C9660065E4EB /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
+		F1DD3F38215388A400BBE710 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +138,7 @@
 				F1546C1221522C57009AB3ED /* Model */,
 				F139AA252151F9B500B5B0D4 /* Extension */,
 				F139AA1C2151F59B00B5B0D4 /* Controller */,
+				F1DD3F3121536D0F00BBE710 /* Cell */,
 				F139AA172151EF4600B5B0D4 /* Storyboard */,
 				F139AA052151EF3700B5B0D4 /* AppDelegate.swift */,
 				F139AA072151EF3700B5B0D4 /* ViewController.swift */,
@@ -135,6 +160,7 @@
 				F139AA2C2151FB3900B5B0D4 /* Chat.storyboard */,
 				F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */,
 				F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */,
+				F1C2C3D62153CD2F0065E4EB /* Post.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -142,8 +168,13 @@
 		F139AA1C2151F59B00B5B0D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */,
+				F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */,
+				F1C2C3E42154B8AE0065E4EB /* PostViewController.swift */,
 				F139AA1D2151F5B800B5B0D4 /* LoginViewController.swift */,
-				F139AA212151F87200B5B0D4 /* TabBarViewController.swift */,
+				F139AA212151F87200B5B0D4 /* TabBarController.swift */,
+				F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */,
+				F1C2C3E62154C9660065E4EB /* NavigationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -181,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				F1546C1E21523244009AB3ED /* User.swift */,
+				F1DD3F38215388A400BBE710 /* UserManager.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -203,9 +235,21 @@
 		F1546C27215256D8009AB3ED /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				F1C2C3DE2153CED20065E4EB /* CameraController.swift */,
 				F1546C2821525705009AB3ED /* MatcHairColor.swift */,
+				F1C2C3E02154B3170065E4EB /* SwipeController.swift */,
+				F1C2C3E22154B4180065E4EB /* SegueController.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		F1DD3F3121536D0F00BBE710 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */,
+				F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,11 +317,13 @@
 				F139AA192151F18300B5B0D4 /* Login.storyboard in Resources */,
 				F139AA272151FB0D00B5B0D4 /* Home.storyboard in Resources */,
 				F139AA292151FB2000B5B0D4 /* Appointment.storyboard in Resources */,
+				F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */,
 				F139AA102151EF3A00B5B0D4 /* LaunchScreen.storyboard in Resources */,
 				F139AA0D2151EF3A00B5B0D4 /* Assets.xcassets in Resources */,
 				F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */,
 				F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */,
 				F139AA2D2151FB3900B5B0D4 /* Chat.storyboard in Resources */,
+				F1DD3F3521536D3D00BBE710 /* PostCollectionViewCell.xib in Resources */,
 				F139AA0B2151EF3700B5B0D4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,7 +361,8 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -326,7 +373,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -356,15 +404,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1546C2921525705009AB3ED /* MatcHairColor.swift in Sources */,
-				F139AA222151F87200B5B0D4 /* TabBarViewController.swift in Sources */,
+				F139AA222151F87200B5B0D4 /* TabBarController.swift in Sources */,
+				F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */,
+				F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */,
+				F1C2C3E52154B8AE0065E4EB /* PostViewController.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
 				F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */,
 				F139AA1E2151F5B800B5B0D4 /* LoginViewController.swift in Sources */,
 				F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */,
+				F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */,
+				F1C2C3E32154B4180065E4EB /* SegueController.swift in Sources */,
 				F1546C1F21523244009AB3ED /* User.swift in Sources */,
+				F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */,
 				F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */,
+				F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */,
 				F139AA062151EF3700B5B0D4 /* AppDelegate.swift in Sources */,
+				F1C2C3E12154B3170065E4EB /* SwipeController.swift in Sources */,
 				F139AA242151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift in Sources */,
+				F1C2C3DF2153CED20065E4EB /* CameraController.swift in Sources */,
+				F1C2C3E72154C9660065E4EB /* NavigationController.swift in Sources */,
 				F1546C2621524D73009AB3ED /* UIView+Crystal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

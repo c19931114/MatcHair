@@ -132,10 +132,12 @@ class PostViewController: UIViewController {
         case 1:
             dolarSignLabel.isHidden = false
             priceTextField.isHidden = false
+            priceTextField.text = "0"
+
         default:
             dolarSignLabel.isHidden = true
             priceTextField.isHidden = true
-            priceTextField.text = nil
+            priceTextField.text = "0"
         }
     }
     @IBAction func pickDate(_ sender: Any) {
@@ -201,8 +203,6 @@ extension PostViewController {
         addressTextField.text = "基隆路一段180號"
 
     }
-
-
 
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
 
@@ -310,7 +310,38 @@ extension PostViewController {
                 guard let postId = self.ref.child("users/\(userID)/posts").childByAutoId().key else { return }
 
                 self.ref.child("users/\(userID)/posts/\(postId)").setValue(
-                    ["pictureURL": "\(downloadURL)", "content": "\(self.descriptionTextField.text!)"])
+                    [
+                        "pictureURL": "\(downloadURL)",
+                        "content": "\(self.descriptionTextField.text!)",
+                        "recruit": self.recruitModelSwitch.isSelected,
+                        "category":
+                            [
+                                "shampoo": self.shampooButton.isSelected,
+                                "haircut": self.haircutButton.isSelected,
+                                "dye": self.dyeButton.isSelected,
+                                "permanent": self.permanentButton.isSelected,
+                                "treatment": self.treatmentButton.isSelected,
+                                "other": self.otherButton.isSelected
+                            ],
+                        "payment": self.priceTextField.text!,
+                        "reservation":
+                            [
+                                "date": "",
+                                "time":
+                                    [
+                                        "moring": self.morningButton.isSelected,
+                                        "afternoon": self.afternoonButton.isSelected,
+                                        "night": self.nightButton.isSelected
+                                    ],
+                                "location":
+                                    [
+                                        "city": self.cityTextField.text,
+                                        "district": self.districtTextField.text,
+                                        "address": self.addressTextField.text
+                                    ]
+                            ]
+                    ]
+                )
 
             }
         }

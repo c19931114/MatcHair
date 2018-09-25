@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DatePickerDialog
 
 class PostViewController: UIViewController {
 
@@ -32,14 +33,15 @@ class PostViewController: UIViewController {
     @IBOutlet weak var dolarSignLabel: UILabel!
     @IBOutlet weak var priceTextField: UITextField!
 
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var reservationTimeLabel: UILabel!
+    @IBOutlet weak var pickDateLabel: UILabel!
     @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var timeIntervalStack: UIStackView!
     @IBOutlet weak var morningButton: UIButton!
     @IBOutlet weak var afternoonButton: UIButton!
     @IBOutlet weak var nightButton: UIButton!
 
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var reservationLocationLabel: UILabel!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var districtTextField: UITextField!
@@ -128,6 +130,11 @@ class PostViewController: UIViewController {
             priceTextField.text = nil
         }
     }
+    @IBAction func pickDate(_ sender: Any) {
+
+        datePickerTapped()
+
+    }
 
     @IBAction func morning(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
@@ -177,6 +184,8 @@ extension PostViewController {
 
         postImage.image = picture
 
+        descriptionTextField.text = "test"
+
         cityTextField.text = "台北市"
         districtTextField.text = "信義區"
         addressTextField.text = "基隆路一段180號"
@@ -194,11 +203,11 @@ extension PostViewController {
         categoryStack.isHidden = false
         paymentLabel.isHidden = false
         paymentSegmentControl.isHidden = false
-
-        timeLabel.isHidden = false
+        reservationTimeLabel.isHidden = false
+        pickDateLabel.isHidden = false
         calendarButton.isHidden = false
         timeIntervalStack.isHidden = false
-        locationLabel.isHidden = false
+        reservationLocationLabel.isHidden = false
         cityTextField.isHidden = false
         cityLabel.isHidden = false
         districtTextField.isHidden = false
@@ -214,15 +223,52 @@ extension PostViewController {
         paymentSegmentControl.isHidden = true
         dolarSignLabel.isHidden = true
         priceTextField.isHidden = true
-        timeLabel.isHidden = true
+        reservationTimeLabel.isHidden = true
+        pickDateLabel.isHidden = true
         calendarButton.isHidden = true
         timeIntervalStack.isHidden = true
-        locationLabel.isHidden = true
+        reservationLocationLabel.isHidden = true
         cityTextField.isHidden = true
         cityLabel.isHidden = true
         districtTextField.isHidden = true
         districtLabel.isHidden = true
         addressTextField.isHidden = true
 
+    }
+
+    func datePickerTapped() {
+        let currentDate = Date()
+        var dateComponents = DateComponents()
+        dateComponents.month = +6
+        let threeMonthAfter = Calendar.current.date(byAdding: dateComponents, to: currentDate)
+
+        let datePicker = DatePickerDialog(
+            textColor: UIColor(
+                red: 3 / 255.0,
+                green: 121 / 255.0,
+                blue: 200 / 255.0,
+                alpha: 1.0),
+            buttonColor: UIColor(
+                red: 3 / 255.0,
+                green: 121 / 255.0,
+                blue: 200 / 255.0,
+                alpha: 1.0),
+            font: UIFont.boldSystemFont(ofSize: 17),
+            showCancelButton: true)
+        
+        datePicker.show(
+            "限六個月內",
+            doneButtonTitle: "Done",
+            cancelButtonTitle: "Cancel",
+            minimumDate: currentDate,
+            maximumDate: threeMonthAfter,
+            datePickerMode: .date) { (date) in
+                
+                if let dt = date {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy/MM/dd"
+                    self.pickDateLabel.text = formatter.string(from: dt)
+                }
+        }
     }
 }

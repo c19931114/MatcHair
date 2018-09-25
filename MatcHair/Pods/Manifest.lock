@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - DatePickerDialog (2.0)
   - FBSDKCoreKit (4.36.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.36.0):
@@ -83,6 +84,7 @@ PODS:
 
 DEPENDENCIES:
   - Bolts
+  - DatePickerDialog
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -96,6 +98,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
+    - DatePickerDialog
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
@@ -117,6 +120,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
   FBSDKCoreKit: 3b8e6570eedb443f9fc4af196a7bf39f18e3a3d8
   FBSDKLoginKit: 8bccb6064708ab2f4251a7fc4e3b6d8d00ad91ba
   FBSDKShareKit: 7090fdd55c39b03941efddb64c83a64ff6b3949f
@@ -136,6 +140,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 72031370efc38123cafe793e611cbeadef408f7d
+PODFILE CHECKSUM: 53ae82d915b4a64af1387a6f40d1deb9b20d4591
 
 COCOAPODS: 1.5.3

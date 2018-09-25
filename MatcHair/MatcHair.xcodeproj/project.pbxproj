@@ -138,7 +138,7 @@
 				F1546C1221522C57009AB3ED /* Model */,
 				F139AA252151F9B500B5B0D4 /* Extension */,
 				F139AA1C2151F59B00B5B0D4 /* Controller */,
-				F1DD3F3121536D0F00BBE710 /* Cell */,
+				F1DD3F3121536D0F00BBE710 /* Xib */,
 				F139AA172151EF4600B5B0D4 /* Storyboard */,
 				F139AA052151EF3700B5B0D4 /* AppDelegate.swift */,
 				F139AA072151EF3700B5B0D4 /* ViewController.swift */,
@@ -243,13 +243,13 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		F1DD3F3121536D0F00BBE710 /* Cell */ = {
+		F1DD3F3121536D0F00BBE710 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
 				F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */,
 				F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */,
 			);
-			path = Cell;
+			path = Xib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +357,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/DatePickerDialog/DatePickerDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -369,6 +370,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DatePickerDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",

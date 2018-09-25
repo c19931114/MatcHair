@@ -17,5 +17,6 @@ target 'MatcHair' do
    pod 'Firebase/Storage'
    pod 'FirebaseDatabase'
    pod 'Kingfisher', '~> 4.0'
+   pod 'DatePickerDialog'
 
 end

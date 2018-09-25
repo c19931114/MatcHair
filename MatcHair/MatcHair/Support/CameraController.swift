@@ -177,7 +177,11 @@ extension CameraController {
     func switchCameras() throws {
         
         // 確保在切換相機時，有一個有效可運作的 Capture Session，同時確認有正在使用的相機裝置
-        guard let currentCameraPosition = currentCameraPosition, let captureSession = self.captureSession, captureSession.isRunning else { throw CameraControllerError.captureSessionIsMissing }
+        guard let currentCameraPosition = currentCameraPosition,
+            let captureSession = self.captureSession,
+            captureSession.isRunning else {
+                throw CameraControllerError.captureSessionIsMissing
+        }
         
         // 開始設定 Capture Session (成對-->)
         captureSession.beginConfiguration()

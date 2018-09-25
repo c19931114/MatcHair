@@ -134,7 +134,7 @@ extension LoginViewController {
 
     }
 
-    func uploadUserPictureToStorage(with uid: String ,and userName: String ,and photoURL: URL) {
+    func uploadUserPictureToStorage(with uid: String, and userName: String, and photoURL: URL) {
 
         guard let photoData = try? Data(contentsOf: photoURL) else { return }
 
@@ -174,7 +174,7 @@ extension LoginViewController {
 
     }
 
-    func uploadUserInfoToDatabase(with uid: String ,and userName: String ,and photoURL: URL) {
+    func uploadUserInfoToDatabase(with uid: String, and userName: String, and photoURL: URL) {
 
         ref.child("users/\(uid)").setValue(
             [

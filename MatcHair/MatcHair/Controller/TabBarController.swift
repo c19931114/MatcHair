@@ -108,12 +108,14 @@ class TabBarController: UITabBarController {
             green: 212 / 255.0,
             blue: 242 / 255.0,
             alpha: 1.0)
+        // #8ED4F2
 
         tabBar.tintColor = UIColor(
             red: 3 / 255.0,
             green: 121 / 255.0,
             blue: 200 / 255.0,
             alpha: 1.0)
+        // #0379C8
 
         // 背景色
         tabBar.barTintColor = UIColor(

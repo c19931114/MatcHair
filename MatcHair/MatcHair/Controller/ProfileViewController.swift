@@ -37,7 +37,7 @@ extension ProfileViewController {
         ref = Database.database().reference()
         showUserData()
 
-//        loadPost()
+        loadPost()
 
     }
 
@@ -74,7 +74,7 @@ extension ProfileViewController {
 
         guard let userUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("users/\(userUID)/post").observe(.childAdded) { (snapshot) in
+        ref.child("users/\(userUID)/posts").observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value else { return }
             

@@ -8,10 +8,15 @@
 
 import UIKit
 import DatePickerDialog
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
 
 class PostViewController: UIViewController {
 
     var picture: UIImage?
+    let storageRef = Storage.storage().reference()
+    var ref: DatabaseReference!
 
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
@@ -48,6 +53,9 @@ class PostViewController: UIViewController {
     @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var addressTextField: UITextField!
 
+    @IBAction func post(_ sender: Any) {
+        share()
+    }
     @IBAction func recruitModel(_ sender: UISwitch) {
         switch sender.isOn {
         case true:
@@ -173,6 +181,8 @@ extension PostViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ref = Database.database().reference()
+
         hideOptions()
 
         let tapGestureRecognizer =
@@ -191,6 +201,8 @@ extension PostViewController {
         addressTextField.text = "基隆路一段180號"
 
     }
+
+
 
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
 
@@ -270,5 +282,38 @@ extension PostViewController {
                     self.pickDateLabel.text = formatter.string(from: dt)
                 }
         }
+    }
+
+    func share() {
+
+        guard let image = picture,
+            let uploadData = image.jpegData(compressionQuality: 0.1) else {
+                print("no image")
+                return
+        }
+
+        let fileName = NSUUID().uuidString
+
+        storageRef.child("\(fileName).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
+
+            guard let metadata = metadata else {
+                // Uh-oh, an error occurred!
+                return
+            }
+            print(metadata)
+
+            self.storageRef.child("\(fileName).jpeg").downloadURL { (url, error) in
+
+                guard let downloadURL = url else { return }
+                guard let userID = UserManager.shared.getUserUID() else { return }
+
+                guard let postId = self.ref.child("users/\(userID)/posts").childByAutoId().key else { return }
+
+                self.ref.child("users/\(userID)/posts/\(postId)").setValue(
+                    ["pictureURL": "\(downloadURL)", "content": "\(self.descriptionTextField.text!)"])
+
+            }
+        }
+
     }
 }

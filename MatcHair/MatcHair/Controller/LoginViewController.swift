@@ -139,7 +139,7 @@ extension LoginViewController {
         guard let photoData = try? Data(contentsOf: photoURL) else { return }
 
         guard let photo = UIImage(data: photoData),
-            let uploadData = photo.jpegData(compressionQuality: 10.0) else {
+            let uploadData = photo.jpegData(compressionQuality: 1.0) else {
 
                 print("no image")
                 return

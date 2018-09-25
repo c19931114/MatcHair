@@ -502,6 +502,9 @@
                     <navigationItem key="navigationItem" id="mci-yG-jQd">
                         <barButtonItem key="rightBarButtonItem" title="分享" style="done" id="Dg1-vr-OVO">
                             <color key="tintColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="post:" destination="k4v-yN-R2Z" id="RdN-Ky-TWL"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

@@ -28,7 +28,7 @@ class PictureViewController: UIViewController, UIImagePickerControllerDelegate, 
     // Allows the user to put the camera in video mode.
     @IBOutlet fileprivate var videoModeButton: UIButton!
     
-    override var prefersStatusBarHidden: Bool { return true }
+//    override var prefersStatusBarHidden: Bool { return true }
     
     // 閃光燈開關
     @IBAction func toggleFlash(_ sender: UIButton) {

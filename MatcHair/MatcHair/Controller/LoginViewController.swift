@@ -180,12 +180,7 @@ extension LoginViewController {
             [
                 "user": userName,
                 "photo": photoURL.absoluteString,
-                "post":
-                    [
-                        "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/fullsizeoutput_625b.jpeg?alt=media&token=9812d115-ccd2-4e83-8460-dc61291458c6",
-                        "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/IMG_E7212.JPG?alt=media&token=758fe089-3a1d-4c29-8bd5-3941387f8507",
-                        "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/IMG_E7739.JPG?alt=media&token=f679310f-9083-4cfe-9677-b7fb7fd3e6d5"
-                    ]
+                
             ]
         )
 

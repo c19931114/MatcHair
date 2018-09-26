@@ -54,6 +54,8 @@ class PostViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
 
     @IBAction func post(_ sender: Any) {
+
+        //先判斷有無缺項
         share()
     }
     @IBAction func recruitModel(_ sender: UISwitch) {

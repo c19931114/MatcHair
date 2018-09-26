@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
         FirebaseApp.configure() // 放後面會 crash
 
@@ -68,6 +68,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window?.rootViewController = UIStoryboard.mainStoryboard().instantiateInitialViewController()
     }
+
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        let result = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+        return result
+    }
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let result = FBSDKApplicationDelegate.sharedInstance().application(
+            application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        return result
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         
@@ -90,5 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         
     }
+
 
 }

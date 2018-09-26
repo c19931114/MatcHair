@@ -18,8 +18,8 @@ struct Post: Codable {
 }
 
 struct Category: Codable {
-    let dye: Bool
-    let haircut: Bool
+    let dye: Bool?
+    let haircut: Bool?
     let other: Bool
     let permanent: Bool
     let shampoo: Bool

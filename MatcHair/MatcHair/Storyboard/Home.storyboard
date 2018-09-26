@@ -40,7 +40,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="MatcHair" id="ynZ-Hy-vnR"/>
                     <connections>
-                        <outlet property="postCollectionView" destination="Bua-IT-Md1" id="8gA-cP-x9b"/>
+                        <outlet property="homePostCollectionView" destination="Bua-IT-Md1" id="8gA-cP-x9b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdg-pH-bv2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -55,7 +55,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JhW-vP-9Hl">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

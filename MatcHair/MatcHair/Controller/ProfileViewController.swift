@@ -13,10 +13,14 @@ import Kingfisher
 
 class ProfileViewController: UIViewController {
 
-    let fullScreenSize = UIScreen.main.bounds.size
-    var posts: [String] = []
-    var ref: DatabaseReference!
+    let decoder = JSONDecoder()
 
+    let fullScreenSize = UIScreen.main.bounds.size
+    var profilePosts: [MyPost] = []
+    var ref: DatabaseReference!
+    
+    @IBOutlet weak var profilePostCollectionView: UICollectionView!
+    
     @IBOutlet weak var userPhotoImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var setButton: UIButton!
@@ -36,22 +40,29 @@ extension ProfileViewController {
         ref = Database.database().reference()
         showUserData()
 
-//        loadPost()
+        setupCollectionView()
+
+        loadProfilePosts()
 
     }
 
+    private func setupCollectionView() {
 
-//    func setCellLayout() {
-//
-//        guard let layout = postCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-//
-//        layout.minimumLineSpacing = 5
-//
-//        let width = (fullScreenSize.width - 10.0) / 2
-//        let height = width * 0.62
-//        layout.itemSize = CGSize(width: width, height: height)
-//
-//    }
+        profilePostCollectionView.dataSource = self
+
+        let identifier = String(describing: PostCollectionViewCell.self)
+        let xib = UINib(nibName: identifier, bundle: nil)
+        profilePostCollectionView.register(xib, forCellWithReuseIdentifier: identifier)
+
+        guard let layout = profilePostCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        layout.minimumLineSpacing = 20
+
+        let width = fullScreenSize.width - 30
+        let height = width * 27 / 25
+        layout.itemSize = CGSize(width: width, height: height)
+    }
 
     func showUserData() {
         userNameLabel.text = UserManager.shared.getUserName()
@@ -59,39 +70,54 @@ extension ProfileViewController {
 
     }
 
-    func loadPost() {
+    func loadProfilePosts() {
 
-        guard let userUID = Auth.auth().currentUser?.uid else { return }
+        guard let userUID = UserManager.shared.getUserUID() else { return }
 
         ref.child("users/\(userUID)/posts").observe(.childAdded) { (snapshot) in
 
-            guard let value = snapshot.value else { return }
-            
-            print(value)
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
+                self.profilePosts.append(postData)
+            } catch {
+                print(error)
+            }
+
+            self.profilePostCollectionView.reloadData()
+            self.postCountLabel.text = "\(self.profilePosts.count)"
 
         }
     }
 
 }
 
-//extension ProfileViewController: UICollectionViewDataSource {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 10
-//    }
+extension ProfileViewController: UICollectionViewDataSource {
 
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        if let cell = postCollectionView.dequeueReusableCell(
-//            withReuseIdentifier: "postCell",
-//            for: indexPath) as? PostCollectionViewCell {
-//
-//            let cellIndexPath = postInfoCell[indexPath.row]
-//
-//            return cell
-//        } else {
-//            return UICollectionViewCell()
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return profilePosts.count
+    }
 
-//}
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = profilePostCollectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: PostCollectionViewCell.self),
+            for: indexPath)
+
+        guard let postCell = cell as? PostCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+
+        let profilePost = profilePosts[indexPath.row]
+
+        postCell.postImage.kf.setImage(with: URL(string: profilePost.pictureURL))
+        postCell.userImage.kf.setImage(with: UserManager.shared.getUserPhotoURL())
+        postCell.reservationButton.isHidden = true
+
+        return postCell
+    }
+
+}

@@ -31,6 +31,7 @@
 		F1546C2621524D73009AB3ED /* UIView+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C2521524D73009AB3ED /* UIView+Crystal.swift */; };
 		F1546C2921525705009AB3ED /* MatcHairColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C2821525705009AB3ED /* MatcHairColor.swift */; };
 		F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */; };
+		F1A1A84C215BD5970038F0CF /* MyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A84B215BD5970038F0CF /* MyPost.swift */; };
 		F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C2C3D62153CD2F0065E4EB /* Post.storyboard */; };
 		F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */; };
 		F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */; };
@@ -74,6 +75,7 @@
 		F1546C2521524D73009AB3ED /* UIView+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Crystal.swift"; sourceTree = "<group>"; };
 		F1546C2821525705009AB3ED /* MatcHairColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatcHairColor.swift; sourceTree = "<group>"; };
 		F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1A1A84B215BD5970038F0CF /* MyPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPost.swift; sourceTree = "<group>"; };
 		F1C2C3D62153CD2F0065E4EB /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPictureViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		F1546C1221522C57009AB3ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F1A1A84B215BD5970038F0CF /* MyPost.swift */,
 				F14794A3215B8A05005E864C /* Post.swift */,
 				F1546C2221524114009AB3ED /* HTTP */,
 				F1546C1B2152317D009AB3ED /* Error */,
@@ -414,6 +417,7 @@
 				F1546C2921525705009AB3ED /* MatcHairColor.swift in Sources */,
 				F139AA222151F87200B5B0D4 /* TabBarController.swift in Sources */,
 				F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */,
+				F1A1A84C215BD5970038F0CF /* MyPost.swift in Sources */,
 				F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */,
 				F1C2C3E52154B8AE0065E4EB /* PostViewController.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,

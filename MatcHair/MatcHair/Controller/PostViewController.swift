@@ -338,7 +338,7 @@ extension PostViewController {
                                     "date": "",
                                     "time":
                                         [
-                                            "moring": self.morningButton.isSelected,
+                                            "morning": self.morningButton.isSelected,
                                             "afternoon": self.afternoonButton.isSelected,
                                             "night": self.nightButton.isSelected
                                     ],

@@ -12,11 +12,11 @@ struct User: Codable {
 
     let name: String
 
-    let email: String
+    var email: String?
 
     let image: String
 
-    let id: String
+    var id: String?
 }
 
 struct ProfileResponse: Codable {

@@ -10,7 +10,8 @@ import UIKit
 
 class PostCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet fileprivate weak var postImage: UIImageView!
+    @IBOutlet weak var view: UIView!
+    @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -30,6 +31,12 @@ class PostCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+//        view.backgroundColor = UIColor(
+//            red: 142 / 255.0,
+//            green: 212 / 255.0,
+//            blue: 242 / 255.0,
+//            alpha: 0.1)
 
     }
 

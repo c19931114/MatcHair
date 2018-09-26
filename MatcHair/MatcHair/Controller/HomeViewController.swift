@@ -12,24 +12,24 @@ import FirebaseDatabase
 class HomeViewController: UIViewController {
 
     var ref: DatabaseReference!
+    var post = [Post]()
 
     @IBOutlet weak var postCollectionView: UICollectionView!
 
+}
+
+extension HomeViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+
 
 }
-//
-//extension HomeViewController: UICollectionViewDataSource {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
-//
-//
-//}
 
 extension HomeViewController {
 
@@ -37,17 +37,16 @@ extension HomeViewController {
         super.viewDidLoad()
 
         ref = Database.database().reference()
-        
+
 //        setupCollectionView()
 
-//        loadPosts()
-
+        loadPosts()
 
     }
 
     private func setupCollectionView() {
 
-//        postCollectionView.dataSource = self
+        postCollectionView.dataSource = self
 
         let identifier = String(describing: PostCollectionViewCell.self)
 
@@ -58,9 +57,11 @@ extension HomeViewController {
 
     func loadPosts() {
 
-        ref.child("")
+        ref.child("posts").observe(.childAdded) { (snapshot) in
+
+            let value = snapshot.value as? NSDictionary
+            print(value as Any)
+        }
     }
-
-
 
 }

@@ -320,10 +320,9 @@ extension PostViewController {
                     self.ref.child("posts/\(postId)").setValue(
 
                         [
-                            "user": ["name": "\(userName)", "photo": "\(userPhoto)"],
+                            "user": ["name": "\(userName)", "image": "\(userPhoto)"],
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
-                            "recruit": self.recruitModelSwitch.isSelected,
                             "category":
                                 [
                                     "shampoo": self.shampooButton.isSelected,

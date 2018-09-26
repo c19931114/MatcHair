@@ -288,8 +288,8 @@ extension PostViewController {
 
     func share() {
 
-        guard let image = picture,
-            let uploadData = image.jpegData(compressionQuality: 0.1) else {
+        guard let postPicture = picture,
+            let uploadData = postPicture.jpegData(compressionQuality: 0.1) else {
                 print("no image")
                 return
         }
@@ -307,43 +307,71 @@ extension PostViewController {
             self.storageRef.child("\(fileName).jpeg").downloadURL { (url, error) in
 
                 guard let downloadURL = url else { return }
+
                 guard let userID = UserManager.shared.getUserUID() else { return }
 
                 guard let postId = self.ref.child("users/\(userID)/posts").childByAutoId().key else { return }
 
-                self.ref.child("users/\(userID)/posts/\(postId)").setValue(
-                    [
-                        "pictureURL": "\(downloadURL)",
-                        "content": "\(self.descriptionTextField.text!)",
-                        "recruit": self.recruitModelSwitch.isSelected,
-                        "category":
-                            [
-                                "shampoo": self.shampooButton.isSelected,
-                                "haircut": self.haircutButton.isSelected,
-                                "dye": self.dyeButton.isSelected,
-                                "permanent": self.permanentButton.isSelected,
-                                "treatment": self.treatmentButton.isSelected,
-                                "other": self.otherButton.isSelected
+                if self.recruitModelSwitch.isOn {
+
+                    guard let userName = UserManager.shared.getUserName() else { return }
+                    guard let userPhoto = UserManager.shared.getUserPhotoURL() else { return }
+
+                    self.ref.child("posts/\(postId)").setValue(
+
+                        [
+                            "user": ["name": "\(userName)", "photo": "\(userPhoto)"],
+                            "pictureURL": "\(downloadURL)",
+                            "content": "\(self.descriptionTextField.text!)",
+                            "recruit": self.recruitModelSwitch.isSelected,
+                            "category":
+                                [
+                                    "shampoo": self.shampooButton.isSelected,
+                                    "haircut": self.haircutButton.isSelected,
+                                    "dye": self.dyeButton.isSelected,
+                                    "permanent": self.permanentButton.isSelected,
+                                    "treatment": self.treatmentButton.isSelected,
+                                    "other": self.otherButton.isSelected
                             ],
-                        "payment": self.priceTextField.text!,
-                        "reservation":
-                            [
-                                "date": "",
-                                "time":
-                                    [
-                                        "moring": self.morningButton.isSelected,
-                                        "afternoon": self.afternoonButton.isSelected,
-                                        "night": self.nightButton.isSelected
+                            "payment": self.priceTextField.text!,
+                            "reservation":
+                                [
+                                    "date": "",
+                                    "time":
+                                        [
+                                            "moring": self.morningButton.isSelected,
+                                            "afternoon": self.afternoonButton.isSelected,
+                                            "night": self.nightButton.isSelected
                                     ],
-                                "location":
-                                    [
-                                        "city": self.cityTextField.text,
-                                        "district": self.districtTextField.text,
-                                        "address": self.addressTextField.text
+                                    "location":
+                                        [
+                                            "city": self.cityTextField.text,
+                                            "district": self.districtTextField.text,
+                                            "address": self.addressTextField.text
                                     ]
                             ]
-                    ]
-                )
+                        ]
+                    )
+
+                    self.ref.child("users/\(userID)/posts/\(postId)").setValue(
+                        [
+                            "pictureURL": "\(downloadURL)",
+                            "content": "\(self.descriptionTextField.text!)"
+
+                        ]
+                    )
+
+                } else {
+
+                    self.ref.child("users/\(userID)/posts/\(postId)").setValue(
+                        [
+                            "pictureURL": "\(downloadURL)",
+                            "content": "\(self.descriptionTextField.text!)"
+
+                        ]
+                    )
+
+                }
 
             }
         }

@@ -37,7 +37,7 @@ extension ProfileViewController {
         ref = Database.database().reference()
         showUserData()
 
-        loadPost()
+//        loadPost()
 
     }
 
@@ -66,7 +66,7 @@ extension ProfileViewController {
 
     func showUserData() {
         userNameLabel.text = UserManager.shared.getUserName()
-        userPhotoImage.kf.setImage(with: Auth.auth().currentUser?.photoURL)
+        userPhotoImage.kf.setImage(with: UserManager.shared.getUserPhotoURL())
 
     }
 

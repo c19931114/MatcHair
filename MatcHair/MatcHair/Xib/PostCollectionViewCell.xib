@@ -58,6 +58,9 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="makeReservation:" destination="gTV-IL-0wX" eventType="touchUpInside" id="e9H-dq-apP"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-3U-AhJ">
                                 <rect key="frame" x="235" y="303" width="50" height="20"/>
@@ -69,6 +72,9 @@
                                             <constraint firstAttribute="height" constant="20" id="jSA-PS-XTg"/>
                                         </constraints>
                                         <state key="normal" image="btn_poke"/>
+                                        <connections>
+                                            <action selector="poke:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Npc-vz-QrF"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oT-bR-KPS">
                                         <rect key="frame" x="30" y="0.0" width="20" height="20"/>
@@ -77,6 +83,9 @@
                                             <constraint firstAttribute="width" constant="20" id="QHw-rY-QFh"/>
                                         </constraints>
                                         <state key="normal" image="btn_like_normal"/>
+                                        <connections>
+                                            <action selector="like:" destination="gTV-IL-0wX" eventType="touchUpInside" id="aPG-Z7-63r"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -133,7 +142,13 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="375" height="379"/>
             <connections>
+                <outlet property="likeButton" destination="4oT-bR-KPS" id="GZe-4b-Cwt"/>
+                <outlet property="locationLabel" destination="TBE-M0-08g" id="Agd-BF-pfc"/>
+                <outlet property="pokeButton" destination="CZF-1d-wRd" id="2n1-ZV-KKI"/>
                 <outlet property="postImage" destination="AzB-sf-Fjm" id="Mh7-Bk-rE7"/>
+                <outlet property="reservationButton" destination="0V8-KE-FdQ" id="c6r-YS-Rzb"/>
+                <outlet property="userImage" destination="oK5-zR-CMo" id="1Jq-ae-o4O"/>
+                <outlet property="userNameLabel" destination="yNW-nr-jbg" id="Lz2-Sa-dxx"/>
             </connections>
             <point key="canvasLocation" x="434" y="-68"/>
         </collectionViewCell>

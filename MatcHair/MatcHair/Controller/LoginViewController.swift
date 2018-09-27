@@ -160,30 +160,30 @@ extension LoginViewController {
                     return
                 }
 
-                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
-
-                    guard let photoURL = url else {
-                        return
-                    }
-
-                    self.uploadUserInfoToDatabase(with: uid, and: userName, and: photoURL)
-
-                })
+//                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+//
+//                    guard let photoURL = url else {
+//                        return
+//                    }
+//
+//                    self.uploadUserInfoToDatabase(with: uid, and: userName, and: photoURL)
+//
+//                })
 
         }
 
     }
 
-    func uploadUserInfoToDatabase(with uid: String, and userName: String, and photoURL: URL) {
-
-        ref.child("users/\(uid)").setValue(
-            [
-                "name": userName,
-                "image": photoURL.absoluteString
-                
-            ]
-        )
-
-    }
+//    func uploadUserInfoToDatabase(with uid: String, and userName: String, and photoURL: URL) {
+//
+//        ref.child("users/\(uid)").setValue(
+//            [
+//                "name": userName,
+//                "image": photoURL.absoluteString
+//                
+//            ]
+//        )
+//
+//    }
 
 }

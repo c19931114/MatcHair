@@ -171,7 +171,7 @@ extension CameraController {
         self.previewLayer?.connection?.videoOrientation = .portrait
         
         view.layer.insertSublayer(self.previewLayer!, at: 0)
-        self.previewLayer?.frame = view.frame
+        self.previewLayer?.frame = view.frame //
     }
     
     func switchCameras() throws {

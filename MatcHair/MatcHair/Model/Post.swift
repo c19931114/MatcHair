@@ -9,15 +9,19 @@
 import Foundation
 
 struct Post: Codable {
+
+    let postID: String
     let category: Category
     let content: String
     let payment: String
     let pictureURL: String
     let reservation: Reservation
     let user: User
+    let isLiked: Bool
 }
 
 struct Category: Codable {
+
     let dye: Bool
     let haircut: Bool
     let other: Bool
@@ -27,18 +31,21 @@ struct Category: Codable {
 }
 
 struct Reservation: Codable {
+
     let date: String
     let location: Location
     let time: TimeInterval
 }
 
 struct Location: Codable {
+
     let address: String
     let city: String
     let district: String
 }
 
 struct TimeInterval: Codable {
+    
     let afternoon: Bool
     let morning: Bool
     let night: Bool

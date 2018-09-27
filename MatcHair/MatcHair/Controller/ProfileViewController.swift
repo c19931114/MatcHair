@@ -129,6 +129,7 @@ extension ProfileViewController: UICollectionViewDataSource {
             let post = myPosts[indexPath.row]
 
             postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
+            
 
             return postCell
         }

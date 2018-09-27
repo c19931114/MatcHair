@@ -1,8 +1,8 @@
 //
-//  HomeViewController.swift
+//  LikeViewController.swift
 //  MatcHair
 //
-//  Created by Crystal on 2018/9/26.
+//  Created by Crystal on 2018/9/27.
 //  Copyright © 2018年 Crystal. All rights reserved.
 //
 
@@ -10,19 +10,18 @@ import UIKit
 import FirebaseDatabase
 import Kingfisher
 
-class HomeViewController: UIViewController {
-    
+class LikeViewController: UIViewController {
+
     let decoder = JSONDecoder()
 
     var ref: DatabaseReference!
-    var allPosts = [Post]()
+    var likePosts = [Post]()
     let fullScreenSize = UIScreen.main.bounds.size
 
-    @IBOutlet weak var homePostCollectionView: UICollectionView!
+    @IBOutlet weak var likePostCollectionView: UICollectionView!
 
 }
-
-extension HomeViewController {
+extension LikeViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,24 +30,26 @@ extension HomeViewController {
 
         setupCollectionView()
 
-        loadHomePosts()
+        loadLikePosts()
 
     }
 
     private func setupCollectionView() {
 
-        homePostCollectionView.dataSource = self
-        homePostCollectionView.delegate = self
+        likePostCollectionView.dataSource = self
+        likePostCollectionView.delegate = self
 
         let identifier = String(describing: PostCollectionViewCell.self)
         let xib = UINib(nibName: identifier, bundle: nil)
-        homePostCollectionView.register(xib, forCellWithReuseIdentifier: identifier)
+        likePostCollectionView.register(xib, forCellWithReuseIdentifier: identifier)
 
     }
 
-    func loadHomePosts() {
+    func loadLikePosts() {
 
-        ref.child("allPosts").observe(.childAdded) { (snapshot) in
+        guard let userID = UserManager.shared.getUserUID() else { return }
+
+        ref.child("likePosts/\(userID)").observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
@@ -56,12 +57,12 @@ extension HomeViewController {
 
             do {
                 let postData = try self.decoder.decode(Post.self, from: postJSONData)
-                self.allPosts.insert(postData, at: 0)
+                self.likePosts.insert(postData, at: 0)
             } catch {
                 print(error)
             }
 
-            self.homePostCollectionView.reloadData()
+            self.likePostCollectionView.reloadData()
 
         }
 
@@ -69,17 +70,17 @@ extension HomeViewController {
 
 }
 
-extension HomeViewController: UICollectionViewDataSource {
+extension LikeViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allPosts.count
+        return likePosts.count
     }
 
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = homePostCollectionView.dequeueReusableCell(
+        let cell = likePostCollectionView.dequeueReusableCell(
             withReuseIdentifier: String(describing: PostCollectionViewCell.self),
             for: indexPath)
 
@@ -87,7 +88,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let post = allPosts[indexPath.row]
+        let post = likePosts[indexPath.row]
 
         postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
         postCell.userImage.kf.setImage(with: URL(string: post.user.image))
@@ -95,33 +96,29 @@ extension HomeViewController: UICollectionViewDataSource {
         postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
 
         // taget action
-        postCell.likeButton.tag = indexPath.row
-        postCell.likeButton.addTarget(
-            self,
-            action: #selector(likeButtonTapped(sender:)), for: .touchUpInside)
+//        postCell.likeButton.tag = indexPath.row
+//        postCell.likeButton.addTarget(
+//            self,
+//            action: #selector(likeButtonTapped(sender:)), for: .touchUpInside)
 
         return postCell
 
     }
 
     @objc func likeButtonTapped(sender: UIButton) {
-//        print(sender.tag)
-//        print(sender.isSelected)
 
-        guard let userID = UserManager.shared.getUserUID() else { return }
-
-        let likePost = allPosts[sender.tag]
+        print(sender.tag)
+        print(sender.isSelected)
 
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
 
             sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-            ref.child("likePosts/\(userID)/\(likePost.postID)").setValue(true)
+            //            ref.child("likePosts/\()")
 
         } else {
 
             sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-            ref.child("likePosts/\(userID)/\(likePost.postID)").removeValue()
 
         }
 
@@ -129,7 +126,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
 }
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout {
+extension LikeViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
         _ collectionView: UICollectionView,
@@ -147,10 +144,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return 20 // 上下
     }
 
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0 // 左右
     }
 
@@ -164,5 +158,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
 
     }
-    
+
 }
+
+

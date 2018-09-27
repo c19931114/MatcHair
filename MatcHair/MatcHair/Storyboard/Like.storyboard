@@ -12,18 +12,40 @@
         <!--Like-->
         <scene sceneID="SSL-xQ-Rtd">
             <objects>
-                <viewController id="9ld-zt-V5a" sceneMemberID="viewController">
+                <viewController id="9ld-zt-V5a" customClass="LikeViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wkJ-oi-sdk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hEI-DP-Pnd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zuw-Rj-Bod">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JYN-Hy-znN" firstAttribute="trailing" secondItem="hEI-DP-Pnd" secondAttribute="trailing" id="9A1-dW-YBY"/>
+                            <constraint firstItem="hEI-DP-Pnd" firstAttribute="leading" secondItem="JYN-Hy-znN" secondAttribute="leading" id="eFo-jp-cIt"/>
+                            <constraint firstItem="hEI-DP-Pnd" firstAttribute="top" secondItem="JYN-Hy-znN" secondAttribute="top" id="gBa-mk-hYg"/>
+                            <constraint firstItem="JYN-Hy-znN" firstAttribute="bottom" secondItem="hEI-DP-Pnd" secondAttribute="bottom" id="l5C-KM-UcU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JYN-Hy-znN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Like" id="3JO-64-pP3"/>
+                    <connections>
+                        <outlet property="likePostCollectionView" destination="hEI-DP-Pnd" id="UAw-7r-8Em"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zo2-j7-LEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="583" y="-43"/>
+            <point key="canvasLocation" x="647" y="-65"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S2y-Ae-1X5">
@@ -44,7 +66,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHT-EW-BvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127.2" y="-42.728635682158924"/>
+            <point key="canvasLocation" x="-73" y="-65"/>
         </scene>
     </scenes>
 </document>

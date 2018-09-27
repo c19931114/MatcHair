@@ -312,13 +312,14 @@ extension PostViewController {
                 guard let userName = UserManager.shared.getUserName() else { return }
                 guard let userPhoto = UserManager.shared.getUserPhotoURL() else { return }
 
-                guard let postId = self.ref.child("usersPosts").childByAutoId().key else { return }
+                guard let postID = self.ref.child("usersPosts").childByAutoId().key else { return }
 
                 if self.recruitModelSwitch.isOn {
 
-                    self.ref.child("allPosts/\(postId)").setValue(
+                    self.ref.child("allPosts/\(postID)").setValue(
 
                         [
+                            "posiID": "\(postID)",
                             "user": ["name": "\(userName)", "image": "\(userPhoto)"],
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
@@ -351,22 +352,22 @@ extension PostViewController {
                         ]
                     )
 
-                    self.ref.child("usersPosts/\(postId)").setValue(
+                    self.ref.child("usersPosts/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
-                            "user": ["name": "\(userName)", "image": "\(userPhoto)","id": "\(userUID)"]
+                            "user": ["name": "\(userName)", "image": "\(userPhoto)", "id": "\(userUID)"]
 
                         ]
                     )
 
                 } else {
 
-                    self.ref.child("usersPosts/\(postId)").setValue(
+                    self.ref.child("usersPosts/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
-                            "user": ["name": "\(userName)", "image": "\(userPhoto)","id": "\(userUID)"]
+                            "user": ["name": "\(userName)", "image": "\(userPhoto)", "id": "\(userUID)"]
 
                         ]
                     )

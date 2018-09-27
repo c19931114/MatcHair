@@ -36,6 +36,7 @@
 		F1A1A850215C7D190038F0CF /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A84E215C7D190038F0CF /* ProfileCollectionViewCell.xib */; };
 		F1A1A853215C7F010038F0CF /* MyPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */; };
 		F1A1A854215C7F010038F0CF /* MyPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A852215C7F010038F0CF /* MyPostCollectionViewCell.xib */; };
+		F1A1A859215CB09B0038F0CF /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A858215CB09A0038F0CF /* LikeViewController.swift */; };
 		F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C2C3D62153CD2F0065E4EB /* Post.storyboard */; };
 		F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */; };
 		F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */; };
@@ -84,6 +85,7 @@
 		F1A1A84E215C7D190038F0CF /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1A1A852215C7F010038F0CF /* MyPostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostCollectionViewCell.xib; sourceTree = "<group>"; };
+		F1A1A858215CB09A0038F0CF /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
 		F1C2C3D62153CD2F0065E4EB /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPictureViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */,
 				F1C2C3E42154B8AE0065E4EB /* PostViewController.swift */,
 				F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */,
+				F1A1A858215CB09A0038F0CF /* LikeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -260,15 +263,39 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		F1DD3F3121536D0F00BBE710 /* Xib */ = {
+		F1A1A855215CB0290038F0CF /* PostCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */,
 				F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */,
+			);
+			path = PostCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		F1A1A856215CB03C0038F0CF /* ProfileCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
 				F1A1A84D215C7D190038F0CF /* ProfileCollectionViewCell.swift */,
 				F1A1A84E215C7D190038F0CF /* ProfileCollectionViewCell.xib */,
+			);
+			path = ProfileCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		F1A1A857215CB04F0038F0CF /* MyPostCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
 				F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */,
 				F1A1A852215C7F010038F0CF /* MyPostCollectionViewCell.xib */,
+			);
+			path = MyPostCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		F1DD3F3121536D0F00BBE710 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				F1A1A855215CB0290038F0CF /* PostCollectionViewCell */,
+				F1A1A856215CB03C0038F0CF /* ProfileCollectionViewCell */,
+				F1A1A857215CB04F0038F0CF /* MyPostCollectionViewCell */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -448,6 +475,7 @@
 				F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */,
 				F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */,
 				F139AA062151EF3700B5B0D4 /* AppDelegate.swift in Sources */,
+				F1A1A859215CB09B0038F0CF /* LikeViewController.swift in Sources */,
 				F1A1A84F215C7D190038F0CF /* ProfileCollectionViewCell.swift in Sources */,
 				F1C2C3E12154B3170065E4EB /* SwipeController.swift in Sources */,
 				F139AA242151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift in Sources */,

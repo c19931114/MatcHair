@@ -27,10 +27,6 @@ class ShowPictureViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pictureView: UIImageView!
     
-    @IBAction func goBack(_ sender: UIStoryboardSegue) {
-        self.dismiss(animated: false) //
-    }
-    
     @IBAction func save(_ sender: Any) {
         
         guard let image = picture else {

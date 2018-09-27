@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S8k-dU-tPh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S8k-dU-tPh">
                                 <rect key="frame" x="16" y="80" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Vc7-xW-Zst"/>
@@ -134,7 +134,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1L-h8-75Z">
                                         <rect key="frame" x="55.333333333333329" y="0.0" width="53.333333333333329" height="30"/>
                                         <color key="tintColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="  剪髮  ">
+                                        <state key="normal" title="剪髮">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected">
@@ -578,7 +578,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstItem="gGR-O4-iRa" firstAttribute="top" secondItem="HFf-SQ-9j2" secondAttribute="top" constant="16" id="KBb-0x-OqQ"/>
                                     <constraint firstAttribute="width" secondItem="HFf-SQ-9j2" secondAttribute="height" multiplier="1:1" id="fXi-eV-Gng"/>
@@ -645,11 +645,11 @@
                             <constraint firstItem="vrD-vN-Lfe" firstAttribute="leading" secondItem="pPA-Uc-YWx" secondAttribute="leading" constant="16" id="Jhs-T3-HxH"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="leading" secondItem="pPA-Uc-YWx" secondAttribute="leading" id="Pnr-06-k6a"/>
                             <constraint firstItem="pPA-Uc-YWx" firstAttribute="bottom" secondItem="54h-go-Exs" secondAttribute="bottom" constant="20" id="WAG-I3-OXF"/>
+                            <constraint firstItem="HFf-SQ-9j2" firstAttribute="top" secondItem="pPA-Uc-YWx" secondAttribute="top" id="Zrz-xI-Ciy"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="trailing" secondItem="pPA-Uc-YWx" secondAttribute="trailing" id="cEC-wv-zDv"/>
                             <constraint firstItem="pPA-Uc-YWx" firstAttribute="bottom" secondItem="4uC-3d-KyF" secondAttribute="bottom" constant="20" id="h3t-q5-i6V"/>
                             <constraint firstItem="4uC-3d-KyF" firstAttribute="top" secondItem="vrD-vN-Lfe" secondAttribute="bottom" id="hYm-1S-5DP"/>
                             <constraint firstItem="54h-go-Exs" firstAttribute="centerX" secondItem="kB2-4a-s35" secondAttribute="centerX" id="lV3-cD-oDa"/>
-                            <constraint firstItem="HFf-SQ-9j2" firstAttribute="top" secondItem="pPA-Uc-YWx" secondAttribute="top" id="waT-OS-vgH"/>
                             <constraint firstItem="pPA-Uc-YWx" firstAttribute="bottom" secondItem="Krs-As-EoP" secondAttribute="bottom" constant="20" id="zCc-wZ-5SY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pPA-Uc-YWx"/>
@@ -756,12 +756,12 @@
         <!--Navigation Controller-->
         <scene sceneID="N8Q-iG-iOK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-bY-Q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pL2-pP-v5u" customClass="NavigationController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="btn_back" id="xmp-wV-fdP">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -772,6 +772,7 @@
                         <segue destination="36v-2J-Gpy" kind="relationship" relationship="rootViewController" id="vRU-t5-MSQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-bY-Q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2281" y="-1791"/>
         </scene>

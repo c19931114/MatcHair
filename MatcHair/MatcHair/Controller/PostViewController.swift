@@ -308,16 +308,15 @@ extension PostViewController {
 
                 guard let downloadURL = url else { return }
 
-                guard let userID = UserManager.shared.getUserUID() else { return }
+                guard let userUID = UserManager.shared.getUserUID() else { return }
+                guard let userName = UserManager.shared.getUserName() else { return }
+                guard let userPhoto = UserManager.shared.getUserPhotoURL() else { return }
 
-                guard let postId = self.ref.child("users/\(userID)/posts").childByAutoId().key else { return }
+                guard let postId = self.ref.child("usersPosts").childByAutoId().key else { return }
 
                 if self.recruitModelSwitch.isOn {
 
-                    guard let userName = UserManager.shared.getUserName() else { return }
-                    guard let userPhoto = UserManager.shared.getUserPhotoURL() else { return }
-
-                    self.ref.child("posts/\(postId)").setValue(
+                    self.ref.child("allPosts/\(postId)").setValue(
 
                         [
                             "user": ["name": "\(userName)", "image": "\(userPhoto)"],
@@ -352,20 +351,22 @@ extension PostViewController {
                         ]
                     )
 
-                    self.ref.child("users/\(userID)/posts/\(postId)").setValue(
+                    self.ref.child("usersPosts/\(postId)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
-                            "content": "\(self.descriptionTextField.text!)"
+                            "content": "\(self.descriptionTextField.text!)",
+                            "user": ["name": "\(userName)", "image": "\(userPhoto)","id": "\(userUID)"]
 
                         ]
                     )
 
                 } else {
 
-                    self.ref.child("users/\(userID)/posts/\(postId)").setValue(
+                    self.ref.child("usersPosts/\(postId)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
-                            "content": "\(self.descriptionTextField.text!)"
+                            "content": "\(self.descriptionTextField.text!)",
+                            "user": ["name": "\(userName)", "image": "\(userPhoto)","id": "\(userUID)"]
 
                         ]
                     )

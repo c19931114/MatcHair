@@ -32,12 +32,6 @@ class PostCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-//        view.backgroundColor = UIColor(
-//            red: 142 / 255.0,
-//            green: 212 / 255.0,
-//            blue: 242 / 255.0,
-//            alpha: 0.1)
-
     }
 
 }

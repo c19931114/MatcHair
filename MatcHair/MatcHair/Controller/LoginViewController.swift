@@ -178,8 +178,8 @@ extension LoginViewController {
 
         ref.child("users/\(uid)").setValue(
             [
-                "user": userName,
-                "photo": photoURL.absoluteString,
+                "name": userName,
+                "image": photoURL.absoluteString
                 
             ]
         )

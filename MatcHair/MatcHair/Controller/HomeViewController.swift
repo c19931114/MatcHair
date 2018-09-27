@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     let decoder = JSONDecoder()
 
     var ref: DatabaseReference!
-    var homePosts = [Post]()
+    var allPosts = [Post]()
     let fullScreenSize = UIScreen.main.bounds.size
 
     @IBOutlet weak var homePostCollectionView: UICollectionView!
@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return homePosts.count
+        return allPosts.count
     }
 
     func collectionView(
@@ -40,17 +40,52 @@ extension HomeViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let homePost = homePosts[indexPath.row]
+        let post = allPosts[indexPath.row]
 
-        postCell.postImage.kf.setImage(with: URL(string: homePost.pictureURL))
-        postCell.userImage.kf.setImage(with: URL(string: homePost.user.image))
-        postCell.userNameLabel.text = homePost.user.name
-        postCell.locationLabel.text = "\(homePost.reservation.location.city), \(homePost.reservation.location.district)"
+        postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
+        postCell.userImage.kf.setImage(with: URL(string: post.user.image))
+        postCell.userNameLabel.text = post.user.name
+        postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
 
         return postCell
 
     }
 
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout{
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20) // 每個 section 的邊界(?
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 20 // 上下
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0 // 左右
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let width = fullScreenSize.width - 30
+        let height = width * 27 / 25
+        return CGSize(width: width, height: height)
+
+    }
+    
 }
 
 extension HomeViewController {
@@ -69,24 +104,17 @@ extension HomeViewController {
     private func setupCollectionView() {
 
         homePostCollectionView.dataSource = self
+        homePostCollectionView.delegate = self
 
         let identifier = String(describing: PostCollectionViewCell.self)
         let xib = UINib(nibName: identifier, bundle: nil)
         homePostCollectionView.register(xib, forCellWithReuseIdentifier: identifier)
 
-        guard let layout = homePostCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        layout.minimumLineSpacing = 20
-
-        let width = fullScreenSize.width - 30
-        let height = width * 27 / 25
-        layout.itemSize = CGSize(width: width, height: height)
     }
 
     func loadHomePosts() {
 
-        ref.child("posts").observe(.childAdded) { (snapshot) in
+        ref.child("allPosts").observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
@@ -94,7 +122,7 @@ extension HomeViewController {
 
             do {
                 let postData = try self.decoder.decode(Post.self, from: postJSONData)
-                self.homePosts.append(postData)
+                self.allPosts.insert(postData, at: 0)
             } catch {
                 print(error)
             }

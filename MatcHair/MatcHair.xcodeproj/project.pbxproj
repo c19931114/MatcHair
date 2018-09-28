@@ -12,7 +12,6 @@
 		F139AA062151EF3700B5B0D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA052151EF3700B5B0D4 /* AppDelegate.swift */; };
 		F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA072151EF3700B5B0D4 /* ViewController.swift */; };
 		F139AA0B2151EF3700B5B0D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA092151EF3700B5B0D4 /* Main.storyboard */; };
-		F139AA0D2151EF3A00B5B0D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F139AA0C2151EF3A00B5B0D4 /* Assets.xcassets */; };
 		F139AA102151EF3A00B5B0D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA0E2151EF3A00B5B0D4 /* LaunchScreen.storyboard */; };
 		F139AA192151F18300B5B0D4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA182151F18300B5B0D4 /* Login.storyboard */; };
 		F139AA1E2151F5B800B5B0D4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA1D2151F5B800B5B0D4 /* LoginViewController.swift */; };
@@ -37,6 +36,9 @@
 		F1A1A853215C7F010038F0CF /* MyPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */; };
 		F1A1A854215C7F010038F0CF /* MyPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A852215C7F010038F0CF /* MyPostCollectionViewCell.xib */; };
 		F1A1A859215CB09B0038F0CF /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A858215CB09A0038F0CF /* LikeViewController.swift */; };
+		F1A1A85D215DDA900038F0CF /* AppointmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A85B215DDA900038F0CF /* AppointmentCollectionViewCell.swift */; };
+		F1A1A85E215DDA900038F0CF /* AppointmentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A85C215DDA900038F0CF /* AppointmentCollectionViewCell.xib */; };
+		F1A1A860215DE1070038F0CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A85F215DE1070038F0CF /* Assets.xcassets */; };
 		F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C2C3D62153CD2F0065E4EB /* Post.storyboard */; };
 		F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */; };
 		F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */; };
@@ -60,7 +62,6 @@
 		F139AA052151EF3700B5B0D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F139AA072151EF3700B5B0D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F139AA0A2151EF3700B5B0D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F139AA0C2151EF3A00B5B0D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F139AA0F2151EF3A00B5B0D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F139AA112151EF3A00B5B0D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F139AA182151F18300B5B0D4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -86,6 +87,9 @@
 		F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1A1A852215C7F010038F0CF /* MyPostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1A1A858215CB09A0038F0CF /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
+		F1A1A85B215DDA900038F0CF /* AppointmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1A1A85C215DDA900038F0CF /* AppointmentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppointmentCollectionViewCell.xib; sourceTree = "<group>"; };
+		F1A1A85F215DE1070038F0CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1C2C3D62153CD2F0065E4EB /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		F1C2C3DA2153CE3E0065E4EB /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		F1C2C3DB2153CE3E0065E4EB /* ShowPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPictureViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +162,7 @@
 				F139AA172151EF4600B5B0D4 /* Storyboard */,
 				F139AA052151EF3700B5B0D4 /* AppDelegate.swift */,
 				F139AA072151EF3700B5B0D4 /* ViewController.swift */,
-				F139AA0C2151EF3A00B5B0D4 /* Assets.xcassets */,
+				F1A1A85F215DE1070038F0CF /* Assets.xcassets */,
 				F139AA0E2151EF3A00B5B0D4 /* LaunchScreen.storyboard */,
 				F139AA112151EF3A00B5B0D4 /* Info.plist */,
 				F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */,
@@ -290,9 +294,19 @@
 			path = MyPostCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F1A1A85B215DDA900038F0CF /* AppointmentCollectionViewCell.swift */,
+				F1A1A85C215DDA900038F0CF /* AppointmentCollectionViewCell.xib */,
+			);
+			path = AppointmentCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		F1DD3F3121536D0F00BBE710 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */,
 				F1A1A855215CB0290038F0CF /* PostCollectionViewCell */,
 				F1A1A856215CB03C0038F0CF /* ProfileCollectionViewCell */,
 				F1A1A857215CB04F0038F0CF /* MyPostCollectionViewCell */,
@@ -365,10 +379,11 @@
 				F139AA2B2151FB2A00B5B0D4 /* Like.storyboard in Resources */,
 				F139AA192151F18300B5B0D4 /* Login.storyboard in Resources */,
 				F139AA272151FB0D00B5B0D4 /* Home.storyboard in Resources */,
+				F1A1A85E215DDA900038F0CF /* AppointmentCollectionViewCell.xib in Resources */,
 				F139AA292151FB2000B5B0D4 /* Appointment.storyboard in Resources */,
 				F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */,
 				F139AA102151EF3A00B5B0D4 /* LaunchScreen.storyboard in Resources */,
-				F139AA0D2151EF3A00B5B0D4 /* Assets.xcassets in Resources */,
+				F1A1A860215DE1070038F0CF /* Assets.xcassets in Resources */,
 				F1A1A854215C7F010038F0CF /* MyPostCollectionViewCell.xib in Resources */,
 				F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */,
 				F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */,
@@ -471,6 +486,7 @@
 				F1C2C3E32154B4180065E4EB /* SegueController.swift in Sources */,
 				F14794A4215B8A05005E864C /* Post.swift in Sources */,
 				F1546C1F21523244009AB3ED /* User.swift in Sources */,
+				F1A1A85D215DDA900038F0CF /* AppointmentCollectionViewCell.swift in Sources */,
 				F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */,
 				F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */,
 				F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */,

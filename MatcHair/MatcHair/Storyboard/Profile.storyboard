@@ -38,7 +38,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hPw-1d-WJq"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="ahf-c4-Egr"/>
+                    <navigationItem key="navigationItem" title="Profile" id="ahf-c4-Egr">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="mX7-5O-MCZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jMg-fu-iV9">
+                                <rect key="frame" x="284" y="11" width="75" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_chat_white"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="profileCollectionView" destination="zfh-LB-PgH" id="FfU-DL-chJ"/>
                     </connections>
@@ -69,4 +77,7 @@
             <point key="canvasLocation" x="688.79999999999995" y="6.746626686656672"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_chat_white" width="21" height="21"/>
+    </resources>
 </document>

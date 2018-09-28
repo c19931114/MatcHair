@@ -38,7 +38,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JYN-Hy-znN"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Like" id="3JO-64-pP3"/>
+                    <navigationItem key="navigationItem" title="Like" id="3JO-64-pP3">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="PBB-Tm-ZR4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="D8Q-at-dlD">
+                                <rect key="frame" x="284" y="11" width="75" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_chat_white"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="likePostCollectionView" destination="hEI-DP-Pnd" id="UAw-7r-8Em"/>
                     </connections>
@@ -69,4 +77,7 @@
             <point key="canvasLocation" x="-73" y="-65"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_chat_white" width="21" height="21"/>
+    </resources>
 </document>

@@ -39,7 +39,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i3t-VD-Nlh">
                                 <rect key="frame" x="293" y="11" width="66" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="tab_chat_normal"/>
+                                <state key="normal" image="btn_chat_white"/>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -71,6 +71,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab_chat_normal" width="21" height="21"/>
+        <image name="btn_chat_white" width="21" height="21"/>
     </resources>
 </document>

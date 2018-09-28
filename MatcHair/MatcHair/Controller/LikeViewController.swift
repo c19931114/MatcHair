@@ -91,8 +91,8 @@ extension LikeViewController: UICollectionViewDataSource {
         let post = likePosts[indexPath.row]
 
         postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-        postCell.userImage.kf.setImage(with: URL(string: post.user.image))
-        postCell.userNameLabel.text = post.user.name
+//        postCell.userImage.kf.setImage(with: URL(string: post.user.image))
+//        postCell.userNameLabel.text = post.user.name
         postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
 
         // taget action

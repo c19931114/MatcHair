@@ -36,12 +36,12 @@ class UserManager {
         return userName
     }
 
-    func getUserPhotoURL() -> URL? {
+    func getUserImageURL() -> URL? {
 
-        guard let photoURL = UserDefaults.standard.url(forKey: "photoURL") else {
+        guard let userImageURL = UserDefaults.standard.url(forKey: "userImageURL") else {
             return nil
         }
-        return photoURL
+        return userImageURL
     }
 
 }

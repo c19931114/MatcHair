@@ -12,10 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PostCollectionViewCell" customModule="MatcHair" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="324"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="325"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="300" height="324"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="325"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCt-gV-dIK">
@@ -53,58 +53,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0V8-KE-FdQ">
-                                <rect key="frame" x="245" y="25" width="55" height="25"/>
-                                <color key="backgroundColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="e1m-e3-aJO"/>
-                                    <constraint firstAttribute="width" constant="55" id="fgg-8D-GlS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="  預約  ">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oT-bR-KPS">
+                                <rect key="frame" x="265.5" y="292" width="20" height="22"/>
+                                <state key="normal" image="btn_like_normal"/>
                                 <connections>
-                                    <action selector="makeReservation:" destination="gTV-IL-0wX" eventType="touchUpInside" id="e9H-dq-apP"/>
+                                    <action selector="like:" destination="gTV-IL-0wX" eventType="touchUpInside" id="aPG-Z7-63r"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-3U-AhJ">
-                                <rect key="frame" x="235" y="298" width="50" height="20"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZF-1d-wRd">
-                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="FjE-Sm-DoK"/>
-                                            <constraint firstAttribute="height" constant="20" id="jSA-PS-XTg"/>
-                                        </constraints>
-                                        <state key="normal" image="btn_poke"/>
-                                        <connections>
-                                            <action selector="poke:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Npc-vz-QrF"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oT-bR-KPS">
-                                        <rect key="frame" x="30" y="0.0" width="20" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="DhZ-cd-bWb"/>
-                                            <constraint firstAttribute="width" constant="20" id="QHw-rY-QFh"/>
-                                        </constraints>
-                                        <state key="normal" image="btn_like_normal"/>
-                                        <connections>
-                                            <action selector="like:" destination="gTV-IL-0wX" eventType="touchUpInside" id="aPG-Z7-63r"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vxh-6a-o5f">
-                                <rect key="frame" x="90" y="298" width="101.5" height="16"/>
+                                <rect key="frame" x="90" y="296" width="101.5" height="16"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_location01" translatesAutoresizingMaskIntoConstraints="NO" id="QIq-5A-x73">
                                         <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -127,22 +84,54 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wzc-kJ-Cgg">
+                                <rect key="frame" x="268" y="25" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Wzc-kJ-Cgg" secondAttribute="height" multiplier="1:1" id="NYh-jo-4im"/>
+                                </constraints>
+                                <state key="normal" image="btn_chat_blue2"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0V8-KE-FdQ">
+                                <rect key="frame" x="245" y="254.5" width="55" height="25"/>
+                                <color key="backgroundColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="e1m-e3-aJO"/>
+                                    <constraint firstAttribute="width" constant="55" id="fgg-8D-GlS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="  預約  ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="makeReservation:" destination="gTV-IL-0wX" eventType="touchUpInside" id="e9H-dq-apP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="nbs-3U-AhJ" secondAttribute="trailing" constant="15" id="3Cf-qa-tkp"/>
-                            <constraint firstItem="oK5-zR-CMo" firstAttribute="bottom" secondItem="nbs-3U-AhJ" secondAttribute="bottom" constant="-4" id="Dks-xd-QQV"/>
+                            <constraint firstItem="Wzc-kJ-Cgg" firstAttribute="top" secondItem="cCt-gV-dIK" secondAttribute="top" constant="25" id="5ng-4P-QrZ"/>
                             <constraint firstAttribute="width" secondItem="cCt-gV-dIK" secondAttribute="height" multiplier="25:27" id="G0X-em-8UT"/>
                             <constraint firstItem="AzB-sf-Fjm" firstAttribute="top" secondItem="cCt-gV-dIK" secondAttribute="top" constant="10" id="Ryd-tO-Mfi"/>
                             <constraint firstAttribute="trailing" secondItem="0V8-KE-FdQ" secondAttribute="trailing" id="SZp-uB-iA2"/>
-                            <constraint firstItem="0V8-KE-FdQ" firstAttribute="top" secondItem="cCt-gV-dIK" secondAttribute="top" constant="25" id="VRn-Tr-Q52"/>
                             <constraint firstItem="oK5-zR-CMo" firstAttribute="leading" secondItem="cCt-gV-dIK" secondAttribute="leading" constant="20" id="VrK-rg-mPV"/>
+                            <constraint firstItem="4oT-bR-KPS" firstAttribute="bottom" secondItem="oK5-zR-CMo" secondAttribute="bottom" id="Zxj-bN-a5V"/>
                             <constraint firstItem="oK5-zR-CMo" firstAttribute="centerY" secondItem="AzB-sf-Fjm" secondAttribute="bottom" multiplier="0.98" id="aGc-25-QiA"/>
-                            <constraint firstItem="oK5-zR-CMo" firstAttribute="bottom" secondItem="vxh-6a-o5f" secondAttribute="bottom" id="aya-it-7Pp"/>
+                            <constraint firstItem="oK5-zR-CMo" firstAttribute="bottom" secondItem="vxh-6a-o5f" secondAttribute="bottom" constant="2" id="aya-it-7Pp"/>
                             <constraint firstItem="yNW-nr-jbg" firstAttribute="leading" secondItem="oK5-zR-CMo" secondAttribute="trailing" constant="15" id="fhN-Y0-Gcj"/>
+                            <constraint firstAttribute="trailing" secondItem="4oT-bR-KPS" secondAttribute="trailing" multiplier="1.05" id="gl2-d9-UwN"/>
                             <constraint firstItem="vxh-6a-o5f" firstAttribute="leading" secondItem="oK5-zR-CMo" secondAttribute="trailing" constant="10" id="ijz-hj-gPN"/>
+                            <constraint firstItem="yNW-nr-jbg" firstAttribute="bottom" secondItem="0V8-KE-FdQ" secondAttribute="bottom" id="j65-6j-xFT"/>
                             <constraint firstAttribute="trailing" secondItem="AzB-sf-Fjm" secondAttribute="trailing" constant="10" id="lf7-vo-CTY"/>
                             <constraint firstItem="AzB-sf-Fjm" firstAttribute="leading" secondItem="cCt-gV-dIK" secondAttribute="leading" constant="10" id="lqn-8W-iIl"/>
+                            <constraint firstAttribute="trailing" secondItem="Wzc-kJ-Cgg" secondAttribute="trailing" id="mz8-1d-e0H"/>
                             <constraint firstItem="yNW-nr-jbg" firstAttribute="top" secondItem="oK5-zR-CMo" secondAttribute="top" constant="5" id="vKt-iz-rLH"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -166,19 +155,18 @@
             <connections>
                 <outlet property="likeButton" destination="4oT-bR-KPS" id="GZe-4b-Cwt"/>
                 <outlet property="locationLabel" destination="TBE-M0-08g" id="Agd-BF-pfc"/>
-                <outlet property="pokeButton" destination="CZF-1d-wRd" id="2n1-ZV-KKI"/>
                 <outlet property="postImage" destination="AzB-sf-Fjm" id="Mh7-Bk-rE7"/>
                 <outlet property="reservationButton" destination="0V8-KE-FdQ" id="c6r-YS-Rzb"/>
                 <outlet property="userImage" destination="oK5-zR-CMo" id="1Jq-ae-o4O"/>
                 <outlet property="userNameLabel" destination="yNW-nr-jbg" id="Lz2-Sa-dxx"/>
                 <outlet property="view" destination="cCt-gV-dIK" id="uSd-FX-iNj"/>
             </connections>
-            <point key="canvasLocation" x="433.60000000000002" y="-68.365817091454275"/>
+            <point key="canvasLocation" x="433.60000000000002" y="-68.815592203898049"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="btn_chat_blue2" width="32" height="32"/>
         <image name="btn_like_normal" width="20" height="20"/>
-        <image name="btn_poke" width="21" height="21"/>
         <image name="icon_location01" width="14" height="14"/>
     </resources>
 </document>

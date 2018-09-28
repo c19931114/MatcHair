@@ -38,7 +38,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gU7-Fs-NSD"/>
                     </view>
-                    <navigationItem key="navigationItem" title="MatcHair" id="ynZ-Hy-vnR"/>
+                    <navigationItem key="navigationItem" title="MatcHair" id="ynZ-Hy-vnR">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="fPA-cz-e83">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qM5-oN-PPL">
+                                <rect key="frame" x="284" y="11" width="75" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_chat_white"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="homePostCollectionView" destination="Bua-IT-Md1" id="8gA-cP-x9b"/>
                     </connections>
@@ -69,4 +77,7 @@
             <point key="canvasLocation" x="-183.19999999999999" y="-34.632683658170919"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_chat_white" width="21" height="21"/>
+    </resources>
 </document>

@@ -16,7 +16,7 @@ struct Post: Codable {
     let payment: String
     let pictureURL: String
     let reservation: Reservation
-    let user: User
+    let userUID: String
     let isLiked: Bool
 }
 

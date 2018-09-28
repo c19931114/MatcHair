@@ -85,11 +85,13 @@ extension LoginViewController {
                                     = Auth.auth().currentUser?.displayName else { return }
                                 self.userDefaults.set(userName, forKey: "userName")
 
-                                guard let photoURL
-                                    = Auth.auth().currentUser?.photoURL else { return }
-                                self.userDefaults.set(photoURL, forKey: "photoURL")
+//                                guard let photoURL
+//                                    = Auth.auth().currentUser?.photoURL else { return }
+//                                self.userDefaults.set(photoURL, forKey: "photoURL")
 
-                                self.uploadUserPictureToStorage(with: uid, and: userName, and: photoURL)
+                                self.getUserDetail(with: uid, and: userName)
+
+//                                self.uploadUserPictureToStorage(with: uid, and: userName, and: photoURL)
 
                             }
                         }
@@ -108,16 +110,16 @@ extension LoginViewController {
     }
 
     // 沒用到
-    func getUserDetails() {
+    func getUserDetail(with uid: String, and userName: String) {
 
         FBSDKGraphRequest(
             graphPath: "me",
-            parameters: ["fields": "id, name, first_name, last_name, email, picture"])?.start(
+            parameters: ["fields": "id, name, first_name, last_name, email, picture.type(large)"])?.start(
                 completionHandler: { (connection, result, error) in
 
                     if error != nil {
-
                         print("Error: \(String(describing: error))")
+                        
                     } else {
 
                         guard let userInfo = result as? [String: Any] else { return }
@@ -125,21 +127,26 @@ extension LoginViewController {
 //                        guard let userName = userInfo["name"] as? String else { return }
 //                        guard let userEmail = userInfo["email"] as? String else { return }
 
-//                        guard let userPictureInfo = userInfo["picture"] as? [String: Any] else { return }
-//                        guard let userPictureData = userPictureInfo["data"] as? [String: Any] else { return }
-//                        guard let userPictureURLString = userPictureData["url"] as? String else { return }
+                        guard let userImageInfo = userInfo["picture"] as? [String: Any] else { return }
+                        guard let userImageData = userImageInfo["data"] as? [String: Any] else { return }
+                        guard let userImageURLString = userImageData["url"] as? String else { return }
+                        guard let userImageURL = URL(string: userImageURLString) else { return }
+
+                        self.userDefaults.set(userImageURL, forKey: "userImageURL")
+
+                        self.uploadUserPictureToStorage(with: uid, and: userName, and: userImageURL)
 
                     }
             })
 
     }
 
-    func uploadUserPictureToStorage(with uid: String, and userName: String, and photoURL: URL) {
+    func uploadUserPictureToStorage(with uid: String, and userName: String, and userImageURL: URL) {
 
-        guard let photoData = try? Data(contentsOf: photoURL) else { return }
+        guard let userImageData = try? Data(contentsOf: userImageURL) else { return }
 
-        guard let photo = UIImage(data: photoData),
-            let uploadData = photo.jpegData(compressionQuality: 1.0) else {
+        guard let userImage = UIImage(data: userImageData),
+            let uploadData = userImage.jpegData(compressionQuality: 1.0) else {
 
                 print("no image")
                 return
@@ -160,30 +167,30 @@ extension LoginViewController {
                     return
                 }
 
-//                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
-//
-//                    guard let photoURL = url else {
-//                        return
-//                    }
-//
-//                    self.uploadUserInfoToDatabase(with: uid, and: userName, and: photoURL)
-//
-//                })
+                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+
+                    guard let userImageURL = url else {
+                        return
+                    }
+
+                    self.uploadUserInfoToDatabase(with: uid, and: userName, and: userImageURL)
+
+                })
 
         }
 
     }
 
-//    func uploadUserInfoToDatabase(with uid: String, and userName: String, and photoURL: URL) {
-//
-//        ref.child("users/\(uid)").setValue(
-//            [
-//                "name": userName,
-//                "image": photoURL.absoluteString
-//                
-//            ]
-//        )
-//
-//    }
+    func uploadUserInfoToDatabase(with uid: String, and userName: String, and userImageURL: URL) {
+
+        ref.child("users/\(uid)").setValue(
+            [
+                "name": userName,
+                "image": userImageURL.absoluteString
+
+            ]
+        )
+
+    }
 
 }

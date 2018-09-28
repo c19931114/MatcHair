@@ -310,7 +310,7 @@ extension PostViewController {
 
                 guard let userUID = UserManager.shared.getUserUID() else { return }
                 guard let userName = UserManager.shared.getUserName() else { return }
-                guard let userPhoto = UserManager.shared.getUserPhotoURL() else { return }
+                guard let userImageURL = UserManager.shared.getUserImageURL() else { return }
 
                 guard let postID = self.ref.child("usersPosts").childByAutoId().key else { return }
 
@@ -319,8 +319,9 @@ extension PostViewController {
                     self.ref.child("allPosts/\(postID)").setValue(
 
                         [
-                            "posiID": "\(postID)",
-                            "user": ["name": "\(userName)", "image": "\(userPhoto)"],
+                            "postID": "\(postID)",
+                            "isLiked": false,
+                            "userUID": "\(userUID)",
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
                             "category":
@@ -356,7 +357,7 @@ extension PostViewController {
                         [
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
-                            "user": ["name": "\(userName)", "image": "\(userPhoto)", "id": "\(userUID)"]
+                            "userUID": "\(userUID)"
 
                         ]
                     )
@@ -367,8 +368,7 @@ extension PostViewController {
                         [
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
-                            "user": ["name": "\(userName)", "image": "\(userPhoto)", "id": "\(userUID)"]
-
+                            "userUID": "\(userUID)"
                         ]
                     )
 

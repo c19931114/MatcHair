@@ -55,7 +55,7 @@ extension ProfileViewController {
 
         guard let userUID = UserManager.shared.getUserUID() else { return }
 
-        ref.child("usersPosts").queryOrdered(byChild: "user/id")
+        ref.child("usersPosts").queryOrdered(byChild: "userUID")
             .queryEqual(toValue: userUID).observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
@@ -111,7 +111,7 @@ extension ProfileViewController: UICollectionViewDataSource {
             }
 
             profileCell.userNameLabel.text = UserManager.shared.getUserName()
-            profileCell.userImage.kf.setImage(with: UserManager.shared.getUserPhotoURL())
+            profileCell.userImage.kf.setImage(with: UserManager.shared.getUserImageURL())
             profileCell.postsCountLabel.text = "\(myPosts.count) 則貼文"
 
             return profileCell
@@ -129,7 +129,6 @@ extension ProfileViewController: UICollectionViewDataSource {
             let post = myPosts[indexPath.row]
 
             postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-            
 
             return postCell
         }
@@ -145,7 +144,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int) -> UIEdgeInsets {
 
-        return UIEdgeInsets(top: 0, left: 1, bottom: 1, right: 1) // 每個 section 的邊界(?
+        return UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0) // 每個 section 的邊界(?
     }
 
     func collectionView(
@@ -173,7 +172,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
 
         default:
 
-            let width = (fullScreenSize.width - 4) / 3
+            let width = (fullScreenSize.width - 2) / 3
             let height = width
             return CGSize(width: width, height: height)
         }

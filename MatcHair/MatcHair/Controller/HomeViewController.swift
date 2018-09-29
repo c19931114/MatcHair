@@ -33,6 +33,12 @@ extension HomeViewController {
 
         loadHomePosts()
 
+        let layout = UICollectionViewFlowLayout()
+
+        layout.scrollDirection = .vertical
+
+        homePostCollectionView.collectionViewLayout = layout
+
     }
 
     private func setupCollectionView() {
@@ -51,7 +57,7 @@ extension HomeViewController {
         ref.child("allPosts").observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
-
+//            print(value.allKeys)
             guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
@@ -89,9 +95,25 @@ extension HomeViewController: UICollectionViewDataSource {
 
         let post = allPosts[indexPath.row]
 
+        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let userData = try self.decoder.decode(User.self, from: userJSONData)
+                postCell.userNameLabel.text = userData.name
+                postCell.userImage.kf.setImage(with: URL(string: userData.image))
+            } catch {
+                print(error)
+            }
+
+            self.homePostCollectionView.reloadData()
+            
+        }
+
         postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-//        postCell.userImage.kf.setImage(with: URL(string: post.user.image))
-//        postCell.userNameLabel.text = post.user.name
         postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
 
         // taget action
@@ -159,7 +181,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = fullScreenSize.width - 30
+        let width = fullScreenSize.width - 40
         let height = width * 27 / 25
         return CGSize(width: width, height: height)
 

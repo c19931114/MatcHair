@@ -51,18 +51,26 @@ extension LikeViewController {
 
         ref.child("likePosts/\(userID)").observe(.childAdded) { (snapshot) in
 
-            guard let value = snapshot.value as? NSDictionary else { return }
+            let postID = snapshot.key
 
-            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            self.ref.child("allPosts").observe(.childAdded) { (snapshot) in
 
-            do {
-                let postData = try self.decoder.decode(Post.self, from: postJSONData)
-                self.likePosts.insert(postData, at: 0)
-            } catch {
-                print(error)
+                if snapshot.key == postID {
+
+                    guard let value = snapshot.value as? NSDictionary else { return }
+                    guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+                    do {
+                        let postData = try self.decoder.decode(Post.self, from: postJSONData)
+                        self.likePosts.insert(postData, at: 0)
+                    } catch {
+                        print(error)
+                    }
+                    
+                    self.likePostCollectionView.reloadData()
+
+                }
             }
-
-            self.likePostCollectionView.reloadData()
 
         }
 
@@ -90,9 +98,25 @@ extension LikeViewController: UICollectionViewDataSource {
 
         let post = likePosts[indexPath.row]
 
+        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let userData = try self.decoder.decode(User.self, from: userJSONData)
+                postCell.userNameLabel.text = userData.name
+                postCell.userImage.kf.setImage(with: URL(string: userData.image))
+            } catch {
+                print(error)
+            }
+
+            self.likePostCollectionView.reloadData()
+
+        }
+
         postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-//        postCell.userImage.kf.setImage(with: URL(string: post.user.image))
-//        postCell.userNameLabel.text = post.user.name
         postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
 
         // taget action
@@ -144,7 +168,10 @@ extension LikeViewController: UICollectionViewDelegateFlowLayout {
         return 20 // 上下
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0 // 左右
     }
 
@@ -153,12 +180,10 @@ extension LikeViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = fullScreenSize.width - 30
+        let width = fullScreenSize.width - 40
         let height = width * 27 / 25
         return CGSize(width: width, height: height)
 
     }
 
 }
-
-

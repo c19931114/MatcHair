@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbp-8j-RQ4">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="324"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kwX-pm-Px0">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kwX-pm-Px0">
                                 <rect key="frame" x="10" y="10" width="280" height="280"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kwX-pm-Px0" secondAttribute="height" multiplier="1:1" id="vi8-ct-cBe"/>
@@ -35,6 +35,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgN-sL-CLG">
+                                <rect key="frame" x="268" y="23" width="32" height="32"/>
+                                <state key="normal" image="btn_chat_blue2"/>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q5u-Vk-T6d">
                                 <rect key="frame" x="20" y="254" width="60" height="60"/>
                                 <constraints>
@@ -77,27 +81,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNS-l7-bV4">
-                                <rect key="frame" x="260" y="258" width="21" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMI-zr-ZwZ">
+                                <rect key="frame" x="258" y="293" width="32" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btn_poke_white">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title=" 取消 ">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="makeReservation:" destination="2gp-ve-W2I" eventType="touchUpInside" id="6Ph-XZ-Bk4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgN-sL-CLG">
-                                <rect key="frame" x="268" y="23" width="32" height="32"/>
-                                <state key="normal" image="btn_chat_blue2"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -136,7 +137,6 @@
             <connections>
                 <outlet property="locationLabel" destination="cDq-cX-Byh" id="Lqn-Gp-umH"/>
                 <outlet property="postImage" destination="kwX-pm-Px0" id="0BP-xG-edl"/>
-                <outlet property="reservationButton" destination="WNS-l7-bV4" id="5gu-j4-suX"/>
                 <outlet property="userImage" destination="Q5u-Vk-T6d" id="eJg-VB-bHv"/>
                 <outlet property="userNameLabel" destination="cvm-xM-pSK" id="Rj2-zx-XJK"/>
                 <outlet property="view" destination="zbp-8j-RQ4" id="A0X-OL-Pqw"/>
@@ -146,7 +146,6 @@
     </objects>
     <resources>
         <image name="btn_chat_blue2" width="32" height="32"/>
-        <image name="btn_poke_white" width="21" height="21"/>
         <image name="icon_time" width="14" height="14"/>
     </resources>
 </document>

@@ -47,6 +47,8 @@
 		F1C2C3E32154B4180065E4EB /* SegueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E22154B4180065E4EB /* SegueController.swift */; };
 		F1C2C3E52154B8AE0065E4EB /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E42154B8AE0065E4EB /* PostViewController.swift */; };
 		F1C2C3E72154C9660065E4EB /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E62154C9660065E4EB /* NavigationController.swift */; };
+		F1D0BBD6215FCE9300ABAE5D /* LikePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBD4215FCE9300ABAE5D /* LikePostCollectionViewCell.swift */; };
+		F1D0BBD7215FCE9300ABAE5D /* LikePostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBD5215FCE9300ABAE5D /* LikePostCollectionViewCell.xib */; };
 		F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */; };
 		F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */; };
 		F1DD3F3521536D3D00BBE710 /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */; };
@@ -98,6 +100,8 @@
 		F1C2C3E22154B4180065E4EB /* SegueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueController.swift; sourceTree = "<group>"; };
 		F1C2C3E42154B8AE0065E4EB /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		F1C2C3E62154C9660065E4EB /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		F1D0BBD4215FCE9300ABAE5D /* LikePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1D0BBD5215FCE9300ABAE5D /* LikePostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikePostCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -303,13 +307,23 @@
 			path = AppointmentCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		F1D0BBD8215FCEA000ABAE5D /* LikePostCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F1D0BBD4215FCE9300ABAE5D /* LikePostCollectionViewCell.swift */,
+				F1D0BBD5215FCE9300ABAE5D /* LikePostCollectionViewCell.xib */,
+			);
+			path = LikePostCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		F1DD3F3121536D0F00BBE710 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
 				F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */,
-				F1A1A855215CB0290038F0CF /* PostCollectionViewCell */,
 				F1A1A856215CB03C0038F0CF /* ProfileCollectionViewCell */,
 				F1A1A857215CB04F0038F0CF /* MyPostCollectionViewCell */,
+				F1A1A855215CB0290038F0CF /* PostCollectionViewCell */,
+				F1D0BBD8215FCEA000ABAE5D /* LikePostCollectionViewCell */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -376,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1A1A850215C7D190038F0CF /* ProfileCollectionViewCell.xib in Resources */,
+				F1D0BBD7215FCE9300ABAE5D /* LikePostCollectionViewCell.xib in Resources */,
 				F139AA2B2151FB2A00B5B0D4 /* Like.storyboard in Resources */,
 				F139AA192151F18300B5B0D4 /* Login.storyboard in Resources */,
 				F139AA272151FB0D00B5B0D4 /* Home.storyboard in Resources */,
@@ -473,6 +488,7 @@
 				F1546C2921525705009AB3ED /* MatcHairColor.swift in Sources */,
 				F139AA222151F87200B5B0D4 /* TabBarController.swift in Sources */,
 				F1A1A853215C7F010038F0CF /* MyPostCollectionViewCell.swift in Sources */,
+				F1D0BBD6215FCE9300ABAE5D /* LikePostCollectionViewCell.swift in Sources */,
 				F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */,
 				F1A1A84C215BD5970038F0CF /* MyPost.swift in Sources */,
 				F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */,

@@ -55,7 +55,7 @@ class PostViewController: UIViewController {
 
     @IBAction func post(_ sender: Any) {
 
-        //先判斷有無缺項
+        //先判斷有無缺項 //TODO
         share()
     }
     @IBAction func recruitModel(_ sender: UISwitch) {
@@ -336,7 +336,7 @@ extension PostViewController {
                             "payment": self.priceTextField.text!,
                             "reservation":
                                 [
-                                    "date": "",
+                                    "date": "\(self.pickDateLabel.text!)",
                                     "time":
                                         [
                                             "morning": self.morningButton.isSelected,

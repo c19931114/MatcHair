@@ -39,7 +39,7 @@ extension LikeViewController {
         likePostCollectionView.dataSource = self
         likePostCollectionView.delegate = self
 
-        let identifier = String(describing: PostCollectionViewCell.self)
+        let identifier = String(describing: LikePostCollectionViewCell.self)
         let xib = UINib(nibName: identifier, bundle: nil)
         likePostCollectionView.register(xib, forCellWithReuseIdentifier: identifier)
 
@@ -89,10 +89,10 @@ extension LikeViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = likePostCollectionView.dequeueReusableCell(
-            withReuseIdentifier: String(describing: PostCollectionViewCell.self),
+            withReuseIdentifier: String(describing: LikePostCollectionViewCell.self),
             for: indexPath)
 
-        guard let postCell = cell as? PostCollectionViewCell else {
+        guard let postCell = cell as? LikePostCollectionViewCell else {
             return UICollectionViewCell()
         }
 
@@ -115,37 +115,56 @@ extension LikeViewController: UICollectionViewDataSource {
             self.likePostCollectionView.reloadData()
 
         }
-
+        
         postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
         postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
 
         // taget action
-//        postCell.likeButton.tag = indexPath.row
-//        postCell.likeButton.addTarget(
-//            self,
-//            action: #selector(likeButtonTapped(sender:)), for: .touchUpInside)
+        postCell.likeButton.tag = indexPath.row
+        postCell.likeButton.addTarget(
+            self,
+            action: #selector(unlikeButtonTapped(sender:)), for: .touchUpInside)
 
         return postCell
 
     }
 
-    @objc func likeButtonTapped(sender: UIButton) {
+    @objc func unlikeButtonTapped(sender: UIButton) {
 
         print(sender.tag)
-        print(sender.isSelected)
+        print(sender.isSelected) // false
 
-        sender.isSelected = !sender.isSelected
-        if sender.isSelected {
+        sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
 
-            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-            //            ref.child("likePosts/\()")
+        guard let userID = UserManager.shared.getUserUID() else { return }
 
-        } else {
+        let likePost = likePosts[sender.tag]
 
-            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
+        ref.child("likePosts/\(userID)/\(likePost.postID)").removeValue()
+
+        likePosts.remove(at: sender.tag)
+
+        likePostCollectionView.reloadData()
+
+        sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal) // 不改回來的話 下次就變不回紅色
+
+    }
+
+    // TODO
+    func removeLikeAlert(title: String = "移除最愛", message: String) {
+
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+
 
         }
 
+        let cancle = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancle)
+
+        present(alertController, animated: true, completion: nil)
     }
 
 }

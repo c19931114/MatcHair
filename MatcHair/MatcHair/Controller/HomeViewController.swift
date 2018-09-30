@@ -16,8 +16,14 @@ class HomeViewController: UIViewController {
     var ref: DatabaseReference!
     var allPosts = [Post]()
     let fullScreenSize = UIScreen.main.bounds.size
+    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var homePostCollectionView: UICollectionView!
+
+    @IBAction private func goToChatRoom(_ sender: Any) {
+
+        self.present(chatRoomViewController, animated: true, completion: nil)
+    }
 
 }
 

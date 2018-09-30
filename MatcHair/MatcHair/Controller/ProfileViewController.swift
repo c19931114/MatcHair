@@ -18,8 +18,13 @@ class ProfileViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     var myPosts: [MyPost] = []
     var ref: DatabaseReference!
-    
+    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
+
     @IBOutlet weak var profileCollectionView: UICollectionView!
+
+    @IBAction private func goToChatRoom(_ sender: Any) {
+        self.present(chatRoomViewController, animated: true, completion: nil)
+    }
 
 }
 

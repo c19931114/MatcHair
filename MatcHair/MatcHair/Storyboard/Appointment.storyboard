@@ -85,6 +85,9 @@
                                 <rect key="frame" x="293" y="11" width="66" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="btn_chat_white"/>
+                                <connections>
+                                    <action selector="goToChatRoom:" destination="YpL-F9-EuT" eventType="touchUpInside" id="Em1-Oc-2Uj"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -183,6 +186,9 @@
                                 <rect key="frame" x="293" y="11" width="66" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="btn_chat_white"/>
+                                <connections>
+                                    <action selector="goToChatRoom:" destination="rol-q8-hzB" eventType="touchUpInside" id="oGO-Js-FMa"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>

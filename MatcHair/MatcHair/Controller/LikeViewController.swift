@@ -17,8 +17,13 @@ class LikeViewController: UIViewController {
     var ref: DatabaseReference!
     var likePosts = [Post]()
     let fullScreenSize = UIScreen.main.bounds.size
+    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var likePostCollectionView: UICollectionView!
+
+    @IBAction private func goToChatRoom(_ sender: Any) {
+        self.present(chatRoomViewController, animated: true, completion: nil)
+    }
 
 }
 extension LikeViewController {
@@ -156,7 +161,6 @@ extension LikeViewController: UICollectionViewDataSource {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-
 
         }
 

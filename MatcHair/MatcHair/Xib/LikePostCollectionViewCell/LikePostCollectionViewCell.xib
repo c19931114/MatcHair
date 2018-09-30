@@ -54,7 +54,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaM-m2-OTI">
-                                <rect key="frame" x="265.5" y="292" width="20" height="22"/>
+                                <rect key="frame" x="270" y="294" width="20" height="22"/>
                                 <state key="normal" image="btn_like_selected"/>
                                 <connections>
                                     <action selector="like:" destination="i9w-SE-Pd1" eventType="touchUpInside" id="FMq-Ay-qTu"/>
@@ -123,14 +123,14 @@
                             <constraint firstItem="M17-wd-ZvG" firstAttribute="leading" secondItem="DQA-ys-Ezj" secondAttribute="leading" constant="10" id="ALY-jJ-n3f"/>
                             <constraint firstAttribute="trailing" secondItem="X2l-MQ-bFp" secondAttribute="trailing" id="HBr-yO-bPX"/>
                             <constraint firstItem="SDW-Ei-TaH" firstAttribute="top" secondItem="j0q-8k-aMz" secondAttribute="top" constant="5" id="N0S-sp-XRt"/>
-                            <constraint firstItem="uaM-m2-OTI" firstAttribute="bottom" secondItem="j0q-8k-aMz" secondAttribute="bottom" id="O3K-eC-2hJ"/>
+                            <constraint firstItem="uaM-m2-OTI" firstAttribute="trailing" secondItem="M17-wd-ZvG" secondAttribute="trailing" id="Pfx-JB-Ykp"/>
                             <constraint firstItem="E1v-JT-g04" firstAttribute="leading" secondItem="j0q-8k-aMz" secondAttribute="trailing" constant="10" id="PzC-g6-1vY"/>
                             <constraint firstAttribute="trailing" secondItem="M17-wd-ZvG" secondAttribute="trailing" constant="10" id="ReP-oa-fKQ"/>
                             <constraint firstItem="SDW-Ei-TaH" firstAttribute="leading" secondItem="j0q-8k-aMz" secondAttribute="trailing" constant="15" id="Sse-Xj-jDy"/>
                             <constraint firstItem="j0q-8k-aMz" firstAttribute="leading" secondItem="DQA-ys-Ezj" secondAttribute="leading" constant="20" id="V9z-5h-b3i"/>
                             <constraint firstItem="X2l-MQ-bFp" firstAttribute="top" secondItem="DQA-ys-Ezj" secondAttribute="top" constant="25" id="WbS-6b-XhN"/>
+                            <constraint firstItem="uaM-m2-OTI" firstAttribute="centerY" secondItem="UXG-gr-FiV" secondAttribute="centerY" id="d4L-q2-wWQ"/>
                             <constraint firstItem="j0q-8k-aMz" firstAttribute="bottom" secondItem="E1v-JT-g04" secondAttribute="bottom" constant="2" id="gJf-v4-eeo"/>
-                            <constraint firstAttribute="trailing" secondItem="uaM-m2-OTI" secondAttribute="trailing" multiplier="1.05" id="iYf-VO-A1X"/>
                             <constraint firstItem="M17-wd-ZvG" firstAttribute="top" secondItem="DQA-ys-Ezj" secondAttribute="top" constant="10" id="kDJ-6D-yka"/>
                             <constraint firstItem="SDW-Ei-TaH" firstAttribute="bottom" secondItem="hC6-2B-Fqs" secondAttribute="bottom" id="twd-HQ-TV8"/>
                             <constraint firstAttribute="trailing" secondItem="hC6-2B-Fqs" secondAttribute="trailing" id="xYq-Kb-w89"/>

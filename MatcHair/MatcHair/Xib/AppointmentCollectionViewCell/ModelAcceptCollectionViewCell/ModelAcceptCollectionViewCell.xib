@@ -84,42 +84,34 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5Y-B8-jBH">
-                                <rect key="frame" x="258" y="293.5" width="32" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title=" 完成 ">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrt-Nq-eX5">
+                                <rect key="frame" x="10" y="122" width="280" height="56"/>
+                                <color key="backgroundColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                <state key="normal" title="完成">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="complete:" destination="S7X-SZ-McZ" eventType="touchUpInside" id="zWn-Nh-ez5"/>
+                                    <action selector="complete:" destination="S7X-SZ-McZ" eventType="touchUpInside" id="Lkf-yd-h0P"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9jF-ey-tYe" firstAttribute="top" secondItem="zPJ-Qa-ZCI" secondAttribute="top" constant="10" id="5D7-61-sqk"/>
+                            <constraint firstItem="wrt-Nq-eX5" firstAttribute="leading" secondItem="9jF-ey-tYe" secondAttribute="leading" id="9Ao-R6-xt8"/>
                             <constraint firstItem="bXX-2s-b4o" firstAttribute="leading" secondItem="3Zu-x6-kfZ" secondAttribute="trailing" constant="15" id="Dxp-Ik-HD9"/>
                             <constraint firstAttribute="trailing" secondItem="qLa-tt-nY2" secondAttribute="trailing" id="HeC-OL-L5c"/>
                             <constraint firstAttribute="trailing" secondItem="9jF-ey-tYe" secondAttribute="trailing" constant="10" id="IE1-U5-m4B"/>
                             <constraint firstAttribute="width" secondItem="zPJ-Qa-ZCI" secondAttribute="height" multiplier="25:27" id="Q5J-KB-z3l"/>
                             <constraint firstItem="3Zu-x6-kfZ" firstAttribute="bottom" secondItem="Mek-qH-S7n" secondAttribute="bottom" id="QQC-0f-asZ"/>
                             <constraint firstItem="9jF-ey-tYe" firstAttribute="leading" secondItem="zPJ-Qa-ZCI" secondAttribute="leading" constant="10" id="SQ8-q5-Fh3"/>
-                            <constraint firstItem="m5Y-B8-jBH" firstAttribute="trailing" secondItem="9jF-ey-tYe" secondAttribute="trailing" id="T9J-nu-3rS"/>
+                            <constraint firstItem="wrt-Nq-eX5" firstAttribute="centerY" secondItem="9jF-ey-tYe" secondAttribute="centerY" id="XUe-sl-EQg"/>
                             <constraint firstItem="Mek-qH-S7n" firstAttribute="leading" secondItem="3Zu-x6-kfZ" secondAttribute="trailing" constant="10" id="ZYz-4z-jWn"/>
-                            <constraint firstItem="m5Y-B8-jBH" firstAttribute="centerY" secondItem="BLe-37-3pa" secondAttribute="centerY" id="dTy-XF-hHE"/>
+                            <constraint firstItem="wrt-Nq-eX5" firstAttribute="height" secondItem="9jF-ey-tYe" secondAttribute="height" multiplier="0.2" id="dRN-Ce-J2i"/>
                             <constraint firstItem="qLa-tt-nY2" firstAttribute="top" secondItem="zPJ-Qa-ZCI" secondAttribute="top" constant="23" id="ddN-dM-HfZ"/>
                             <constraint firstItem="bXX-2s-b4o" firstAttribute="top" secondItem="3Zu-x6-kfZ" secondAttribute="top" constant="5" id="hTP-ZB-U63"/>
+                            <constraint firstItem="9jF-ey-tYe" firstAttribute="trailing" secondItem="wrt-Nq-eX5" secondAttribute="trailing" id="l0o-7a-ziM"/>
                             <constraint firstItem="3Zu-x6-kfZ" firstAttribute="leading" secondItem="zPJ-Qa-ZCI" secondAttribute="leading" constant="20" id="mEO-zP-MLV"/>
                             <constraint firstItem="3Zu-x6-kfZ" firstAttribute="centerY" secondItem="9jF-ey-tYe" secondAttribute="bottom" multiplier="0.98" id="xDD-lY-F8e"/>
                         </constraints>
@@ -142,7 +134,6 @@
             <viewLayoutGuide key="safeArea" id="XFU-MY-mN6"/>
             <size key="customSize" width="375" height="379"/>
             <connections>
-                <outlet property="cancelButton" destination="m5Y-B8-jBH" id="zVW-0l-xix"/>
                 <outlet property="postImage" destination="9jF-ey-tYe" id="yJ0-D9-fH3"/>
                 <outlet property="reservationTimeLabel" destination="BLe-37-3pa" id="JxK-ii-wdC"/>
                 <outlet property="userImage" destination="3Zu-x6-kfZ" id="In7-hJ-ysg"/>

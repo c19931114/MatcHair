@@ -54,7 +54,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oT-bR-KPS">
-                                <rect key="frame" x="265.5" y="292" width="20" height="22"/>
+                                <rect key="frame" x="270" y="294" width="20" height="22"/>
                                 <state key="normal" image="btn_like_normal"/>
                                 <connections>
                                     <action selector="like:" destination="gTV-IL-0wX" eventType="touchUpInside" id="aPG-Z7-63r"/>
@@ -125,17 +125,17 @@
                             <constraint firstItem="AzB-sf-Fjm" firstAttribute="top" secondItem="cCt-gV-dIK" secondAttribute="top" constant="10" id="Ryd-tO-Mfi"/>
                             <constraint firstAttribute="trailing" secondItem="0V8-KE-FdQ" secondAttribute="trailing" id="SZp-uB-iA2"/>
                             <constraint firstItem="oK5-zR-CMo" firstAttribute="leading" secondItem="cCt-gV-dIK" secondAttribute="leading" constant="20" id="VrK-rg-mPV"/>
-                            <constraint firstItem="4oT-bR-KPS" firstAttribute="bottom" secondItem="oK5-zR-CMo" secondAttribute="bottom" id="Zxj-bN-a5V"/>
                             <constraint firstItem="oK5-zR-CMo" firstAttribute="centerY" secondItem="AzB-sf-Fjm" secondAttribute="bottom" multiplier="0.98" id="aGc-25-QiA"/>
                             <constraint firstItem="oK5-zR-CMo" firstAttribute="bottom" secondItem="vxh-6a-o5f" secondAttribute="bottom" constant="2" id="aya-it-7Pp"/>
+                            <constraint firstItem="4oT-bR-KPS" firstAttribute="trailing" secondItem="AzB-sf-Fjm" secondAttribute="trailing" id="fOM-1H-l0V"/>
                             <constraint firstItem="yNW-nr-jbg" firstAttribute="leading" secondItem="oK5-zR-CMo" secondAttribute="trailing" constant="15" id="fhN-Y0-Gcj"/>
-                            <constraint firstAttribute="trailing" secondItem="4oT-bR-KPS" secondAttribute="trailing" multiplier="1.05" id="gl2-d9-UwN"/>
                             <constraint firstItem="vxh-6a-o5f" firstAttribute="leading" secondItem="oK5-zR-CMo" secondAttribute="trailing" constant="10" id="ijz-hj-gPN"/>
                             <constraint firstItem="yNW-nr-jbg" firstAttribute="bottom" secondItem="0V8-KE-FdQ" secondAttribute="bottom" id="j65-6j-xFT"/>
                             <constraint firstAttribute="trailing" secondItem="AzB-sf-Fjm" secondAttribute="trailing" constant="10" id="lf7-vo-CTY"/>
                             <constraint firstItem="AzB-sf-Fjm" firstAttribute="leading" secondItem="cCt-gV-dIK" secondAttribute="leading" constant="10" id="lqn-8W-iIl"/>
                             <constraint firstAttribute="trailing" secondItem="Wzc-kJ-Cgg" secondAttribute="trailing" id="mz8-1d-e0H"/>
                             <constraint firstItem="yNW-nr-jbg" firstAttribute="top" secondItem="oK5-zR-CMo" secondAttribute="top" constant="5" id="vKt-iz-rLH"/>
+                            <constraint firstItem="4oT-bR-KPS" firstAttribute="centerY" secondItem="TBE-M0-08g" secondAttribute="centerY" id="vci-FL-eN0"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">

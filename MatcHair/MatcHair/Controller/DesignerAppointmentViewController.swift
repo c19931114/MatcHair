@@ -15,6 +15,7 @@ class DesignerAppointmentViewController: UIViewController {
     let decoder = JSONDecoder()
     var ref: DatabaseReference!
     let fullScreenSize = UIScreen.main.bounds.size
+    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     // fake data
     var designerWaitingPosts: [Post] = [Post(
@@ -50,6 +51,10 @@ class DesignerAppointmentViewController: UIViewController {
             designerWatingCollectionView.isHidden = true
             designerAcceptCollectionView.isHidden = false
         }
+    }
+
+    @IBAction private func goToChatRoom(_ sender: Any) {
+        self.present(chatRoomViewController, animated: true, completion: nil)
     }
 
 }
@@ -136,6 +141,10 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
     //        postCell.reservationTimeLabel.text = "\(post.reservation.date), \(post.reservation.time.afternoon)"
             postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
 
+            postCell.userImage.kf.setImage(
+                with: URL(string:
+                    "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/Crystal%20Liu_cYUWWGgyRRTKYdVl6wwSXXbNmVI3?alt=media&token=6b665617-868e-4f14-a3c4-d2c9c5706c47"))
+
             // taget action
 //            postCell.cancelButton.tag = indexPath.row
 //            postCell.cancelButton.addTarget(
@@ -157,6 +166,10 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
             postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
             postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
+
+            postCell.userImage.kf.setImage(
+                with: URL(string:
+                    "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/Crystal%20Liu_cYUWWGgyRRTKYdVl6wwSXXbNmVI3?alt=media&token=6b665617-868e-4f14-a3c4-d2c9c5706c47"))
 
             // taget action
 //            postCell.cancelButton.tag = indexPath.row

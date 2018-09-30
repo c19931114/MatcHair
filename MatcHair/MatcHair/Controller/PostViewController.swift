@@ -57,6 +57,11 @@ class PostViewController: UIViewController {
 
         //先判斷有無缺項 //TODO
         share()
+
+        let tabController = self.view.window!.rootViewController as? UITabBarController
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        tabController?.selectedIndex = 4
+
     }
     @IBAction func recruitModel(_ sender: UISwitch) {
         switch sender.isOn {
@@ -142,10 +147,10 @@ class PostViewController: UIViewController {
             priceTextField.text = "0"
         }
     }
+
     @IBAction func pickDate(_ sender: Any) {
 
         datePickerTapped()
-
     }
 
     @IBAction func morning(_ sender: UIButton) {

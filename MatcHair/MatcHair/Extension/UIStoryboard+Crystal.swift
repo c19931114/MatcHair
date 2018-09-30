@@ -30,9 +30,9 @@ extension UIStoryboard {
         return UIStoryboard(name: "Appointment", bundle: nil)
     }
     
-    static func chatStoryboard() -> UIStoryboard {
+    static func chatRoomStoryboard() -> UIStoryboard {
         
-        return UIStoryboard(name: "Chat", bundle: nil)
+        return UIStoryboard(name: "ChatRoom", bundle: nil)
     }
     
     static func likeStoryboard() -> UIStoryboard {

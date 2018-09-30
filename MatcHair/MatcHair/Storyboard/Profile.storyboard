@@ -44,6 +44,9 @@
                                 <rect key="frame" x="284" y="11" width="75" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="btn_chat_white"/>
+                                <connections>
+                                    <action selector="goToChatRoom:" destination="aaa-6I-2HB" eventType="touchUpInside" id="TJ6-m1-uz7"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>

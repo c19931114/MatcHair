@@ -49,13 +49,14 @@
 		F1C2C3E72154C9660065E4EB /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E62154C9660065E4EB /* NavigationController.swift */; };
 		F1D0BBD6215FCE9300ABAE5D /* LikePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBD4215FCE9300ABAE5D /* LikePostCollectionViewCell.swift */; };
 		F1D0BBD7215FCE9300ABAE5D /* LikePostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBD5215FCE9300ABAE5D /* LikePostCollectionViewCell.xib */; };
-		F1D0BBDA215FF55000ABAE5D /* AppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBD9215FF55000ABAE5D /* AppointmentViewController.swift */; };
+		F1D0BBDA215FF55000ABAE5D /* DesignerAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBD9215FF55000ABAE5D /* DesignerAppointmentViewController.swift */; };
 		F1D0BBDE216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBDC216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift */; };
 		F1D0BBDF216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBDD216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib */; };
 		F1D0BBE52161087300ABAE5D /* ModelWaitingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE32161087300ABAE5D /* ModelWaitingCollectionViewCell.swift */; };
 		F1D0BBE62161087300ABAE5D /* ModelWaitingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE42161087300ABAE5D /* ModelWaitingCollectionViewCell.xib */; };
 		F1D0BBE9216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE7216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift */; };
 		F1D0BBEA216108D900ABAE5D /* ModelAcceptCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE8216108D900ABAE5D /* ModelAcceptCollectionViewCell.xib */; };
+		F1D0BBEC21610A9400ABAE5D /* ModelAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBEB21610A9400ABAE5D /* ModelAppointmentViewController.swift */; };
 		F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */; };
 		F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */; };
 		F1DD3F3521536D3D00BBE710 /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */; };
@@ -109,13 +110,14 @@
 		F1C2C3E62154C9660065E4EB /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F1D0BBD4215FCE9300ABAE5D /* LikePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBD5215FCE9300ABAE5D /* LikePostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikePostCollectionViewCell.xib; sourceTree = "<group>"; };
-		F1D0BBD9215FF55000ABAE5D /* AppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentViewController.swift; sourceTree = "<group>"; };
+		F1D0BBD9215FF55000ABAE5D /* DesignerAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerAppointmentViewController.swift; sourceTree = "<group>"; };
 		F1D0BBDC216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerAcceptCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBDD216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignerAcceptCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1D0BBE32161087300ABAE5D /* ModelWaitingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWaitingCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBE42161087300ABAE5D /* ModelWaitingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelWaitingCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1D0BBE7216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAcceptCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBE8216108D900ABAE5D /* ModelAcceptCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelAcceptCollectionViewCell.xib; sourceTree = "<group>"; };
+		F1D0BBEB21610A9400ABAE5D /* ModelAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAppointmentViewController.swift; sourceTree = "<group>"; };
 		F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -215,7 +217,8 @@
 				F1C2C3E42154B8AE0065E4EB /* PostViewController.swift */,
 				F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */,
 				F1A1A858215CB09A0038F0CF /* LikeViewController.swift */,
-				F1D0BBD9215FF55000ABAE5D /* AppointmentViewController.swift */,
+				F1D0BBD9215FF55000ABAE5D /* DesignerAppointmentViewController.swift */,
+				F1D0BBEB21610A9400ABAE5D /* ModelAppointmentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */,
 				F1A1A84C215BD5970038F0CF /* MyPost.swift in Sources */,
 				F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */,
+				F1D0BBEC21610A9400ABAE5D /* ModelAppointmentViewController.swift in Sources */,
 				F1C2C3E52154B8AE0065E4EB /* PostViewController.swift in Sources */,
 				F1D0BBE9216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
@@ -562,7 +566,7 @@
 				F14794A4215B8A05005E864C /* Post.swift in Sources */,
 				F1546C1F21523244009AB3ED /* User.swift in Sources */,
 				F1A1A85D215DDA900038F0CF /* DesignerWaitingCollectionViewCell.swift in Sources */,
-				F1D0BBDA215FF55000ABAE5D /* AppointmentViewController.swift in Sources */,
+				F1D0BBDA215FF55000ABAE5D /* DesignerAppointmentViewController.swift in Sources */,
 				F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */,
 				F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */,
 				F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */,

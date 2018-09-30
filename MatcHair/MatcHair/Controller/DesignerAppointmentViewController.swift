@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import Kingfisher
 
-class AppointmentViewController: UIViewController {
+class DesignerAppointmentViewController: UIViewController {
 
     let decoder = JSONDecoder()
     var ref: DatabaseReference!
@@ -54,7 +54,7 @@ class AppointmentViewController: UIViewController {
 
 }
 
-extension AppointmentViewController {
+extension DesignerAppointmentViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +83,7 @@ extension AppointmentViewController {
     }
 }
 
-extension AppointmentViewController: UICollectionViewDataSource {
+extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
@@ -137,10 +137,10 @@ extension AppointmentViewController: UICollectionViewDataSource {
             postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
 
             // taget action
-            postCell.cancelButton.tag = indexPath.row
-            postCell.cancelButton.addTarget(
-                self,
-                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
+//            postCell.cancelButton.tag = indexPath.row
+//            postCell.cancelButton.addTarget(
+//                self,
+//                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
             return postCell
 
         default:
@@ -168,33 +168,33 @@ extension AppointmentViewController: UICollectionViewDataSource {
         }
 
     }
-
-    @objc func cancelButtonTapped(sender: UIButton) {
-        //        print(sender.tag)
-        //        print(sender.isSelected)
-
-        guard let userID = UserManager.shared.getUserUID() else { return }
-
-        let designerWaitingPost = designerWaitingPosts[sender.tag]
-
-        sender.isSelected = !sender.isSelected
-        if sender.isSelected {
-
-            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-            ref.child("likePosts/\(userID)/\(designerWaitingPost.postID)").setValue(true)
-
-        } else {
-
-            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-            ref.child("likePosts/\(userID)/\(designerWaitingPost.postID)").removeValue()
-
-        }
-
-    }
+//
+//    @objc func cancelButtonTapped(sender: UIButton) {
+//        //        print(sender.tag)
+//        //        print(sender.isSelected)
+//
+//        guard let userID = UserManager.shared.getUserUID() else { return }
+//
+//        let designerWaitingPost = designerWaitingPosts[sender.tag]
+//
+//        sender.isSelected = !sender.isSelected
+//        if sender.isSelected {
+//
+//            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
+//            ref.child("likePosts/\(userID)/\(designerWaitingPost.postID)").setValue(true)
+//
+//        } else {
+//
+//            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
+//            ref.child("likePosts/\(userID)/\(designerWaitingPost.postID)").removeValue()
+//
+//        }
+//
+//    }
 
 }
 
-extension AppointmentViewController: UICollectionViewDelegateFlowLayout {
+extension DesignerAppointmentViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
         _ collectionView: UICollectionView,

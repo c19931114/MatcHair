@@ -13,7 +13,6 @@ import Kingfisher
 class HomeViewController: UIViewController {
     
     let decoder = JSONDecoder()
-
     var ref: DatabaseReference!
     var allPosts = [Post]()
     let fullScreenSize = UIScreen.main.bounds.size

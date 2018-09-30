@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Appointment-->
+        <!--Designer-->
         <scene sceneID="i7K-Uw-kuq">
             <objects>
-                <viewController id="YpL-F9-EuT" sceneMemberID="viewController">
+                <viewController id="YpL-F9-EuT" customClass="AppointmentViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5DY-9v-Cux">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,17 +24,62 @@
                                     <segment title="已成立"/>
                                 </segments>
                                 <color key="tintColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="switchStament:" destination="YpL-F9-EuT" eventType="valueChanged" id="vc1-XC-get"/>
+                                </connections>
                             </segmentedControl>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uOf-B5-WsF">
+                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bAD-bp-eG3">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yOB-Ex-LWa">
+                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NaD-h6-r0q">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="WVI-Ks-gLF" secondAttribute="trailing" constant="16" id="1xQ-Di-wMt"/>
+                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="bottom" secondItem="yOB-Ex-LWa" secondAttribute="bottom" id="7nC-1p-52D"/>
+                            <constraint firstItem="uOf-B5-WsF" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" id="RiI-Wc-yCB"/>
                             <constraint firstItem="WVI-Ks-gLF" firstAttribute="top" secondItem="I5N-Uo-7Z7" secondAttribute="top" constant="16" id="WiR-ZD-WkS"/>
+                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="uOf-B5-WsF" secondAttribute="trailing" id="bAL-vN-LxF"/>
+                            <constraint firstItem="uOf-B5-WsF" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="bZV-8C-cCn"/>
+                            <constraint firstItem="yOB-Ex-LWa" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="cL4-Uo-o9L"/>
                             <constraint firstItem="WVI-Ks-gLF" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" constant="16" id="i13-aX-aFd"/>
+                            <constraint firstItem="yOB-Ex-LWa" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" id="lUN-jS-7KL"/>
+                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="yOB-Ex-LWa" secondAttribute="trailing" id="od4-bA-QUX"/>
+                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="bottom" secondItem="uOf-B5-WsF" secondAttribute="bottom" id="xLx-eI-kxx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I5N-Uo-7Z7"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Appointment" id="15O-XS-nVy">
+                    <navigationItem key="navigationItem" title="Designer" id="15O-XS-nVy">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="JdL-Rj-DdB">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Cx-Wi-tE7">
+                                <rect key="frame" x="16" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Model">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="rol-q8-hzB" kind="push" id="SKa-xZ-vfo"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="z1r-tC-lJj">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i3t-VD-Nlh">
                                 <rect key="frame" x="293" y="11" width="66" height="22"/>
@@ -43,10 +88,14 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="designerAcceptCollectionView" destination="yOB-Ex-LWa" id="DDY-89-zb0"/>
+                        <outlet property="designerWatingCollectionView" destination="uOf-B5-WsF" id="x2n-Jx-vlo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dA-a9-JIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1312.8" y="-92.203898050974516"/>
+            <point key="canvasLocation" x="1188" y="-92"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rX2-7h-akm">
@@ -56,6 +105,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u2i-Mc-reg">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -68,6 +118,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHQ-z8-EGS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="373.60000000000002" y="-92.203898050974516"/>
+        </scene>
+        <!--Model-->
+        <scene sceneID="Wgv-oe-Apr">
+            <objects>
+                <viewController id="rol-q8-hzB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2aY-Ei-rVh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fye-4O-Dhi">
+                                <rect key="frame" x="16" y="80" width="343" height="29"/>
+                                <segments>
+                                    <segment title="待確認"/>
+                                    <segment title="已成立"/>
+                                </segments>
+                                <color key="tintColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fye-4O-Dhi" firstAttribute="top" secondItem="217-kj-GFe" secondAttribute="top" constant="16" id="2sy-M6-fuc"/>
+                            <constraint firstItem="217-kj-GFe" firstAttribute="trailing" secondItem="Fye-4O-Dhi" secondAttribute="trailing" constant="16" id="Ox7-iG-F03"/>
+                            <constraint firstItem="Fye-4O-Dhi" firstAttribute="leading" secondItem="217-kj-GFe" secondAttribute="leading" constant="16" id="cOb-do-MiO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="217-kj-GFe"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Model" id="blE-qq-xwe">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="I66-GL-eaf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FGg-0o-az3">
+                                <rect key="frame" x="293" y="11" width="66" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_chat_white"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dqx-b1-BIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1966" y="-92"/>
         </scene>
     </scenes>
     <resources>

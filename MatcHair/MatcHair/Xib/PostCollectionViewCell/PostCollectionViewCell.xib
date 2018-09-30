@@ -90,6 +90,9 @@
                                     <constraint firstAttribute="width" secondItem="Wzc-kJ-Cgg" secondAttribute="height" multiplier="1:1" id="NYh-jo-4im"/>
                                 </constraints>
                                 <state key="normal" image="btn_chat_blue2"/>
+                                <connections>
+                                    <action selector="chat:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qCr-nB-LMU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0V8-KE-FdQ">
                                 <rect key="frame" x="245" y="254.5" width="55" height="25"/>

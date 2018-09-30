@@ -26,7 +26,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     @IBAction func like(_ sender: UIButton) {
     }
 
-    @IBAction func poke(_ sender: UIButton) {
+    @IBAction func chat(_ sender: UIButton) {
     }
 
     override func awakeFromNib() {

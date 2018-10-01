@@ -18,5 +18,6 @@ target 'MatcHair' do
    pod 'FirebaseDatabase'
    pod 'Kingfisher', '~> 4.0'
    pod 'DatePickerDialog'
+   pod 'IQKeyboardManagerSwift'
 
 end

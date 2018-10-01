@@ -22,6 +22,7 @@
                                 <segments>
                                     <segment title="待確認"/>
                                     <segment title="已成立"/>
+                                    <segment title="已完成"/>
                                 </segments>
                                 <color key="tintColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
@@ -59,8 +60,8 @@
                             <constraint firstItem="WVI-Ks-gLF" firstAttribute="top" secondItem="I5N-Uo-7Z7" secondAttribute="top" constant="16" id="WiR-ZD-WkS"/>
                             <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="uOf-B5-WsF" secondAttribute="trailing" id="bAL-vN-LxF"/>
                             <constraint firstItem="uOf-B5-WsF" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="bZV-8C-cCn"/>
-                            <constraint firstItem="yOB-Ex-LWa" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="cL4-Uo-o9L"/>
                             <constraint firstItem="WVI-Ks-gLF" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" constant="16" id="i13-aX-aFd"/>
+                            <constraint firstItem="yOB-Ex-LWa" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="jrA-Ez-Ur9"/>
                             <constraint firstItem="yOB-Ex-LWa" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" id="lUN-jS-7KL"/>
                             <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="yOB-Ex-LWa" secondAttribute="trailing" id="od4-bA-QUX"/>
                             <constraint firstItem="I5N-Uo-7Z7" firstAttribute="bottom" secondItem="uOf-B5-WsF" secondAttribute="bottom" id="xLx-eI-kxx"/>
@@ -135,6 +136,7 @@
                                 <segments>
                                     <segment title="待確認"/>
                                     <segment title="已成立"/>
+                                    <segment title="已完成"/>
                                 </segments>
                                 <color key="tintColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
@@ -168,12 +170,12 @@
                         <constraints>
                             <constraint firstItem="Fye-4O-Dhi" firstAttribute="top" secondItem="217-kj-GFe" secondAttribute="top" constant="16" id="2sy-M6-fuc"/>
                             <constraint firstItem="1DH-7l-ZmV" firstAttribute="leading" secondItem="217-kj-GFe" secondAttribute="leading" id="7BL-R4-Ttx"/>
-                            <constraint firstItem="54k-lR-g0m" firstAttribute="top" secondItem="Fye-4O-Dhi" secondAttribute="bottom" constant="16" id="Ax1-wk-ywe"/>
+                            <constraint firstItem="1DH-7l-ZmV" firstAttribute="top" secondItem="Fye-4O-Dhi" secondAttribute="bottom" constant="16" id="IBh-e9-c3x"/>
                             <constraint firstItem="217-kj-GFe" firstAttribute="trailing" secondItem="Fye-4O-Dhi" secondAttribute="trailing" constant="16" id="Ox7-iG-F03"/>
-                            <constraint firstItem="1DH-7l-ZmV" firstAttribute="top" secondItem="Fye-4O-Dhi" secondAttribute="bottom" constant="16" id="Rz5-n3-gzq"/>
                             <constraint firstItem="217-kj-GFe" firstAttribute="bottom" secondItem="54k-lR-g0m" secondAttribute="bottom" id="XsE-gI-M9a"/>
                             <constraint firstItem="Fye-4O-Dhi" firstAttribute="leading" secondItem="217-kj-GFe" secondAttribute="leading" constant="16" id="cOb-do-MiO"/>
                             <constraint firstItem="217-kj-GFe" firstAttribute="trailing" secondItem="54k-lR-g0m" secondAttribute="trailing" id="m1Y-VI-pkS"/>
+                            <constraint firstItem="54k-lR-g0m" firstAttribute="top" secondItem="Fye-4O-Dhi" secondAttribute="bottom" constant="16" id="rJJ-pb-Ggy"/>
                             <constraint firstItem="54k-lR-g0m" firstAttribute="leading" secondItem="217-kj-GFe" secondAttribute="leading" id="s06-jj-7AQ"/>
                             <constraint firstItem="217-kj-GFe" firstAttribute="bottom" secondItem="1DH-7l-ZmV" secondAttribute="bottom" id="yC1-5I-H7h"/>
                             <constraint firstItem="217-kj-GFe" firstAttribute="trailing" secondItem="1DH-7l-ZmV" secondAttribute="trailing" id="z1I-QJ-LOU"/>

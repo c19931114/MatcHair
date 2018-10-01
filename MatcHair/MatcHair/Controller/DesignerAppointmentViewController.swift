@@ -47,9 +47,13 @@ class DesignerAppointmentViewController: UIViewController {
         case 0:
             designerWatingCollectionView.isHidden = false
             designerAcceptCollectionView.isHidden = true
-        default:
+        case 1:
             designerWatingCollectionView.isHidden = true
             designerAcceptCollectionView.isHidden = false
+        default:
+            designerWatingCollectionView.isHidden = true
+            designerAcceptCollectionView.isHidden = true
+            
         }
     }
 

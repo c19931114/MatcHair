@@ -47,9 +47,12 @@ class ModelAppointmentViewController: UIViewController {
         case 0:
             modelWatingCollectionView.isHidden = false
             modelAcceptCollectionView.isHidden = true
-        default:
+        case 1:
             modelWatingCollectionView.isHidden = true
             modelAcceptCollectionView.isHidden = false
+        default:
+            modelWatingCollectionView.isHidden = true
+            modelAcceptCollectionView.isHidden = true
         }
     }
     @IBAction private func goToChatRoom(_ sender: Any) {

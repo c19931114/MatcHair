@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     
     let decoder = JSONDecoder()
     var ref: DatabaseReference!
-    var allPosts = [Post]()
+    var allPosts = [(Post, User)]()
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
@@ -67,12 +67,26 @@ extension HomeViewController {
 
             do {
                 let postData = try self.decoder.decode(Post.self, from: postJSONData)
-                self.allPosts.insert(postData, at: 0)
+
+                self.ref.child("users/\(postData.userUID)").observeSingleEvent(of: .value) { (snapshot) in
+
+                    guard let value = snapshot.value as? NSDictionary else { return }
+
+                    guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+                    do {
+                        let userData = try self.decoder.decode(User.self, from: userJSONData)
+                        self.allPosts.insert((postData, userData), at: 0)
+
+                    } catch {
+                        print(error)
+                    }
+                    self.homePostCollectionView.reloadData()
+                }
+
             } catch {
                 print(error)
             }
-
-            self.homePostCollectionView.reloadData()
 
         }
 
@@ -100,40 +114,48 @@ extension HomeViewController: UICollectionViewDataSource {
 
         let post = allPosts[indexPath.row]
 
-        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
+//        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
+//
+//            guard let value = snapshot.value as? NSDictionary else { return }
+//
+//            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+//
+//            do {
+//                let userData = try self.decoder.decode(User.self, from: userJSONData)
+//                postCell.userNameLabel.text = userData.name
+//                postCell.userImage.kf.setImage(with: URL(string: userData.image))
+//
+//                postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
+//                postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
+//
+//                // taget action
+//                postCell.likeButton.tag = indexPath.row
+//                postCell.likeButton.addTarget(
+//                    self,
+//                    action: #selector(self.likeButtonTapped(sender:)), for: .touchUpInside)
+//
+//            } catch {
+//                print(error)
+//            }
+//        }
 
-            guard let value = snapshot.value as? NSDictionary else { return }
+        postCell.userNameLabel.text = post.1.name
+        postCell.userImage.kf.setImage(with: URL(string: post.1.image))
 
-            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
-
-            do {
-                let userData = try self.decoder.decode(User.self, from: userJSONData)
-                postCell.userNameLabel.text = userData.name
-                postCell.userImage.kf.setImage(with: URL(string: userData.image))
-            } catch {
-                print(error)
-            }
-
-            self.homePostCollectionView.reloadData()
-            
-        }
-
-        postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-        postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
+        postCell.postImage.kf.setImage(with: URL(string: post.0.pictureURL))
+        postCell.locationLabel.text = "\(post.0.reservation.location.city), \(post.0.reservation.location.district)"
 
         // taget action
         postCell.likeButton.tag = indexPath.row
         postCell.likeButton.addTarget(
             self,
-            action: #selector(likeButtonTapped(sender:)), for: .touchUpInside)
+            action: #selector(self.likeButtonTapped(sender:)), for: .touchUpInside)
 
         return postCell
 
     }
 
     @objc func likeButtonTapped(sender: UIButton) {
-//        print(sender.tag)
-//        print(sender.isSelected)
 
         guard let userID = UserManager.shared.getUserUID() else { return }
 
@@ -143,12 +165,12 @@ extension HomeViewController: UICollectionViewDataSource {
         if sender.isSelected {
 
             sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-            ref.child("likePosts/\(userID)/\(likePost.postID)").setValue(true)
+            ref.child("likePosts/\(userID)/\(likePost.0.postID)").setValue(true)
 
         } else {
 
             sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-            ref.child("likePosts/\(userID)/\(likePost.postID)").removeValue()
+            ref.child("likePosts/\(userID)/\(likePost.0.postID)").removeValue()
 
         }
 

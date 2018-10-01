@@ -32,6 +32,24 @@ class PostCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+//        setCellShadow()
+
+    }
+
+    func setCellShadow() {
+
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowPath = UIBezierPath(
+            roundedRect: self.bounds,
+            cornerRadius: self.contentView.layer.cornerRadius
+            ).cgPath
+
+        // shadowOffset 偏移
+        self.layer.shadowOffset = CGSize(width: 10, height: 10)
+        self.layer.shadowRadius = 4.0
+        self.layer.shadowOpacity = 0.5
+        self.layer.masksToBounds = false
+
     }
 
 }

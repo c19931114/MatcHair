@@ -21,11 +21,19 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits" smartDashesType="yes"/>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AZu-YB-CnJ">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="AZu-YB-CnJ" firstAttribute="bottom" secondItem="d65-8I-FPo" secondAttribute="bottom" id="0aW-DZ-zKa"/>
                             <constraint firstItem="Z0s-l1-dL3" firstAttribute="top" secondItem="d65-8I-FPo" secondAttribute="top" id="DZL-5I-dfp"/>
+                            <constraint firstItem="AZu-YB-CnJ" firstAttribute="top" secondItem="Z0s-l1-dL3" secondAttribute="bottom" id="Jph-7b-cWi"/>
                             <constraint firstItem="Z0s-l1-dL3" firstAttribute="trailing" secondItem="d65-8I-FPo" secondAttribute="trailing" id="QnF-r8-3L1"/>
+                            <constraint firstItem="AZu-YB-CnJ" firstAttribute="trailing" secondItem="d65-8I-FPo" secondAttribute="trailing" id="fsO-Da-tEx"/>
+                            <constraint firstItem="AZu-YB-CnJ" firstAttribute="leading" secondItem="d65-8I-FPo" secondAttribute="leading" id="mZF-e7-Shg"/>
                             <constraint firstItem="Z0s-l1-dL3" firstAttribute="leading" secondItem="d65-8I-FPo" secondAttribute="leading" id="wPY-gC-oeg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d65-8I-FPo"/>

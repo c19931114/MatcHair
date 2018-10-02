@@ -282,10 +282,10 @@ extension PostViewController {
             minimumDate: currentDate,
             maximumDate: threeMonthAfter,
             datePickerMode: .date) { (date) in
-                
                 if let dt = date {
                     let formatter = DateFormatter()
                     formatter.dateFormat = "yyyy/MM/dd"
+//                    print(dt)
                     self.pickDateLabel.text = formatter.string(from: dt)
                 }
         }

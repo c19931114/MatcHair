@@ -14,10 +14,10 @@ class HomeViewController: UIViewController {
     
     let decoder = JSONDecoder()
     var ref: DatabaseReference!
-
     var allPosts = [(Post, User)]()
     var likePostIDs = [String]()
     var likePostIndex: Int?
+    var selectedTiming: String?
 
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
@@ -43,11 +43,10 @@ extension HomeViewController {
         loadAllPosts()
         loadLikePosts()
 
-        let layout = UICollectionViewFlowLayout()
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+//        homePostCollectionView.collectionViewLayout = layout
 
-        layout.scrollDirection = .vertical
-
-        homePostCollectionView.collectionViewLayout = layout
 
     }
 
@@ -99,6 +98,8 @@ extension HomeViewController {
                 print(error)
             }
 
+            self.homePostCollectionView.reloadData()
+
         }
     }
 
@@ -110,8 +111,6 @@ extension HomeViewController {
             guard let value = snapshot.value as? NSDictionary else { return }
             guard let likePostIDs = value.allKeys as? [String] else { return }
             self.likePostIDs = likePostIDs
-
-
 
             self.homePostCollectionView.reloadData()
 
@@ -164,31 +163,53 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func likeButtonTapped(sender: UIButton) {
 
-        guard let userID = UserManager.shared.getUserUID() else { return }
+        guard let userUID = UserManager.shared.getUserUID() else { return }
 
-        let likePost = allPosts[sender.tag]
+        let likePost = allPosts[sender.tag].0
 
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
 
 //            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-            ref.child("likePosts/\(userID)/\(likePost.0.postID)").setValue(true)
-
-
+            ref.child("likePosts/\(userUID)/\(likePost.postID)").setValue(true)
 
         } else {
 
 //            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-            ref.child("likePosts/\(userID)/\(likePost.0.postID)").removeValue()
-
+            ref.child("likePosts/\(userUID)/\(likePost.postID)").removeValue()
 
         }
 
     }
 
     @objc func reservationButtonTapped(sender: UIButton) {
-
         
+        var timingOption = [String]()
+
+        let reservationPost = allPosts[sender.tag].0
+        let timing = reservationPost.reservation.time
+
+        if timing.morning {
+            timingOption.append("早上")
+        }
+
+        if timing.afternoon {
+            timingOption.append("下午")
+        }
+
+        if timing.night {
+            timingOption.append("晚上")
+        }
+        print(timing)
+        print(timingOption)
+
+        PickerDialog().show(
+            title: "\(reservationPost.reservation.date)",
+            options: timingOption) {(value) -> Void in
+
+                print("selected: \(value)")
+                self.selectedTiming = value
+        }
 
     }
 

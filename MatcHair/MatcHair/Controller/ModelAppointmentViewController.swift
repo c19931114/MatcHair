@@ -24,7 +24,7 @@ class ModelAppointmentViewController: UIViewController {
         content: "content",
         payment: "1200",
         pictureURL: "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/%E6%A8%B8%E5%AF%B6%E8%8B%B1.png?alt=media&token=7c088130-ac9d-48c6-8fa9-d8607767e32b",
-        reservation: Reservation(date: "2018/10/30", location: Location(address: "基隆路一段", city: "台北市", district: "信義區"), time: TimeInterval(afternoon: true, morning: false, night: false)),
+        reservation: Reservation(date: "2018/10/30", location: Location(address: "基隆路一段", city: "台北市", district: "信義區"), time: Timing(afternoon: true, morning: false, night: false)),
         userUID: "cYUWWGgyRRTKYdVl6wwSXXbNmVI3",
         isLiked: false)]
 
@@ -34,7 +34,7 @@ class ModelAppointmentViewController: UIViewController {
         content: "content",
         payment: "1200",
         pictureURL: "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/%E6%A8%B8%E5%AF%B6%E8%8B%B1.png?alt=media&token=7c088130-ac9d-48c6-8fa9-d8607767e32b",
-        reservation: Reservation(date: "2018/10/30", location: Location(address: "基隆路一段", city: "台北市", district: "信義區"), time: TimeInterval(afternoon: true, morning: false, night: false)),
+        reservation: Reservation(date: "2018/10/30", location: Location(address: "基隆路一段", city: "台北市", district: "信義區"), time: Timing(afternoon: true, morning: false, night: false)),
         userUID: "cYUWWGgyRRTKYdVl6wwSXXbNmVI3",
         isLiked: false)]
 

@@ -25,6 +25,7 @@
 		F13C31DD21631C9800498C2B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31DC21631C9800498C2B /* DetailViewController.swift */; };
 		F13C31DF21631CBD00498C2B /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13C31DE21631CBD00498C2B /* Detail.storyboard */; };
 		F13C31E32163427400498C2B /* RevervationPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31E22163427400498C2B /* RevervationPost.swift */; };
+		F13C31E72163ABF600498C2B /* PickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31E62163ABF500498C2B /* PickerDialog.swift */; };
 		F14794A2215B57AD005E864C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14794A1215B57AD005E864C /* HomeViewController.swift */; };
 		F14794A4215B8A05005E864C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14794A3215B8A05005E864C /* Post.swift */; };
 		F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1621522DD6009AB3ED /* FacebookManager.swift */; };
@@ -90,6 +91,7 @@
 		F13C31DC21631C9800498C2B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13C31DE21631CBD00498C2B /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		F13C31E22163427400498C2B /* RevervationPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevervationPost.swift; sourceTree = "<group>"; };
+		F13C31E62163ABF500498C2B /* PickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDialog.swift; sourceTree = "<group>"; };
 		F14794A1215B57AD005E864C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F14794A3215B8A05005E864C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F1546C1621522DD6009AB3ED /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				F1546C2821525705009AB3ED /* MatcHairColor.swift */,
 				F1C2C3E02154B3170065E4EB /* SwipeController.swift */,
 				F1C2C3E22154B4180065E4EB /* SegueController.swift */,
+				F13C31E62163ABF500498C2B /* PickerDialog.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */,
 				F1D0BBEC21610A9400ABAE5D /* ModelAppointmentViewController.swift in Sources */,
 				F1C2C3E52154B8AE0065E4EB /* PostViewController.swift in Sources */,
+				F13C31E72163ABF600498C2B /* PickerDialog.swift in Sources */,
 				F1D0BBE9216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
 				F1D0BBE52161087300ABAE5D /* ModelWaitingCollectionViewCell.swift in Sources */,

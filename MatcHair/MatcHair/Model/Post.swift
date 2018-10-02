@@ -34,7 +34,7 @@ struct Reservation: Codable {
 
     let date: String
     let location: Location
-    let time: TimeInterval
+    let time: Timing
 }
 
 struct Location: Codable {
@@ -44,7 +44,7 @@ struct Location: Codable {
     let district: String
 }
 
-struct TimeInterval: Codable {
+struct Timing: Codable {
     
     let afternoon: Bool
     let morning: Bool

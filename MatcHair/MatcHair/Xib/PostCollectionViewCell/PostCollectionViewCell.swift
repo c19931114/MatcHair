@@ -9,6 +9,8 @@
 import UIKit
 
 class PostCollectionViewCell: UICollectionViewCell {
+
+    let fullScreenSize = UIScreen.main.bounds.size
     
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var postImage: UIImageView!
@@ -32,24 +34,26 @@ class PostCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-//        setCellShadow()
+        setCellShadow()
 
     }
 
     func setCellShadow() {
 
+        let width = fullScreenSize.width - 40
+        let height = width * 27 / 25
+
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowPath = UIBezierPath(
-            roundedRect: self.bounds,
+            roundedRect: CGRect(x: 0, y: 0, width: width, height: height),
             cornerRadius: self.contentView.layer.cornerRadius
             ).cgPath
 
         // shadowOffset 偏移
-        self.layer.shadowOffset = CGSize(width: 10, height: 10)
+        self.layer.shadowOffset = CGSize(width: 5, height: 5)
         self.layer.shadowRadius = 4.0
         self.layer.shadowOpacity = 0.5
         self.layer.masksToBounds = false
-
     }
 
 }

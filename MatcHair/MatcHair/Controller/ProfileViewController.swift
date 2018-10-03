@@ -185,3 +185,13 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     }
 
 }
+
+extension ProfileViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let selectedPost = myPosts[indexPath.row]
+        let detailForPost = DetailViewController.detailForMyPost(selectedPost)
+        self.present(detailForPost, animated: true)
+    }
+}

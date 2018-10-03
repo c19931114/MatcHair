@@ -236,3 +236,13 @@ extension LikeViewController: UICollectionViewDelegateFlowLayout {
     }
 
 }
+
+extension LikeViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let selectedPost = likePosts[indexPath.row].0
+        let detailForPost = DetailViewController.detailForPost(selectedPost)
+        self.present(detailForPost, animated: true)
+    }
+}

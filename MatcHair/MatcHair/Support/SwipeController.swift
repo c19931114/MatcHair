@@ -53,6 +53,8 @@ class SwipeController {
 
         case .down:
             print("Go Dowm")
+
+
         case .right:
             print("Go Right")
 

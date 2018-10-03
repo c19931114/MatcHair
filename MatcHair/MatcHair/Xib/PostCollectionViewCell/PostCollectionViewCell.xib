@@ -94,7 +94,7 @@
                                     <action selector="chat:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qCr-nB-LMU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0V8-KE-FdQ">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0V8-KE-FdQ">
                                 <rect key="frame" x="245" y="254.5" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>

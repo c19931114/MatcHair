@@ -49,5 +49,10 @@ extension UIStoryboard {
 
         return UIStoryboard(name: "Post", bundle: nil)
     }
+
+    static func detailStoryboard() -> UIStoryboard {
+
+        return UIStoryboard(name: "Detail", bundle: nil)
+    }
     
 }

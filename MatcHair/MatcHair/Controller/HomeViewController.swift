@@ -47,7 +47,6 @@ extension HomeViewController {
 //        layout.scrollDirection = .vertical
 //        homePostCollectionView.collectionViewLayout = layout
 
-
     }
 
     private func setupCollectionView() {
@@ -209,6 +208,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
                 print("selected: \(value)")
                 self.selectedTiming = value
+                
         }
 
     }
@@ -250,5 +250,15 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
 
     }
-    
+
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let selectedPost = allPosts[indexPath.row].0
+        let detailForPost = DetailViewController.detailForPost(selectedPost)
+        self.present(detailForPost, animated: true)
+    }
 }

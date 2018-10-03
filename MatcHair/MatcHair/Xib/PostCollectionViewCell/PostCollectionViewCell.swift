@@ -20,7 +20,7 @@ class PostCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var reservationButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var pokeButton: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
 
     @IBAction func makeReservation(_ sender: UIButton) {
     }
@@ -33,6 +33,10 @@ class PostCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(postImageTapped))
+//        postImage.isUserInteractionEnabled = true
+//        postImage.addGestureRecognizer(tapGestureRecognizer)
 
         setCellShadow()
 
@@ -54,6 +58,13 @@ class PostCollectionViewCell: UICollectionViewCell {
         self.layer.shadowRadius = 4.0
         self.layer.shadowOpacity = 0.5
         self.layer.masksToBounds = false
+    }
+
+    @objc func postImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+
+        let tappedImage = tapGestureRecognizer.view as? UIImageView
+        print("tap")
+        
     }
 
 }

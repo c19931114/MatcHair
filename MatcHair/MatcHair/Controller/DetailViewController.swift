@@ -10,10 +10,66 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var post: Post!
+    var categories = [String]()
+
+    @IBOutlet weak var categoryLabel: UILabel!
+
+    @IBOutlet weak var locationLabel: UILabel!
+
+    @IBOutlet weak var postImage: UIImageView!
+
+    @IBOutlet weak var descriptionTextView: UITextView!
+
+    @IBAction func goBackButton(_ sender: Any) {
+
+        self.dismiss(animated: true)
+
+    }
+
+}
+
+extension DetailViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        showPostData(for: post)
+
     }
 
+    class func detailForPost(_ post: Post) -> DetailViewController {
+
+        guard let detailVC =
+            UIStoryboard
+                .detailStoryboard()
+                .instantiateInitialViewController() as? DetailViewController else {
+
+                    return DetailViewController()
+        }
+        print(post)
+
+        detailVC.post = post
+        return detailVC
+
+    }
+
+    private func showPostData(for post: Post) {
+
+//        categoryLabel.text =
+        locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
+        postImage.kf.setImage(with: URL(string: post.pictureURL))
+        descriptionTextView.text = post.content
+
+        print(post.category)
+
+        if post.category.shampoo { categories.append("洗髮") }
+        if post.category.haircut { categories.append("剪髮") }
+        if post.category.dye { categories.append("染髮") }
+        if post.category.permanent { categories.append("燙髮") }
+        if post.category.treatment { categories.append("護髮") }
+        if post.category.other { categories.append("其他") }
+
+        categoryLabel.text = categories.joined(separator: ", ")
+    }
 }

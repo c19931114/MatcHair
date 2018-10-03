@@ -667,7 +667,7 @@
                         <outlet property="toggleCameraButton" destination="o0U-gJ-PQ6" id="zXi-N0-UBG"/>
                         <outlet property="toggleFlashButton" destination="gGR-O4-iRa" id="xrT-mh-ZzC"/>
                         <outlet property="videoModeButton" destination="vrD-vN-Lfe" id="5Og-lD-Nut"/>
-                        <segue destination="0uP-mC-dje" kind="show" identifier="showPicture" id="vuo-XJ-dJy"/>
+                        <segue destination="0uP-mC-dje" kind="show" identifier="showPicture" animates="NO" id="vuo-XJ-dJy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tq5-ti-ghj" sceneMemberID="firstResponder"/>
@@ -732,7 +732,7 @@
                         <viewLayoutGuide key="safeArea" id="2CB-S7-sQY"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="VpM-99-9DG">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="VpM-99-9DG">
                         <barButtonItem key="backBarButtonItem" title="上一步" id="67F-Iv-AlI"/>
                     </navigationItem>
                     <connections>

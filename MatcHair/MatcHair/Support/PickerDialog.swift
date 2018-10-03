@@ -40,7 +40,6 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 
     /* Variables */
     private var pickerData = [String]()
-    private var selectedPickerValue: String?
     private var callback: PickerCallback?
 
     /* Overrides */
@@ -262,7 +261,7 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     @objc func buttonTapped(sender: UIButton!) {
-        
+
         if sender.tag == kPickerDialogDoneButtonTag {
             let selectedIndex = self.picker.selectedRow(inComponent: 0)
             let selectedValue = self.pickerData[selectedIndex]
@@ -270,6 +269,7 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         }
 
         close()
+
     }
 
 }

@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     var likePostIDs = [String]()
     var likePostIndex: Int?
     var selectedTiming: String?
+    let transition = CATransition()
 
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
@@ -208,8 +209,35 @@ extension HomeViewController: UICollectionViewDataSource {
 
                 print("selected: \(value)")
                 self.selectedTiming = value
-                
+
+                self.uploadAppointment(post: reservationPost, with: value)
+
+                // 向右換 tab 頁
+                self.transition.duration = 0.5
+                self.transition.type = CATransitionType.push
+                self.transition.subtype = CATransitionSubtype.fromRight
+                self.transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                self.view.window!.layer.add(self.transition, forKey: kCATransition)
+
+                self.tabBarController?.selectedIndex = 1
+
         }
+
+    }
+
+    private func uploadAppointment(post: Post, with timing: String) {
+
+        guard let modelUID = UserManager.shared.getUserUID() else {return }
+        
+        guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
+        ref.child("appointmentPosts/\(appointmentID)").setValue(
+            [
+                "designer": post.userUID,
+                "modelUID": modelUID,
+                "postID": post.postID,
+                "timing": timing
+            ]
+        )
 
     }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DesignerWaitingCollectionViewCell: UICollectionViewCell {
+class DesignerPendingCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var postImage: UIImageView!

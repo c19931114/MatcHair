@@ -40,7 +40,7 @@
 		F1A1A853215C7F010038F0CF /* MyPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */; };
 		F1A1A854215C7F010038F0CF /* MyPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A852215C7F010038F0CF /* MyPostCollectionViewCell.xib */; };
 		F1A1A859215CB09B0038F0CF /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A858215CB09A0038F0CF /* LikeViewController.swift */; };
-		F1A1A85D215DDA900038F0CF /* DesignerWaitingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A85B215DDA900038F0CF /* DesignerWaitingCollectionViewCell.swift */; };
+		F1A1A85D215DDA900038F0CF /* DesignerPendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A85B215DDA900038F0CF /* DesignerPendingCollectionViewCell.swift */; };
 		F1A1A85E215DDA900038F0CF /* DesignerWaitingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A85C215DDA900038F0CF /* DesignerWaitingCollectionViewCell.xib */; };
 		F1A1A860215DE1070038F0CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A85F215DE1070038F0CF /* Assets.xcassets */; };
 		F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C2C3D62153CD2F0065E4EB /* Post.storyboard */; };
@@ -56,7 +56,7 @@
 		F1D0BBDA215FF55000ABAE5D /* DesignerAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBD9215FF55000ABAE5D /* DesignerAppointmentViewController.swift */; };
 		F1D0BBDE216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBDC216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift */; };
 		F1D0BBDF216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBDD216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib */; };
-		F1D0BBE52161087300ABAE5D /* ModelWaitingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE32161087300ABAE5D /* ModelWaitingCollectionViewCell.swift */; };
+		F1D0BBE52161087300ABAE5D /* ModelPendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE32161087300ABAE5D /* ModelPendingCollectionViewCell.swift */; };
 		F1D0BBE62161087300ABAE5D /* ModelWaitingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE42161087300ABAE5D /* ModelWaitingCollectionViewCell.xib */; };
 		F1D0BBE9216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE7216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift */; };
 		F1D0BBEA216108D900ABAE5D /* ModelAcceptCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE8216108D900ABAE5D /* ModelAcceptCollectionViewCell.xib */; };
@@ -106,7 +106,7 @@
 		F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1A1A852215C7F010038F0CF /* MyPostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1A1A858215CB09A0038F0CF /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
-		F1A1A85B215DDA900038F0CF /* DesignerWaitingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerWaitingCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1A1A85B215DDA900038F0CF /* DesignerPendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerPendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1A1A85C215DDA900038F0CF /* DesignerWaitingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignerWaitingCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1A1A85F215DE1070038F0CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1C2C3D62153CD2F0065E4EB /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		F1D0BBD9215FF55000ABAE5D /* DesignerAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerAppointmentViewController.swift; sourceTree = "<group>"; };
 		F1D0BBDC216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerAcceptCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBDD216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignerAcceptCollectionViewCell.xib; sourceTree = "<group>"; };
-		F1D0BBE32161087300ABAE5D /* ModelWaitingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWaitingCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1D0BBE32161087300ABAE5D /* ModelPendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBE42161087300ABAE5D /* ModelWaitingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelWaitingCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1D0BBE7216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAcceptCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBE8216108D900ABAE5D /* ModelAcceptCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelAcceptCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -354,7 +354,7 @@
 		F1D0BBDB2161007200ABAE5D /* DesignerWaitingCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				F1A1A85B215DDA900038F0CF /* DesignerWaitingCollectionViewCell.swift */,
+				F1A1A85B215DDA900038F0CF /* DesignerPendingCollectionViewCell.swift */,
 				F1A1A85C215DDA900038F0CF /* DesignerWaitingCollectionViewCell.xib */,
 			);
 			path = DesignerWaitingCollectionViewCell;
@@ -381,7 +381,7 @@
 		F1D0BBE2216107AC00ABAE5D /* ModelWaitingCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				F1D0BBE32161087300ABAE5D /* ModelWaitingCollectionViewCell.swift */,
+				F1D0BBE32161087300ABAE5D /* ModelPendingCollectionViewCell.swift */,
 				F1D0BBE42161087300ABAE5D /* ModelWaitingCollectionViewCell.xib */,
 			);
 			path = ModelWaitingCollectionViewCell;
@@ -576,7 +576,7 @@
 				F13C31E72163ABF600498C2B /* PickerDialog.swift in Sources */,
 				F1D0BBE9216108D900ABAE5D /* ModelAcceptCollectionViewCell.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
-				F1D0BBE52161087300ABAE5D /* ModelWaitingCollectionViewCell.swift in Sources */,
+				F1D0BBE52161087300ABAE5D /* ModelPendingCollectionViewCell.swift in Sources */,
 				F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */,
 				F14794A2215B57AD005E864C /* HomeViewController.swift in Sources */,
 				F139AA1E2151F5B800B5B0D4 /* LoginViewController.swift in Sources */,
@@ -585,7 +585,7 @@
 				F1C2C3E32154B4180065E4EB /* SegueController.swift in Sources */,
 				F14794A4215B8A05005E864C /* Post.swift in Sources */,
 				F1546C1F21523244009AB3ED /* User.swift in Sources */,
-				F1A1A85D215DDA900038F0CF /* DesignerWaitingCollectionViewCell.swift in Sources */,
+				F1A1A85D215DDA900038F0CF /* DesignerPendingCollectionViewCell.swift in Sources */,
 				F13C31E32163427400498C2B /* RevervationPost.swift in Sources */,
 				F1D0BBDA215FF55000ABAE5D /* DesignerAppointmentViewController.swift in Sources */,
 				F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */,

@@ -11,5 +11,5 @@ import Foundation
 struct ReservationPost: Codable {
     let modelUID: String
     let designerUID: String
-    let post: Post
+    let postID: String
 }

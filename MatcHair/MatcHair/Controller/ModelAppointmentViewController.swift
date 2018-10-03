@@ -77,7 +77,7 @@ extension ModelAppointmentViewController {
         modelWatingCollectionView.dataSource = self
         modelWatingCollectionView.delegate = self
 
-        let waitingIdentifier = String(describing: ModelWaitingCollectionViewCell.self)
+        let waitingIdentifier = String(describing: ModelPendingCollectionViewCell.self)
         let waitingXib = UINib(nibName: waitingIdentifier, bundle: nil)
         modelWatingCollectionView.register(waitingXib, forCellWithReuseIdentifier: waitingIdentifier)
 
@@ -113,10 +113,10 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
         case modelWatingCollectionView:
 
             let cell = modelWatingCollectionView.dequeueReusableCell(
-                withReuseIdentifier: String(describing: ModelWaitingCollectionViewCell.self),
+                withReuseIdentifier: String(describing: ModelPendingCollectionViewCell.self),
                 for: indexPath)
 
-            guard let postCell = cell as? ModelWaitingCollectionViewCell else {
+            guard let postCell = cell as? ModelPendingCollectionViewCell else {
                 return UICollectionViewCell()
             }
 

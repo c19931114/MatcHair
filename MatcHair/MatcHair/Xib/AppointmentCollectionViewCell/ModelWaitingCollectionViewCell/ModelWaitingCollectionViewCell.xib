@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Iwr-9N-5ZZ" customClass="ModelWaitingCollectionViewCell" customModule="MatcHair" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Iwr-9N-5ZZ" customClass="ModelPendingCollectionViewCell" customModule="MatcHair" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="300" height="325"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -105,11 +105,18 @@
                                     <action selector="cancel:" destination="Iwr-9N-5ZZ" eventType="touchUpInside" id="sqE-oC-fQi"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剪髮, 染髮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDK-oL-jhB">
+                                <rect key="frame" x="20" y="29" width="78.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zGY-0Y-Iov" firstAttribute="top" secondItem="UmD-On-ijn" secondAttribute="top" constant="5" id="4cN-R8-GLx"/>
                             <constraint firstItem="UHL-jg-KpV" firstAttribute="top" secondItem="jOp-az-tlk" secondAttribute="top" constant="10" id="BNL-GC-BM7"/>
+                            <constraint firstItem="vDK-oL-jhB" firstAttribute="centerY" secondItem="83L-ex-Bhm" secondAttribute="centerY" id="Cam-nI-9ZZ"/>
                             <constraint firstItem="UHL-jg-KpV" firstAttribute="leading" secondItem="jOp-az-tlk" secondAttribute="leading" constant="10" id="FRU-l0-Fb6"/>
                             <constraint firstItem="UmD-On-ijn" firstAttribute="centerY" secondItem="UHL-jg-KpV" secondAttribute="bottom" multiplier="0.98" id="GEI-tp-CcN"/>
                             <constraint firstItem="UmD-On-ijn" firstAttribute="bottom" secondItem="SMJ-X3-vto" secondAttribute="bottom" id="JAk-qb-ZEb"/>
@@ -120,6 +127,7 @@
                             <constraint firstItem="83L-ex-Bhm" firstAttribute="top" secondItem="jOp-az-tlk" secondAttribute="top" constant="23" id="eeg-bJ-R6o"/>
                             <constraint firstItem="SMJ-X3-vto" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="trailing" constant="10" id="hFO-UQ-tlQ"/>
                             <constraint firstItem="UmD-On-ijn" firstAttribute="leading" secondItem="jOp-az-tlk" secondAttribute="leading" constant="20" id="hLs-G8-36U"/>
+                            <constraint firstItem="vDK-oL-jhB" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="leading" id="lkg-x4-zku"/>
                             <constraint firstItem="F9N-qg-cVC" firstAttribute="centerY" secondItem="Y6c-Sh-Edf" secondAttribute="centerY" id="q5m-0X-POg"/>
                             <constraint firstItem="zGY-0Y-Iov" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="trailing" constant="15" id="yNY-7L-C4z"/>
                         </constraints>
@@ -143,6 +151,7 @@
             <size key="customSize" width="375" height="379"/>
             <connections>
                 <outlet property="cancelButton" destination="F9N-qg-cVC" id="U9b-UA-bwR"/>
+                <outlet property="categoryLabel" destination="vDK-oL-jhB" id="few-XH-CIf"/>
                 <outlet property="postImage" destination="UHL-jg-KpV" id="WRw-vu-Kbz"/>
                 <outlet property="reservationTimeLabel" destination="Y6c-Sh-Edf" id="LKk-iN-ERx"/>
                 <outlet property="userImage" destination="UmD-On-ijn" id="97f-R7-cgI"/>

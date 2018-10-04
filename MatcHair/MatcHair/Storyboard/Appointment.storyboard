@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DTc-kT-RoT">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,11 +11,11 @@
             <objects>
                 <viewController id="YpL-F9-EuT" customClass="DesignerAppointmentViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5DY-9v-Cux">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WVI-Ks-gLF">
-                                <rect key="frame" x="16" y="80" width="343" height="29"/>
+                                <rect key="frame" x="16" y="80" width="568" height="29"/>
                                 <segments>
                                     <segment title="待確認"/>
                                     <segment title="已成立"/>
@@ -30,7 +27,7 @@
                                 </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uOf-B5-WsF">
-                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="124" width="600" height="476"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bAD-bp-eG3">
                                     <size key="itemSize" width="50" height="50"/>
@@ -41,7 +38,7 @@
                                 <cells/>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yOB-Ex-LWa">
-                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="124" width="600" height="476"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NaD-h6-r0q">
                                     <size key="itemSize" width="50" height="50"/>
@@ -69,15 +66,6 @@
                         <viewLayoutGuide key="safeArea" id="I5N-Uo-7Z7"/>
                     </view>
                     <navigationItem key="navigationItem" title="Designer" id="15O-XS-nVy">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="JdL-Rj-DdB">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Cx-Wi-tE7">
-                                <rect key="frame" x="16" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Model">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="z1r-tC-lJj">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i3t-VD-Nlh">
                                 <rect key="frame" x="293" y="11" width="66" height="22"/>
@@ -90,8 +78,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="designerAcceptCollectionView" destination="yOB-Ex-LWa" id="DDY-89-zb0"/>
-                        <outlet property="designerWatingCollectionView" destination="uOf-B5-WsF" id="x2n-Jx-vlo"/>
+                        <outlet property="designerConfirmCollectionView" destination="yOB-Ex-LWa" id="DDY-89-zb0"/>
+                        <outlet property="designerPendingCollectionView" destination="uOf-B5-WsF" id="x2n-Jx-vlo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dA-a9-JIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -103,11 +91,11 @@
             <objects>
                 <viewController id="rol-q8-hzB" customClass="ModelAppointmentViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aY-Ei-rVh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fye-4O-Dhi">
-                                <rect key="frame" x="16" y="80" width="343" height="29"/>
+                                <rect key="frame" x="16" y="80" width="568" height="29"/>
                                 <segments>
                                     <segment title="待確認"/>
                                     <segment title="已成立"/>
@@ -119,7 +107,7 @@
                                 </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-7l-ZmV">
-                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="124" width="600" height="476"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sk4-Op-k8a">
                                     <size key="itemSize" width="50" height="50"/>
@@ -130,7 +118,7 @@
                                 <cells/>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="54k-lR-g0m">
-                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="124" width="600" height="476"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FFI-wq-cy5">
                                     <size key="itemSize" width="50" height="50"/>
@@ -165,10 +153,10 @@
                                 <state key="normal" title="Designer">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="YpL-F9-EuT" kind="push" id="46d-h0-Dgo"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="YpL-F9-EuT" kind="push" id="B3L-Qg-GAa"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="I66-GL-eaf">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FGg-0o-az3">
@@ -198,6 +186,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Za-N1-lb3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>

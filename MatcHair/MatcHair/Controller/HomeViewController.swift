@@ -145,7 +145,7 @@ extension HomeViewController: UICollectionViewDataSource {
         postCell.postImage.kf.setImage(with: URL(string: post.0.pictureURL))
         postCell.locationLabel.text = "\(post.0.reservation.location.city), \(post.0.reservation.location.district)"
 
-        // taget action
+        // target action
         postCell.likeButton.tag = indexPath.row
         postCell.likeButton.addTarget(
             self,
@@ -227,16 +227,16 @@ extension HomeViewController: UICollectionViewDataSource {
 
     private func uploadAppointment(post: Post, with timing: String) {
 
-        guard let modelUID = UserManager.shared.getUserUID() else {return }
+        guard let currentUserUID = UserManager.shared.getUserUID() else {return }
         
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
         
-        ref.child("appointmentPosts/\(appointmentID)").setValue(
+        ref.child("appointmentPosts/\(currentUserUID)/\(appointmentID)").setValue(
             [
                 "designerUID": post.userUID,
-                "modelUID": modelUID,
                 "postID": post.postID,
                 "timing": timing,
+                "appointmentID": appointmentID,
                 "statement": "pending"
             ]
         )

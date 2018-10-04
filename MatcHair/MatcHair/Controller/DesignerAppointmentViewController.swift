@@ -17,42 +17,24 @@ class DesignerAppointmentViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    // fake data
-    var designerWaitingPosts: [Post] = [Post(
-        postID: "postID",
-        category: Category(dye: false, haircut: true, other: false, permanent: false, shampoo: false, treatment: false),
-        content: "content",
-        payment: "1200",
-        pictureURL: "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/%E6%A8%B8%E5%AF%B6%E8%8B%B1.png?alt=media&token=7c088130-ac9d-48c6-8fa9-d8607767e32b",
-        reservation: Reservation(date: "2018/10/30", location: Location(address: "基隆路一段", city: "台北市", district: "信義區"), time: Timing(afternoon: true, morning: false, night: false)),
-        userUID: "cYUWWGgyRRTKYdVl6wwSXXbNmVI3",
-        isLiked: false)]
+    var designerPendingPosts = [(Appointment, User, Post)]()
+    var designerConfirmPosts = [Appointment]()
 
-    var designerAcceptPosts: [Post] = [Post(
-        postID: "postID",
-        category: Category(dye: false, haircut: true, other: false, permanent: false, shampoo: false, treatment: false),
-        content: "content",
-        payment: "1200",
-        pictureURL: "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/%E6%A8%B8%E5%AF%B6%E8%8B%B1.png?alt=media&token=7c088130-ac9d-48c6-8fa9-d8607767e32b",
-        reservation: Reservation(date: "2018/10/30", location: Location(address: "基隆路一段", city: "台北市", district: "信義區"), time: Timing(afternoon: true, morning: false, night: false)),
-        userUID: "cYUWWGgyRRTKYdVl6wwSXXbNmVI3",
-        isLiked: false)]
-
-    @IBOutlet weak var designerWatingCollectionView: UICollectionView!
-    @IBOutlet weak var designerAcceptCollectionView: UICollectionView!
+    @IBOutlet weak var designerPendingCollectionView: UICollectionView!
+    @IBOutlet weak var designerConfirmCollectionView: UICollectionView!
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 
         switch sender.selectedSegmentIndex {
         case 0:
-            designerWatingCollectionView.isHidden = false
-            designerAcceptCollectionView.isHidden = true
+            designerPendingCollectionView.isHidden = false
+            designerConfirmCollectionView.isHidden = true
         case 1:
-            designerWatingCollectionView.isHidden = true
-            designerAcceptCollectionView.isHidden = false
+            designerPendingCollectionView.isHidden = true
+            designerConfirmCollectionView.isHidden = false
         default:
-            designerWatingCollectionView.isHidden = true
-            designerAcceptCollectionView.isHidden = true
+            designerPendingCollectionView.isHidden = true
+            designerConfirmCollectionView.isHidden = true
             
         }
     }
@@ -70,24 +52,24 @@ extension DesignerAppointmentViewController {
 
         setupCollectionView()
 
-        designerAcceptCollectionView.isHidden = true
+        designerConfirmCollectionView.isHidden = true
 
     }
     private func setupCollectionView() {
 
-        designerWatingCollectionView.dataSource = self
-        designerWatingCollectionView.delegate = self
+        designerPendingCollectionView.dataSource = self
+        designerPendingCollectionView.delegate = self
 
         let waitingIdentifier = String(describing: DesignerPendingCollectionViewCell.self)
         let waitingXib = UINib(nibName: waitingIdentifier, bundle: nil)
-        designerWatingCollectionView.register(waitingXib, forCellWithReuseIdentifier: waitingIdentifier)
+        designerPendingCollectionView.register(waitingXib, forCellWithReuseIdentifier: waitingIdentifier)
 
-        designerAcceptCollectionView.dataSource = self
-        designerAcceptCollectionView.delegate = self
+        designerConfirmCollectionView.dataSource = self
+        designerConfirmCollectionView.delegate = self
 
         let acceptIdentifier = String(describing: DesignerAcceptCollectionViewCell.self)
         let acceptXib = UINib(nibName: acceptIdentifier, bundle: nil)
-        designerAcceptCollectionView.register(acceptXib, forCellWithReuseIdentifier: acceptIdentifier)
+        designerConfirmCollectionView.register(acceptXib, forCellWithReuseIdentifier: acceptIdentifier)
 
     }
 }
@@ -98,10 +80,10 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
         switch collectionView {
 
-        case designerWatingCollectionView:
-            return designerWaitingPosts.count
+        case designerPendingCollectionView:
+            return designerPendingPosts.count
         default:
-            return designerAcceptPosts.count
+            return designerConfirmPosts.count
         }
 
     }
@@ -111,9 +93,9 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         switch collectionView {
-        case designerWatingCollectionView:
+        case designerPendingCollectionView:
 
-            let cell = designerWatingCollectionView.dequeueReusableCell(
+            let cell = designerPendingCollectionView.dequeueReusableCell(
                 withReuseIdentifier: String(describing: DesignerPendingCollectionViewCell.self),
                 for: indexPath)
 
@@ -121,7 +103,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = designerWaitingPosts[indexPath.row]
+            let post = designerPendingPosts[indexPath.row]
 
     //        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
     //
@@ -140,14 +122,13 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
     //            self.designerCollectionView.reloadData()
     //
     //        }
-
-            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-    //        postCell.reservationTimeLabel.text = "\(post.reservation.date), \(post.reservation.time.afternoon)"
-            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
-
-            postCell.userImage.kf.setImage(
-                with: URL(string:
-                    "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/Crystal%20Liu_cYUWWGgyRRTKYdVl6wwSXXbNmVI3?alt=media&token=6b665617-868e-4f14-a3c4-d2c9c5706c47"))
+//
+//            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
+//    //        postCell.reservationTimeLabel.text = "\(post.reservation.date), \(post.reservation.time.afternoon)"
+//            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
+//
+//            postCell.userImage.kf.setImage(
+//                with: URL(string: ""))
 
             // taget action
 //            postCell.cancelButton.tag = indexPath.row
@@ -158,7 +139,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
         default:
 
-            let cell = designerAcceptCollectionView.dequeueReusableCell(
+            let cell = designerConfirmCollectionView.dequeueReusableCell(
                 withReuseIdentifier: String(describing: DesignerAcceptCollectionViewCell.self),
                 for: indexPath)
 
@@ -166,14 +147,13 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = designerAcceptPosts[indexPath.row]
+            let post = designerConfirmPosts[indexPath.row]
 
-            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
-
-            postCell.userImage.kf.setImage(
-                with: URL(string:
-                    "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/Crystal%20Liu_cYUWWGgyRRTKYdVl6wwSXXbNmVI3?alt=media&token=6b665617-868e-4f14-a3c4-d2c9c5706c47"))
+//            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
+//            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
+//
+//            postCell.userImage.kf.setImage(
+//                with: URL(string: ""))
 
             // taget action
 //            postCell.cancelButton.tag = indexPath.row

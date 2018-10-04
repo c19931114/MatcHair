@@ -17,8 +17,8 @@ class ModelAppointmentViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    var pendingPosts = [(Appointment, User, Post)]()
-    var confirmPosts = [Appointment]()
+    var modelPendingPosts = [(Appointment, User, Post)]()
+    var modelConfirmPosts = [Appointment]()
 
     @IBOutlet weak var modelPendingCollectionView: UICollectionView!
     @IBOutlet weak var modelConfirmCollectionView: UICollectionView!
@@ -77,7 +77,9 @@ extension ModelAppointmentViewController {
 
     func loadPendingAppointments() {
 
-        ref.child("appointmentPosts").observe(.childAdded) { (snapshot) in
+        guard let currentUserUID = UserManager.shared.getUserUID() else { return }
+
+        ref.child("appointmentPosts/\(currentUserUID)").observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
             print(value.allKeys)
@@ -125,7 +127,7 @@ extension ModelAppointmentViewController {
 
             do {
                 let postData = try self.decoder.decode(Post.self, from: postJSONData)
-                self.pendingPosts.insert((appointment, designerData, postData), at: 0)
+                self.modelPendingPosts.insert((appointment, designerData, postData), at: 0)
 
             } catch {
                 print(error)
@@ -145,9 +147,9 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
         switch collectionView {
 
         case modelPendingCollectionView:
-            return pendingPosts.count
+            return modelPendingPosts.count
         default:
-            return confirmPosts.count
+            return modelConfirmPosts.count
         }
 
     }
@@ -155,6 +157,8 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        var categories = [String]()
 
         switch collectionView {
         case modelPendingCollectionView:
@@ -167,14 +171,13 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = pendingPosts[indexPath.row]
+            let post = modelPendingPosts[indexPath.row]
             // (appointment, designerData, postData)
 
             postCell.postImage.kf.setImage(with: URL(string: post.2.pictureURL))
             postCell.userImage.kf.setImage(with: URL(string: "\(post.1.image)"))
             postCell.reservationTimeLabel.text = "\(post.2.reservation.date), \(post.0.timing)"
 
-            var categories = [String]()
             if post.2.category.shampoo { categories.append("洗髮") }
             if post.2.category.haircut { categories.append("剪髮") }
             if post.2.category.dye { categories.append("染髮") }
@@ -184,11 +187,12 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
             postCell.categoryLabel.text = categories.joined(separator: ", ")
 
-            // taget action
-//            postCell.cancelButton.tag = indexPath.row
-//            postCell.cancelButton.addTarget(
-//                self,
-//                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
+            // target action
+            postCell.cancelButton.tag = indexPath.row
+            postCell.cancelButton.addTarget(
+                self,
+                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
+
             return postCell
 
         default:
@@ -201,7 +205,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = confirmPosts[indexPath.row]
+            let post = modelConfirmPosts[indexPath.row]
 
 //            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
 //            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
@@ -220,28 +224,19 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
     }
 
-//    @objc func cancelButtonTapped(sender: UIButton) {
-//        //        print(sender.tag)
-//        //        print(sender.isSelected)
-//
-//        guard let userID = UserManager.shared.getUserUID() else { return }
-//
-//        let modelWaitingPost = modelWaitingPosts[sender.tag]
-//
-//        sender.isSelected = !sender.isSelected
-//        if sender.isSelected {
-//
-//            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-//            ref.child("likePosts/\(userID)/\(modelWaitingPost.postID)").setValue(true)
-//
-//        } else {
-//
-//            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-//            ref.child("likePosts/\(userID)/\(modelWaitingPost.postID)").removeValue()
-//
-//        }
-//
-//    }
+    @objc func cancelButtonTapped(sender: UIButton) {
+
+        guard let currentUserID = UserManager.shared.getUserUID() else { return }
+
+        let pendingPost = modelPendingPosts[sender.tag]
+
+        ref.child("appointmentPosts/\(currentUserID)/\(pendingPost.0.appointmentID)").removeValue()
+
+        modelPendingPosts.remove(at: sender.tag)
+
+        modelPendingCollectionView.reloadData()
+
+    }
 
 }
 

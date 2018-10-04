@@ -18,6 +18,8 @@ class LikeViewController: UIViewController {
     var likePosts = [(Post, User)]()
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
+    var selectedTiming: String?
+    let transition = CATransition()
 
     @IBOutlet weak var likePostCollectionView: UICollectionView!
 
@@ -156,6 +158,12 @@ extension LikeViewController: UICollectionViewDataSource {
             self,
             action: #selector(self.unlikeButtonTapped(sender:)), for: .touchUpInside)
 
+        postCell.reservationButton.tag = indexPath.row
+        postCell.reservationButton.addTarget(
+            self,
+            action: #selector(reservationButtonTapped(sender:)),
+            for: .touchUpInside)
+
         return postCell
 
     }
@@ -178,6 +186,67 @@ extension LikeViewController: UICollectionViewDataSource {
         likePostCollectionView.reloadData()
 
         sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal) // 不改回來的話 下次就變不回紅色
+
+    }
+
+    @objc func reservationButtonTapped(sender: UIButton) {
+
+        var timingOption = [String]()
+
+        let reservationPost = likePosts[sender.tag].0
+        let timing = reservationPost.reservation.time
+
+        if timing.morning {
+            timingOption.append("早上")
+        }
+
+        if timing.afternoon {
+            timingOption.append("下午")
+        }
+
+        if timing.night {
+            timingOption.append("晚上")
+        }
+        print(timing)
+        print(timingOption)
+
+        PickerDialog().show(
+            title: "\(reservationPost.reservation.date)",
+        options: timingOption) {(value) -> Void in
+
+            print("selected: \(value)")
+            self.selectedTiming = value
+
+            self.uploadAppointment(post: reservationPost, with: value)
+
+            // 向左換 tab 頁
+            self.transition.duration = 0.5
+            self.transition.type = CATransitionType.push
+            self.transition.subtype = CATransitionSubtype.fromLeft
+            self.transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            self.view.window!.layer.add(self.transition, forKey: kCATransition)
+
+            self.tabBarController?.selectedIndex = 1
+
+        }
+
+    }
+
+    private func uploadAppointment(post: Post, with timing: String) {
+
+        guard let modelUID = UserManager.shared.getUserUID() else {return }
+
+        guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
+
+        ref.child("appointmentPosts/\(appointmentID)").setValue(
+            [
+                "designerUID": post.userUID,
+                "modelUID": modelUID,
+                "postID": post.postID,
+                "timing": timing,
+                "statement": "pending"
+            ]
+        )
 
     }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ReservationPost: Codable {
+struct Appointment: Codable {
     let modelUID: String
     let designerUID: String
     let postID: String

@@ -105,10 +105,14 @@
                                     <action selector="cancel:" destination="Iwr-9N-5ZZ" eventType="touchUpInside" id="sqE-oC-fQi"/>
                                 </connections>
                             </button>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBw-vD-bIU">
+                                <rect key="frame" x="20" y="29" width="77.5" height="20"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剪髮, 染髮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDK-oL-jhB">
-                                <rect key="frame" x="20" y="29" width="78.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="20" y="29" width="77.5" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -122,13 +126,17 @@
                             <constraint firstItem="UmD-On-ijn" firstAttribute="bottom" secondItem="SMJ-X3-vto" secondAttribute="bottom" id="JAk-qb-ZEb"/>
                             <constraint firstAttribute="width" secondItem="jOp-az-tlk" secondAttribute="height" multiplier="25:27" id="KTT-Eb-eUt"/>
                             <constraint firstAttribute="trailing" secondItem="UHL-jg-KpV" secondAttribute="trailing" constant="10" id="OYB-OO-SKw"/>
+                            <constraint firstItem="lBw-vD-bIU" firstAttribute="height" secondItem="vDK-oL-jhB" secondAttribute="height" id="QZg-JL-k0C"/>
+                            <constraint firstItem="lBw-vD-bIU" firstAttribute="width" secondItem="vDK-oL-jhB" secondAttribute="width" id="Xe1-rD-pCz"/>
                             <constraint firstItem="F9N-qg-cVC" firstAttribute="trailing" secondItem="UHL-jg-KpV" secondAttribute="trailing" id="cZj-So-C2s"/>
                             <constraint firstAttribute="trailing" secondItem="83L-ex-Bhm" secondAttribute="trailing" id="ePN-Zd-C6u"/>
                             <constraint firstItem="83L-ex-Bhm" firstAttribute="top" secondItem="jOp-az-tlk" secondAttribute="top" constant="23" id="eeg-bJ-R6o"/>
                             <constraint firstItem="SMJ-X3-vto" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="trailing" constant="10" id="hFO-UQ-tlQ"/>
                             <constraint firstItem="UmD-On-ijn" firstAttribute="leading" secondItem="jOp-az-tlk" secondAttribute="leading" constant="20" id="hLs-G8-36U"/>
+                            <constraint firstItem="lBw-vD-bIU" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="leading" id="iFl-Z4-qnd"/>
                             <constraint firstItem="vDK-oL-jhB" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="leading" id="lkg-x4-zku"/>
                             <constraint firstItem="F9N-qg-cVC" firstAttribute="centerY" secondItem="Y6c-Sh-Edf" secondAttribute="centerY" id="q5m-0X-POg"/>
+                            <constraint firstItem="lBw-vD-bIU" firstAttribute="centerY" secondItem="83L-ex-Bhm" secondAttribute="centerY" id="r4g-F5-Hmu"/>
                             <constraint firstItem="zGY-0Y-Iov" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="trailing" constant="15" id="yNY-7L-C4z"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

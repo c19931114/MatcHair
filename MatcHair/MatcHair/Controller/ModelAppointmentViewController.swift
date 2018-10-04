@@ -17,8 +17,8 @@ class ModelAppointmentViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    let pendingPosts = [(ReservationPost, String, String)]()
-    let confirmPosts = [ReservationPost]()
+    var pendingPosts = [(Appointment, User, Post)]()
+    var confirmPosts = [Appointment]()
 
     @IBOutlet weak var modelPendingCollectionView: UICollectionView!
     @IBOutlet weak var modelConfirmCollectionView: UICollectionView!
@@ -53,7 +53,7 @@ extension ModelAppointmentViewController {
         modelConfirmCollectionView.isHidden = true
 
         setupCollectionView()
-        loadPendingPosts()
+        loadPendingAppointments()
 
     }
 
@@ -75,19 +75,19 @@ extension ModelAppointmentViewController {
 
     }
 
-    func loadPendingPosts() {
+    func loadPendingAppointments() {
 
         ref.child("appointmentPosts").observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
             print(value.allKeys)
-            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            guard let appointmentJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let postData = try self.decoder.decode(ReservationPost.self, from: postJSONData)
-                print(postData)
+                let appointmentData = try self.decoder.decode(Appointment.self, from: appointmentJSONData)
+                print(appointmentData)
 
-//                self.getUserInfo(with: postData)
+                self.getDesignerInfo(with: appointmentData)
 
             } catch {
                 print(error)
@@ -95,6 +95,45 @@ extension ModelAppointmentViewController {
 
         }
 
+    }
+
+    func getDesignerInfo(with appointment: Appointment) {
+
+        self.ref.child("users/\(appointment.designerUID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let designerJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let designerData = try self.decoder.decode(User.self, from: designerJSONData)
+                self.getPostInfo(with: appointment, designerData)
+            } catch {
+                print(error)
+            }
+
+        }
+    }
+
+    func getPostInfo(with appointment: Appointment, _ designerData: User) {
+
+        self.ref.child("allPosts/\(appointment.postID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let postData = try self.decoder.decode(Post.self, from: postJSONData)
+                self.pendingPosts.insert((appointment, designerData, postData), at: 0)
+
+            } catch {
+                print(error)
+            }
+
+            self.modelPendingCollectionView.reloadData()
+
+        }
     }
     
 }
@@ -129,31 +168,21 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
             }
 
             let post = pendingPosts[indexPath.row]
+            // (appointment, designerData, postData)
 
-            //        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
-            //
-            //            guard let value = snapshot.value as? NSDictionary else { return }
-            //
-            //            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
-            //
-            //            do {
-            //                let userData = try self.decoder.decode(User.self, from: userJSONData)
-            //                postCell.userNameLabel.text = userData.name
-            //                postCell.userImage.kf.setImage(with: URL(string: userData.image))
-            //            } catch {
-            //                print(error)
-            //            }
-            //
-            //            self.designerCollectionView.reloadData()
-            //
-            //        }
+            postCell.postImage.kf.setImage(with: URL(string: post.2.pictureURL))
+            postCell.userImage.kf.setImage(with: URL(string: "\(post.1.image)"))
+            postCell.reservationTimeLabel.text = "\(post.2.reservation.date), \(post.0.timing)"
 
-//            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-//            postCell.reservationTimeLabel.text = "\(post.reservation.date), \(post.reservation.time.afternoon)"
-//            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
-//
-//            postCell.userImage.kf.setImage(
-//                with: URL(string: ""))
+            var categories = [String]()
+            if post.2.category.shampoo { categories.append("洗髮") }
+            if post.2.category.haircut { categories.append("剪髮") }
+            if post.2.category.dye { categories.append("染髮") }
+            if post.2.category.permanent { categories.append("燙髮") }
+            if post.2.category.treatment { categories.append("護髮") }
+            if post.2.category.other { categories.append("其他") }
+
+            postCell.categoryLabel.text = categories.joined(separator: ", ")
 
             // taget action
 //            postCell.cancelButton.tag = indexPath.row

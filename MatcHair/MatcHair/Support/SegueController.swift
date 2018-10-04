@@ -42,7 +42,7 @@ class UIStoryboardUnwindSegueFromRight: UIStoryboardSegue {
         src.view.superview?.insertSubview(dst.view, belowSubview: src.view)
         src.view.transform = CGAffineTransform(translationX: 0, y: 0)
 
-        UIView.animate(withDuration: 0.25,
+        UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        options: UIView.AnimationOptions.curveEaseInOut,
                        animations: {

@@ -24,7 +24,7 @@
 		F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */; };
 		F13C31DD21631C9800498C2B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31DC21631C9800498C2B /* DetailViewController.swift */; };
 		F13C31DF21631CBD00498C2B /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13C31DE21631CBD00498C2B /* Detail.storyboard */; };
-		F13C31E32163427400498C2B /* RevervationPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31E22163427400498C2B /* RevervationPost.swift */; };
+		F13C31E32163427400498C2B /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31E22163427400498C2B /* Appointment.swift */; };
 		F13C31E72163ABF600498C2B /* PickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31E62163ABF500498C2B /* PickerDialog.swift */; };
 		F14794A2215B57AD005E864C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14794A1215B57AD005E864C /* HomeViewController.swift */; };
 		F14794A4215B8A05005E864C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14794A3215B8A05005E864C /* Post.swift */; };
@@ -90,7 +90,7 @@
 		F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F13C31DC21631C9800498C2B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13C31DE21631CBD00498C2B /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
-		F13C31E22163427400498C2B /* RevervationPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevervationPost.swift; sourceTree = "<group>"; };
+		F13C31E22163427400498C2B /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		F13C31E62163ABF500498C2B /* PickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDialog.swift; sourceTree = "<group>"; };
 		F14794A1215B57AD005E864C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F14794A3215B8A05005E864C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 			children = (
 				F1A1A84B215BD5970038F0CF /* MyPost.swift */,
 				F14794A3215B8A05005E864C /* Post.swift */,
-				F13C31E22163427400498C2B /* RevervationPost.swift */,
+				F13C31E22163427400498C2B /* Appointment.swift */,
 				F1546C2221524114009AB3ED /* HTTP */,
 				F1546C1B2152317D009AB3ED /* Error */,
 				F1546C1821523093009AB3ED /* User */,
@@ -334,9 +334,9 @@
 		F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				F1D0BBDB2161007200ABAE5D /* DesignerWaitingCollectionViewCell */,
+				F1D0BBDB2161007200ABAE5D /* DesignerPendingCollectionViewCell */,
 				F1D0BBE0216100C000ABAE5D /* DesignerAcceptCollectionViewCell */,
-				F1D0BBE2216107AC00ABAE5D /* ModelWaitingCollectionViewCell */,
+				F1D0BBE2216107AC00ABAE5D /* ModelPendingCollectionViewCell */,
 				F1D0BBE12161079400ABAE5D /* ModelAcceptCollectionViewCell */,
 			);
 			path = AppointmentCollectionViewCell;
@@ -351,13 +351,13 @@
 			path = LikePostCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		F1D0BBDB2161007200ABAE5D /* DesignerWaitingCollectionViewCell */ = {
+		F1D0BBDB2161007200ABAE5D /* DesignerPendingCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				F1A1A85B215DDA900038F0CF /* DesignerPendingCollectionViewCell.swift */,
 				F1A1A85C215DDA900038F0CF /* DesignerPendingCollectionViewCell.xib */,
 			);
-			path = DesignerWaitingCollectionViewCell;
+			path = DesignerPendingCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		F1D0BBE0216100C000ABAE5D /* DesignerAcceptCollectionViewCell */ = {
@@ -378,13 +378,13 @@
 			path = ModelAcceptCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		F1D0BBE2216107AC00ABAE5D /* ModelWaitingCollectionViewCell */ = {
+		F1D0BBE2216107AC00ABAE5D /* ModelPendingCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				F1D0BBE32161087300ABAE5D /* ModelPendingCollectionViewCell.swift */,
 				F1D0BBE42161087300ABAE5D /* ModelPendingCollectionViewCell.xib */,
 			);
-			path = ModelWaitingCollectionViewCell;
+			path = ModelPendingCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		F1DD3F3121536D0F00BBE710 /* Xib */ = {
@@ -586,7 +586,7 @@
 				F14794A4215B8A05005E864C /* Post.swift in Sources */,
 				F1546C1F21523244009AB3ED /* User.swift in Sources */,
 				F1A1A85D215DDA900038F0CF /* DesignerPendingCollectionViewCell.swift in Sources */,
-				F13C31E32163427400498C2B /* RevervationPost.swift in Sources */,
+				F13C31E32163427400498C2B /* Appointment.swift in Sources */,
 				F1D0BBDA215FF55000ABAE5D /* DesignerAppointmentViewController.swift in Sources */,
 				F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */,
 				F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */,

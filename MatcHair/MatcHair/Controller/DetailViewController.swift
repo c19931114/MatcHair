@@ -91,7 +91,6 @@ extension DetailViewController {
 
     private func showPostData(for post: Post) {
 
-//        categoryLabel.text =
         locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
         postImage.kf.setImage(with: URL(string: post.pictureURL))
         descriptionTextView.text = post.content

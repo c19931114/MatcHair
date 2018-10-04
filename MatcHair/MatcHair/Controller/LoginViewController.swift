@@ -89,9 +89,7 @@ extension LoginViewController {
 //                                    = Auth.auth().currentUser?.photoURL else { return }
 //                                self.userDefaults.set(photoURL, forKey: "photoURL")
 
-                                self.getUserDetail(with: uid, and: userName)
-
-//                                self.uploadUserPictureToStorage(with: uid, and: userName, and: photoURL)
+                                self.getUserDetail(with: uid, userName)
 
                             }
                         }
@@ -109,8 +107,7 @@ extension LoginViewController {
 
     }
 
-    // 沒用到
-    func getUserDetail(with uid: String, and userName: String) {
+    func getUserDetail(with uid: String, _ userName: String) {
 
         FBSDKGraphRequest(
             graphPath: "me",
@@ -134,14 +131,14 @@ extension LoginViewController {
 
                         self.userDefaults.set(userImageURL, forKey: "userImageURL")
 
-                        self.uploadUserPictureToStorage(with: uid, and: userName, and: userImageURL)
+                        self.uploadUserPictureToStorage(with: uid, userName, userImageURL)
 
                     }
             })
 
     }
 
-    func uploadUserPictureToStorage(with uid: String, and userName: String, and userImageURL: URL) {
+    func uploadUserPictureToStorage(with uid: String, _ userName: String, _ userImageURL: URL) {
 
         guard let userImageData = try? Data(contentsOf: userImageURL) else { return }
 
@@ -173,7 +170,7 @@ extension LoginViewController {
                         return
                     }
 
-                    self.uploadUserInfoToDatabase(with: uid, and: userName, and: userImageURL)
+                    self.uploadUserInfoToDatabase(with: uid, userName, userImageURL)
 
                 })
 
@@ -181,7 +178,7 @@ extension LoginViewController {
 
     }
 
-    func uploadUserInfoToDatabase(with uid: String, and userName: String, and userImageURL: URL) {
+    func uploadUserInfoToDatabase(with uid: String, _ userName: String, _ userImageURL: URL) {
 
         ref.child("users/\(uid)").setValue(
             [

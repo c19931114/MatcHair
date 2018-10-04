@@ -50,9 +50,11 @@ extension DesignerAppointmentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupCollectionView()
-
+        ref = Database.database().reference()
         designerConfirmCollectionView.isHidden = true
+
+        setupCollectionView()
+        loadDesignerPendingAppointments()
 
     }
     private func setupCollectionView() {
@@ -71,6 +73,71 @@ extension DesignerAppointmentViewController {
         let acceptXib = UINib(nibName: acceptIdentifier, bundle: nil)
         designerConfirmCollectionView.register(acceptXib, forCellWithReuseIdentifier: acceptIdentifier)
 
+    }
+
+    func loadDesignerPendingAppointments() {
+
+        guard let currentUserUID = UserManager.shared.getUserUID() else { return }
+
+        ref.child("appointmentPosts")
+            .queryOrdered(byChild: "designerUID")
+            .queryEqual(toValue: currentUserUID)
+            .observe(.childAdded) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+            print(value.allKeys)
+            guard let appointmentJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let appointmentData = try self.decoder.decode(Appointment.self, from: appointmentJSONData)
+                print(appointmentData)
+
+                self.getModelInfo(with: appointmentData)
+
+            } catch {
+                print(error)
+            }
+
+        }
+    }
+
+    func getModelInfo(with appointment: Appointment) {
+
+        self.ref.child("users/\(appointment.modelUID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let modelJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let modelData = try self.decoder.decode(User.self, from: modelJSONData)
+                self.getPostInfo(with: appointment, modelData)
+            } catch {
+                print(error)
+            }
+
+        }
+    }
+
+    func getPostInfo(with appointment: Appointment, _ modelData: User) {
+
+        self.ref.child("allPosts/\(appointment.postID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let postData = try self.decoder.decode(Post.self, from: postJSONData)
+                self.designerPendingPosts.insert((appointment, modelData, postData), at: 0)
+
+            } catch {
+                print(error)
+            }
+
+            self.designerPendingCollectionView.reloadData()
+
+        }
     }
 }
 
@@ -105,36 +172,17 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
             let post = designerPendingPosts[indexPath.row]
 
-    //        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
-    //
-    //            guard let value = snapshot.value as? NSDictionary else { return }
-    //
-    //            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
-    //
-    //            do {
-    //                let userData = try self.decoder.decode(User.self, from: userJSONData)
-    //                postCell.userNameLabel.text = userData.name
-    //                postCell.userImage.kf.setImage(with: URL(string: userData.image))
-    //            } catch {
-    //                print(error)
-    //            }
-    //
-    //            self.designerCollectionView.reloadData()
-    //
-    //        }
-//
-//            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-//    //        postCell.reservationTimeLabel.text = "\(post.reservation.date), \(post.reservation.time.afternoon)"
-//            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
-//
-//            postCell.userImage.kf.setImage(
-//                with: URL(string: ""))
+            postCell.postImage.kf.setImage(with: URL(string: post.2.pictureURL))
+            postCell.userImage.kf.setImage(with: URL(string: post.1.image))
+            postCell.userNameLabel.text = post.1.name
+            postCell.reservationTimeLabel.text = "\(post.2.reservation.date), \(post.0.timing)"
 
-            // taget action
-//            postCell.cancelButton.tag = indexPath.row
-//            postCell.cancelButton.addTarget(
-//                self,
-//                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
+            // target action
+            postCell.cancelButton.tag = indexPath.row
+            postCell.cancelButton.addTarget(
+                self,
+                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
+
             return postCell
 
         default:
@@ -165,29 +213,15 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
         }
 
     }
-//
-//    @objc func cancelButtonTapped(sender: UIButton) {
-//        //        print(sender.tag)
-//        //        print(sender.isSelected)
-//
-//        guard let userID = UserManager.shared.getUserUID() else { return }
-//
-//        let designerWaitingPost = designerWaitingPosts[sender.tag]
-//
-//        sender.isSelected = !sender.isSelected
-//        if sender.isSelected {
-//
-//            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-//            ref.child("likePosts/\(userID)/\(designerWaitingPost.postID)").setValue(true)
-//
-//        } else {
-//
-//            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-//            ref.child("likePosts/\(userID)/\(designerWaitingPost.postID)").removeValue()
-//
-//        }
-//
-//    }
+
+    @objc func cancelButtonTapped(sender: UIButton) {
+
+        guard let userID = UserManager.shared.getUserUID() else { return }
+
+        let pendingPost = designerPendingPosts[sender.tag]
+
+
+    }
 
 }
 

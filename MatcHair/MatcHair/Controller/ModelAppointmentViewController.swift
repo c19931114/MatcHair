@@ -53,7 +53,7 @@ extension ModelAppointmentViewController {
         modelConfirmCollectionView.isHidden = true
 
         setupCollectionView()
-        loadPendingAppointments()
+        loadModelPendingAppointments()
 
     }
 
@@ -75,14 +75,17 @@ extension ModelAppointmentViewController {
 
     }
 
-    func loadPendingAppointments() {
+    func loadModelPendingAppointments() {
 
         guard let currentUserUID = UserManager.shared.getUserUID() else { return }
 
-        ref.child("appointmentPosts/\(currentUserUID)").observe(.childAdded) { (snapshot) in
+        ref.child("appointmentPosts")
+            .queryOrdered(byChild: "modelUID")
+            .queryEqual(toValue: currentUserUID)
+            .observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
-            print(value.allKeys)
+//            print(value.allKeys)
             guard let appointmentJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
@@ -175,7 +178,8 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
             // (appointment, designerData, postData)
 
             postCell.postImage.kf.setImage(with: URL(string: post.2.pictureURL))
-            postCell.userImage.kf.setImage(with: URL(string: "\(post.1.image)"))
+            postCell.userImage.kf.setImage(with: URL(string: post.1.image))
+            postCell.userNameLabel.text = post.1.name
             postCell.reservationTimeLabel.text = "\(post.2.reservation.date), \(post.0.timing)"
 
             if post.2.category.shampoo { categories.append("洗髮") }
@@ -213,7 +217,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
             postCell.userImage.kf.setImage(
                 with: URL(string: ""))
 
-            // taget action
+            // target action
             //            postCell.cancelButton.tag = indexPath.row
             //            postCell.cancelButton.addTarget(
             //                self,
@@ -226,11 +230,11 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
     @objc func cancelButtonTapped(sender: UIButton) {
 
-        guard let currentUserID = UserManager.shared.getUserUID() else { return }
+//        guard let currentUserID = UserManager.shared.getUserUID() else { return }
 
         let pendingPost = modelPendingPosts[sender.tag]
 
-        ref.child("appointmentPosts/\(currentUserID)/\(pendingPost.0.appointmentID)").removeValue()
+        ref.child("appointmentPosts/\(pendingPost.0.appointmentID)").removeValue()
 
         modelPendingPosts.remove(at: sender.tag)
 

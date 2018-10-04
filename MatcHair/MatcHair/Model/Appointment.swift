@@ -9,7 +9,7 @@
 import Foundation
 
 struct Appointment: Codable {
-//    let modelUID: String
+    let modelUID: String
     let designerUID: String
     let postID: String
     let statement: String

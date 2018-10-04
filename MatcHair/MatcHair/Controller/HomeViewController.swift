@@ -63,21 +63,23 @@ extension HomeViewController {
 
     func loadAllPosts() {
 
-        ref.child("allPosts").observe(.childAdded) { (snapshot) in
+        ref.child("allPosts").observe(.value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 //            print(value.allKeys)
-            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-            do {
-                let postData = try self.decoder.decode(Post.self, from: postJSONData)
+            for value in value.allValues {
 
-                self.getUserInfo(with: postData)
+                guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-            } catch {
-                print(error)
+                do {
+                    let postData = try self.decoder.decode(Post.self, from: postJSONData)
+                    self.getUserInfo(with: postData)
+
+                } catch {
+                    print(error)
+                }
             }
-
         }
 
     }
@@ -108,6 +110,7 @@ extension HomeViewController {
         guard let currentUserUID = UserManager.shared.getUserUID() else { return }
 
         ref.child("likePosts/\(currentUserUID)").observe(.value) { (snapshot) in
+
             guard let value = snapshot.value as? NSDictionary else { return }
             guard let likePostIDs = value.allKeys as? [String] else { return }
             self.likePostIDs = likePostIDs
@@ -231,9 +234,10 @@ extension HomeViewController: UICollectionViewDataSource {
         
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
         
-        ref.child("appointmentPosts/\(currentUserUID)/\(appointmentID)").setValue(
+        ref.child("appointmentPosts/\(appointmentID)").setValue(
             [
                 "designerUID": post.userUID,
+                "modelUID": currentUserUID,
                 "postID": post.postID,
                 "timing": timing,
                 "appointmentID": appointmentID,

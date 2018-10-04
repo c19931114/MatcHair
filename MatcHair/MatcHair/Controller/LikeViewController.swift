@@ -60,6 +60,7 @@ extension LikeViewController {
 
             let postID = snapshot.key
 
+            // 有需要改成 .value 嗎
             self.ref.child("allPosts").observe(.childAdded) { (snapshot) in
 
                 if snapshot.key == postID {
@@ -238,9 +239,10 @@ extension LikeViewController: UICollectionViewDataSource {
 
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
 
-        ref.child("appointmentPosts/\(currentUserUID)/\(appointmentID)").setValue(
+        ref.child("appointmentPosts/\(appointmentID)").setValue(
             [
                 "designerUID": post.userUID,
+                "modelUID": currentUserUID,
                 "postID": post.postID,
                 "timing": timing,
                 "appointmentID": appointmentID,

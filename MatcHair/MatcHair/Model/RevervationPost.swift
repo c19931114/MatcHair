@@ -12,4 +12,6 @@ struct ReservationPost: Codable {
     let modelUID: String
     let designerUID: String
     let postID: String
+    let statement: String
+    let timing: String
 }

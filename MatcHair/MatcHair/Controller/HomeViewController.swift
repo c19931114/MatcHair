@@ -230,12 +230,14 @@ extension HomeViewController: UICollectionViewDataSource {
         guard let modelUID = UserManager.shared.getUserUID() else {return }
         
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
+        
         ref.child("appointmentPosts/\(appointmentID)").setValue(
             [
-                "designer": post.userUID,
+                "designerUID": post.userUID,
                 "modelUID": modelUID,
                 "postID": post.postID,
-                "timing": timing
+                "timing": timing,
+                "statement": "pending"
             ]
         )
 

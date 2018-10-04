@@ -17,42 +17,24 @@ class ModelAppointmentViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    // fake data
-    var modelWaitingPosts: [Post] = [Post(
-        postID: "postID",
-        category: Category(dye: false, haircut: true, other: false, permanent: false, shampoo: false, treatment: false),
-        content: "content",
-        payment: "1200",
-        pictureURL: "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/%E6%A8%B8%E5%AF%B6%E8%8B%B1.png?alt=media&token=7c088130-ac9d-48c6-8fa9-d8607767e32b",
-        reservation: Reservation(date: "2018/10/30", location: Location(address: "基隆路一段", city: "台北市", district: "信義區"), time: Timing(afternoon: true, morning: false, night: false)),
-        userUID: "cYUWWGgyRRTKYdVl6wwSXXbNmVI3",
-        isLiked: false)]
+    let pendingPosts = [(ReservationPost, String, String)]()
+    let confirmPosts = [ReservationPost]()
 
-    var modelAcceptPosts: [Post] = [Post(
-        postID: "postID",
-        category: Category(dye: false, haircut: true, other: false, permanent: false, shampoo: false, treatment: false),
-        content: "content",
-        payment: "1200",
-        pictureURL: "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/%E6%A8%B8%E5%AF%B6%E8%8B%B1.png?alt=media&token=7c088130-ac9d-48c6-8fa9-d8607767e32b",
-        reservation: Reservation(date: "2018/10/30", location: Location(address: "基隆路一段", city: "台北市", district: "信義區"), time: Timing(afternoon: true, morning: false, night: false)),
-        userUID: "cYUWWGgyRRTKYdVl6wwSXXbNmVI3",
-        isLiked: false)]
-
-    @IBOutlet weak var modelWatingCollectionView: UICollectionView!
-    @IBOutlet weak var modelAcceptCollectionView: UICollectionView!
+    @IBOutlet weak var modelPendingCollectionView: UICollectionView!
+    @IBOutlet weak var modelConfirmCollectionView: UICollectionView!
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 
         switch sender.selectedSegmentIndex {
         case 0:
-            modelWatingCollectionView.isHidden = false
-            modelAcceptCollectionView.isHidden = true
+            modelPendingCollectionView.isHidden = false
+            modelConfirmCollectionView.isHidden = true
         case 1:
-            modelWatingCollectionView.isHidden = true
-            modelAcceptCollectionView.isHidden = false
+            modelPendingCollectionView.isHidden = true
+            modelConfirmCollectionView.isHidden = false
         default:
-            modelWatingCollectionView.isHidden = true
-            modelAcceptCollectionView.isHidden = true
+            modelPendingCollectionView.isHidden = true
+            modelConfirmCollectionView.isHidden = true
         }
     }
     @IBAction private func goToChatRoom(_ sender: Any) {
@@ -66,29 +48,55 @@ extension ModelAppointmentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        modelAcceptCollectionView.isHidden = true
+        ref = Database.database().reference()
+
+        modelConfirmCollectionView.isHidden = true
 
         setupCollectionView()
+        loadPendingPosts()
 
     }
 
     private func setupCollectionView() {
 
-        modelWatingCollectionView.dataSource = self
-        modelWatingCollectionView.delegate = self
+        modelPendingCollectionView.dataSource = self
+        modelPendingCollectionView.delegate = self
 
-        let waitingIdentifier = String(describing: ModelPendingCollectionViewCell.self)
-        let waitingXib = UINib(nibName: waitingIdentifier, bundle: nil)
-        modelWatingCollectionView.register(waitingXib, forCellWithReuseIdentifier: waitingIdentifier)
+        let pendingIdentifier = String(describing: ModelPendingCollectionViewCell.self)
+        let pendingXib = UINib(nibName: pendingIdentifier, bundle: nil)
+        modelPendingCollectionView.register(pendingXib, forCellWithReuseIdentifier: pendingIdentifier)
 
-        modelAcceptCollectionView.dataSource = self
-        modelAcceptCollectionView.delegate = self
+        modelConfirmCollectionView.dataSource = self
+        modelConfirmCollectionView.delegate = self
 
-        let acceptIdentifier = String(describing: ModelAcceptCollectionViewCell.self)
-        let acceptXib = UINib(nibName: acceptIdentifier, bundle: nil)
-        modelAcceptCollectionView.register(acceptXib, forCellWithReuseIdentifier: acceptIdentifier)
+        let confirmIdentifier = String(describing: ModelAcceptCollectionViewCell.self)
+        let confirmXib = UINib(nibName: confirmIdentifier, bundle: nil)
+        modelConfirmCollectionView.register(confirmXib, forCellWithReuseIdentifier: confirmIdentifier)
 
     }
+
+    func loadPendingPosts() {
+
+        ref.child("appointmentPosts").observe(.childAdded) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+            print(value.allKeys)
+            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let postData = try self.decoder.decode(ReservationPost.self, from: postJSONData)
+                print(postData)
+
+//                self.getUserInfo(with: postData)
+
+            } catch {
+                print(error)
+            }
+
+        }
+
+    }
+    
 }
 
 extension ModelAppointmentViewController: UICollectionViewDataSource {
@@ -97,10 +105,10 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
         switch collectionView {
 
-        case modelWatingCollectionView:
-            return modelWaitingPosts.count
+        case modelPendingCollectionView:
+            return pendingPosts.count
         default:
-            return modelAcceptPosts.count
+            return confirmPosts.count
         }
 
     }
@@ -110,9 +118,9 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         switch collectionView {
-        case modelWatingCollectionView:
+        case modelPendingCollectionView:
 
-            let cell = modelWatingCollectionView.dequeueReusableCell(
+            let cell = modelPendingCollectionView.dequeueReusableCell(
                 withReuseIdentifier: String(describing: ModelPendingCollectionViewCell.self),
                 for: indexPath)
 
@@ -120,7 +128,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = modelWaitingPosts[indexPath.row]
+            let post = pendingPosts[indexPath.row]
 
             //        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
             //
@@ -140,13 +148,12 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
             //
             //        }
 
-            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-            //        postCell.reservationTimeLabel.text = "\(post.reservation.date), \(post.reservation.time.afternoon)"
-            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
-
-            postCell.userImage.kf.setImage(
-                with: URL(string:
-                    "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/Crystal%20Liu_cYUWWGgyRRTKYdVl6wwSXXbNmVI3?alt=media&token=6b665617-868e-4f14-a3c4-d2c9c5706c47"))
+//            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
+//            postCell.reservationTimeLabel.text = "\(post.reservation.date), \(post.reservation.time.afternoon)"
+//            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
+//
+//            postCell.userImage.kf.setImage(
+//                with: URL(string: ""))
 
             // taget action
 //            postCell.cancelButton.tag = indexPath.row
@@ -157,7 +164,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
         default:
 
-            let cell = modelAcceptCollectionView.dequeueReusableCell(
+            let cell = modelConfirmCollectionView.dequeueReusableCell(
                 withReuseIdentifier: String(describing: ModelAcceptCollectionViewCell.self),
                 for: indexPath)
 
@@ -165,14 +172,13 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = modelAcceptPosts[indexPath.row]
+            let post = confirmPosts[indexPath.row]
 
-            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
+//            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
+//            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
 
             postCell.userImage.kf.setImage(
-                with: URL(string:
-                    "https://firebasestorage.googleapis.com/v0/b/matchair-f9ac8.appspot.com/o/Crystal%20Liu_cYUWWGgyRRTKYdVl6wwSXXbNmVI3?alt=media&token=6b665617-868e-4f14-a3c4-d2c9c5706c47"))
+                with: URL(string: ""))
 
             // taget action
             //            postCell.cancelButton.tag = indexPath.row

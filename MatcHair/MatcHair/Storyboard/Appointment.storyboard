@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iwB-6O-rWs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DTc-kT-RoT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -76,9 +76,6 @@
                                 <state key="normal" title="Model">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <segue destination="rol-q8-hzB" kind="push" id="SKa-xZ-vfo"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="z1r-tC-lJj">
@@ -99,30 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dA-a9-JIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1188" y="-92"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="rX2-7h-akm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iwB-6O-rWs" customClass="NavigationController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u2i-Mc-reg">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YpL-F9-EuT" kind="relationship" relationship="rootViewController" id="skZ-X0-8wM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JHQ-z8-EGS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="373.60000000000002" y="-92.203898050974516"/>
+            <point key="canvasLocation" x="3558" y="-92"/>
         </scene>
         <!--Model-->
         <scene sceneID="Wgv-oe-Apr">
@@ -184,6 +158,18 @@
                         <viewLayoutGuide key="safeArea" id="217-kj-GFe"/>
                     </view>
                     <navigationItem key="navigationItem" title="Model" id="blE-qq-xwe">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="Y4W-6b-OXz">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Chy-An-ru1">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Designer">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <connections>
+                                <segue destination="YpL-F9-EuT" kind="push" id="B3L-Qg-GAa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="I66-GL-eaf">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FGg-0o-az3">
                                 <rect key="frame" x="293" y="11" width="66" height="22"/>
@@ -196,13 +182,34 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="modelAcceptCollectionView" destination="54k-lR-g0m" id="Da1-y6-4hm"/>
-                        <outlet property="modelWatingCollectionView" destination="1DH-7l-ZmV" id="nAs-UF-q5B"/>
+                        <outlet property="modelConfirmCollectionView" destination="54k-lR-g0m" id="Da1-y6-4hm"/>
+                        <outlet property="modelPendingCollectionView" destination="1DH-7l-ZmV" id="nAs-UF-q5B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqx-b1-BIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1966" y="-92"/>
+            <point key="canvasLocation" x="2721" y="-92"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JNe-fg-0uK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DTc-kT-RoT" customClass="NavigationController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Za-N1-lb3">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rol-q8-hzB" kind="relationship" relationship="rootViewController" id="A6N-gZ-ADR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8j-pz-QkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1965.5999999999999" y="-92.203898050974516"/>
         </scene>
     </scenes>
     <resources>

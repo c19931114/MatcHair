@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct AllPost {
+struct Post {
 
     let info: PostInfo
     let author: User
-    let userImageURL: URL?
+    let authorImageURL: URL?
 }

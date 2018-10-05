@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 import Kingfisher
 
 class ProfileViewController: UIViewController {
@@ -16,8 +17,10 @@ class ProfileViewController: UIViewController {
     let decoder = JSONDecoder()
 
     let fullScreenSize = UIScreen.main.bounds.size
-    var myPosts: [MyPost] = []
     var ref: DatabaseReference!
+    lazy var storageRef = Storage.storage().reference()
+    var myPosts: [MyPost] = []
+    var currentUserImageURL: URL?
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var profileCollectionView: UICollectionView!
@@ -72,16 +75,32 @@ extension ProfileViewController {
 
                 do {
                     let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
-                    self.myPosts.insert(postData, at: 0)
+                    self.myPosts.append(postData)
+
                 } catch {
                     print(error)
                 }
 
             }
 
+            self.getUserInfo(with: currnetUserUID)
+        }
+    }
+
+    func getUserInfo(with userUID: String) {
+
+        let fileName = userUID
+
+        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+
+            if let url = url {
+                self.currentUserImageURL = url
+            } else {
+                print(error as Any)
+            }
             self.profileCollectionView.reloadData()
 
-        }
+        })
     }
 
 }
@@ -120,12 +139,11 @@ extension ProfileViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            if let userName = Auth.auth().currentUser?.displayName  {
+            if let userName = Auth.auth().currentUser?.displayName {
                 profileCell.userNameLabel.text = userName
             }
 
-            profileCell.userNameLabel.text = UserManager.shared.getUserName()
-            profileCell.userImage.kf.setImage(with: UserManager.shared.getUserImageURL())
+            profileCell.userImage.kf.setImage(with: currentUserImageURL)
 
             profileCell.postsCountLabel.text = "\(myPosts.count) 則貼文"
 

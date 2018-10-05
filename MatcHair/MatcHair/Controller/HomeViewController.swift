@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
 //    var allPosts = [(PostInfo, User, URL)]()
-    var allPosts = [AllPost]()
+    var allPosts = [Post]()
     var likePostIDs = [String]()
     var likePostIndex: Int?
     var selectedTiming: String?
@@ -80,7 +80,7 @@ extension HomeViewController {
 
                 do {
                     let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
-                    self.getUserInfo(with: postData)
+                    self.getAuthorInfo(with: postData)
 
                 } catch {
                     print(error)
@@ -90,7 +90,7 @@ extension HomeViewController {
 
     }
 
-    func getUserInfo(with postData: PostInfo) {
+    func getAuthorInfo(with postData: PostInfo) {
 
         self.ref.child("users/\(postData.authorUID)").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -100,7 +100,7 @@ extension HomeViewController {
 
             do {
                 let userData = try self.decoder.decode(User.self, from: userJSONData)
-                self.getUserImageURL(with: postData, userData)
+                self.getAuthorImageURL(with: postData, userData)
 
             } catch {
                 print(error)
@@ -109,16 +109,16 @@ extension HomeViewController {
         }
     }
 
-    func getUserImageURL(with postData: PostInfo, _ userData: User) {
+    func getAuthorImageURL(with postData: PostInfo, _ userData: User) {
         
         let fileName = postData.authorUID
 
         self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
 
-            if let userImageURL = url {
-//                self.allPosts.insert((postData, userData, userImageURL), at: 0)
-                let post = AllPost(info: postData, author: userData, userImageURL: userImageURL)
-                self.allPosts.insert(post, at: 0)
+            if let authorImageURL = url {
+                
+                let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
+                self.allPosts.append(post)
 
                 self.homePostCollectionView.reloadData()
             } else {
@@ -167,7 +167,7 @@ extension HomeViewController: UICollectionViewDataSource {
         let post = allPosts[indexPath.row]
 
         postCell.userNameLabel.text = post.author.name
-        postCell.userImage.kf.setImage(with: post.userImageURL)
+        postCell.userImage.kf.setImage(with: post.authorImageURL)
 
         postCell.postImage.kf.setImage(with: URL(string: post.info.pictureURL))
         postCell.locationLabel.text =
@@ -191,7 +191,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func likeButtonTapped(sender: UIButton) {
 
-        guard let userUID = UserManager.shared.getUserUID() else { return }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
         let likePost = allPosts[sender.tag]
 
@@ -199,12 +199,12 @@ extension HomeViewController: UICollectionViewDataSource {
         if sender.isSelected {
 
 //            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-            ref.child("likePosts/\(userUID)/\(likePost.info.postID)").setValue(true)
+            ref.child("likePosts/\(currentUserUID)/\(likePost.info.postID)").setValue(true)
 
         } else {
 
 //            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-            ref.child("likePosts/\(userUID)/\(likePost.info.postID)").removeValue()
+            ref.child("likePosts/\(currentUserUID)/\(likePost.info.postID)").removeValue()
 
         }
 

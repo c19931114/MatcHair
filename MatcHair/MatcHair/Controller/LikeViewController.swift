@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorage
 import Kingfisher
 
 class LikeViewController: UIViewController {
@@ -15,7 +17,9 @@ class LikeViewController: UIViewController {
     let decoder = JSONDecoder()
 
     var ref: DatabaseReference!
-    var likePosts = [(PostInfo, User)]()
+    lazy var storageRef = Storage.storage().reference()
+//    var likePosts = [(PostInfo, User)]()
+    var likePosts = [Post]()
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
     var selectedTiming: String?
@@ -54,49 +58,77 @@ extension LikeViewController {
 
     func loadLikePosts() {
 
-        guard let userID = UserManager.shared.getUserUID() else { return }
+        likePosts = []
 
-        ref.child("likePosts/\(userID)").observe(.childAdded) { (snapshot) in
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
 
-            let postID = snapshot.key
+        ref.child("likePosts/\(currentUserID)").observe(.value) { (snapshot) in
 
-            // 有需要改成 .value 嗎
-            self.ref.child("allPosts").observe(.childAdded) { (snapshot) in
+            guard let value = snapshot.value as? NSDictionary else { return }
 
-                if snapshot.key == postID {
+            for postID in value.allKeys {
 
-                    guard let value = snapshot.value as? NSDictionary else { return }
-                    guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+                self.ref
+                    .child("allPosts")
+                    .queryOrderedByKey()
+                    .queryEqual(toValue: postID)
+                    .observeSingleEvent(of: .value) { (snapshot) in
 
-                    do {
-                        let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
+                        guard let value = snapshot.value as? NSDictionary else { return }
+                        print(value)
 
-                        self.ref.child("users/\(postData.authorUID)").observeSingleEvent(of: .value) { (snapshot) in
+                        guard let postJSONData = try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
 
-                            guard let value = snapshot.value as? NSDictionary else { return }
-
-                            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
-
-                            do {
-                                let userData = try self.decoder.decode(User.self, from: userJSONData)
-                                self.likePosts.insert((postData, userData), at: 0)
-
-                            } catch {
-                                print(error)
-                            }
-
-                            self.likePostCollectionView.reloadData()
-
+                        do {
+                            let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
+                            self.getAuthorInfo(with: postData)
+                        } catch {
+                            print(error)
                         }
-
-                    } catch {
-                        print(error)
-                    }
-
                 }
+
             }
 
         }
+
+    }
+
+    func getAuthorInfo(with postData: PostInfo) {
+
+        self.ref.child("users/\(postData.authorUID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let userData = try self.decoder.decode(User.self, from: userJSONData)
+                self.getAuthorImageURL(with: postData, userData)
+
+            } catch {
+                print(error)
+            }
+
+        }
+    }
+
+    func getAuthorImageURL(with postData: PostInfo, _ userData: User) {
+
+        let fileName = postData.authorUID
+
+        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+
+            if let authorImageURL = url {
+
+                let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
+                self.likePosts.append(post)
+
+                self.likePostCollectionView.reloadData()
+            } else {
+                print(error as Any)
+            }
+
+        })
 
     }
 
@@ -122,36 +154,11 @@ extension LikeViewController: UICollectionViewDataSource {
 
         let post = likePosts[indexPath.row]
 
-//        ref.child("users/\(post.userUID)").observeSingleEvent(of: .value) { (snapshot) in
-//
-//            guard let value = snapshot.value as? NSDictionary else { return }
-//
-//            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
-//
-//            do {
-//                let userData = try self.decoder.decode(User.self, from: userJSONData)
-//                postCell.userNameLabel.text = userData.name
-//                postCell.userImage.kf.setImage(with: URL(string: userData.image))
-//
-//                postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-//                postCell.locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
-//
-//                // taget action
-//                postCell.likeButton.tag = indexPath.row
-//                postCell.likeButton.addTarget(
-//                    self,
-//                    action: #selector(self.unlikeButtonTapped(sender:)), for: .touchUpInside)
-//
-//            } catch {
-//                print(error)
-//            }
-//        }
+        postCell.userNameLabel.text = post.author.name
+        postCell.userImage.kf.setImage(with: post.authorImageURL)
 
-        postCell.userNameLabel.text = post.1.name
-//        postCell.userImage.kf.setImage(with: URL(string: post.1.image))
-
-        postCell.postImage.kf.setImage(with: URL(string: post.0.pictureURL))
-        postCell.locationLabel.text = "\(post.0.reservation.location.city), \(post.0.reservation.location.district)"
+        postCell.postImage.kf.setImage(with: URL(string: post.info.pictureURL))
+        postCell.locationLabel.text = "\(post.info.reservation.location.city), \(post.info.reservation.location.district)"
 
         // target action
         postCell.likeButton.tag = indexPath.row
@@ -160,10 +167,10 @@ extension LikeViewController: UICollectionViewDataSource {
             action: #selector(self.unlikeButtonTapped(sender:)), for: .touchUpInside)
 
         postCell.reservationButton.tag = indexPath.row
-        postCell.reservationButton.addTarget(
-            self,
-            action: #selector(reservationButtonTapped(sender:)),
-            for: .touchUpInside)
+//        postCell.reservationButton.addTarget(
+//            self,
+//            action: #selector(reservationButtonTapped(sender:)),
+//            for: .touchUpInside)
 
         return postCell
 
@@ -174,19 +181,19 @@ extension LikeViewController: UICollectionViewDataSource {
         print(sender.tag)
         print(sender.isSelected) // false
 
-        sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
+//        sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
 
-        guard let userID = UserManager.shared.getUserUID() else { return }
+        guard let userID = Auth.auth().currentUser?.uid else { return }
 
         let likePost = likePosts[sender.tag]
 
-        ref.child("likePosts/\(userID)/\(likePost.0.postID)").removeValue()
+        ref.child("likePosts/\(userID)/\(likePost.info.postID)").removeValue()
 
         likePosts.remove(at: sender.tag)
 
         likePostCollectionView.reloadData()
 
-        sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal) // 不改回來的話 下次就變不回紅色
+//        sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal) // 不改回來的話 下次就變不回紅色
 
     }
 
@@ -194,8 +201,8 @@ extension LikeViewController: UICollectionViewDataSource {
 
         var timingOption = [String]()
 
-        let reservationPost = likePosts[sender.tag].0
-        let timing = reservationPost.reservation.time
+        let reservationPost = likePosts[sender.tag]
+        let timing = reservationPost.info.reservation.time
 
         if timing.morning {
             timingOption.append("早上")
@@ -212,13 +219,13 @@ extension LikeViewController: UICollectionViewDataSource {
         print(timingOption)
 
         PickerDialog().show(
-            title: "\(reservationPost.reservation.date)",
+            title: "\(reservationPost.info.reservation.date)",
         options: timingOption) {(value) -> Void in
 
             print("selected: \(value)")
             self.selectedTiming = value
 
-            self.uploadAppointment(post: reservationPost, with: value)
+            self.uploadAppointment(post: reservationPost.info, with: value)
 
             // 向左換 tab 頁
             self.transition.duration = 0.5
@@ -311,8 +318,8 @@ extension LikeViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let selectedPost = likePosts[indexPath.row].0
-        let detailForPost = DetailViewController.detailForPost(selectedPost)
-        self.present(detailForPost, animated: true)
+//        let selectedPost = likePosts[indexPath.row].0
+//        let detailForPost = DetailViewController.detailForPost(selectedPost)
+//        self.present(detailForPost, animated: true)
     }
 }

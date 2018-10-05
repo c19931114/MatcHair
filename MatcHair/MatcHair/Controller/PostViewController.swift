@@ -303,19 +303,16 @@ extension PostViewController {
 
         storageRef.child("\(fileName).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
 
-            guard let metadata = metadata else {
+            guard metadata != nil else {
                 // Uh-oh, an error occurred!
                 return
             }
-            print(metadata)
 
             self.storageRef.child("\(fileName).jpeg").downloadURL { (url, error) in
 
                 guard let downloadURL = url else { return }
 
-                guard let userUID = UserManager.shared.getUserUID() else { return }
-                guard let userName = UserManager.shared.getUserName() else { return }
-                guard let userImageURL = UserManager.shared.getUserImageURL() else { return }
+                guard let authorUID = Auth.auth().currentUser?.uid else { return }
 
                 guard let postID = self.ref.child("usersPosts").childByAutoId().key else { return }
 
@@ -326,7 +323,7 @@ extension PostViewController {
                         [
                             "postID": "\(postID)",
                             "isLiked": false,
-                            "userUID": "\(userUID)",
+                            "authorUID": "\(authorUID)",
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
                             "category":
@@ -358,22 +355,22 @@ extension PostViewController {
                         ]
                     )
 
-                    self.ref.child("usersPosts/\(postID)").setValue(
+                    self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
-                            "userUID": "\(userUID)"
+//                            "authorUID": "\(authorUID)"
 
                         ]
                     )
 
                 } else {
 
-                    self.ref.child("usersPosts/\(postID)").setValue(
+                    self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
-                            "userUID": "\(userUID)"
+//                            "authorUID": "\(authorUID)"
                         ]
                     )
 

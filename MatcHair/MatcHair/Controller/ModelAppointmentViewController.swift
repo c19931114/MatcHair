@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 import Kingfisher
 
 class ModelAppointmentViewController: UIViewController {
@@ -17,8 +18,9 @@ class ModelAppointmentViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    var modelPendingPosts = [(Appointment, User, Post)]()
-    var modelConfirmPosts = [Appointment]()
+    var modelPendingPosts = [(AppointmentInfo, User, PostInfo)]()
+//    var modelPendingPosts = []
+    var modelConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var modelPendingCollectionView: UICollectionView!
     @IBOutlet weak var modelConfirmCollectionView: UICollectionView!
@@ -77,32 +79,36 @@ extension ModelAppointmentViewController {
 
     func loadModelPendingAppointments() {
 
-        guard let currentUserUID = UserManager.shared.getUserUID() else { return }
+        modelPendingPosts = []
 
-        ref.child("appointmentPosts")
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        ref.child("appointmentPosts/pending")
             .queryOrdered(byChild: "modelUID")
             .queryEqual(toValue: currentUserUID)
-            .observe(.childAdded) { (snapshot) in
+            .observe(.value) { (snapshot) in
 
-            guard let value = snapshot.value as? NSDictionary else { return }
-//            print(value.allKeys)
-            guard let appointmentJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+                guard let value = snapshot.value as? NSDictionary else { return }
+        //            print(value.allKeys)
+                for value in value.allValues {
+                    guard let appointmentJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-            do {
-                let appointmentData = try self.decoder.decode(Appointment.self, from: appointmentJSONData)
-                print(appointmentData)
+                    do {
+                        let appointmentData = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSONData)
+                        print(appointmentData)
 
-                self.getDesignerInfo(with: appointmentData)
+                        self.getDesignerInfo(with: appointmentData)
 
-            } catch {
-                print(error)
-            }
+                    } catch {
+                        print(error)
+                    }
+                }
 
         }
 
     }
 
-    func getDesignerInfo(with appointment: Appointment) {
+    func getDesignerInfo(with appointment: AppointmentInfo) {
 
         self.ref.child("users/\(appointment.designerUID)").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -120,7 +126,7 @@ extension ModelAppointmentViewController {
         }
     }
 
-    func getPostInfo(with appointment: Appointment, _ designerData: User) {
+    func getPostInfo(with appointment: AppointmentInfo, _ designerData: User) {
 
         self.ref.child("allPosts/\(appointment.postID)").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -129,7 +135,7 @@ extension ModelAppointmentViewController {
             guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let postData = try self.decoder.decode(Post.self, from: postJSONData)
+                let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
                 self.modelPendingPosts.insert((appointment, designerData, postData), at: 0)
 
             } catch {
@@ -178,7 +184,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
             // (appointment, designerData, postData)
 
             postCell.postImage.kf.setImage(with: URL(string: post.2.pictureURL))
-            postCell.userImage.kf.setImage(with: URL(string: post.1.image))
+//            postCell.userImage.kf.setImage(with: URL(string: post.1.image))
             postCell.userNameLabel.text = post.1.name
             postCell.reservationTimeLabel.text = "\(post.2.reservation.date), \(post.0.timing)"
 

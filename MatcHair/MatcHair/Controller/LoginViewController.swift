@@ -79,17 +79,22 @@ extension LoginViewController {
                             } else {
 
                                 guard let uid = Auth.auth().currentUser?.uid else {return }
-                                self.userDefaults.set(uid, forKey: "userUID")
+//                                self.userDefaults.set(uid, forKey: "userUID")
 
                                 guard let userName
                                     = Auth.auth().currentUser?.displayName else { return }
-                                self.userDefaults.set(userName, forKey: "userName")
+//                                self.userDefaults.set(userName, forKey: "userName")
 
-//                                guard let photoURL
-//                                    = Auth.auth().currentUser?.photoURL else { return }
-//                                self.userDefaults.set(photoURL, forKey: "photoURL")
+                                guard let photoURLString
+                                    = Auth.auth().currentUser?.photoURL?.absoluteString else { return }
+                                let largePhotoURLString = photoURLString + "?type=large"
+                                let largePhotoURL = URL(string: largePhotoURLString)!
 
-                                self.getUserDetail(with: uid, userName)
+//                                self.userDefaults.set(largePhotoURL, forKey: "userImageURL")
+
+//                                self.getUserDetail(with: uid, userName)
+
+                                self.uploadUserImageToStorage(with: uid, userName, largePhotoURL)
 
                             }
                         }
@@ -129,21 +134,21 @@ extension LoginViewController {
                         guard let userImageURLString = userImageData["url"] as? String else { return }
                         guard let userImageURL = URL(string: userImageURLString) else { return }
 
-                        self.userDefaults.set(userImageURL, forKey: "userImageURL")
+//                        self.userDefaults.set(userImageURL, forKey: "userImageURL")
 
-                        self.uploadUserPictureToStorage(with: uid, userName, userImageURL)
+                        self.uploadUserImageToStorage(with: uid, userName, userImageURL)
 
                     }
             })
 
     }
 
-    func uploadUserPictureToStorage(with uid: String, _ userName: String, _ userImageURL: URL) {
+    func uploadUserImageToStorage(with uid: String, _ userName: String, _ userImageURL: URL) {
 
         guard let userImageData = try? Data(contentsOf: userImageURL) else { return }
 
         guard let userImage = UIImage(data: userImageData),
-            let uploadData = userImage.jpegData(compressionQuality: 1.0) else {
+            let uploadData = userImage.jpegData(compressionQuality: 0.1) else {
 
                 print("no image")
                 return
@@ -152,7 +157,7 @@ extension LoginViewController {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
 
-        let fileName: String = "\(userName)_\(uid)"
+        let fileName: String = "\(uid)"
 
         storageRef
             .child(fileName)
@@ -164,27 +169,27 @@ extension LoginViewController {
                     return
                 }
 
-                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
-
-                    guard let userImageURL = url else {
-                        return
-                    }
-
-                    self.uploadUserInfoToDatabase(with: uid, userName, userImageURL)
-
-                })
+//                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+//
+//                    guard let userImageURL = url else {
+//                        return
+//                    }
+//
+//                    self.uploadUserInfoToDatabase(with: uid, userName)
+//
+//                })
+                
+                self.uploadUserInfoToDatabase(with: uid, userName)
 
         }
 
     }
 
-    func uploadUserInfoToDatabase(with uid: String, _ userName: String, _ userImageURL: URL) {
+    func uploadUserInfoToDatabase(with uid: String, _ userName: String) {
 
         ref.child("users/\(uid)").setValue(
             [
-                "name": userName,
-                "image": userImageURL.absoluteString
-
+                "name": userName
             ]
         )
 

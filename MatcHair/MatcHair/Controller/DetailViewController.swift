@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var post: Post?
+    var post: PostInfo?
     var myPost: MyPost?
     var categories = [String]()
     let swipcontroller = SwipeController()
@@ -57,7 +57,7 @@ extension DetailViewController {
         self.dismiss(animated: true)
     }
 
-    class func detailForPost(_ post: Post) -> DetailViewController {
+    class func detailForPost(_ post: PostInfo) -> DetailViewController {
 
         guard let detailVC =
             UIStoryboard
@@ -89,7 +89,7 @@ extension DetailViewController {
 
     }
 
-    private func showPostData(for post: Post) {
+    private func showPostData(for post: PostInfo) {
 
         locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
         postImage.kf.setImage(with: URL(string: post.pictureURL))

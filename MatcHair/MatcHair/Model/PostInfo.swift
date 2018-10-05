@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Post: Codable {
+struct PostInfo: Codable {
 
     let postID: String
     let category: Category
@@ -16,7 +16,7 @@ struct Post: Codable {
     let payment: String
     let pictureURL: String
     let reservation: Reservation
-    let userUID: String
+    let authorUID: String
     let isLiked: Bool
 }
 

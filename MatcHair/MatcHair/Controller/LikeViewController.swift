@@ -15,7 +15,7 @@ class LikeViewController: UIViewController {
     let decoder = JSONDecoder()
 
     var ref: DatabaseReference!
-    var likePosts = [(Post, User)]()
+    var likePosts = [(PostInfo, User)]()
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
     var selectedTiming: String?
@@ -69,9 +69,9 @@ extension LikeViewController {
                     guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
                     do {
-                        let postData = try self.decoder.decode(Post.self, from: postJSONData)
+                        let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
 
-                        self.ref.child("users/\(postData.userUID)").observeSingleEvent(of: .value) { (snapshot) in
+                        self.ref.child("users/\(postData.authorUID)").observeSingleEvent(of: .value) { (snapshot) in
 
                             guard let value = snapshot.value as? NSDictionary else { return }
 
@@ -148,7 +148,7 @@ extension LikeViewController: UICollectionViewDataSource {
 //        }
 
         postCell.userNameLabel.text = post.1.name
-        postCell.userImage.kf.setImage(with: URL(string: post.1.image))
+//        postCell.userImage.kf.setImage(with: URL(string: post.1.image))
 
         postCell.postImage.kf.setImage(with: URL(string: post.0.pictureURL))
         postCell.locationLabel.text = "\(post.0.reservation.location.city), \(post.0.reservation.location.district)"
@@ -233,21 +233,20 @@ extension LikeViewController: UICollectionViewDataSource {
 
     }
 
-    private func uploadAppointment(post: Post, with timing: String) {
+    private func uploadAppointment(post: PostInfo, with timing: String) {
 
         guard let currentUserUID = UserManager.shared.getUserUID() else {return }
 
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
 
-        ref.child("appointmentPosts/\(appointmentID)").setValue(
+        ref.child("appointmentPosts/pending/\(appointmentID)").setValue(
             [
-                "designerUID": post.userUID,
+                "designerUID": post.authorUID,
                 "modelUID": currentUserUID,
                 "postID": post.postID,
                 "timing": timing,
                 "appointmentID": appointmentID,
-                "statement": "pending"
-            ]
+                ]
         )
 
     }

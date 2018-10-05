@@ -14,7 +14,7 @@ struct User: Codable {
 
     var email: String?
 
-    let image: String
+    let image: String?
 
     var id: String?
 }

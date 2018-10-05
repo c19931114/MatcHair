@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class UserManager {
 
@@ -43,5 +44,16 @@ class UserManager {
         }
         return userImageURL
     }
+
+//    func getUserImageURL2() -> URL? {
+//
+//        guard let userImageURL = Auth.auth().currentUser?.photoURL else {
+//            return nil
+//        }
+//        let largeUserImageURLString = userImageURL.absoluteString + "?type=large"
+//        let largePhotoURL = URL(string: largeUserImageURLString)!
+//
+//        return largePhotoURL
+//    }
 
 }

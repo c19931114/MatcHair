@@ -17,8 +17,8 @@ class DesignerAppointmentViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    var designerPendingPosts = [(Appointment, User, Post)]()
-    var designerConfirmPosts = [Appointment]()
+    var designerPendingPosts = [(AppointmentInfo, User, PostInfo)]()
+    var designerConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var designerPendingCollectionView: UICollectionView!
     @IBOutlet weak var designerConfirmCollectionView: UICollectionView!
@@ -77,9 +77,11 @@ extension DesignerAppointmentViewController {
 
     func loadDesignerPendingAppointments() {
 
+        designerPendingPosts = []
+
         guard let currentUserUID = UserManager.shared.getUserUID() else { return }
 
-        ref.child("appointmentPosts")
+        ref.child("appointmentPosts/pending")
             .queryOrdered(byChild: "designerUID")
             .queryEqual(toValue: currentUserUID)
             .observe(.childAdded) { (snapshot) in
@@ -89,7 +91,7 @@ extension DesignerAppointmentViewController {
             guard let appointmentJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let appointmentData = try self.decoder.decode(Appointment.self, from: appointmentJSONData)
+                let appointmentData = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSONData)
                 print(appointmentData)
 
                 self.getModelInfo(with: appointmentData)
@@ -101,7 +103,7 @@ extension DesignerAppointmentViewController {
         }
     }
 
-    func getModelInfo(with appointment: Appointment) {
+    func getModelInfo(with appointment: AppointmentInfo) {
 
         self.ref.child("users/\(appointment.modelUID)").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -119,7 +121,7 @@ extension DesignerAppointmentViewController {
         }
     }
 
-    func getPostInfo(with appointment: Appointment, _ modelData: User) {
+    func getPostInfo(with appointment: AppointmentInfo, _ modelData: User) {
 
         self.ref.child("allPosts/\(appointment.postID)").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -128,7 +130,7 @@ extension DesignerAppointmentViewController {
             guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let postData = try self.decoder.decode(Post.self, from: postJSONData)
+                let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
                 self.designerPendingPosts.insert((appointment, modelData, postData), at: 0)
 
             } catch {
@@ -173,7 +175,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
             let post = designerPendingPosts[indexPath.row]
 
             postCell.postImage.kf.setImage(with: URL(string: post.2.pictureURL))
-            postCell.userImage.kf.setImage(with: URL(string: post.1.image))
+//            postCell.userImage.kf.setImage(with: URL(string: post.1.image))
             postCell.userNameLabel.text = post.1.name
             postCell.reservationTimeLabel.text = "\(post.2.reservation.date), \(post.0.timing)"
 

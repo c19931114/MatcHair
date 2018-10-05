@@ -8,11 +8,10 @@
 
 import Foundation
 
-struct Appointment: Codable {
+struct AppointmentInfo: Codable {
     let modelUID: String
     let designerUID: String
     let postID: String
-    let statement: String
     let timing: String
     let appointmentID: String
 }

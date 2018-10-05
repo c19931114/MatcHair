@@ -58,20 +58,25 @@ extension ProfileViewController {
 
     func loadProfilePosts() {
 
-        guard let userUID = UserManager.shared.getUserUID() else { return }
+        myPosts = []
 
-        ref.child("usersPosts").queryOrdered(byChild: "userUID")
-            .queryEqual(toValue: userUID).observe(.childAdded) { (snapshot) in
+        guard let currnetUserUID = Auth.auth().currentUser?.uid else { return }
+
+        ref.child("usersPosts/\(currnetUserUID)").observe(.value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
-            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            for value in value.allValues {
 
-            do {
-                let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
-                self.myPosts.insert(postData, at: 0)
-            } catch {
-                print(error)
+                guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+                do {
+                    let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
+                    self.myPosts.insert(postData, at: 0)
+                } catch {
+                    print(error)
+                }
+
             }
 
             self.profileCollectionView.reloadData()
@@ -115,8 +120,13 @@ extension ProfileViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
+            if let userName = Auth.auth().currentUser?.displayName  {
+                profileCell.userNameLabel.text = userName
+            }
+
             profileCell.userNameLabel.text = UserManager.shared.getUserName()
             profileCell.userImage.kf.setImage(with: UserManager.shared.getUserImageURL())
+
             profileCell.postsCountLabel.text = "\(myPosts.count) 則貼文"
 
             return profileCell

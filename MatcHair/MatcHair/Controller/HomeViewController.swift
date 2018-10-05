@@ -8,13 +8,17 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorage
 import Kingfisher
 
 class HomeViewController: UIViewController {
     
     let decoder = JSONDecoder()
+    lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
-    var allPosts = [(Post, User)]()
+//    var allPosts = [(PostInfo, User, URL)]()
+    var allPosts = [AllPost]()
     var likePostIDs = [String]()
     var likePostIndex: Int?
     var selectedTiming: String?
@@ -63,6 +67,8 @@ extension HomeViewController {
 
     func loadAllPosts() {
 
+        allPosts = []
+
         ref.child("allPosts").observe(.value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
@@ -73,7 +79,7 @@ extension HomeViewController {
                 guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
                 do {
-                    let postData = try self.decoder.decode(Post.self, from: postJSONData)
+                    let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
                     self.getUserInfo(with: postData)
 
                 } catch {
@@ -84,9 +90,9 @@ extension HomeViewController {
 
     }
 
-    func getUserInfo(with postData: Post) {
+    func getUserInfo(with postData: PostInfo) {
 
-        self.ref.child("users/\(postData.userUID)").observeSingleEvent(of: .value) { (snapshot) in
+        self.ref.child("users/\(postData.authorUID)").observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
@@ -94,20 +100,38 @@ extension HomeViewController {
 
             do {
                 let userData = try self.decoder.decode(User.self, from: userJSONData)
-                self.allPosts.insert((postData, userData), at: 0)
+                self.getUserImageURL(with: postData, userData)
 
             } catch {
                 print(error)
             }
 
-            self.homePostCollectionView.reloadData()
-
         }
+    }
+
+    func getUserImageURL(with postData: PostInfo, _ userData: User) {
+        
+        let fileName = postData.authorUID
+
+        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+
+            if let userImageURL = url {
+//                self.allPosts.insert((postData, userData, userImageURL), at: 0)
+                let post = AllPost(info: postData, author: userData, userImageURL: userImageURL)
+                self.allPosts.insert(post, at: 0)
+
+                self.homePostCollectionView.reloadData()
+            } else {
+                print(error)
+            }
+            
+        })
+
     }
 
     func loadLikePosts() {
 
-        guard let currentUserUID = UserManager.shared.getUserUID() else { return }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
         ref.child("likePosts/\(currentUserUID)").observe(.value) { (snapshot) in
 
@@ -142,11 +166,12 @@ extension HomeViewController: UICollectionViewDataSource {
 
         let post = allPosts[indexPath.row]
 
-        postCell.userNameLabel.text = post.1.name
-        postCell.userImage.kf.setImage(with: URL(string: post.1.image))
+        postCell.userNameLabel.text = post.author.name
+        postCell.userImage.kf.setImage(with: post.userImageURL)
 
-        postCell.postImage.kf.setImage(with: URL(string: post.0.pictureURL))
-        postCell.locationLabel.text = "\(post.0.reservation.location.city), \(post.0.reservation.location.district)"
+        postCell.postImage.kf.setImage(with: URL(string: post.info.pictureURL))
+        postCell.locationLabel.text =
+            "\(post.info.reservation.location.city), \(post.info.reservation.location.district)"
 
         // target action
         postCell.likeButton.tag = indexPath.row
@@ -168,18 +193,18 @@ extension HomeViewController: UICollectionViewDataSource {
 
         guard let userUID = UserManager.shared.getUserUID() else { return }
 
-        let likePost = allPosts[sender.tag].0
+        let likePost = allPosts[sender.tag]
 
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
 
 //            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
-            ref.child("likePosts/\(userUID)/\(likePost.postID)").setValue(true)
+            ref.child("likePosts/\(userUID)/\(likePost.info.postID)").setValue(true)
 
         } else {
 
 //            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-            ref.child("likePosts/\(userUID)/\(likePost.postID)").removeValue()
+            ref.child("likePosts/\(userUID)/\(likePost.info.postID)").removeValue()
 
         }
 
@@ -189,8 +214,8 @@ extension HomeViewController: UICollectionViewDataSource {
         
         var timingOption = [String]()
 
-        let reservationPost = allPosts[sender.tag].0
-        let timing = reservationPost.reservation.time
+        let reservationPost = allPosts[sender.tag]
+        let timing = reservationPost.info.reservation.time
 
         if timing.morning {
             timingOption.append("早上")
@@ -207,19 +232,20 @@ extension HomeViewController: UICollectionViewDataSource {
         print(timingOption)
 
         PickerDialog().show(
-            title: "\(reservationPost.reservation.date)",
+            title: "\(reservationPost.info.reservation.date)",
             options: timingOption) {(value) -> Void in
 
                 print("selected: \(value)")
                 self.selectedTiming = value
 
-                self.uploadAppointment(post: reservationPost, with: value)
+                self.uploadAppointment(with: reservationPost.info, timing: value)
 
                 // 向右換 tab 頁
                 self.transition.duration = 0.5
                 self.transition.type = CATransitionType.push
                 self.transition.subtype = CATransitionSubtype.fromRight
-                self.transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                self.transition.timingFunction = CAMediaTimingFunction(
+                    name: CAMediaTimingFunctionName.easeInEaseOut)
                 self.view.window!.layer.add(self.transition, forKey: kCATransition)
 
                 self.tabBarController?.selectedIndex = 1
@@ -228,20 +254,19 @@ extension HomeViewController: UICollectionViewDataSource {
 
     }
 
-    private func uploadAppointment(post: Post, with timing: String) {
+    private func uploadAppointment(with postInfo: PostInfo, timing: String) {
 
-        guard let currentUserUID = UserManager.shared.getUserUID() else {return }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {return }
         
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
         
-        ref.child("appointmentPosts/\(appointmentID)").setValue(
+        ref.child("appointmentPosts/pending/\(appointmentID)").setValue(
             [
-                "designerUID": post.userUID,
+                "designerUID": postInfo.authorUID,
                 "modelUID": currentUserUID,
-                "postID": post.postID,
+                "postID": postInfo.postID,
                 "timing": timing,
-                "appointmentID": appointmentID,
-                "statement": "pending"
+                "appointmentID": appointmentID
             ]
         )
 
@@ -291,8 +316,8 @@ extension HomeViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let selectedPost = allPosts[indexPath.row].0
-        let detailForPost = DetailViewController.detailForPost(selectedPost)
+        let selectedPostInfo = allPosts[indexPath.row].info
+        let detailForPost = DetailViewController.detailForPost(selectedPostInfo)
         self.present(detailForPost, animated: true)
     }
 }

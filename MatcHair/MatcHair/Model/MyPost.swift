@@ -11,5 +11,5 @@ import Foundation
 struct MyPost: Codable {
     let content: String
     let pictureURL: String
-    let userUID: String
+    let authorUID: String
 }

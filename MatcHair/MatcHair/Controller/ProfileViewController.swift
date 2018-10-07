@@ -93,7 +93,7 @@ extension ProfileViewController {
 
             do {
                 let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
-                self.myPosts.append(postData)
+                self.myPosts.insert(postData, at: 0)
 
             } catch {
                 print(error)

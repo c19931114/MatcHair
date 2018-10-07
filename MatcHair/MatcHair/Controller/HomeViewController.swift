@@ -46,7 +46,7 @@ extension HomeViewController {
         setupCollectionView()
 
         loadAllPosts()
-        loadLikePosts()
+//        loadLikePosts()
 
 //        let layout = UICollectionViewFlowLayout()
 //        layout.scrollDirection = .vertical
@@ -72,7 +72,6 @@ extension HomeViewController {
         ref.child("allPosts").observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
-//            print(value.allKeys)
 
             guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
@@ -118,10 +117,10 @@ extension HomeViewController {
                 let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
                 self.allPosts.insert(post, at: 0)
 
-                self.homePostCollectionView.reloadData()
             } else {
                 print(error as Any)
             }
+            self.homePostCollectionView.reloadData()
             
         })
 

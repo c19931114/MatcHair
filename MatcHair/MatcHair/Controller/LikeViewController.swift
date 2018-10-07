@@ -65,6 +65,7 @@ extension LikeViewController {
         ref.child("likePosts/\(currentUserID)").observe(.childRemoved) { (snapshot) in
             let postID = snapshot.key
             self.loadLikePosts()
+            self.likePostCollectionView.reloadData()
 
         }
     }

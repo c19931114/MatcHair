@@ -9,17 +9,18 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 import Kingfisher
 
 class ModelAppointmentViewController: UIViewController {
 
     let decoder = JSONDecoder()
     var ref: DatabaseReference!
+    lazy var storageRef = Storage.storage().reference()
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    var modelPendingPosts = [(AppointmentInfo, User, PostInfo)]()
-//    var modelPendingPosts = []
+    var modelPendingAppointment = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
     var modelConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var modelPendingCollectionView: UICollectionView!
@@ -79,46 +80,61 @@ extension ModelAppointmentViewController {
 
     func loadModelPendingAppointments() {
 
-        modelPendingPosts = []
+        modelPendingAppointment = []
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
         ref.child("appointmentPosts/pending")
             .queryOrdered(byChild: "modelUID")
             .queryEqual(toValue: currentUserUID)
-            .observe(.value) { (snapshot) in
+            .observe(.childAdded) { (snapshot) in
 
-                guard let value = snapshot.value as? NSDictionary else { return }
-        //            print(value.allKeys)
-                for value in value.allValues {
-                    guard let appointmentJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+                guard let value = snapshot.value else { return }
 
-                    do {
-                        let appointmentData = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSONData)
-                        print(appointmentData)
+                guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-                        self.getDesignerInfo(with: appointmentData)
+                do {
+                    let appointmentInfo = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
+                    self.getDesignerImageURLWith(appointmentInfo)
 
-                    } catch {
-                        print(error)
-                    }
+                } catch {
+                    print(error)
                 }
 
         }
 
     }
 
-    func getDesignerInfo(with appointment: AppointmentInfo) {
+    func getDesignerImageURLWith(_ appointmentInfo: AppointmentInfo) {
 
-        self.ref.child("users/\(appointment.designerUID)").observeSingleEvent(of: .value) { (snapshot) in
+        let fileName = appointmentInfo.designerUID
+
+        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+
+            if let designerImageURL = url {
+
+                self.getDesignerInfoWiyh(appointmentInfo, designerImageURL)
+
+            } else {
+                print(error as Any)
+            }
+
+        })
+        
+    }
+
+    func getDesignerInfoWiyh(_ appointmentInfo: AppointmentInfo, _ designerImageURL: URL) {
+
+        self.ref.child("users/\(appointmentInfo.designerUID)").observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
-            guard let designerJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            guard let designerJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let designerData = try self.decoder.decode(User.self, from: designerJSONData)
-                self.getPostInfo(with: appointment, designerData)
+                let designer = try self.decoder.decode(User.self, from: designerJSON)
+                self.getPostInfoWith(appointmentInfo, designer, designerImageURL)
+
             } catch {
                 print(error)
             }
@@ -126,17 +142,27 @@ extension ModelAppointmentViewController {
         }
     }
 
-    func getPostInfo(with appointment: AppointmentInfo, _ designerData: User) {
+    func getPostInfoWith(_ appointmentInfo: AppointmentInfo, _ designer: User, _ designerImageURL: URL) {
 
-        self.ref.child("allPosts/\(appointment.postID)").observeSingleEvent(of: .value) { (snapshot) in
+        self.ref.child("allPosts/\(appointmentInfo.postID)").observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
-            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            guard let postJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
-                self.modelPendingPosts.insert((appointment, designerData, postData), at: 0)
+
+                let postInfo = try self.decoder.decode(PostInfo.self, from: postJSON)
+                
+                let appointment =
+                    Appointment(
+                        info: appointmentInfo,
+                        designer: designer,
+                        designerImageURL: designerImageURL,
+                        model: nil, modelImageURL: nil,
+                        postInfo: postInfo)
+
+                self.modelPendingAppointment.insert(appointment, at: 0)
 
             } catch {
                 print(error)
@@ -156,7 +182,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
         switch collectionView {
 
         case modelPendingCollectionView:
-            return modelPendingPosts.count
+            return modelPendingAppointment.count
         default:
             return modelConfirmPosts.count
         }
@@ -180,20 +206,21 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = modelPendingPosts[indexPath.row]
+            let appointment = modelPendingAppointment[indexPath.row]
             // (appointment, designerData, postData)
 
-            postCell.postImage.kf.setImage(with: URL(string: post.2.pictureURL))
-//            postCell.userImage.kf.setImage(with: URL(string: post.1.image))
-            postCell.userNameLabel.text = post.1.name
-            postCell.reservationTimeLabel.text = "\(post.2.reservation.date), \(post.0.timing)"
+            postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
+            postCell.designerImage.kf.setImage(with: appointment.designerImageURL)
+            postCell.designerNameLabel.text = appointment.designer?.name
+            postCell.reservationTimeLabel.text =
+                "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
 
-            if post.2.category.shampoo { categories.append("洗髮") }
-            if post.2.category.haircut { categories.append("剪髮") }
-            if post.2.category.dye { categories.append("染髮") }
-            if post.2.category.permanent { categories.append("燙髮") }
-            if post.2.category.treatment { categories.append("護髮") }
-            if post.2.category.other { categories.append("其他") }
+            if appointment.postInfo.category.shampoo { categories.append("洗髮") }
+            if appointment.postInfo.category.haircut { categories.append("剪髮") }
+            if appointment.postInfo.category.dye { categories.append("染髮") }
+            if appointment.postInfo.category.permanent { categories.append("燙髮") }
+            if appointment.postInfo.category.treatment { categories.append("護髮") }
+            if appointment.postInfo.category.other { categories.append("其他") }
 
             postCell.categoryLabel.text = categories.joined(separator: ", ")
 
@@ -238,11 +265,11 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
 //        guard let currentUserID = UserManager.shared.getUserUID() else { return }
 
-        let pendingPost = modelPendingPosts[sender.tag]
+        let pendingPost = modelPendingAppointment[sender.tag]
 
-        ref.child("appointmentPosts/\(pendingPost.0.appointmentID)").removeValue()
+        ref.child("appointmentPosts/\(pendingPost.info.appointmentID)").removeValue()
 
-        modelPendingPosts.remove(at: sender.tag)
+        modelPendingAppointment.remove(at: sender.tag)
 
         modelPendingCollectionView.reloadData()
 

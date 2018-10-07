@@ -12,8 +12,8 @@ class DesignerPendingCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var postImage: UIImageView!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var modelImage: UIImageView!
+    @IBOutlet weak var modelNameLabel: UILabel!
     @IBOutlet weak var reservationTimeLabel: UILabel!
 
     @IBOutlet weak var acceptButton: UIButton!

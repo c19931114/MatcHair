@@ -40,6 +40,8 @@ extension ProfileViewController {
 
         setupCollectionView()
 
+        getUserImage()
+
         loadProfilePosts()
 
     }
@@ -59,37 +61,11 @@ extension ProfileViewController {
 
     }
 
-    func loadProfilePosts() {
+    func getUserImage() {
 
-        guard let currnetUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("usersPosts/\(currnetUserUID)").observe(.value) { (snapshot) in
-
-            self.myPosts = []
-
-            guard let value = snapshot.value as? NSDictionary else { return }
-
-            for value in value.allValues {
-
-                guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
-
-                do {
-                    let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
-                    self.myPosts.append(postData)
-
-                } catch {
-                    print(error)
-                }
-
-            }
-
-            self.getUserInfo(with: currnetUserUID)
-        }
-    }
-
-    func getUserInfo(with userUID: String) {
-
-        let fileName = userUID
+        let fileName = currentUserUID
 
         self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
 
@@ -101,6 +77,31 @@ extension ProfileViewController {
             self.profileCollectionView.reloadData()
 
         })
+    }
+
+    func loadProfilePosts() {
+
+        self.myPosts = []
+
+        guard let currnetUserUID = Auth.auth().currentUser?.uid else { return }
+
+        ref.child("usersPosts/\(currnetUserUID)").observe(.childAdded) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else { return }
+
+            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
+                self.myPosts.append(postData)
+
+            } catch {
+                print(error)
+            }
+
+            self.profileCollectionView.reloadData()
+
+        }
     }
 
 }

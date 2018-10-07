@@ -63,7 +63,7 @@ extension LikeViewController {
 
         ref.child("likePosts/\(currentUserID)").observe(.childAdded) { (snapshot) in
 
-            let postID = snapshot.key 
+            let postID = snapshot.key
 
             self.ref
                 .child("allPosts")
@@ -74,7 +74,8 @@ extension LikeViewController {
                     guard let value = snapshot.value as? NSDictionary else { return }
                     print(value)
 
-                    guard let postJSONData = try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
+                    guard let postJSONData =
+                        try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
 
                     do {
                         let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
@@ -153,7 +154,8 @@ extension LikeViewController: UICollectionViewDataSource {
         postCell.userImage.kf.setImage(with: post.authorImageURL)
 
         postCell.postImage.kf.setImage(with: URL(string: post.info.pictureURL))
-        postCell.locationLabel.text = "\(post.info.reservation.location.city), \(post.info.reservation.location.district)"
+        postCell.locationLabel.text =
+            "\(post.info.reservation.location.city), \(post.info.reservation.location.district)"
 
         // target action
         postCell.likeButton.tag = indexPath.row

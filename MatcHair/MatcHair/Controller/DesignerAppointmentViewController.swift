@@ -8,16 +8,19 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorage
 import Kingfisher
 
 class DesignerAppointmentViewController: UIViewController {
 
     let decoder = JSONDecoder()
+    lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    var designerPendingPosts = [(AppointmentInfo, User, PostInfo)]()
+    var designerPendingAppointment = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
     var designerConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var designerPendingCollectionView: UICollectionView!
@@ -77,24 +80,22 @@ extension DesignerAppointmentViewController {
 
     func loadDesignerPendingAppointments() {
 
-        designerPendingPosts = []
+        designerPendingAppointment = []
 
-        guard let currentUserUID = UserManager.shared.getUserUID() else { return }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
         ref.child("appointmentPosts/pending")
             .queryOrdered(byChild: "designerUID")
             .queryEqual(toValue: currentUserUID)
             .observe(.childAdded) { (snapshot) in
 
-            guard let value = snapshot.value as? NSDictionary else { return }
-            print(value.allKeys)
-            guard let appointmentJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            guard let value = snapshot.value else { return }
+
+            guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let appointmentData = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSONData)
-                print(appointmentData)
-
-                self.getModelInfo(with: appointmentData)
+                let appointment = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
+                self.getModelImageURLWith(appointment)
 
             } catch {
                 print(error)
@@ -103,17 +104,37 @@ extension DesignerAppointmentViewController {
         }
     }
 
-    func getModelInfo(with appointment: AppointmentInfo) {
+    func getModelImageURLWith(_ appointment: AppointmentInfo) {
 
-        self.ref.child("users/\(appointment.modelUID)").observeSingleEvent(of: .value) { (snapshot) in
+        let fileName = appointment.modelUID
+
+        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+
+            if let modelImageURL = url {
+
+                self.getModelInfoWith(appointment, modelImageURL)
+
+            } else {
+                print(error as Any)
+            }
+
+        })
+    }
+
+
+
+    func getModelInfoWith(_ appointmentInfo: AppointmentInfo, _ modelImageURL: URL) {
+
+        self.ref.child("users/\(appointmentInfo.modelUID)").observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
-            guard let modelJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            guard let modelJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let modelData = try self.decoder.decode(User.self, from: modelJSONData)
-                self.getPostInfo(with: appointment, modelData)
+                let model = try self.decoder.decode(User.self, from: modelJSON)
+                self.getPostInfoWith(appointmentInfo, model, modelImageURL)
+
             } catch {
                 print(error)
             }
@@ -121,17 +142,27 @@ extension DesignerAppointmentViewController {
         }
     }
 
-    func getPostInfo(with appointment: AppointmentInfo, _ modelData: User) {
+    func getPostInfoWith(_ appointmentInfo: AppointmentInfo, _ model: User, _ modelImageURL: URL) {
 
-        self.ref.child("allPosts/\(appointment.postID)").observeSingleEvent(of: .value) { (snapshot) in
+        self.ref.child("allPosts/\(appointmentInfo.postID)").observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
-            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            guard let postJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
-                self.designerPendingPosts.insert((appointment, modelData, postData), at: 0)
+                let postInfo = try self.decoder.decode(PostInfo.self, from: postJSON)
+
+                let appointment =
+                    Appointment(
+                        info: appointmentInfo,
+                        designer: nil,
+                        designerImageURL: nil,
+                        model: model,
+                        modelImageURL: modelImageURL,
+                        postInfo: postInfo)
+
+                self.designerPendingAppointment.insert(appointment, at: 0)
 
             } catch {
                 print(error)
@@ -150,7 +181,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
         switch collectionView {
 
         case designerPendingCollectionView:
-            return designerPendingPosts.count
+            return designerPendingAppointment.count
         default:
             return designerConfirmPosts.count
         }
@@ -172,12 +203,13 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = designerPendingPosts[indexPath.row]
+            let appointment = designerPendingAppointment[indexPath.row]
 
-            postCell.postImage.kf.setImage(with: URL(string: post.2.pictureURL))
-//            postCell.userImage.kf.setImage(with: URL(string: post.1.image))
-            postCell.userNameLabel.text = post.1.name
-            postCell.reservationTimeLabel.text = "\(post.2.reservation.date), \(post.0.timing)"
+            postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
+            postCell.modelImage.kf.setImage(with: appointment.modelImageURL)
+            postCell.modelNameLabel.text = appointment.model?.name
+            postCell.reservationTimeLabel.text =
+                "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
 
             // target action
             postCell.cancelButton.tag = indexPath.row
@@ -220,7 +252,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
         guard let userID = UserManager.shared.getUserUID() else { return }
 
-        let pendingPost = designerPendingPosts[sender.tag]
+        let pendingPost = designerPendingAppointment[sender.tag]
 
 
     }

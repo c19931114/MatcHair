@@ -84,7 +84,7 @@ extension HomeViewController {
                 print(error)
             }
 
-            // observe remove
+            // observe .childRemove
 
         }
 
@@ -122,7 +122,7 @@ extension HomeViewController {
 
                 self.homePostCollectionView.reloadData()
             } else {
-                print(error)
+                print(error as Any)
             }
             
         })

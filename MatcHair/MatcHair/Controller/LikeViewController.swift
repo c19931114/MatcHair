@@ -57,37 +57,31 @@ extension LikeViewController {
     }
 
     func loadLikePosts() {
-//        self.likePosts = [] // 放這邊的話 value 變動不會被執行, 所以要放在 observe 內
+        self.likePosts = []
 
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("likePosts/\(currentUserID)").observe(.value) { (snapshot) in
+        ref.child("likePosts/\(currentUserID)").observe(.childAdded) { (snapshot) in
 
-            self.likePosts = []
+            let postID = snapshot.key 
 
-            guard let value = snapshot.value as? NSDictionary else { return }
+            self.ref
+                .child("allPosts")
+                .queryOrderedByKey()
+                .queryEqual(toValue: postID)
+                .observeSingleEvent(of: .value) { (snapshot) in
 
-            for postID in value.allKeys {
+                    guard let value = snapshot.value as? NSDictionary else { return }
+                    print(value)
 
-                self.ref
-                    .child("allPosts")
-                    .queryOrderedByKey()
-                    .queryEqual(toValue: postID)
-                    .observeSingleEvent(of: .value) { (snapshot) in
+                    guard let postJSONData = try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
 
-                        guard let value = snapshot.value as? NSDictionary else { return }
-//                        print(value)
-
-                        guard let postJSONData = try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
-
-                        do {
-                            let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
-                            self.getAuthorInfo(with: postData)
-                        } catch {
-                            print(error)
-                        }
-                }
-
+                    do {
+                        let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
+                        self.getAuthorInfo(with: postData)
+                    } catch {
+                        print(error)
+                    }
             }
 
         }

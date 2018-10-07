@@ -67,25 +67,25 @@ extension HomeViewController {
 
     func loadAllPosts() {
 
-        ref.child("allPosts").observe(.value) { (snapshot) in
+        self.allPosts = []
 
-            self.allPosts = []
+        ref.child("allPosts").observe(.childAdded) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else { return }
 //            print(value.allKeys)
 
-            for value in value.allValues {
+            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-                guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            do {
+                let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
+                self.getAuthorInfo(with: postData)
 
-                do {
-                    let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
-                    self.getAuthorInfo(with: postData)
-
-                } catch {
-                    print(error)
-                }
+            } catch {
+                print(error)
             }
+
+            // observe remove
+
         }
 
     }
@@ -118,7 +118,7 @@ extension HomeViewController {
             if let authorImageURL = url {
                 
                 let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
-                self.allPosts.append(post)
+                self.allPosts.insert(post, at: 0)
 
                 self.homePostCollectionView.reloadData()
             } else {

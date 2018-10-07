@@ -43,6 +43,8 @@ extension LikeViewController {
 
         loadLikePosts()
 
+        observeDeleteAction()
+
     }
 
     private func setupCollectionView() {
@@ -55,8 +57,20 @@ extension LikeViewController {
         likePostCollectionView.register(xib, forCellWithReuseIdentifier: identifier)
 
     }
+    // observe .childRemove
+    func observeDeleteAction() {
+
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+
+        ref.child("likePosts/\(currentUserID)").observe(.childRemoved) { (snapshot) in
+            let postID = snapshot.key
+            self.loadLikePosts()
+
+        }
+    }
 
     func loadLikePosts() {
+
         self.likePosts = []
 
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
@@ -72,7 +86,6 @@ extension LikeViewController {
                 .observeSingleEvent(of: .value) { (snapshot) in
 
                     guard let value = snapshot.value as? NSDictionary else { return }
-                    print(value)
 
                     guard let postJSONData =
                         try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
@@ -117,7 +130,7 @@ extension LikeViewController {
             if let authorImageURL = url {
 
                 let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
-                self.likePosts.append(post)
+                self.likePosts.insert(post, at: 0)
 
                 self.likePostCollectionView.reloadData()
             } else {
@@ -164,10 +177,10 @@ extension LikeViewController: UICollectionViewDataSource {
             action: #selector(self.unlikeButtonTapped(sender:)), for: .touchUpInside)
 
         postCell.reservationButton.tag = indexPath.row
-//        postCell.reservationButton.addTarget(
-//            self,
-//            action: #selector(reservationButtonTapped(sender:)),
-//            for: .touchUpInside)
+        postCell.reservationButton.addTarget(
+            self,
+            action: #selector(reservationButtonTapped(sender:)),
+            for: .touchUpInside)
 
         return postCell
 
@@ -246,7 +259,7 @@ extension LikeViewController: UICollectionViewDataSource {
                 "postID": post.postID,
                 "timing": timing,
                 "appointmentID": appointmentID,
-                ]
+            ]
         )
 
     }

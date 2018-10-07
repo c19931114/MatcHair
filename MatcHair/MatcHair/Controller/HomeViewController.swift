@@ -17,8 +17,8 @@ class HomeViewController: UIViewController {
     let decoder = JSONDecoder()
     lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
-//    var allPosts = [(PostInfo, User, URL)]()
-    var allPosts = [Post]()
+
+    var allPosts = [Post]() // [(PostInfo, User, URL)]
     var likePostIDs = [String]()
     var likePostIndex: Int?
     var selectedTiming: String?
@@ -83,8 +83,6 @@ extension HomeViewController {
             } catch {
                 print(error)
             }
-
-            // observe .childRemove
 
         }
 

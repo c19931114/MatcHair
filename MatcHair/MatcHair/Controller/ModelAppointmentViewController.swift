@@ -263,11 +263,9 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
     @objc func cancelButtonTapped(sender: UIButton) {
 
-//        guard let currentUserID = UserManager.shared.getUserUID() else { return }
-
         let pendingPost = modelPendingAppointment[sender.tag]
 
-        ref.child("appointmentPosts/\(pendingPost.info.appointmentID)").removeValue()
+        ref.child("appointmentPosts/pending/\(pendingPost.info.appointmentID)").removeValue()
 
         modelPendingAppointment.remove(at: sender.tag)
 

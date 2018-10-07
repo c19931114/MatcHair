@@ -67,9 +67,9 @@ extension HomeViewController {
 
     func loadAllPosts() {
 
-        allPosts = []
-
         ref.child("allPosts").observe(.value) { (snapshot) in
+
+            self.allPosts = []
 
             guard let value = snapshot.value as? NSDictionary else { return }
 //            print(value.allKeys)

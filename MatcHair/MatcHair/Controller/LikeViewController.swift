@@ -57,12 +57,13 @@ extension LikeViewController {
     }
 
     func loadLikePosts() {
-
-        likePosts = []
+//        self.likePosts = [] // 放這邊的話 value 變動不會被執行, 所以要放在 observe 內
 
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
 
         ref.child("likePosts/\(currentUserID)").observe(.value) { (snapshot) in
+
+            self.likePosts = []
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
@@ -75,7 +76,7 @@ extension LikeViewController {
                     .observeSingleEvent(of: .value) { (snapshot) in
 
                         guard let value = snapshot.value as? NSDictionary else { return }
-                        print(value)
+//                        print(value)
 
                         guard let postJSONData = try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
 
@@ -181,8 +182,6 @@ extension LikeViewController: UICollectionViewDataSource {
         print(sender.tag)
         print(sender.isSelected) // false
 
-//        sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
-
         guard let userID = Auth.auth().currentUser?.uid else { return }
 
         let likePost = likePosts[sender.tag]
@@ -192,8 +191,6 @@ extension LikeViewController: UICollectionViewDataSource {
         likePosts.remove(at: sender.tag)
 
         likePostCollectionView.reloadData()
-
-//        sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal) // 不改回來的話 下次就變不回紅色
 
     }
 

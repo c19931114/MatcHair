@@ -61,11 +61,11 @@ extension ProfileViewController {
 
     func loadProfilePosts() {
 
-        myPosts = []
-
         guard let currnetUserUID = Auth.auth().currentUser?.uid else { return }
 
         ref.child("usersPosts/\(currnetUserUID)").observe(.value) { (snapshot) in
+
+            self.myPosts = []
 
             guard let value = snapshot.value as? NSDictionary else { return }
 

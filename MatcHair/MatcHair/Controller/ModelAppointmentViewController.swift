@@ -57,6 +57,7 @@ extension ModelAppointmentViewController {
 
         setupCollectionView()
         loadModelPendingAppointments()
+        observeDeleteAction()
 
     }
 
@@ -76,6 +77,18 @@ extension ModelAppointmentViewController {
         let confirmXib = UINib(nibName: confirmIdentifier, bundle: nil)
         modelConfirmCollectionView.register(confirmXib, forCellWithReuseIdentifier: confirmIdentifier)
 
+    }
+    // observe .childRemove
+    func observeDeleteAction() {
+
+        modelPendingAppointments = []
+
+        ref.child("appointments/pending").observe(.childRemoved) { (snapshot) in
+//            print(snapshot)
+            self.loadModelPendingAppointments()
+            self.modelPendingCollectionView.reloadData()
+
+        }
     }
 
     func loadModelPendingAppointments() {

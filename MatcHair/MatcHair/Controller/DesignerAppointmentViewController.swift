@@ -121,8 +121,6 @@ extension DesignerAppointmentViewController {
         })
     }
 
-
-
     func getModelInfoWith(_ appointmentInfo: AppointmentInfo, _ modelImageURL: URL) {
 
         self.ref.child("users/\(appointmentInfo.modelUID)").observeSingleEvent(of: .value) { (snapshot) in
@@ -251,10 +249,13 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
     @objc func cancelButtonTapped(sender: UIButton) {
 
-        guard let userID = UserManager.shared.getUserUID() else { return }
-
         let pendingPost = designerPendingAppointments[sender.tag]
 
+        ref.child("appointments/pending/\(pendingPost.info.appointmentID)").removeValue()
+
+        designerPendingAppointments.remove(at: sender.tag)
+
+        designerPendingCollectionView.reloadData()
 
     }
 

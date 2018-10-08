@@ -1,8 +1,8 @@
 //
-//  AppointmentViewController.swift
+//  DesignerPendingViewController.swift
 //  MatcHair
 //
-//  Created by Crystal on 2018/9/30.
+//  Created by Crystal on 2018/10/8.
 //  Copyright © 2018年 Crystal. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 
-class DesignerAppointmentViewController: UIViewController {
+class DesignerPendingViewController: UIViewController {
 
     let decoder = JSONDecoder()
     lazy var storageRef = Storage.storage().reference()
@@ -21,40 +21,17 @@ class DesignerAppointmentViewController: UIViewController {
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     var designerPendingAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
-    var designerConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var designerPendingCollectionView: UICollectionView!
-    @IBOutlet weak var designerConfirmCollectionView: UICollectionView!
-
-    @IBAction func switchStament(_ sender: UISegmentedControl) {
-
-        switch sender.selectedSegmentIndex {
-        case 0:
-            designerPendingCollectionView.isHidden = false
-            designerConfirmCollectionView.isHidden = true
-        case 1:
-            designerPendingCollectionView.isHidden = true
-            designerConfirmCollectionView.isHidden = false
-        default:
-            designerPendingCollectionView.isHidden = true
-            designerConfirmCollectionView.isHidden = true
-            
-        }
-    }
-
-    @IBAction private func goToChatRoom(_ sender: Any) {
-        self.present(chatRoomViewController, animated: true, completion: nil)
-    }
 
 }
 
-extension DesignerAppointmentViewController {
+extension DesignerPendingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         ref = Database.database().reference()
-        designerConfirmCollectionView.isHidden = true
 
         setupCollectionView()
         loadDesignerPendingAppointments()
@@ -69,13 +46,6 @@ extension DesignerAppointmentViewController {
         let waitingXib = UINib(nibName: waitingIdentifier, bundle: nil)
         designerPendingCollectionView.register(waitingXib, forCellWithReuseIdentifier: waitingIdentifier)
 
-        designerConfirmCollectionView.dataSource = self
-        designerConfirmCollectionView.delegate = self
-
-        let acceptIdentifier = String(describing: DesignerAcceptCollectionViewCell.self)
-        let acceptXib = UINib(nibName: acceptIdentifier, bundle: nil)
-        designerConfirmCollectionView.register(acceptXib, forCellWithReuseIdentifier: acceptIdentifier)
-
     }
 
     func loadDesignerPendingAppointments() {
@@ -89,17 +59,17 @@ extension DesignerAppointmentViewController {
             .queryEqual(toValue: currentUserUID)
             .observe(.childAdded) { (snapshot) in
 
-            guard let value = snapshot.value else { return }
+                guard let value = snapshot.value else { return }
 
-            guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
+                guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-            do {
-                let appointment = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
-                self.getModelImageURLWith(appointment)
+                do {
+                    let appointment = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
+                    self.getModelImageURLWith(appointment)
 
-            } catch {
-                print(error)
-            }
+                } catch {
+                    print(error)
+                }
 
         }
     }
@@ -173,26 +143,17 @@ extension DesignerAppointmentViewController {
     }
 }
 
-extension DesignerAppointmentViewController: UICollectionViewDataSource {
+extension DesignerPendingViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        switch collectionView {
-
-        case designerPendingCollectionView:
-            return designerPendingAppointments.count
-        default:
-            return designerConfirmPosts.count
-        }
+        return designerPendingAppointments.count
 
     }
 
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        switch collectionView {
-        case designerPendingCollectionView:
 
             let cell = designerPendingCollectionView.dequeueReusableCell(
                 withReuseIdentifier: String(describing: DesignerPendingCollectionViewCell.self),
@@ -208,7 +169,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
             postCell.modelImage.kf.setImage(with: appointment.modelImageURL)
             postCell.modelNameLabel.text = appointment.model?.name
             postCell.reservationTimeLabel.text =
-                "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
+            "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
 
             // target action
             postCell.cancelButton.tag = indexPath.row
@@ -217,33 +178,6 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
                 action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
 
             return postCell
-
-        default:
-
-            let cell = designerConfirmCollectionView.dequeueReusableCell(
-                withReuseIdentifier: String(describing: DesignerAcceptCollectionViewCell.self),
-                for: indexPath)
-
-            guard let postCell = cell as? DesignerAcceptCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-
-            let post = designerConfirmPosts[indexPath.row]
-
-//            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-//            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
-//
-//            postCell.userImage.kf.setImage(
-//                with: URL(string: ""))
-
-            // taget action
-//            postCell.cancelButton.tag = indexPath.row
-//            postCell.cancelButton.addTarget(
-//                self,
-//                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
-
-            return postCell
-        }
 
     }
 
@@ -261,7 +195,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
 }
 
-extension DesignerAppointmentViewController: UICollectionViewDelegateFlowLayout {
+extension DesignerPendingViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
         _ collectionView: UICollectionView,

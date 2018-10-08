@@ -12,7 +12,7 @@
         <!--Designer-->
         <scene sceneID="i7K-Uw-kuq">
             <objects>
-                <viewController id="YpL-F9-EuT" customClass="DesignerAppointmentViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YpL-F9-EuT" customClass="DesignerSegementViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5DY-9v-Cux">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,42 +29,32 @@
                                     <action selector="switchStament:" destination="YpL-F9-EuT" eventType="valueChanged" id="vc1-XC-get"/>
                                 </connections>
                             </segmentedControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uOf-B5-WsF">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vu-TH-LaE">
                                 <rect key="frame" x="0.0" y="124" width="375" height="543"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bAD-bp-eG3">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yOB-Ex-LWa">
+                                <connections>
+                                    <segue destination="H0O-gy-USk" kind="embed" id="muc-bY-lsT"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZu-DM-gwP">
                                 <rect key="frame" x="0.0" y="124" width="375" height="543"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NaD-h6-r0q">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
+                                <connections>
+                                    <segue destination="x3d-9C-b5a" kind="embed" id="XaO-G0-5QD"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="WVI-Ks-gLF" secondAttribute="trailing" constant="16" id="1xQ-Di-wMt"/>
-                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="bottom" secondItem="yOB-Ex-LWa" secondAttribute="bottom" id="7nC-1p-52D"/>
-                            <constraint firstItem="uOf-B5-WsF" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" id="RiI-Wc-yCB"/>
+                            <constraint firstItem="5vu-TH-LaE" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="2Uj-4A-c7J"/>
+                            <constraint firstItem="IZu-DM-gwP" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" id="ApP-hO-LUc"/>
+                            <constraint firstItem="IZu-DM-gwP" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="E7N-4w-uHe"/>
                             <constraint firstItem="WVI-Ks-gLF" firstAttribute="top" secondItem="I5N-Uo-7Z7" secondAttribute="top" constant="16" id="WiR-ZD-WkS"/>
-                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="uOf-B5-WsF" secondAttribute="trailing" id="bAL-vN-LxF"/>
-                            <constraint firstItem="uOf-B5-WsF" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="bZV-8C-cCn"/>
                             <constraint firstItem="WVI-Ks-gLF" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" constant="16" id="i13-aX-aFd"/>
-                            <constraint firstItem="yOB-Ex-LWa" firstAttribute="top" secondItem="WVI-Ks-gLF" secondAttribute="bottom" constant="16" id="jrA-Ez-Ur9"/>
-                            <constraint firstItem="yOB-Ex-LWa" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" id="lUN-jS-7KL"/>
-                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="yOB-Ex-LWa" secondAttribute="trailing" id="od4-bA-QUX"/>
-                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="bottom" secondItem="uOf-B5-WsF" secondAttribute="bottom" id="xLx-eI-kxx"/>
+                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="bottom" secondItem="5vu-TH-LaE" secondAttribute="bottom" id="o8l-qP-pbT"/>
+                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="trailing" secondItem="IZu-DM-gwP" secondAttribute="trailing" id="rCL-AY-Tfm"/>
+                            <constraint firstItem="I5N-Uo-7Z7" firstAttribute="bottom" secondItem="IZu-DM-gwP" secondAttribute="bottom" id="wRA-G7-weN"/>
+                            <constraint firstItem="5vu-TH-LaE" firstAttribute="leading" secondItem="I5N-Uo-7Z7" secondAttribute="leading" id="y62-l3-QQP"/>
+                            <constraint firstItem="5vu-TH-LaE" firstAttribute="trailing" secondItem="I5N-Uo-7Z7" secondAttribute="trailing" id="ywq-6Z-ohc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I5N-Uo-7Z7"/>
                     </view>
@@ -81,18 +71,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="designerConfirmCollectionView" destination="yOB-Ex-LWa" id="DDY-89-zb0"/>
-                        <outlet property="designerPendingCollectionView" destination="uOf-B5-WsF" id="x2n-Jx-vlo"/>
+                        <outlet property="confirmView" destination="5vu-TH-LaE" id="pVx-Xo-0B1"/>
+                        <outlet property="pendingView" destination="IZu-DM-gwP" id="LH0-sY-XMU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dA-a9-JIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3558" y="-92"/>
+            <point key="canvasLocation" x="4516" y="-92"/>
         </scene>
         <!--Model-->
         <scene sceneID="Wgv-oe-Apr">
             <objects>
-                <viewController id="rol-q8-hzB" customClass="ModelAppointmentSegementController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rol-q8-hzB" customClass="ModelSegementController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aY-Ei-rVh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,6 +254,78 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JmZ-qQ-5ry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2390" y="600"/>
+        </scene>
+        <!--Designer Pending View Controller-->
+        <scene sceneID="FJq-sB-rdL">
+            <objects>
+                <viewController id="x3d-9C-b5a" customClass="DesignerPendingViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4gd-fU-Gug">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yOB-Ex-LWa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NaD-h6-r0q">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yOB-Ex-LWa" secondAttribute="trailing" id="74d-PJ-Y7z"/>
+                            <constraint firstItem="yOB-Ex-LWa" firstAttribute="leading" secondItem="4gd-fU-Gug" secondAttribute="leading" id="Y4K-gq-33F"/>
+                            <constraint firstAttribute="bottom" secondItem="yOB-Ex-LWa" secondAttribute="bottom" id="ayG-O0-QsX"/>
+                            <constraint firstItem="yOB-Ex-LWa" firstAttribute="top" secondItem="4gd-fU-Gug" secondAttribute="top" id="eTk-9Y-hYm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="designerPendingCollectionView" destination="yOB-Ex-LWa" id="uS5-fr-XCF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="67I-mG-GEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4228" y="600"/>
+        </scene>
+        <!--Designer Confirm View Controller-->
+        <scene sceneID="lQc-2Y-zWW">
+            <objects>
+                <viewController id="H0O-gy-USk" customClass="DesignerConfirmViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cw0-a2-dwB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uOf-B5-WsF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bAD-bp-eG3">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uOf-B5-WsF" firstAttribute="top" secondItem="Cw0-a2-dwB" secondAttribute="top" id="4Tb-Yi-IHg"/>
+                            <constraint firstAttribute="trailing" secondItem="uOf-B5-WsF" secondAttribute="trailing" id="f6X-cw-bth"/>
+                            <constraint firstItem="uOf-B5-WsF" firstAttribute="leading" secondItem="Cw0-a2-dwB" secondAttribute="leading" id="pgg-IG-C4m"/>
+                            <constraint firstAttribute="bottom" secondItem="uOf-B5-WsF" secondAttribute="bottom" id="rky-Bs-WCc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="designerConfirmCollectionView" destination="uOf-B5-WsF" id="bNP-mB-xy9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Box-4q-GBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4993" y="600"/>
         </scene>
     </scenes>
     <resources>

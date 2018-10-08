@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 
-class ModelAppointmentSegementController: UIViewController {
+class ModelSegementController: UIViewController {
 
     let decoder = JSONDecoder()
     var ref: DatabaseReference!
@@ -22,7 +22,6 @@ class ModelAppointmentSegementController: UIViewController {
 
     @IBOutlet weak var pendingView: UIView!
     @IBOutlet weak var confirmView: UIView!
-
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 

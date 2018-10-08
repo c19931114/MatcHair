@@ -37,6 +37,8 @@
 		F196CEA9216B3B87001110E1 /* Date+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA8216B3B87001110E1 /* Date+Crystal.swift */; };
 		F196CEB0216B68CB001110E1 /* ModelPendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEAF216B68CB001110E1 /* ModelPendingViewController.swift */; };
 		F196CEB2216B68E0001110E1 /* ModelConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEB1216B68E0001110E1 /* ModelConfirmViewController.swift */; };
+		F196CEB5216B9448001110E1 /* DesignerPendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEB4216B9448001110E1 /* DesignerPendingViewController.swift */; };
+		F196CEB7216B945F001110E1 /* DesignerConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEB6216B945F001110E1 /* DesignerConfirmViewController.swift */; };
 		F1A1A84F215C7D190038F0CF /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A84D215C7D190038F0CF /* ProfileCollectionViewCell.swift */; };
 		F1A1A850215C7D190038F0CF /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A84E215C7D190038F0CF /* ProfileCollectionViewCell.xib */; };
 		F1A1A853215C7F010038F0CF /* MyPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */; };
@@ -55,14 +57,14 @@
 		F1C2C3E72154C9660065E4EB /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C2C3E62154C9660065E4EB /* NavigationController.swift */; };
 		F1D0BBD6215FCE9300ABAE5D /* LikePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBD4215FCE9300ABAE5D /* LikePostCollectionViewCell.swift */; };
 		F1D0BBD7215FCE9300ABAE5D /* LikePostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBD5215FCE9300ABAE5D /* LikePostCollectionViewCell.xib */; };
-		F1D0BBDA215FF55000ABAE5D /* DesignerAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBD9215FF55000ABAE5D /* DesignerAppointmentViewController.swift */; };
-		F1D0BBDE216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBDC216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift */; };
-		F1D0BBDF216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBDD216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib */; };
+		F1D0BBDA215FF55000ABAE5D /* DesignerSegementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBD9215FF55000ABAE5D /* DesignerSegementViewController.swift */; };
+		F1D0BBDE216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBDC216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.swift */; };
+		F1D0BBDF216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBDD216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.xib */; };
 		F1D0BBE52161087300ABAE5D /* ModelPendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE32161087300ABAE5D /* ModelPendingCollectionViewCell.swift */; };
 		F1D0BBE62161087300ABAE5D /* ModelPendingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE42161087300ABAE5D /* ModelPendingCollectionViewCell.xib */; };
 		F1D0BBE9216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE7216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift */; };
 		F1D0BBEA216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE8216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib */; };
-		F1D0BBEC21610A9400ABAE5D /* ModelAppointmentSegementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBEB21610A9400ABAE5D /* ModelAppointmentSegementController.swift */; };
+		F1D0BBEC21610A9400ABAE5D /* ModelSegementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */; };
 		F1D0BBEE2161400000ABAE5D /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBED2161400000ABAE5D /* ChatRoomViewController.swift */; };
 		F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */; };
 		F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */; };
@@ -105,6 +107,8 @@
 		F196CEA8216B3B87001110E1 /* Date+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Crystal.swift"; sourceTree = "<group>"; };
 		F196CEAF216B68CB001110E1 /* ModelPendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPendingViewController.swift; sourceTree = "<group>"; };
 		F196CEB1216B68E0001110E1 /* ModelConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConfirmViewController.swift; sourceTree = "<group>"; };
+		F196CEB4216B9448001110E1 /* DesignerPendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerPendingViewController.swift; sourceTree = "<group>"; };
+		F196CEB6216B945F001110E1 /* DesignerConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerConfirmViewController.swift; sourceTree = "<group>"; };
 		F1A1A84D215C7D190038F0CF /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1A1A84E215C7D190038F0CF /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -123,14 +127,14 @@
 		F1C2C3E62154C9660065E4EB /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F1D0BBD4215FCE9300ABAE5D /* LikePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBD5215FCE9300ABAE5D /* LikePostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikePostCollectionViewCell.xib; sourceTree = "<group>"; };
-		F1D0BBD9215FF55000ABAE5D /* DesignerAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerAppointmentViewController.swift; sourceTree = "<group>"; };
-		F1D0BBDC216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerAcceptCollectionViewCell.swift; sourceTree = "<group>"; };
-		F1D0BBDD216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignerAcceptCollectionViewCell.xib; sourceTree = "<group>"; };
+		F1D0BBD9215FF55000ABAE5D /* DesignerSegementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerSegementViewController.swift; sourceTree = "<group>"; };
+		F1D0BBDC216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerConfirmCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1D0BBDD216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignerConfirmCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1D0BBE32161087300ABAE5D /* ModelPendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBE42161087300ABAE5D /* ModelPendingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelPendingCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1D0BBE7216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConfirmCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBE8216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelConfirmCollectionViewCell.xib; sourceTree = "<group>"; };
-		F1D0BBEB21610A9400ABAE5D /* ModelAppointmentSegementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAppointmentSegementController.swift; sourceTree = "<group>"; };
+		F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSegementController.swift; sourceTree = "<group>"; };
 		F1D0BBED2161400000ABAE5D /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -232,7 +236,6 @@
 				F1C2C3E42154B8AE0065E4EB /* PostViewController.swift */,
 				F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */,
 				F1A1A858215CB09A0038F0CF /* LikeViewController.swift */,
-				F1D0BBD9215FF55000ABAE5D /* DesignerAppointmentViewController.swift */,
 				F1D0BBED2161400000ABAE5D /* ChatRoomViewController.swift */,
 				F13C31DC21631C9800498C2B /* DetailViewController.swift */,
 				F196CEAA216B680C001110E1 /* Model */,
@@ -312,7 +315,7 @@
 		F196CEAA216B680C001110E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F1D0BBEB21610A9400ABAE5D /* ModelAppointmentSegementController.swift */,
+				F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */,
 				F196CEAF216B68CB001110E1 /* ModelPendingViewController.swift */,
 				F196CEB1216B68E0001110E1 /* ModelConfirmViewController.swift */,
 			);
@@ -322,6 +325,9 @@
 		F196CEB3216B91D4001110E1 /* Designer */ = {
 			isa = PBXGroup;
 			children = (
+				F1D0BBD9215FF55000ABAE5D /* DesignerSegementViewController.swift */,
+				F196CEB4216B9448001110E1 /* DesignerPendingViewController.swift */,
+				F196CEB6216B945F001110E1 /* DesignerConfirmViewController.swift */,
 			);
 			path = Designer;
 			sourceTree = "<group>";
@@ -357,7 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				F1D0BBDB2161007200ABAE5D /* DesignerPendingCollectionViewCell */,
-				F1D0BBE0216100C000ABAE5D /* DesignerAcceptCollectionViewCell */,
+				F1D0BBE0216100C000ABAE5D /* DesignerConfirmCollectionViewCell */,
 				F1D0BBE2216107AC00ABAE5D /* ModelPendingCollectionViewCell */,
 				F1D0BBE12161079400ABAE5D /* ModelConfirmCollectionViewCell */,
 			);
@@ -382,13 +388,13 @@
 			path = DesignerPendingCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		F1D0BBE0216100C000ABAE5D /* DesignerAcceptCollectionViewCell */ = {
+		F1D0BBE0216100C000ABAE5D /* DesignerConfirmCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				F1D0BBDC216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift */,
-				F1D0BBDD216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib */,
+				F1D0BBDC216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.swift */,
+				F1D0BBDD216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.xib */,
 			);
-			path = DesignerAcceptCollectionViewCell;
+			path = DesignerConfirmCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		F1D0BBE12161079400ABAE5D /* ModelConfirmCollectionViewCell */ = {
@@ -482,7 +488,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1D0BBDF216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.xib in Resources */,
+				F1D0BBDF216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.xib in Resources */,
 				F1A1A850215C7D190038F0CF /* ProfileCollectionViewCell.xib in Resources */,
 				F1D0BBD7215FCE9300ABAE5D /* LikePostCollectionViewCell.xib in Resources */,
 				F13C31DF21631CBD00498C2B /* Detail.storyboard in Resources */,
@@ -585,7 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F196CEB0216B68CB001110E1 /* ModelPendingViewController.swift in Sources */,
-				F1D0BBDE216100AA00ABAE5D /* DesignerAcceptCollectionViewCell.swift in Sources */,
+				F1D0BBDE216100AA00ABAE5D /* DesignerConfirmCollectionViewCell.swift in Sources */,
 				F1546C2921525705009AB3ED /* MatcHairColor.swift in Sources */,
 				F139AA222151F87200B5B0D4 /* TabBarController.swift in Sources */,
 				F1A1A853215C7F010038F0CF /* MyPostCollectionViewCell.swift in Sources */,
@@ -594,10 +600,11 @@
 				F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */,
 				F1D0BBEE2161400000ABAE5D /* ChatRoomViewController.swift in Sources */,
 				F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */,
-				F1D0BBEC21610A9400ABAE5D /* ModelAppointmentSegementController.swift in Sources */,
+				F1D0BBEC21610A9400ABAE5D /* ModelSegementController.swift in Sources */,
 				F1C2C3E52154B8AE0065E4EB /* PostViewController.swift in Sources */,
 				F13C31E72163ABF600498C2B /* PickerDialog.swift in Sources */,
 				F1D0BBE9216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift in Sources */,
+				F196CEB5216B9448001110E1 /* DesignerPendingViewController.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
 				F1D0BBE52161087300ABAE5D /* ModelPendingCollectionViewCell.swift in Sources */,
 				F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */,
@@ -607,9 +614,10 @@
 				F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */,
 				F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */,
 				F1C2C3E32154B4180065E4EB /* SegueController.swift in Sources */,
+				F196CEB7216B945F001110E1 /* DesignerConfirmViewController.swift in Sources */,
 				F1546C1F21523244009AB3ED /* User.swift in Sources */,
 				F1A1A85D215DDA900038F0CF /* DesignerPendingCollectionViewCell.swift in Sources */,
-				F1D0BBDA215FF55000ABAE5D /* DesignerAppointmentViewController.swift in Sources */,
+				F1D0BBDA215FF55000ABAE5D /* DesignerSegementViewController.swift in Sources */,
 				F1C2C3DC2153CE3E0065E4EB /* PictureViewController.swift in Sources */,
 				F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */,
 				F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */,

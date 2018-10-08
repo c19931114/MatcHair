@@ -8,15 +8,16 @@
 
 import UIKit
 
-class ModelAcceptCollectionViewCell: UICollectionViewCell {
+class ModelConfirmCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var view: UIView!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var designerImage: UIImageView!
+    @IBOutlet weak var designerNameLabel: UILabel!
     @IBOutlet weak var reservationTimeLabel: UILabel!
 
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var completeButton: UIButton!
 
     @IBAction func chat(_ sender: UIButton) {
     }

@@ -1,8 +1,8 @@
 //
-//  ModelAppointmentViewController.swift
+//  ModelPendingViewController.swift
 //  MatcHair
 //
-//  Created by Crystal on 2018/9/30.
+//  Created by Crystal on 2018/10/8.
 //  Copyright © 2018年 Crystal. All rights reserved.
 //
 
@@ -12,48 +12,25 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 
-class ModelAppointmentViewController: UIViewController {
+class ModelPendingViewController: UIViewController {
 
     let decoder = JSONDecoder()
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
     let fullScreenSize = UIScreen.main.bounds.size
-    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     var modelPendingAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
-    var modelConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var modelPendingCollectionView: UICollectionView!
-    @IBOutlet weak var modelConfirmCollectionView: UICollectionView!
-
-    @IBAction func switchStament(_ sender: UISegmentedControl) {
-
-        switch sender.selectedSegmentIndex {
-        case 0:
-            modelPendingCollectionView.isHidden = false
-            modelConfirmCollectionView.isHidden = true
-        case 1:
-            modelPendingCollectionView.isHidden = true
-            modelConfirmCollectionView.isHidden = false
-        default:
-            modelPendingCollectionView.isHidden = true
-            modelConfirmCollectionView.isHidden = true
-        }
-    }
-    @IBAction private func goToChatRoom(_ sender: Any) {
-        self.present(chatRoomViewController, animated: true, completion: nil)
-    }
 
 }
 
-extension ModelAppointmentViewController {
+extension ModelPendingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         ref = Database.database().reference()
-
-        modelConfirmCollectionView.isHidden = true
 
         setupCollectionView()
         loadModelPendingAppointments()
@@ -70,13 +47,6 @@ extension ModelAppointmentViewController {
         let pendingXib = UINib(nibName: pendingIdentifier, bundle: nil)
         modelPendingCollectionView.register(pendingXib, forCellWithReuseIdentifier: pendingIdentifier)
 
-        modelConfirmCollectionView.dataSource = self
-        modelConfirmCollectionView.delegate = self
-
-        let confirmIdentifier = String(describing: ModelAcceptCollectionViewCell.self)
-        let confirmXib = UINib(nibName: confirmIdentifier, bundle: nil)
-        modelConfirmCollectionView.register(confirmXib, forCellWithReuseIdentifier: confirmIdentifier)
-
     }
     // observe .childRemove
     func observeDeleteAction() {
@@ -84,7 +54,7 @@ extension ModelAppointmentViewController {
         modelPendingAppointments = []
 
         ref.child("appointments/pending").observe(.childRemoved) { (snapshot) in
-//            print(snapshot)
+            //            print(snapshot)
             self.loadModelPendingAppointments()
             self.modelPendingCollectionView.reloadData()
 
@@ -133,7 +103,7 @@ extension ModelAppointmentViewController {
             }
 
         })
-        
+
     }
 
     func getDesignerInfoWiyh(_ appointmentInfo: AppointmentInfo, _ designerImageURL: URL) {
@@ -166,7 +136,7 @@ extension ModelAppointmentViewController {
             do {
 
                 let postInfo = try self.decoder.decode(PostInfo.self, from: postJSON)
-                
+
                 let appointment =
                     Appointment(
                         info: appointmentInfo,
@@ -186,20 +156,14 @@ extension ModelAppointmentViewController {
 
         }
     }
-    
+
 }
 
-extension ModelAppointmentViewController: UICollectionViewDataSource {
+extension ModelPendingViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        switch collectionView {
-
-        case modelPendingCollectionView:
-            return modelPendingAppointments.count
-        default:
-            return modelConfirmPosts.count
-        }
+        return modelPendingAppointments.count
 
     }
 
@@ -209,69 +173,39 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
         var categories = [String]()
 
-        switch collectionView {
-        case modelPendingCollectionView:
+        let cell = modelPendingCollectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: ModelPendingCollectionViewCell.self),
+            for: indexPath)
 
-            let cell = modelPendingCollectionView.dequeueReusableCell(
-                withReuseIdentifier: String(describing: ModelPendingCollectionViewCell.self),
-                for: indexPath)
-
-            guard let postCell = cell as? ModelPendingCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-
-            let appointment = modelPendingAppointments[indexPath.row]
-            // (appointment, designerData, postData)
-
-            postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
-            postCell.designerImage.kf.setImage(with: appointment.designerImageURL)
-            postCell.designerNameLabel.text = appointment.designer?.name
-            postCell.reservationTimeLabel.text =
-                "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
-
-            if appointment.postInfo.category.shampoo { categories.append("洗髮") }
-            if appointment.postInfo.category.haircut { categories.append("剪髮") }
-            if appointment.postInfo.category.dye { categories.append("染髮") }
-            if appointment.postInfo.category.permanent { categories.append("燙髮") }
-            if appointment.postInfo.category.treatment { categories.append("護髮") }
-            if appointment.postInfo.category.other { categories.append("其他") }
-
-            postCell.categoryLabel.text = categories.joined(separator: ", ")
-
-            // target action
-            postCell.cancelButton.tag = indexPath.row
-            postCell.cancelButton.addTarget(
-                self,
-                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
-
-            return postCell
-
-        default:
-
-            let cell = modelConfirmCollectionView.dequeueReusableCell(
-                withReuseIdentifier: String(describing: ModelAcceptCollectionViewCell.self),
-                for: indexPath)
-
-            guard let postCell = cell as? ModelAcceptCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-
-            let post = modelConfirmPosts[indexPath.row]
-
-//            postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
-//            postCell.reservationTimeLabel.text = "\(post.reservation.date), afternoon"
-
-            postCell.userImage.kf.setImage(
-                with: URL(string: ""))
-
-            // target action
-            //            postCell.cancelButton.tag = indexPath.row
-            //            postCell.cancelButton.addTarget(
-            //                self,
-            //                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
-
-            return postCell
+        guard let postCell = cell as? ModelPendingCollectionViewCell else {
+            return UICollectionViewCell()
         }
+
+        let appointment = modelPendingAppointments[indexPath.row]
+        // (appointment, designerData, postData)
+
+        postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
+        postCell.designerImage.kf.setImage(with: appointment.designerImageURL)
+        postCell.designerNameLabel.text = appointment.designer?.name
+        postCell.reservationTimeLabel.text =
+        "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
+
+        if appointment.postInfo.category.shampoo { categories.append("洗髮") }
+        if appointment.postInfo.category.haircut { categories.append("剪髮") }
+        if appointment.postInfo.category.dye { categories.append("染髮") }
+        if appointment.postInfo.category.permanent { categories.append("燙髮") }
+        if appointment.postInfo.category.treatment { categories.append("護髮") }
+        if appointment.postInfo.category.other { categories.append("其他") }
+
+        postCell.categoryLabel.text = categories.joined(separator: ", ")
+
+        // target action
+        postCell.cancelButton.tag = indexPath.row
+        postCell.cancelButton.addTarget(
+            self,
+            action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
+
+        return postCell
 
     }
 
@@ -289,7 +223,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
 }
 
-extension ModelAppointmentViewController: UICollectionViewDelegateFlowLayout {
+extension ModelPendingViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
         _ collectionView: UICollectionView,

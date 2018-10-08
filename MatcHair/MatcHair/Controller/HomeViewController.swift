@@ -120,6 +120,13 @@ extension HomeViewController {
             } else {
                 print(error as Any)
             }
+
+//            self.allPosts.sort(by: { (firstItem, secondItem) -> Bool in
+//                return firstItem.info.createTime > secondItem.info.createTime
+//            })
+
+            self.allPosts.sort(by: { $0.info.createTime > $1.info.createTime })
+
             self.homePostCollectionView.reloadData()
             
         })
@@ -136,7 +143,7 @@ extension HomeViewController {
             guard let likePostIDs = value.allKeys as? [String] else { return }
             self.likePostIDs = likePostIDs
 
-            self.homePostCollectionView.reloadData()
+//            self.homePostCollectionView.reloadData()
 
         }
     }
@@ -256,14 +263,17 @@ extension HomeViewController: UICollectionViewDataSource {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {return }
         
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
+
+        let createTime = Date().millisecondsSince1970 // 1476889390939
         
-        ref.child("appointmentPosts/pending/\(appointmentID)").setValue(
+        ref.child("appointments/pending/\(appointmentID)").setValue(
             [
                 "designerUID": postInfo.authorUID,
                 "modelUID": currentUserUID,
                 "postID": postInfo.postID,
                 "timing": timing,
-                "appointmentID": appointmentID
+                "appointmentID": appointmentID,
+                "createTime": createTime
             ]
         )
 

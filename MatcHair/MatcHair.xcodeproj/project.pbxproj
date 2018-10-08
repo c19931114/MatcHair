@@ -34,6 +34,7 @@
 		F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */; };
 		F196CEA521672DE9001110E1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA421672DE9001110E1 /* Post.swift */; };
 		F196CEA7216733E1001110E1 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA6216733E1001110E1 /* Appointment.swift */; };
+		F196CEA9216B3B87001110E1 /* Date+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA8216B3B87001110E1 /* Date+Crystal.swift */; };
 		F1A1A84F215C7D190038F0CF /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A84D215C7D190038F0CF /* ProfileCollectionViewCell.swift */; };
 		F1A1A850215C7D190038F0CF /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A1A84E215C7D190038F0CF /* ProfileCollectionViewCell.xib */; };
 		F1A1A853215C7F010038F0CF /* MyPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */; };
@@ -99,6 +100,7 @@
 		F1546C2C21528F6B009AB3ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F196CEA421672DE9001110E1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F196CEA6216733E1001110E1 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		F196CEA8216B3B87001110E1 /* Date+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Crystal.swift"; sourceTree = "<group>"; };
 		F1A1A84D215C7D190038F0CF /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1A1A84E215C7D190038F0CF /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1A1A851215C7F010038F0CF /* MyPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				F139AA232151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift */,
 				F1546C2521524D73009AB3ED /* UIView+Crystal.swift */,
 				F1365CFA21533224009419F5 /* UILabel+Crystal.swift */,
+				F196CEA8216B3B87001110E1 /* Date+Crystal.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				F1A1A84F215C7D190038F0CF /* ProfileCollectionViewCell.swift in Sources */,
 				F1C2C3E12154B3170065E4EB /* SwipeController.swift in Sources */,
 				F139AA242151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift in Sources */,
+				F196CEA9216B3B87001110E1 /* Date+Crystal.swift in Sources */,
 				F1C2C3DF2153CED20065E4EB /* CameraController.swift in Sources */,
 				F1C2C3E72154C9660065E4EB /* NavigationController.swift in Sources */,
 				F1546C2621524D73009AB3ED /* UIView+Crystal.swift in Sources */,

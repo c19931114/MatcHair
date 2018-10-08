@@ -20,7 +20,7 @@ class DesignerAppointmentViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    var designerPendingAppointment = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
+    var designerPendingAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
     var designerConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var designerPendingCollectionView: UICollectionView!
@@ -80,11 +80,11 @@ extension DesignerAppointmentViewController {
 
     func loadDesignerPendingAppointments() {
 
-        designerPendingAppointment = []
+        designerPendingAppointments = []
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("appointmentPosts/pending")
+        ref.child("appointments/pending")
             .queryOrdered(byChild: "designerUID")
             .queryEqual(toValue: currentUserUID)
             .observe(.childAdded) { (snapshot) in
@@ -162,12 +162,13 @@ extension DesignerAppointmentViewController {
                         modelImageURL: modelImageURL,
                         postInfo: postInfo)
 
-                self.designerPendingAppointment.insert(appointment, at: 0)
+                self.designerPendingAppointments.insert(appointment, at: 0)
 
             } catch {
                 print(error)
             }
 
+            self.designerPendingAppointments.sort(by: { $0.info.createTime > $1.info.createTime })
             self.designerPendingCollectionView.reloadData()
 
         }
@@ -181,7 +182,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
         switch collectionView {
 
         case designerPendingCollectionView:
-            return designerPendingAppointment.count
+            return designerPendingAppointments.count
         default:
             return designerConfirmPosts.count
         }
@@ -203,7 +204,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let appointment = designerPendingAppointment[indexPath.row]
+            let appointment = designerPendingAppointments[indexPath.row]
 
             postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
             postCell.modelImage.kf.setImage(with: appointment.modelImageURL)
@@ -252,7 +253,7 @@ extension DesignerAppointmentViewController: UICollectionViewDataSource {
 
         guard let userID = UserManager.shared.getUserUID() else { return }
 
-        let pendingPost = designerPendingAppointment[sender.tag]
+        let pendingPost = designerPendingAppointments[sender.tag]
 
 
     }

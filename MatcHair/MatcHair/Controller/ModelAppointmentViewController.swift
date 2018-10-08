@@ -20,7 +20,7 @@ class ModelAppointmentViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
-    var modelPendingAppointment = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
+    var modelPendingAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
     var modelConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var modelPendingCollectionView: UICollectionView!
@@ -80,11 +80,11 @@ extension ModelAppointmentViewController {
 
     func loadModelPendingAppointments() {
 
-        modelPendingAppointment = []
+        modelPendingAppointments = []
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("appointmentPosts/pending")
+        ref.child("appointments/pending")
             .queryOrdered(byChild: "modelUID")
             .queryEqual(toValue: currentUserUID)
             .observe(.childAdded) { (snapshot) in
@@ -162,12 +162,13 @@ extension ModelAppointmentViewController {
                         model: nil, modelImageURL: nil,
                         postInfo: postInfo)
 
-                self.modelPendingAppointment.insert(appointment, at: 0)
+                self.modelPendingAppointments.insert(appointment, at: 0)
 
             } catch {
                 print(error)
             }
 
+            self.modelPendingAppointments.sort(by: { $0.info.createTime > $1.info.createTime })
             self.modelPendingCollectionView.reloadData()
 
         }
@@ -182,7 +183,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
         switch collectionView {
 
         case modelPendingCollectionView:
-            return modelPendingAppointment.count
+            return modelPendingAppointments.count
         default:
             return modelConfirmPosts.count
         }
@@ -206,7 +207,7 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let appointment = modelPendingAppointment[indexPath.row]
+            let appointment = modelPendingAppointments[indexPath.row]
             // (appointment, designerData, postData)
 
             postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
@@ -263,11 +264,11 @@ extension ModelAppointmentViewController: UICollectionViewDataSource {
 
     @objc func cancelButtonTapped(sender: UIButton) {
 
-        let pendingPost = modelPendingAppointment[sender.tag]
+        let pendingPost = modelPendingAppointments[sender.tag]
 
-        ref.child("appointmentPosts/pending/\(pendingPost.info.appointmentID)").removeValue()
+        ref.child("appointments/pending/\(pendingPost.info.appointmentID)").removeValue()
 
-        modelPendingAppointment.remove(at: sender.tag)
+        modelPendingAppointments.remove(at: sender.tag)
 
         modelPendingCollectionView.reloadData()
 

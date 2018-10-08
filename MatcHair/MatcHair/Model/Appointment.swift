@@ -25,4 +25,5 @@ struct AppointmentInfo: Codable {
     let postID: String
     let timing: String
     let appointmentID: String
+    let createTime: Int
 }

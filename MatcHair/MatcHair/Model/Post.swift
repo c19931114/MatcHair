@@ -30,7 +30,7 @@ struct PostInfo: Codable {
     let pictureURL: String
     let reservation: Reservation
     let authorUID: String
-    let isLiked: Bool
+    let createTime: Int
 }
 
 struct Category: Codable {

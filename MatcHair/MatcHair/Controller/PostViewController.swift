@@ -318,11 +318,13 @@ extension PostViewController {
 
                 if self.recruitModelSwitch.isOn {
 
+                    let postTime = Date().millisecondsSince1970 // 1476889390939
+
                     self.ref.child("allPosts/\(postID)").setValue(
 
                         [
                             "postID": "\(postID)",
-                            "isLiked": false,
+                            "createTime": postTime,
                             "authorUID": "\(authorUID)",
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",

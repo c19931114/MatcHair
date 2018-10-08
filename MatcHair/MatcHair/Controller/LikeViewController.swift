@@ -133,10 +133,12 @@ extension LikeViewController {
                 let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
                 self.likePosts.insert(post, at: 0)
 
-                self.likePostCollectionView.reloadData()
             } else {
                 print(error as Any)
             }
+
+            self.likePosts.sort(by: { $0.info.createTime > $1.info.createTime })
+            self.likePostCollectionView.reloadData()
 
         })
 

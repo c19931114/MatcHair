@@ -195,6 +195,8 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func likeButtonTapped(sender: UIButton) {
 
+        NotificationCenter.default.post(name: .reFetch, object: nil, userInfo: nil)
+
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
         let likePost = allPosts[sender.tag]
@@ -261,11 +263,11 @@ extension HomeViewController: UICollectionViewDataSource {
     private func uploadAppointment(with postInfo: PostInfo, timing: String) {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else {return }
-        
-        guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
 
         let createTime = Date().millisecondsSince1970 // 1476889390939
-        
+
+        guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
+
         ref.child("appointments/pending/\(appointmentID)").setValue(
             [
                 "designerUID": postInfo.authorUID,

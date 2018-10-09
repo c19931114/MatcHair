@@ -55,7 +55,7 @@ extension DesignerConfirmViewController {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("appointments/pending")
+        ref.child("appointments/confirm")
             .queryOrdered(byChild: "designerUID")
             .queryEqual(toValue: currentUserUID)
             .observe(.childAdded) { (snapshot) in
@@ -187,7 +187,7 @@ extension DesignerConfirmViewController: UICollectionViewDataSource {
 
         let pendingPost = designerConfirmAppointments[sender.tag]
 
-        ref.child("appointments/pending/\(pendingPost.info.appointmentID)").removeValue()
+        ref.child("appointments/confirm/\(pendingPost.info.appointmentID)").removeValue()
 
         designerConfirmAppointments.remove(at: sender.tag)
 

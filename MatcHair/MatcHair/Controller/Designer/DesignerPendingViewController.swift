@@ -155,29 +155,33 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-            let cell = designerPendingCollectionView.dequeueReusableCell(
-                withReuseIdentifier: String(describing: DesignerPendingCollectionViewCell.self),
-                for: indexPath)
+        let cell = designerPendingCollectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: DesignerPendingCollectionViewCell.self),
+            for: indexPath)
 
-            guard let postCell = cell as? DesignerPendingCollectionViewCell else {
-                return UICollectionViewCell()
-            }
+        guard let postCell = cell as? DesignerPendingCollectionViewCell else {
+            return UICollectionViewCell()
+        }
 
-            let appointment = designerPendingAppointments[indexPath.row]
+        let appointment = designerPendingAppointments[indexPath.row]
 
-            postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
-            postCell.modelImage.kf.setImage(with: appointment.modelImageURL)
-            postCell.modelNameLabel.text = appointment.model?.name
-            postCell.reservationTimeLabel.text =
-            "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
+        postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
+        postCell.modelImage.kf.setImage(with: appointment.modelImageURL)
+        postCell.modelNameLabel.text = appointment.model?.name
+        postCell.reservationTimeLabel.text =
+        "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
 
-            // target action
-            postCell.cancelButton.tag = indexPath.row
-            postCell.cancelButton.addTarget(
-                self,
-                action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
+        // target action
+        postCell.cancelButton.tag = indexPath.row
+        postCell.cancelButton.addTarget(
+            self,
+            action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
 
-            return postCell
+        postCell.acceptButton.tag = indexPath.row
+        postCell.acceptButton.addTarget(
+            self, action: #selector(acceptButtonTapped), for: .touchUpInside)
+
+        return postCell
 
     }
 
@@ -190,6 +194,27 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
         designerPendingAppointments.remove(at: sender.tag)
 
         designerPendingCollectionView.reloadData()
+
+    }
+
+    @objc func acceptButtonTapped(sender: UIButton) {
+
+        let pendingPost = designerPendingAppointments[sender.tag]
+
+        cancelButtonTapped(sender: sender)
+
+        let createTime = Date().millisecondsSince1970
+
+        ref.child("appointments/confirm/\(pendingPost.info.appointmentID)").setValue(
+            [
+                "designerUID": pendingPost.designer?.id,
+                "modelUID": pendingPost.model?.id,
+                "postID": pendingPost.postInfo.postID,
+                "timing": pendingPost.info.timing,
+                "appointmentID": pendingPost.info.appointmentID,
+                "createTime": createTime
+            ]
+        )
 
     }
 

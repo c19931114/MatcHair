@@ -99,16 +99,16 @@
                                     <action selector="switchStament:" destination="rol-q8-hzB" eventType="valueChanged" id="02Q-VK-xmu"/>
                                 </connections>
                             </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeB-MW-fma">
-                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
-                                <connections>
-                                    <segue destination="w7Q-Bg-RIP" kind="embed" id="IQm-bu-Iez"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SmE-Fp-n0R">
                                 <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                                 <connections>
                                     <segue destination="4st-XU-mLQ" kind="embed" id="Ehs-cc-X0F"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeB-MW-fma">
+                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <connections>
+                                    <segue destination="w7Q-Bg-RIP" kind="embed" id="IQm-bu-Iez"/>
                                 </connections>
                             </containerView>
                         </subviews>

@@ -51,10 +51,8 @@ extension ModelPendingViewController {
     // observe .childRemove
     func observeDeleteAction() {
 
-        modelPendingAppointments = []
-
         ref.child("appointments/pending").observe(.childRemoved) { (snapshot) in
-            //            print(snapshot)
+            // print(snapshot)
             self.loadModelPendingAppointments()
             self.modelPendingCollectionView.reloadData()
 
@@ -72,12 +70,23 @@ extension ModelPendingViewController {
             .queryEqual(toValue: currentUserUID)
             .observe(.childAdded) { (snapshot) in
 
+                print("---------")
+
+                print(snapshot)
+
+                print("---------")
+
+                print(self.modelPendingAppointments.count)
+
                 guard let value = snapshot.value else { return }
 
                 guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
                 do {
                     let appointmentInfo = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
+
+                    print(appointmentInfo.postID)
+
                     self.getDesignerImageURLWith(appointmentInfo)
 
                 } catch {
@@ -147,6 +156,10 @@ extension ModelPendingViewController {
 
                 self.modelPendingAppointments.insert(appointment, at: 0)
 
+                print("YA")
+                print(self.modelPendingAppointments.count)
+
+
             } catch {
                 print(error)
             }
@@ -164,6 +177,7 @@ extension ModelPendingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         return modelPendingAppointments.count
+        
 
     }
 
@@ -215,7 +229,17 @@ extension ModelPendingViewController: UICollectionViewDataSource {
 
         ref.child("appointments/pending/\(pendingPost.info.appointmentID)").removeValue()
 
+
         modelPendingAppointments.remove(at: sender.tag)
+
+        print("---------")
+
+        print("tag: \(sender.tag)")
+
+        print(modelPendingAppointments.count)
+
+        print("---------")
+
 
         modelPendingCollectionView.reloadData()
 

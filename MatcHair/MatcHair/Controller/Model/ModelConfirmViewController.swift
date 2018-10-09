@@ -53,7 +53,7 @@ extension ModelConfirmViewController {
 
         modelConfirmAppointments = []
 
-        ref.child("appointments/pending").observe(.childRemoved) { (snapshot) in
+        ref.child("appointments/confirm").observe(.childRemoved) { (snapshot) in
             //            print(snapshot)
             self.loadModelConfirmAppointments()
             self.modelConfirmCollectionView.reloadData()
@@ -67,7 +67,7 @@ extension ModelConfirmViewController {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("appointments/pending")
+        ref.child("appointments/confirm")
             .queryOrdered(byChild: "modelUID")
             .queryEqual(toValue: currentUserUID)
             .observe(.childAdded) { (snapshot) in
@@ -213,7 +213,7 @@ extension ModelConfirmViewController: UICollectionViewDataSource {
 
         let pendingPost = modelConfirmAppointments[sender.tag]
 
-        ref.child("appointments/pending/\(pendingPost.info.appointmentID)").removeValue()
+        ref.child("appointments/confirm/\(pendingPost.info.appointmentID)").removeValue()
 
         modelConfirmAppointments.remove(at: sender.tag)
 

@@ -18,8 +18,8 @@ class LikeViewController: UIViewController {
 
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
-//    var likePosts = [(PostInfo, User)]()
-    var likePosts = [Post]()
+
+    var likePosts = [Post]() // [(PostInfo, User)]
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
     var selectedTiming: String?
@@ -43,8 +43,11 @@ extension LikeViewController {
 
         loadLikePosts()
 
-        observeDeleteAction()
-
+        let notificationName = Notification.Name.reFetch
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadLikePosts),
+            name: notificationName, object: nil)
     }
 
     private func setupCollectionView() {
@@ -57,46 +60,41 @@ extension LikeViewController {
         likePostCollectionView.register(xib, forCellWithReuseIdentifier: identifier)
 
     }
-    // observe .childRemove
-    func observeDeleteAction() {
+
+    @objc func loadLikePosts() {
 
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("likePosts/\(currentUserID)").observe(.childRemoved) { (snapshot) in
-//            let postID = snapshot.key
-            self.loadLikePosts()
-            self.likePostCollectionView.reloadData()
+        ref.child("likePosts/\(currentUserID)").observeSingleEvent(of: .value) { (snapshot) in
 
-        }
-    }
+            self.likePosts = []
 
-    func loadLikePosts() {
+            guard let value = snapshot.value as? NSDictionary else { return }
 
-        self.likePosts = []
+            for postID in value.allKeys {
 
-        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+                print("-------")
+                print(postID)
+                print("-------")
 
-        ref.child("likePosts/\(currentUserID)").observe(.childAdded) { (snapshot) in
+                self.ref
+                    .child("allPosts")
+                    .queryOrderedByKey()
+                    .queryEqual(toValue: postID)
+                    .observeSingleEvent(of: .value) { (snapshot) in
 
-            let postID = snapshot.key
+                        guard let value = snapshot.value as? NSDictionary else { return }
 
-            self.ref
-                .child("allPosts")
-                .queryOrderedByKey()
-                .queryEqual(toValue: postID)
-                .observeSingleEvent(of: .value) { (snapshot) in
+                        guard let postJSONData =
+                            try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
 
-                    guard let value = snapshot.value as? NSDictionary else { return }
-
-                    guard let postJSONData =
-                        try? JSONSerialization.data(withJSONObject: value.allValues[0]) else { return }
-
-                    do {
-                        let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
-                        self.getAuthorInfo(with: postData)
-                    } catch {
-                        print(error)
-                    }
+                        do {
+                            let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
+                            self.getAuthorInfo(with: postData)
+                        } catch {
+                            print(error)
+                        }
+                }
             }
 
         }
@@ -131,13 +129,13 @@ extension LikeViewController {
             if let authorImageURL = url {
 
                 let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
-                self.likePosts.insert(post, at: 0)
+                self.likePosts.append(post)
 
             } else {
                 print(error as Any)
             }
 
-            self.likePosts.sort(by: { $0.info.createTime > $1.info.createTime })
+            self.likePosts.sort(by: { $0.info.createTime > $1.info.createTime }) // 應該是加入最愛的時間
             self.likePostCollectionView.reloadData()
 
         })
@@ -331,4 +329,8 @@ extension LikeViewController: UICollectionViewDelegate {
 //        let detailForPost = DetailViewController.detailForPost(selectedPost)
 //        self.present(detailForPost, animated: true)
     }
+}
+
+extension Notification.Name {
+    static let reFetch = Notification.Name("reFetch")
 }

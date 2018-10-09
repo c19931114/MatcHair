@@ -43,11 +43,11 @@ extension LikeViewController {
 
         loadLikePosts()
 
-        let notificationName = Notification.Name.reFetch
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadLikePosts),
-            name: notificationName, object: nil)
+            name: Notification.Name.reFetchLikePosts,
+            object: nil)
     }
 
     private func setupCollectionView() {
@@ -72,10 +72,6 @@ extension LikeViewController {
             guard let value = snapshot.value as? NSDictionary else { return }
 
             for postID in value.allKeys {
-
-                print("-------")
-                print(postID)
-                print("-------")
 
                 self.ref
                     .child("allPosts")
@@ -233,6 +229,7 @@ extension LikeViewController: UICollectionViewDataSource {
             self.selectedTiming = value
 
             self.uploadAppointment(post: reservationPost.info, with: value)
+            NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
 
             // 向左換 tab 頁
             self.transition.duration = 0.5
@@ -249,17 +246,21 @@ extension LikeViewController: UICollectionViewDataSource {
 
     private func uploadAppointment(post: PostInfo, with timing: String) {
 
-        guard let currentUserUID = UserManager.shared.getUserUID() else {return }
+        guard let currentUserUID = UserManager.shared.getUserUID() else { return }
+
+        let createTime = Date().millisecondsSince1970 // 1476889390939
 
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
 
-        ref.child("appointmentPosts/pending/\(appointmentID)").setValue(
+        ref.child("appointmentPosts/\(appointmentID)").setValue(
             [
                 "designerUID": post.authorUID,
                 "modelUID": currentUserUID,
                 "postID": post.postID,
                 "timing": timing,
                 "appointmentID": appointmentID,
+                "createTime": createTime,
+                "statement": "pending"
             ]
         )
 
@@ -329,8 +330,4 @@ extension LikeViewController: UICollectionViewDelegate {
 //        let detailForPost = DetailViewController.detailForPost(selectedPost)
 //        self.present(detailForPost, animated: true)
     }
-}
-
-extension Notification.Name {
-    static let reFetch = Notification.Name("reFetch")
 }

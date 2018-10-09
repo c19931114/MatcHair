@@ -1,8 +1,8 @@
 //
-//  ModelConfirmViewController.swift
+//  DesignerCompleteViewController.swift
 //  MatcHair
 //
-//  Created by Crystal on 2018/10/8.
+//  Created by Crystal on 2018/10/9.
 //  Copyright © 2018年 Crystal. All rights reserved.
 //
 
@@ -12,20 +12,20 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 
-class ModelConfirmViewController: UIViewController {
+class DesignerCompleteViewController: UIViewController {
 
     let decoder = JSONDecoder()
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
     let fullScreenSize = UIScreen.main.bounds.size
 
-    var modelConfirmAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
+    var designerCompleteAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
 
-    @IBOutlet weak var modelConfirmCollectionView: UICollectionView!
+    @IBOutlet weak var designerCompleteCollectionView: UICollectionView!
 
 }
 
-extension ModelConfirmViewController {
+extension DesignerCompleteViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +44,12 @@ extension ModelConfirmViewController {
 
     private func setupCollectionView() {
 
-        modelConfirmCollectionView.dataSource = self
-        modelConfirmCollectionView.delegate = self
+        designerCompleteCollectionView.dataSource = self
+        designerCompleteCollectionView.delegate = self
 
-        let confirmIdentifier = String(describing: ModelConfirmCollectionViewCell.self)
-        let confirmXib = UINib(nibName: confirmIdentifier, bundle: nil)
-        modelConfirmCollectionView.register(confirmXib, forCellWithReuseIdentifier: confirmIdentifier)
+        let completeIdentifier = String(describing: ModelCompleteCollectionViewCell.self)
+        let completeXib = UINib(nibName: completeIdentifier, bundle: nil)
+        designerCompleteCollectionView.register(completeXib, forCellWithReuseIdentifier: completeIdentifier)
 
     }
 
@@ -58,11 +58,11 @@ extension ModelConfirmViewController {
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
         ref.child("appointments")
-            .queryOrdered(byChild: "modelUID")
+            .queryOrdered(byChild: "designerUID")
             .queryEqual(toValue: currentUserUID)
             .observeSingleEvent(of: .value) { (snapshot) in
 
-                self.modelConfirmAppointments = []
+                self.designerCompleteAppointments = []
 
                 guard let value = snapshot.value as? NSDictionary else { return }
 
@@ -73,7 +73,7 @@ extension ModelConfirmViewController {
                     do {
                         let appointmentInfo = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
 
-                        if appointmentInfo.statement == "confirm" {
+                        if appointmentInfo.statement == "complete" {
 
                             self.getDesignerImageURLWith(appointmentInfo)
                         }
@@ -143,25 +143,25 @@ extension ModelConfirmViewController {
                         model: nil, modelImageURL: nil,
                         postInfo: postInfo)
 
-                self.modelConfirmAppointments.insert(appointment, at: 0)
+                self.designerCompleteAppointments.insert(appointment, at: 0)
 
             } catch {
                 print(error)
             }
 
-            self.modelConfirmAppointments.sort(by: { $0.info.createTime > $1.info.createTime })
-            self.modelConfirmCollectionView.reloadData()
+            self.designerCompleteAppointments.sort(by: { $0.info.createTime > $1.info.createTime })
+            self.designerCompleteCollectionView.reloadData()
 
         }
     }
 
 }
 
-extension ModelConfirmViewController: UICollectionViewDataSource {
+extension DesignerCompleteViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return modelConfirmAppointments.count
+        return designerCompleteAppointments.count
 
     }
 
@@ -171,15 +171,15 @@ extension ModelConfirmViewController: UICollectionViewDataSource {
 
         var categories = [String]()
 
-        let cell = modelConfirmCollectionView.dequeueReusableCell(
-            withReuseIdentifier: String(describing: ModelConfirmCollectionViewCell.self),
+        let cell = designerCompleteCollectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: DesignerCompleteCollectionViewCell.self),
             for: indexPath)
 
-        guard let appointmentCell = cell as? ModelConfirmCollectionViewCell else {
+        guard let appointmentCell = cell as? DesignerCompleteCollectionViewCell else {
             return UICollectionViewCell()
         }
 
-        let appointment = modelConfirmAppointments[indexPath.row]
+        let appointment = designerCompleteAppointments[indexPath.row]
         // (appointment, designerData, postData)
 
         appointmentCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
@@ -198,37 +198,37 @@ extension ModelConfirmViewController: UICollectionViewDataSource {
         appointmentCell.categoryLabel.text = categories.joined(separator: ", ")
 
         // target action
-        appointmentCell.completeButton.tag = indexPath.row
-        appointmentCell.completeButton.addTarget(
-            self,
-            action: #selector(completeButtonTapped(sender:)), for: .touchUpInside)
+        //        postCell.completeButton.tag = indexPath.row
+        //        postCell.completeButton.addTarget(
+        //            self,
+        //            action: #selector(scoreButtonTapped(sender:)), for: .touchUpInside)
 
         return appointmentCell
 
     }
 
-    @objc func completeButtonTapped(sender: UIButton) {
+    @objc func scoreButtonTapped(sender: UIButton) {
 
-        let confirmPost = modelConfirmAppointments[sender.tag]
+        let completePost = designerCompleteAppointments[sender.tag]
 
-        modelConfirmAppointments.remove(at: sender.tag)
+        designerCompleteAppointments.remove(at: sender.tag)
 
-        modelConfirmCollectionView.reloadData()
-
-        let completeTime = Date().millisecondsSince1970
-
-        ref.child("appointments/\(confirmPost.info.appointmentID)").updateChildValues(
-            [
-                "statement": "complete",
-                "createTime": completeTime
-            ]
-        )
+        //        modelCompleteCollectionView.reloadData()
+        //
+        //        let completeTime = Date().millisecondsSince1970
+        //
+        //        ref.child("appointments/\(completePost.info.appointmentID)").updateChildValues(
+        //            [
+        //                "statement": "complete",
+        //                "createTime": completeTime
+        //            ]
+        //        )
 
     }
 
 }
 
-extension ModelConfirmViewController: UICollectionViewDelegateFlowLayout {
+extension DesignerCompleteViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
         _ collectionView: UICollectionView,

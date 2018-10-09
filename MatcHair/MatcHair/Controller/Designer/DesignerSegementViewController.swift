@@ -14,19 +14,15 @@ import Kingfisher
 
 class DesignerSegementViewController: UIViewController {
 
-    let decoder = JSONDecoder()
-    lazy var storageRef = Storage.storage().reference()
-    var ref: DatabaseReference!
-    let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
-
-    var designerPendingAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
-    var designerConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var pendingView: UIView!
     @IBOutlet weak var confirmView: UIView!
+    @IBOutlet weak var completeView: UIView!
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
+
+        NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil) // 應該要放一個在 tab
 
         switch sender.selectedSegmentIndex {
         case 0:
@@ -34,18 +30,21 @@ class DesignerSegementViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 1
                 self.confirmView.alpha = 0
+                self.completeView.alpha = 0
             })
         case 1:
             print("1")
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0
                 self.confirmView.alpha = 1
+                self.completeView.alpha = 0
             })
         default:
             print("2")
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0
                 self.confirmView.alpha = 0
+                self.completeView.alpha = 0
             })
         }
     }

@@ -34,7 +34,12 @@ extension ModelPendingViewController {
 
         setupCollectionView()
         loadModelPendingAppointments()
-        observeDeleteAction()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadModelPendingAppointments),
+            name: Notification.Name.reFetchModelAppointments,
+            object: nil)
 
     }
 
@@ -48,49 +53,35 @@ extension ModelPendingViewController {
         modelPendingCollectionView.register(pendingXib, forCellWithReuseIdentifier: pendingIdentifier)
 
     }
-    // observe .childRemove
-    func observeDeleteAction() {
 
-        ref.child("appointments/pending").observe(.childRemoved) { (snapshot) in
-            // print(snapshot)
-            self.loadModelPendingAppointments()
-            self.modelPendingCollectionView.reloadData()
-
-        }
-    }
-
-    func loadModelPendingAppointments() {
-
-        modelPendingAppointments = []
+    @objc func loadModelPendingAppointments() {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("appointments/pending")
+        ref.child("appointments")
             .queryOrdered(byChild: "modelUID")
             .queryEqual(toValue: currentUserUID)
-            .observe(.childAdded) { (snapshot) in
+            .observeSingleEvent(of: .value) { (snapshot) in
 
-                print("---------")
+                self.modelPendingAppointments = []
 
-                print(snapshot)
+                guard let value = snapshot.value as? NSDictionary else { return }
 
-                print("---------")
+                for value in value.allValues {
 
-                print(self.modelPendingAppointments.count)
+                    guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-                guard let value = snapshot.value else { return }
+                    do {
+                        let appointmentInfo = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
 
-                guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
+                        if appointmentInfo.statement == "pending" {
 
-                do {
-                    let appointmentInfo = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
+                            self.getDesignerImageURLWith(appointmentInfo)
+                        }
 
-                    print(appointmentInfo.postID)
-
-                    self.getDesignerImageURLWith(appointmentInfo)
-
-                } catch {
-                    print(error)
+                    } catch {
+                        print(error)
+                    }
                 }
 
         }
@@ -159,7 +150,6 @@ extension ModelPendingViewController {
                 print("YA")
                 print(self.modelPendingAppointments.count)
 
-
             } catch {
                 print(error)
             }
@@ -177,7 +167,6 @@ extension ModelPendingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         return modelPendingAppointments.count
-        
 
     }
 
@@ -191,17 +180,16 @@ extension ModelPendingViewController: UICollectionViewDataSource {
             withReuseIdentifier: String(describing: ModelPendingCollectionViewCell.self),
             for: indexPath)
 
-        guard let postCell = cell as? ModelPendingCollectionViewCell else {
+        guard let appointmentCell = cell as? ModelPendingCollectionViewCell else {
             return UICollectionViewCell()
         }
 
-        let appointment = modelPendingAppointments[indexPath.row]
-        // (appointment, designerData, postData)
+        let appointment = modelPendingAppointments[indexPath.row] // (appointment, designerData, postData)
 
-        postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
-        postCell.designerImage.kf.setImage(with: appointment.designerImageURL)
-        postCell.designerNameLabel.text = appointment.designer?.name
-        postCell.reservationTimeLabel.text =
+        appointmentCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
+        appointmentCell.designerImage.kf.setImage(with: appointment.designerImageURL)
+        appointmentCell.designerNameLabel.text = appointment.designer?.name
+        appointmentCell.reservationTimeLabel.text =
         "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
 
         if appointment.postInfo.category.shampoo { categories.append("洗髮") }
@@ -211,15 +199,15 @@ extension ModelPendingViewController: UICollectionViewDataSource {
         if appointment.postInfo.category.treatment { categories.append("護髮") }
         if appointment.postInfo.category.other { categories.append("其他") }
 
-        postCell.categoryLabel.text = categories.joined(separator: ", ")
+        appointmentCell.categoryLabel.text = categories.joined(separator: ", ")
 
         // target action
-        postCell.cancelButton.tag = indexPath.row
-        postCell.cancelButton.addTarget(
+        appointmentCell.cancelButton.tag = indexPath.row
+        appointmentCell.cancelButton.addTarget(
             self,
             action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
 
-        return postCell
+        return appointmentCell
 
     }
 
@@ -227,19 +215,9 @@ extension ModelPendingViewController: UICollectionViewDataSource {
 
         let pendingPost = modelPendingAppointments[sender.tag]
 
-        ref.child("appointments/pending/\(pendingPost.info.appointmentID)").removeValue()
-
+        ref.child("appointments/\(pendingPost.info.appointmentID)").removeValue()
 
         modelPendingAppointments.remove(at: sender.tag)
-
-        print("---------")
-
-        print("tag: \(sender.tag)")
-
-        print(modelPendingAppointments.count)
-
-        print("---------")
-
 
         modelPendingCollectionView.reloadData()
 

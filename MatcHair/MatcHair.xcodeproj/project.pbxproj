@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		B4264DBA5EF9E6C724DD9828 /* Pods_MatcHair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23CA9D31BC2C6961C35F9E2 /* Pods_MatcHair.framework */; };
 		F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1365CFA21533224009419F5 /* UILabel+Crystal.swift */; };
+		F13978A1216C619900B80B68 /* NotificationName+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13978A0216C619900B80B68 /* NotificationName+Crystal.swift */; };
+		F13978A3216C8A3900B80B68 /* ModelCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13978A2216C8A3900B80B68 /* ModelCompleteViewController.swift */; };
+		F13978A5216C8A4F00B80B68 /* DesignerCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13978A4216C8A4F00B80B68 /* DesignerCompleteViewController.swift */; };
+		F13978A9216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13978A7216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.swift */; };
+		F13978AA216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F13978A8216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.xib */; };
+		F13978B3216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13978B1216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.swift */; };
+		F13978B4216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F13978B2216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.xib */; };
 		F139AA062151EF3700B5B0D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA052151EF3700B5B0D4 /* AppDelegate.swift */; };
 		F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F139AA072151EF3700B5B0D4 /* ViewController.swift */; };
 		F139AA0B2151EF3700B5B0D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA092151EF3700B5B0D4 /* Main.storyboard */; };
@@ -77,6 +84,13 @@
 		B95A55F15F9234D82EDC18BB /* Pods-MatcHair.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatcHair.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair.debug.xcconfig"; sourceTree = "<group>"; };
 		E2AED2B853FE316240AEACF8 /* Pods-MatcHair.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatcHair.release.xcconfig"; path = "Pods/Target Support Files/Pods-MatcHair/Pods-MatcHair.release.xcconfig"; sourceTree = "<group>"; };
 		F1365CFA21533224009419F5 /* UILabel+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Crystal.swift"; sourceTree = "<group>"; };
+		F13978A0216C619900B80B68 /* NotificationName+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Crystal.swift"; sourceTree = "<group>"; };
+		F13978A2216C8A3900B80B68 /* ModelCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCompleteViewController.swift; sourceTree = "<group>"; };
+		F13978A4216C8A4F00B80B68 /* DesignerCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerCompleteViewController.swift; sourceTree = "<group>"; };
+		F13978A7216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCompleteCollectionViewCell.swift; sourceTree = "<group>"; };
+		F13978A8216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelCompleteCollectionViewCell.xib; sourceTree = "<group>"; };
+		F13978B1216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerCompleteCollectionViewCell.swift; sourceTree = "<group>"; };
+		F13978B2216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignerCompleteCollectionViewCell.xib; sourceTree = "<group>"; };
 		F139AA022151EF3700B5B0D4 /* MatcHair.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatcHair.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F139AA052151EF3700B5B0D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F139AA072151EF3700B5B0D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +185,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F13978A6216C8BEF00B80B68 /* ModelCompleteCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F13978A7216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.swift */,
+				F13978A8216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.xib */,
+			);
+			path = ModelCompleteCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		F13978B0216C8D9C00B80B68 /* DesignerCompleteCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F13978B1216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.swift */,
+				F13978B2216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.xib */,
+			);
+			path = DesignerCompleteCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		F139A9F92151EF3700B5B0D4 = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +283,7 @@
 				F1546C2521524D73009AB3ED /* UIView+Crystal.swift */,
 				F1365CFA21533224009419F5 /* UILabel+Crystal.swift */,
 				F196CEA8216B3B87001110E1 /* Date+Crystal.swift */,
+				F13978A0216C619900B80B68 /* NotificationName+Crystal.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -318,6 +351,7 @@
 				F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */,
 				F196CEAF216B68CB001110E1 /* ModelPendingViewController.swift */,
 				F196CEB1216B68E0001110E1 /* ModelConfirmViewController.swift */,
+				F13978A2216C8A3900B80B68 /* ModelCompleteViewController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -328,6 +362,7 @@
 				F1D0BBD9215FF55000ABAE5D /* DesignerSegementViewController.swift */,
 				F196CEB4216B9448001110E1 /* DesignerPendingViewController.swift */,
 				F196CEB6216B945F001110E1 /* DesignerConfirmViewController.swift */,
+				F13978A4216C8A4F00B80B68 /* DesignerCompleteViewController.swift */,
 			);
 			path = Designer;
 			sourceTree = "<group>";
@@ -362,10 +397,12 @@
 		F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				F1D0BBDB2161007200ABAE5D /* DesignerPendingCollectionViewCell */,
-				F1D0BBE0216100C000ABAE5D /* DesignerConfirmCollectionViewCell */,
 				F1D0BBE2216107AC00ABAE5D /* ModelPendingCollectionViewCell */,
 				F1D0BBE12161079400ABAE5D /* ModelConfirmCollectionViewCell */,
+				F13978A6216C8BEF00B80B68 /* ModelCompleteCollectionViewCell */,
+				F1D0BBDB2161007200ABAE5D /* DesignerPendingCollectionViewCell */,
+				F1D0BBE0216100C000ABAE5D /* DesignerConfirmCollectionViewCell */,
+				F13978B0216C8D9C00B80B68 /* DesignerCompleteCollectionViewCell */,
 			);
 			path = AppointmentCollectionViewCell;
 			sourceTree = "<group>";
@@ -500,6 +537,7 @@
 				F139AA292151FB2000B5B0D4 /* Appointment.storyboard in Resources */,
 				F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */,
 				F139AA102151EF3A00B5B0D4 /* LaunchScreen.storyboard in Resources */,
+				F13978B4216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.xib in Resources */,
 				F1A1A860215DE1070038F0CF /* Assets.xcassets in Resources */,
 				F1A1A854215C7F010038F0CF /* MyPostCollectionViewCell.xib in Resources */,
 				F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */,
@@ -508,6 +546,7 @@
 				F139AA2D2151FB3900B5B0D4 /* ChatRoom.storyboard in Resources */,
 				F1DD3F3521536D3D00BBE710 /* PostCollectionViewCell.xib in Resources */,
 				F139AA0B2151EF3700B5B0D4 /* Main.storyboard in Resources */,
+				F13978AA216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,10 +646,14 @@
 				F196CEB5216B9448001110E1 /* DesignerPendingViewController.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
 				F1D0BBE52161087300ABAE5D /* ModelPendingCollectionViewCell.swift in Sources */,
+				F13978A1216C619900B80B68 /* NotificationName+Crystal.swift in Sources */,
 				F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */,
+				F13978A9216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.swift in Sources */,
+				F13978A3216C8A3900B80B68 /* ModelCompleteViewController.swift in Sources */,
 				F14794A2215B57AD005E864C /* HomeViewController.swift in Sources */,
 				F196CEB2216B68E0001110E1 /* ModelConfirmViewController.swift in Sources */,
 				F139AA1E2151F5B800B5B0D4 /* LoginViewController.swift in Sources */,
+				F13978A5216C8A4F00B80B68 /* DesignerCompleteViewController.swift in Sources */,
 				F139AA082151EF3700B5B0D4 /* ViewController.swift in Sources */,
 				F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */,
 				F1C2C3E32154B4180065E4EB /* SegueController.swift in Sources */,
@@ -628,6 +671,7 @@
 				F1A1A84F215C7D190038F0CF /* ProfileCollectionViewCell.swift in Sources */,
 				F1C2C3E12154B3170065E4EB /* SwipeController.swift in Sources */,
 				F139AA242151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift in Sources */,
+				F13978B3216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.swift in Sources */,
 				F196CEA9216B3B87001110E1 /* Date+Crystal.swift in Sources */,
 				F1C2C3DF2153CED20065E4EB /* CameraController.swift in Sources */,
 				F1C2C3E72154C9660065E4EB /* NavigationController.swift in Sources */,

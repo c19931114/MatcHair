@@ -20,10 +20,13 @@ struct Appointment { // 這邊沒有要 Codable 喔
 }
 
 struct AppointmentInfo: Codable {
+    
     let modelUID: String
     let designerUID: String
     let postID: String
     let timing: String
     let appointmentID: String
     let createTime: Int
+    let statement: String
+
 }

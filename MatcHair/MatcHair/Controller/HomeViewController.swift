@@ -195,7 +195,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func likeButtonTapped(sender: UIButton) {
 
-        NotificationCenter.default.post(name: .reFetch, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .reFetchLikePosts, object: nil, userInfo: nil)
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
@@ -217,7 +217,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     @objc func reservationButtonTapped(sender: UIButton) {
-        
+
         var timingOption = [String]()
 
         let reservationPost = allPosts[sender.tag]
@@ -246,6 +246,8 @@ extension HomeViewController: UICollectionViewDataSource {
 
                 self.uploadAppointment(with: reservationPost.info, timing: value)
 
+                NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
+
                 // 向右換 tab 頁
                 self.transition.duration = 0.5
                 self.transition.type = CATransitionType.push
@@ -268,14 +270,15 @@ extension HomeViewController: UICollectionViewDataSource {
 
         guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
 
-        ref.child("appointments/pending/\(appointmentID)").setValue(
+        ref.child("appointments/\(appointmentID)").setValue(
             [
                 "designerUID": postInfo.authorUID,
                 "modelUID": currentUserUID,
                 "postID": postInfo.postID,
                 "timing": timing,
                 "appointmentID": appointmentID,
-                "createTime": createTime
+                "createTime": createTime,
+                "statement": "pending"
             ]
         )
 

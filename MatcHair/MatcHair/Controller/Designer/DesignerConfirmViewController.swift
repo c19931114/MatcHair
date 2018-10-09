@@ -44,8 +44,8 @@ extension DesignerConfirmViewController {
         designerConfirmCollectionView.delegate = self
 
         let confirmIdentifier = String(describing: DesignerConfirmCollectionViewCell.self)
-        let acceptXib = UINib(nibName: confirmIdentifier, bundle: nil)
-        designerConfirmCollectionView.register(acceptXib, forCellWithReuseIdentifier: confirmIdentifier)
+        let confirmXib = UINib(nibName: confirmIdentifier, bundle: nil)
+        designerConfirmCollectionView.register(confirmXib, forCellWithReuseIdentifier: confirmIdentifier)
 
     }
 
@@ -55,23 +55,29 @@ extension DesignerConfirmViewController {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("appointments/confirm")
+        ref.child("appointments")
             .queryOrdered(byChild: "designerUID")
             .queryEqual(toValue: currentUserUID)
-            .observe(.childAdded) { (snapshot) in
+            .observeSingleEvent(of: .value) { (snapshot) in
 
-                guard let value = snapshot.value else { return }
+                guard let value = snapshot.value as? NSDictionary else { return }
 
-                guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
+                for value in value.allValues {
 
-                do {
-                    let appointment = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
-                    self.getModelImageURLWith(appointment)
+                    guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-                } catch {
-                    print(error)
+                    do {
+                        let appointmentInfo = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
+
+                        if appointmentInfo.statement == "confirm" {
+
+                            self.getModelImageURLWith(appointmentInfo)
+                        }
+
+                    } catch {
+                        print(error)
+                    }
                 }
-
         }
     }
 
@@ -185,9 +191,9 @@ extension DesignerConfirmViewController: UICollectionViewDataSource {
 
     @objc func cancelButtonTapped(sender: UIButton) {
 
-        let pendingPost = designerConfirmAppointments[sender.tag]
+        let confirmPost = designerConfirmAppointments[sender.tag]
 
-        ref.child("appointments/confirm/\(pendingPost.info.appointmentID)").removeValue()
+        ref.child("appointments/\(confirmPost.info.appointmentID)").removeValue()
 
         designerConfirmAppointments.remove(at: sender.tag)
 

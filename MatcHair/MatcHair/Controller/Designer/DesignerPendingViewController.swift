@@ -42,9 +42,9 @@ extension DesignerPendingViewController {
         designerPendingCollectionView.dataSource = self
         designerPendingCollectionView.delegate = self
 
-        let waitingIdentifier = String(describing: DesignerPendingCollectionViewCell.self)
-        let waitingXib = UINib(nibName: waitingIdentifier, bundle: nil)
-        designerPendingCollectionView.register(waitingXib, forCellWithReuseIdentifier: waitingIdentifier)
+        let pendingIdentifier = String(describing: DesignerPendingCollectionViewCell.self)
+        let pendingXib = UINib(nibName: pendingIdentifier, bundle: nil)
+        designerPendingCollectionView.register(pendingXib, forCellWithReuseIdentifier: pendingIdentifier)
 
     }
 
@@ -54,21 +54,28 @@ extension DesignerPendingViewController {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("appointments/pending")
+        ref.child("appointments")
             .queryOrdered(byChild: "designerUID")
             .queryEqual(toValue: currentUserUID)
-            .observe(.childAdded) { (snapshot) in
+            .observeSingleEvent(of: .value) { (snapshot) in
 
-                guard let value = snapshot.value else { return }
+                guard let value = snapshot.value as? NSDictionary else { return }
 
-                guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
+                for value in value.allValues {
 
-                do {
-                    let appointment = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
-                    self.getModelImageURLWith(appointment)
+                    guard let appointmentJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-                } catch {
-                    print(error)
+                    do {
+                        let appointmentInfo = try self.decoder.decode(AppointmentInfo.self, from: appointmentJSON)
+
+                        if appointmentInfo.statement == "pending" {
+
+                            self.getModelImageURLWith(appointmentInfo)
+                        }
+
+                    } catch {
+                        print(error)
+                    }
                 }
 
         }
@@ -159,29 +166,29 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
             withReuseIdentifier: String(describing: DesignerPendingCollectionViewCell.self),
             for: indexPath)
 
-        guard let postCell = cell as? DesignerPendingCollectionViewCell else {
+        guard let appointmentCell = cell as? DesignerPendingCollectionViewCell else {
             return UICollectionViewCell()
         }
 
         let appointment = designerPendingAppointments[indexPath.row]
 
-        postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
-        postCell.modelImage.kf.setImage(with: appointment.modelImageURL)
-        postCell.modelNameLabel.text = appointment.model?.name
-        postCell.reservationTimeLabel.text =
+        appointmentCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
+        appointmentCell.modelImage.kf.setImage(with: appointment.modelImageURL)
+        appointmentCell.modelNameLabel.text = appointment.model?.name
+        appointmentCell.reservationTimeLabel.text =
         "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
 
         // target action
-        postCell.cancelButton.tag = indexPath.row
-        postCell.cancelButton.addTarget(
+        appointmentCell.cancelButton.tag = indexPath.row
+        appointmentCell.cancelButton.addTarget(
             self,
             action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
 
-        postCell.acceptButton.tag = indexPath.row
-        postCell.acceptButton.addTarget(
+        appointmentCell.acceptButton.tag = indexPath.row
+        appointmentCell.acceptButton.addTarget(
             self, action: #selector(acceptButtonTapped), for: .touchUpInside)
 
-        return postCell
+        return appointmentCell
 
     }
 
@@ -189,7 +196,7 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
 
         let pendingPost = designerPendingAppointments[sender.tag]
 
-        ref.child("appointments/pending/\(pendingPost.info.appointmentID)").removeValue()
+        ref.child("appointments/\(pendingPost.info.appointmentID)").removeValue()
 
         designerPendingAppointments.remove(at: sender.tag)
 
@@ -201,18 +208,16 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
 
         let pendingPost = designerPendingAppointments[sender.tag]
 
-        cancelButtonTapped(sender: sender)
+        designerPendingAppointments.remove(at: sender.tag)
 
-        let createTime = Date().millisecondsSince1970
+        designerPendingCollectionView.reloadData()
 
-        ref.child("appointments/confirm/\(pendingPost.info.appointmentID)").setValue(
+        let acceptTime = Date().millisecondsSince1970 
+
+        ref.child("appointments/\(pendingPost.info.appointmentID)").updateChildValues(
             [
-                "designerUID": pendingPost.designer?.id,
-                "modelUID": pendingPost.model?.id,
-                "postID": pendingPost.postInfo.postID,
-                "timing": pendingPost.info.timing,
-                "appointmentID": pendingPost.info.appointmentID,
-                "createTime": createTime
+                "statement": "confirm",
+                "createTime": acceptTime
             ]
         )
 

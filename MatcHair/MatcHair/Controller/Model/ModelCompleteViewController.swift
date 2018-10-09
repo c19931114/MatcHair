@@ -33,11 +33,11 @@ extension ModelCompleteViewController {
         ref = Database.database().reference()
 
         setupCollectionView()
-        loadModelConfirmAppointments()
+        loadModelCompleteAppointments()
 
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(loadModelConfirmAppointments),
+            selector: #selector(loadModelCompleteAppointments),
             name: Notification.Name.reFetchModelAppointments,
             object: nil)
     }
@@ -53,7 +53,7 @@ extension ModelCompleteViewController {
 
     }
 
-    @objc func loadModelConfirmAppointments() {
+    @objc func loadModelCompleteAppointments() {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
@@ -76,6 +76,9 @@ extension ModelCompleteViewController {
                         if appointmentInfo.statement == "complete" {
 
                             self.getDesignerImageURLWith(appointmentInfo)
+                        } else {
+
+                            self.modelCompleteCollectionView.reloadData()
                         }
 
                     } catch {
@@ -148,6 +151,10 @@ extension ModelCompleteViewController {
             } catch {
                 print(error)
             }
+
+            print("------------------")
+            print(self.modelCompleteAppointments.count)
+            print("------------------")
 
             self.modelCompleteAppointments.sort(by: { $0.info.createTime > $1.info.createTime })
             self.modelCompleteCollectionView.reloadData()

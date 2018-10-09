@@ -44,7 +44,7 @@ class DesignerSegementViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0
                 self.confirmView.alpha = 0
-                self.completeView.alpha = 0
+                self.completeView.alpha = 1
             })
         }
     }

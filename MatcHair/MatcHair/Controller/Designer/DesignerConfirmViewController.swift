@@ -21,7 +21,6 @@ class DesignerConfirmViewController: UIViewController {
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     var designerConfirmAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
-    var designerConfirmPosts = [AppointmentInfo]()
 
     @IBOutlet weak var designerConfirmCollectionView: UICollectionView!
 
@@ -35,7 +34,13 @@ extension DesignerConfirmViewController {
         ref = Database.database().reference()
 
         setupCollectionView()
-        loadDesignerPendingAppointments()
+        loadDesignerConfirmAppointments()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadDesignerConfirmAppointments),
+            name: Notification.Name.reFetchDesignerAppointments,
+            object: nil)
 
     }
     private func setupCollectionView() {
@@ -49,7 +54,7 @@ extension DesignerConfirmViewController {
 
     }
 
-    func loadDesignerPendingAppointments() {
+    @objc func loadDesignerConfirmAppointments() {
 
         designerConfirmAppointments = []
 
@@ -72,6 +77,9 @@ extension DesignerConfirmViewController {
                         if appointmentInfo.statement == "confirm" {
 
                             self.getModelImageURLWith(appointmentInfo)
+                        } else {
+
+                            self.designerConfirmCollectionView.reloadData()
                         }
 
                     } catch {
@@ -154,7 +162,7 @@ extension DesignerConfirmViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return designerConfirmPosts.count
+        return designerConfirmAppointments.count
 
     }
 
@@ -162,30 +170,29 @@ extension DesignerConfirmViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-
         let cell = designerConfirmCollectionView.dequeueReusableCell(
             withReuseIdentifier: String(describing: DesignerConfirmCollectionViewCell.self),
             for: indexPath)
 
-        guard let postCell = cell as? DesignerConfirmCollectionViewCell else {
+        guard let appointmentCell = cell as? DesignerConfirmCollectionViewCell else {
             return UICollectionViewCell()
         }
 
         let appointment = designerConfirmAppointments[indexPath.row]
 
-        postCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
-        postCell.modelImage.kf.setImage(with: appointment.modelImageURL)
-        postCell.modelNameLabel.text = appointment.model?.name
-        postCell.reservationTimeLabel.text =
-        "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
+        appointmentCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
+        appointmentCell.modelImage.kf.setImage(with: appointment.modelImageURL)
+        appointmentCell.modelNameLabel.text = appointment.model?.name
+        appointmentCell.reservationTimeLabel.text =
+            "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
 
         // target action
-        postCell.cancelButton.tag = indexPath.row
-        postCell.cancelButton.addTarget(
+        appointmentCell.cancelButton.tag = indexPath.row
+        appointmentCell.cancelButton.addTarget(
             self,
             action: #selector(cancelButtonTapped(sender:)), for: .touchUpInside)
 
-        return postCell
+        return appointmentCell
 
     }
 

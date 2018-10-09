@@ -77,6 +77,9 @@ extension ModelPendingViewController {
                         if appointmentInfo.statement == "pending" {
 
                             self.getDesignerImageURLWith(appointmentInfo)
+                        } else {
+                            
+                            self.modelPendingCollectionView.reloadData()
                         }
 
                     } catch {
@@ -147,12 +150,13 @@ extension ModelPendingViewController {
 
                 self.modelPendingAppointments.insert(appointment, at: 0)
 
-                print("YA")
-                print(self.modelPendingAppointments.count)
-
             } catch {
                 print(error)
             }
+
+            print("------------------")
+            print(self.modelPendingAppointments.count)
+            print("------------------")
 
             self.modelPendingAppointments.sort(by: { $0.info.createTime > $1.info.createTime })
             self.modelPendingCollectionView.reloadData()

@@ -36,7 +36,14 @@ extension DesignerPendingViewController {
         setupCollectionView()
         loadDesignerPendingAppointments()
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadDesignerPendingAppointments),
+            name: Notification.Name.reFetchDesignerAppointments,
+            object: nil)
+
     }
+    
     private func setupCollectionView() {
 
         designerPendingCollectionView.dataSource = self
@@ -48,7 +55,7 @@ extension DesignerPendingViewController {
 
     }
 
-    func loadDesignerPendingAppointments() {
+    @objc func loadDesignerPendingAppointments() {
 
         designerPendingAppointments = []
 
@@ -71,6 +78,9 @@ extension DesignerPendingViewController {
                         if appointmentInfo.statement == "pending" {
 
                             self.getModelImageURLWith(appointmentInfo)
+                        } else {
+
+                            self.designerPendingCollectionView.reloadData()
                         }
 
                     } catch {

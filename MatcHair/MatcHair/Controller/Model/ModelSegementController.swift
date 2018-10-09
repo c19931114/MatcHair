@@ -18,12 +18,11 @@ class ModelSegementController: UIViewController {
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 
-        NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil) // 應該要放一個在 tab
+        NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
 
         switch sender.selectedSegmentIndex {
         case 0:
             print("0")
-
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 1
                 self.confirmView.alpha = 0

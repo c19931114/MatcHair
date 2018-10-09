@@ -33,13 +33,14 @@ extension DesignerCompleteViewController {
         ref = Database.database().reference()
 
         setupCollectionView()
-        loadModelConfirmAppointments()
+        loadModelCompleteAppointments()
 
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(loadModelConfirmAppointments),
-            name: Notification.Name.reFetchModelAppointments,
+            selector: #selector(loadModelCompleteAppointments),
+            name: Notification.Name.reFetchDesignerAppointments,
             object: nil)
+
     }
 
     private func setupCollectionView() {
@@ -47,13 +48,13 @@ extension DesignerCompleteViewController {
         designerCompleteCollectionView.dataSource = self
         designerCompleteCollectionView.delegate = self
 
-        let completeIdentifier = String(describing: ModelCompleteCollectionViewCell.self)
+        let completeIdentifier = String(describing: DesignerCompleteCollectionViewCell.self)
         let completeXib = UINib(nibName: completeIdentifier, bundle: nil)
         designerCompleteCollectionView.register(completeXib, forCellWithReuseIdentifier: completeIdentifier)
 
     }
 
-    @objc func loadModelConfirmAppointments() {
+    @objc func loadModelCompleteAppointments() {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
@@ -76,6 +77,9 @@ extension DesignerCompleteViewController {
                         if appointmentInfo.statement == "complete" {
 
                             self.getDesignerImageURLWith(appointmentInfo)
+                        } else {
+
+                            self.designerCompleteCollectionView.reloadData()
                         }
 
                     } catch {

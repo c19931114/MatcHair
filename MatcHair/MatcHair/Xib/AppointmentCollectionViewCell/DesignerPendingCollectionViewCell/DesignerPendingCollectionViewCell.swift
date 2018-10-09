@@ -13,6 +13,7 @@ class DesignerPendingCollectionViewCell: UICollectionViewCell {
     let fullScreenSize = UIScreen.main.bounds.size
 
     @IBOutlet weak var view: UIView!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var modelImage: UIImageView!
     @IBOutlet weak var modelNameLabel: UILabel!

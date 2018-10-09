@@ -76,6 +76,9 @@ extension ModelConfirmViewController {
                         if appointmentInfo.statement == "confirm" {
 
                             self.getDesignerImageURLWith(appointmentInfo)
+                        } else {
+
+                            self.modelConfirmCollectionView.reloadData()
                         }
 
                     } catch {
@@ -148,6 +151,10 @@ extension ModelConfirmViewController {
             } catch {
                 print(error)
             }
+
+            print("------------------")
+            print(self.modelConfirmAppointments.count)
+            print("------------------")
 
             self.modelConfirmAppointments.sort(by: { $0.info.createTime > $1.info.createTime })
             self.modelConfirmCollectionView.reloadData()

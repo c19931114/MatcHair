@@ -105,20 +105,36 @@
                                     <action selector="cancel:" destination="t0U-J3-aS5" eventType="touchUpInside" id="biy-ZE-1Sj"/>
                                 </connections>
                             </button>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8P-fo-3IV">
+                                <rect key="frame" x="20" y="29" width="77.5" height="20"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剪髮, 染髮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzO-oQ-zqg">
+                                <rect key="frame" x="20" y="29" width="77.5" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="PaB-Rz-gel" secondAttribute="trailing" id="6cw-XZ-Gi6"/>
+                            <constraint firstItem="bzO-oQ-zqg" firstAttribute="leading" secondItem="vro-pM-scq" secondAttribute="leading" id="7pY-BU-aIc"/>
+                            <constraint firstItem="bzO-oQ-zqg" firstAttribute="width" secondItem="n8P-fo-3IV" secondAttribute="width" id="9Eg-MV-bEU"/>
                             <constraint firstItem="J9s-J8-XhI" firstAttribute="leading" secondItem="vro-pM-scq" secondAttribute="trailing" constant="15" id="9d5-GL-Nay"/>
                             <constraint firstItem="6NZ-Zx-W2S" firstAttribute="leading" secondItem="vro-pM-scq" secondAttribute="trailing" constant="10" id="AwW-qC-x10"/>
                             <constraint firstItem="J9s-J8-XhI" firstAttribute="top" secondItem="vro-pM-scq" secondAttribute="top" constant="5" id="D5I-vW-ptl"/>
+                            <constraint firstItem="bzO-oQ-zqg" firstAttribute="height" secondItem="n8P-fo-3IV" secondAttribute="height" id="EEK-5s-Dbb"/>
                             <constraint firstItem="vro-pM-scq" firstAttribute="centerY" secondItem="Xzs-IL-35U" secondAttribute="bottom" multiplier="0.98" id="Kdn-1b-r3D"/>
                             <constraint firstItem="Xzs-IL-35U" firstAttribute="top" secondItem="EQI-wB-MR2" secondAttribute="top" constant="10" id="Kx0-bV-11U"/>
                             <constraint firstItem="vro-pM-scq" firstAttribute="leading" secondItem="EQI-wB-MR2" secondAttribute="leading" constant="20" id="LdA-kw-Rbt"/>
                             <constraint firstAttribute="trailing" secondItem="Xzs-IL-35U" secondAttribute="trailing" constant="10" id="Nau-sP-3ae"/>
                             <constraint firstItem="hP7-st-7N2" firstAttribute="trailing" secondItem="Xzs-IL-35U" secondAttribute="trailing" id="Ott-d8-LK0"/>
+                            <constraint firstItem="n8P-fo-3IV" firstAttribute="leading" secondItem="vro-pM-scq" secondAttribute="leading" id="ZTU-qu-8r9"/>
                             <constraint firstItem="hP7-st-7N2" firstAttribute="centerY" secondItem="KUV-5R-klF" secondAttribute="centerY" id="b60-p0-Vw5"/>
+                            <constraint firstItem="n8P-fo-3IV" firstAttribute="centerY" secondItem="PaB-Rz-gel" secondAttribute="centerY" id="hKd-zT-k4O"/>
                             <constraint firstItem="vro-pM-scq" firstAttribute="bottom" secondItem="6NZ-Zx-W2S" secondAttribute="bottom" id="iLj-PQ-ND7"/>
+                            <constraint firstItem="bzO-oQ-zqg" firstAttribute="centerY" secondItem="PaB-Rz-gel" secondAttribute="centerY" id="iZq-ul-ItA"/>
                             <constraint firstItem="Xzs-IL-35U" firstAttribute="leading" secondItem="EQI-wB-MR2" secondAttribute="leading" constant="10" id="loT-4T-JN2"/>
                             <constraint firstAttribute="width" secondItem="EQI-wB-MR2" secondAttribute="height" multiplier="25:27" id="ppT-Yh-tXh"/>
                             <constraint firstItem="PaB-Rz-gel" firstAttribute="top" secondItem="EQI-wB-MR2" secondAttribute="top" constant="23" id="sOf-fj-usH"/>
@@ -143,6 +159,7 @@
             <size key="customSize" width="375" height="379"/>
             <connections>
                 <outlet property="cancelButton" destination="hP7-st-7N2" id="q18-Oi-l7C"/>
+                <outlet property="categoryLabel" destination="bzO-oQ-zqg" id="rXz-ZY-fXb"/>
                 <outlet property="modelImage" destination="vro-pM-scq" id="dHy-n3-jt8"/>
                 <outlet property="modelNameLabel" destination="J9s-J8-XhI" id="A05-Mf-mcF"/>
                 <outlet property="postImage" destination="Xzs-IL-35U" id="NBX-bH-wbZ"/>

@@ -65,22 +65,25 @@ extension HomeViewController {
 
     }
 
-    func loadAllPosts() {
+    func loadAllPosts() {   //   要新增下拉更新
 
-        self.allPosts = []
+        ref.child("allPosts").observeSingleEvent(of: .value) { (snapshot) in
 
-        ref.child("allPosts").observe(.childAdded) { (snapshot) in
+            self.allPosts = []
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
-            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            for value in value.allValues {
 
-            do {
-                let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
-                self.getAuthorInfo(with: postData)
+                guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-            } catch {
-                print(error)
+                do {
+                    let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
+                    self.getAuthorInfo(with: postData)
+
+                } catch {
+                    print(error)
+                }
             }
 
         }

@@ -172,6 +172,8 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
+        var categories = [String]()
+
         let cell = designerPendingCollectionView.dequeueReusableCell(
             withReuseIdentifier: String(describing: DesignerPendingCollectionViewCell.self),
             for: indexPath)
@@ -186,7 +188,16 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
         appointmentCell.modelImage.kf.setImage(with: appointment.modelImageURL)
         appointmentCell.modelNameLabel.text = appointment.model?.name
         appointmentCell.reservationTimeLabel.text =
-        "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
+            "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
+
+        if appointment.postInfo.category.shampoo { categories.append("洗髮") }
+        if appointment.postInfo.category.haircut { categories.append("剪髮") }
+        if appointment.postInfo.category.dye { categories.append("染髮") }
+        if appointment.postInfo.category.permanent { categories.append("燙髮") }
+        if appointment.postInfo.category.treatment { categories.append("護髮") }
+        if appointment.postInfo.category.other { categories.append("其他") }
+
+        appointmentCell.categoryLabel.text = categories.joined(separator: ", ")
 
         // target action
         appointmentCell.cancelButton.tag = indexPath.row

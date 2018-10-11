@@ -19,7 +19,7 @@ class LikeViewController: UIViewController {
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
 
-    var likePosts = [Post]() // [(PostInfo, User)]
+    var likePosts = [Post]() // [(PostInfo, User, URL)]
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
     var selectedTiming: String?
@@ -326,8 +326,10 @@ extension LikeViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-//        let selectedPost = likePosts[indexPath.row].0
-//        let detailForPost = DetailViewController.detailForPost(selectedPost)
-//        self.present(detailForPost, animated: true)
+        let selectedPost = likePosts[indexPath.row].info
+        let detailForPost = DetailViewController.detailForPost(selectedPost)
+        self.present(detailForPost, animated: true)
+        detailForPost.editButton.isHidden = true
+        detailForPost.moreButton.isHidden = false
     }
 }

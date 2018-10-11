@@ -188,7 +188,10 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
 
         return 1 // 上下
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1 // 左右
     }
 
@@ -222,5 +225,8 @@ extension ProfileViewController: UICollectionViewDelegate {
         let selectedPost = myPosts[indexPath.row]
         let detailForPost = DetailViewController.detailForMyPost(selectedPost)
         self.present(detailForPost, animated: true)
+        detailForPost.moreButton.isHidden = true
+        detailForPost.editButton.isHidden = false
+
     }
 }

@@ -334,5 +334,7 @@ extension HomeViewController: UICollectionViewDelegate {
         let selectedPostInfo = allPosts[indexPath.row].info
         let detailForPost = DetailViewController.detailForPost(selectedPostInfo)
         self.present(detailForPost, animated: true)
+        detailForPost.editButton.isHidden = true
+        detailForPost.moreButton.isHidden = false
     }
 }

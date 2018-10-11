@@ -15,6 +15,10 @@ class DetailViewController: UIViewController {
     var categories = [String]()
     let swipcontroller = SwipeController()
 
+    @IBOutlet weak var moreButton: UIButton!
+
+    @IBOutlet weak var editButton: UIButton!
+
     @IBOutlet weak var categoryLabel: UILabel!
 
     @IBOutlet weak var locationLabel: UILabel!
@@ -24,15 +28,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
 
     @IBAction func more(_ sender: Any) {
+        showReportAlert()
+    }
 
-        buttomAlert()
-
+    @IBAction func edit(_ sender: Any) {
+        showEditAlert()
     }
 
     @IBAction func goBackButton(_ sender: Any) {
-
         self.dismiss(animated: true)
-
     }
 
 }
@@ -120,33 +124,17 @@ extension DetailViewController {
         descriptionTextView.text = post.content
     }
 
-    func buttomAlert() {
+    func showReportAlert() {
 
-        let alertController = UIAlertController(
-            title: nil,
-            message: nil,
-            preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        // 建立[取消]按鈕
-        let cancelAction = UIAlertAction(
-            title: "取消",
-            style: .cancel,
-            handler: nil)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
 
-        // 建立[確認]按鈕
-        let reportAction = UIAlertAction(
-            title: "檢舉此貼文",
-            style: .destructive,
-            handler: showReceivedMessage)
-
+        let reportAction = UIAlertAction(title: "檢舉此貼文", style: .destructive, handler: showReceivedMessage)
         alertController.addAction(reportAction)
 
-        // 顯示提示框
-        self.present(
-            alertController,
-            animated: true,
-            completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func showReceivedMessage(alert: UIAlertAction) {
@@ -160,5 +148,22 @@ extension DetailViewController {
             UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 
         self.present(alertController, animated: true, completion: nil)
+    }
+
+    func showEditAlert() {
+
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        let editAction = UIAlertAction(title: "編輯", style: .default, handler: nil)
+        alertController.addAction(editAction)
+
+        let deleteAction = UIAlertAction(title: "刪除", style: .destructive, handler: nil)
+        alertController.addAction(deleteAction)
+
+        self.present(alertController, animated: true, completion: nil)
+
     }
 }

@@ -56,6 +56,13 @@
                                     <action selector="goBackButton:" destination="6nl-D8-8yt" eventType="touchUpInside" id="aFh-sJ-QLC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gd9-xO-hz2">
+                                <rect key="frame" x="338" y="36" width="21" height="22"/>
+                                <state key="normal" image="btn_more_three_dots"/>
+                                <connections>
+                                    <action selector="edit:" destination="6nl-D8-8yt" eventType="touchUpInside" id="6pT-FM-imY"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHs-u1-Va6">
                                 <rect key="frame" x="338" y="36" width="21" height="22"/>
                                 <state key="normal" image="btn_more_three_dots"/>
@@ -68,11 +75,13 @@
                         <constraints>
                             <constraint firstItem="vhA-Yy-NpQ" firstAttribute="trailing" secondItem="B7r-pu-TV7" secondAttribute="trailing" constant="16" id="0Ia-0H-9zb"/>
                             <constraint firstItem="2EI-fP-HTv" firstAttribute="centerX" secondItem="aSY-Yk-Huh" secondAttribute="centerX" id="1rr-l5-hYd"/>
+                            <constraint firstItem="Gd9-xO-hz2" firstAttribute="trailing" secondItem="B7r-pu-TV7" secondAttribute="trailing" id="ADM-JK-XPM"/>
                             <constraint firstItem="vhA-Yy-NpQ" firstAttribute="trailing" secondItem="gka-8k-fy0" secondAttribute="trailing" constant="16" id="DtK-UO-FgE"/>
                             <constraint firstItem="vhA-Yy-NpQ" firstAttribute="bottom" secondItem="WOi-o9-IYa" secondAttribute="bottom" constant="16" id="Ntf-lY-RDs"/>
                             <constraint firstItem="WOi-o9-IYa" firstAttribute="trailing" secondItem="aSY-Yk-Huh" secondAttribute="trailing" multiplier="2/3" id="SQ6-B1-zzj"/>
                             <constraint firstItem="UuR-K4-dNR" firstAttribute="top" secondItem="vhA-Yy-NpQ" secondAttribute="top" constant="16" id="STd-c6-zQB"/>
                             <constraint firstItem="bHs-u1-Va6" firstAttribute="centerY" secondItem="UuR-K4-dNR" secondAttribute="centerY" id="Tjm-Gt-2pa"/>
+                            <constraint firstItem="Gd9-xO-hz2" firstAttribute="centerY" secondItem="UuR-K4-dNR" secondAttribute="centerY" id="VQ0-fP-uFb"/>
                             <constraint firstItem="gka-8k-fy0" firstAttribute="top" secondItem="B7r-pu-TV7" secondAttribute="bottom" constant="8" id="eCY-DY-sV1"/>
                             <constraint firstItem="bHs-u1-Va6" firstAttribute="trailing" secondItem="B7r-pu-TV7" secondAttribute="trailing" id="eHU-SV-Doj"/>
                             <constraint firstItem="2EI-fP-HTv" firstAttribute="leading" secondItem="vhA-Yy-NpQ" secondAttribute="leading" id="iU7-2N-Imj"/>
@@ -88,13 +97,15 @@
                     <connections>
                         <outlet property="categoryLabel" destination="B7r-pu-TV7" id="Sy0-Dd-VcI"/>
                         <outlet property="descriptionTextView" destination="WOi-o9-IYa" id="YeF-AP-OO0"/>
+                        <outlet property="editButton" destination="Gd9-xO-hz2" id="pV3-QA-Zxk"/>
                         <outlet property="locationLabel" destination="gka-8k-fy0" id="pLa-tU-Lg2"/>
+                        <outlet property="moreButton" destination="bHs-u1-Va6" id="w7W-Nu-05A"/>
                         <outlet property="postImage" destination="2EI-fP-HTv" id="MBd-hA-4AV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGH-fH-iPs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1591" y="-1165"/>
+            <point key="canvasLocation" x="-1591.2" y="-1165.3673163418291"/>
         </scene>
     </scenes>
     <resources>

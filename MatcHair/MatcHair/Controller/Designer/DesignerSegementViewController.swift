@@ -22,11 +22,13 @@ class DesignerSegementViewController: UIViewController {
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 
-        NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil) // 應該要放一個在 tab
+//        NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil) // 應該要放一個在 tab
 
         switch sender.selectedSegmentIndex {
         case 0:
             print("0")
+            NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil)
+            
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 1
                 self.confirmView.alpha = 0
@@ -34,6 +36,8 @@ class DesignerSegementViewController: UIViewController {
             })
         case 1:
             print("1")
+            NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil)
+
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0
                 self.confirmView.alpha = 1
@@ -41,6 +45,8 @@ class DesignerSegementViewController: UIViewController {
             })
         default:
             print("2")
+            NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil)
+
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0
                 self.confirmView.alpha = 0

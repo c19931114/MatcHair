@@ -23,7 +23,7 @@
                                     <constraint firstAttribute="width" secondItem="2EI-fP-HTv" secondAttribute="height" multiplier="1:1" id="SYu-LQ-JiE"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WOi-o9-IYa">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOi-o9-IYa">
                                 <rect key="frame" x="16" y="537" width="234" height="114"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -56,6 +56,13 @@
                                     <action selector="goBackButton:" destination="6nl-D8-8yt" eventType="touchUpInside" id="aFh-sJ-QLC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHs-u1-Va6">
+                                <rect key="frame" x="338" y="36" width="21" height="22"/>
+                                <state key="normal" image="btn_more_three_dots"/>
+                                <connections>
+                                    <action selector="more:" destination="6nl-D8-8yt" eventType="touchUpInside" id="sRC-v7-8fx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
@@ -65,7 +72,9 @@
                             <constraint firstItem="vhA-Yy-NpQ" firstAttribute="bottom" secondItem="WOi-o9-IYa" secondAttribute="bottom" constant="16" id="Ntf-lY-RDs"/>
                             <constraint firstItem="WOi-o9-IYa" firstAttribute="trailing" secondItem="aSY-Yk-Huh" secondAttribute="trailing" multiplier="2/3" id="SQ6-B1-zzj"/>
                             <constraint firstItem="UuR-K4-dNR" firstAttribute="top" secondItem="vhA-Yy-NpQ" secondAttribute="top" constant="16" id="STd-c6-zQB"/>
+                            <constraint firstItem="bHs-u1-Va6" firstAttribute="centerY" secondItem="UuR-K4-dNR" secondAttribute="centerY" id="Tjm-Gt-2pa"/>
                             <constraint firstItem="gka-8k-fy0" firstAttribute="top" secondItem="B7r-pu-TV7" secondAttribute="bottom" constant="8" id="eCY-DY-sV1"/>
+                            <constraint firstItem="bHs-u1-Va6" firstAttribute="trailing" secondItem="B7r-pu-TV7" secondAttribute="trailing" id="eHU-SV-Doj"/>
                             <constraint firstItem="2EI-fP-HTv" firstAttribute="leading" secondItem="vhA-Yy-NpQ" secondAttribute="leading" id="iU7-2N-Imj"/>
                             <constraint firstItem="2EI-fP-HTv" firstAttribute="centerY" secondItem="aSY-Yk-Huh" secondAttribute="centerY" id="ivk-2J-xI5"/>
                             <constraint firstItem="UuR-K4-dNR" firstAttribute="leading" secondItem="vhA-Yy-NpQ" secondAttribute="leading" constant="16" id="m3s-dR-eKe"/>
@@ -90,5 +99,6 @@
     </scenes>
     <resources>
         <image name="btn_cancel_white" width="21" height="21"/>
+        <image name="btn_more_three_dots" width="21" height="21"/>
     </resources>
 </document>

@@ -42,8 +42,15 @@ extension LoginViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UIApplication.shared.isStatusBarHidden = true
         ref = Database.database().reference()
 
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        UIApplication.shared.isStatusBarHidden = false
     }
 
     func fbLogin() {

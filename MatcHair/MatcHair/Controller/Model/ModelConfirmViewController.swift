@@ -38,7 +38,7 @@ extension ModelConfirmViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadModelConfirmAppointments),
-            name: Notification.Name.reFetchModelAppointments,
+            name: .reFetchModelAppointments,
             object: nil)
     }
 

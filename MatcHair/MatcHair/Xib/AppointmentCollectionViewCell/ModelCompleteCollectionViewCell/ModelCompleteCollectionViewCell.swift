@@ -19,12 +19,12 @@ class ModelCompleteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var designerNameLabel: UILabel!
     @IBOutlet weak var reservationTimeLabel: UILabel!
 
-    @IBOutlet weak var completeButton: UIButton!
+    @IBOutlet weak var scoreButton: UIButton!
 
     @IBAction func chat(_ sender: UIButton) {
     }
 
-    @IBAction func complete(_ sender: UIButton) {
+    @IBAction func score(_ sender: UIButton) {
     }
 
     override func awakeFromNib() {

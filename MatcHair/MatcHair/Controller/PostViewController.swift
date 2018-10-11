@@ -17,6 +17,7 @@ class PostViewController: UIViewController {
     var picture: UIImage?
     let storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
+    var dateSelected: Bool = false
 
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
@@ -56,7 +57,34 @@ class PostViewController: UIViewController {
     @IBAction func post(_ sender: Any) {
 
         //先判斷有無缺項 //TODO
-        share()
+
+        if recruitModelSwitch.isOn {
+
+            guard shampooButton.isSelected ||
+                    haircutButton.isSelected ||
+                    dyeButton.isSelected ||
+                    permanentButton.isSelected ||
+                    treatmentButton.isSelected ||
+                    otherButton.isSelected,
+                dateSelected,
+                morningButton.isSelected
+                    || afternoonButton.isSelected
+                    || nightButton.isSelected,
+                cityTextField != nil
+                    && districtTextField != nil
+                    && addressTextField != nil else {
+
+                    print("please complete")
+                    showAlert()
+                    return
+            }
+
+            share()
+
+        } else {
+
+            share()
+        }
 
         let tabController = self.view.window!.rootViewController as? UITabBarController
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
@@ -211,6 +239,19 @@ extension PostViewController {
 
     }
 
+    func showAlert() {
+
+        let alertController = UIAlertController(
+            title: "貼心提醒",
+            message: "\n徵求髮膜請填寫完整資訊唷",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
 
         print("tap")
@@ -287,6 +328,8 @@ extension PostViewController {
                     formatter.dateFormat = "yyyy/MM/dd"
 //                    print(dt)
                     self.pickDateLabel.text = formatter.string(from: dt)
+                    self.dateSelected = true
+                    print(self.dateSelected)
                 }
         }
     }
@@ -321,7 +364,6 @@ extension PostViewController {
                     let postTime = Date().millisecondsSince1970 // 1476889390939
 
                     self.ref.child("allPosts/\(postID)").setValue(
-
                         [
                             "postID": "\(postID)",
                             "createTime": postTime,
@@ -336,7 +378,7 @@ extension PostViewController {
                                     "permanent": self.permanentButton.isSelected,
                                     "treatment": self.treatmentButton.isSelected,
                                     "other": self.otherButton.isSelected
-                            ],
+                                ],
                             "payment": self.priceTextField.text!,
                             "reservation":
                                 [
@@ -346,7 +388,7 @@ extension PostViewController {
                                             "morning": self.morningButton.isSelected,
                                             "afternoon": self.afternoonButton.isSelected,
                                             "night": self.nightButton.isSelected
-                                    ],
+                                        ],
                                     "location":
                                         [
                                             "city": self.cityTextField.text,
@@ -362,7 +404,6 @@ extension PostViewController {
                             "pictureURL": "\(downloadURL)",
                             "content": "\(self.descriptionTextField.text!)",
 //                            "authorUID": "\(authorUID)"
-
                         ]
                     )
 
@@ -375,11 +416,8 @@ extension PostViewController {
 //                            "authorUID": "\(authorUID)"
                         ]
                     )
-
                 }
-
             }
         }
-
     }
 }

@@ -23,6 +23,12 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var descriptionTextView: UITextView!
 
+    @IBAction func more(_ sender: Any) {
+
+        buttomAlert()
+
+    }
+
     @IBAction func goBackButton(_ sender: Any) {
 
         self.dismiss(animated: true)
@@ -112,5 +118,47 @@ extension DetailViewController {
         locationLabel.isHidden = true
         postImage.kf.setImage(with: URL(string: post.pictureURL))
         descriptionTextView.text = post.content
+    }
+
+    func buttomAlert() {
+
+        let alertController = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .actionSheet)
+
+        // 建立[取消]按鈕
+        let cancelAction = UIAlertAction(
+            title: "取消",
+            style: .cancel,
+            handler: nil)
+        alertController.addAction(cancelAction)
+
+        // 建立[確認]按鈕
+        let reportAction = UIAlertAction(
+            title: "檢舉此貼文",
+            style: .destructive,
+            handler: showReceivedMessage)
+
+        alertController.addAction(reportAction)
+
+        // 顯示提示框
+        self.present(
+            alertController,
+            animated: true,
+            completion: nil)
+    }
+
+    func showReceivedMessage(alert: UIAlertAction) {
+
+        let alertController = UIAlertController(
+            title: nil,
+            message: "已傳送檢舉通知",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
     }
 }

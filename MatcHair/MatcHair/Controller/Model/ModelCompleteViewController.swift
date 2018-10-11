@@ -38,7 +38,7 @@ extension ModelCompleteViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadModelCompleteAppointments),
-            name: Notification.Name.reFetchModelAppointments,
+            name: .reFetchModelAppointments,
             object: nil)
     }
 
@@ -205,10 +205,10 @@ extension ModelCompleteViewController: UICollectionViewDataSource {
         appointmentCell.categoryLabel.text = categories.joined(separator: ", ")
 
         // target action
-//        postCell.completeButton.tag = indexPath.row
-//        postCell.completeButton.addTarget(
-//            self,
-//            action: #selector(scoreButtonTapped(sender:)), for: .touchUpInside)
+        appointmentCell.scoreButton.tag = indexPath.row
+        appointmentCell.scoreButton.addTarget(
+            self,
+            action: #selector(scoreButtonTapped(sender:)), for: .touchUpInside)
 
         return appointmentCell
 
@@ -218,18 +218,7 @@ extension ModelCompleteViewController: UICollectionViewDataSource {
 
         let completePost = modelCompleteAppointments[sender.tag]
 
-        modelCompleteAppointments.remove(at: sender.tag)
 
-//        modelCompleteCollectionView.reloadData()
-//
-//        let completeTime = Date().millisecondsSince1970
-//
-//        ref.child("appointments/\(completePost.info.appointmentID)").updateChildValues(
-//            [
-//                "statement": "complete",
-//                "createTime": completeTime
-//            ]
-//        )
 
     }
 

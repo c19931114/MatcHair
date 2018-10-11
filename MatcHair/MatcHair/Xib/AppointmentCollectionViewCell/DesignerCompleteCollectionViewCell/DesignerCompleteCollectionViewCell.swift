@@ -51,5 +51,4 @@ class DesignerCompleteCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = false
     }
 
-
 }

@@ -38,7 +38,7 @@ extension ModelCompleteViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadModelCompleteAppointments),
-            name: .reFetchModelAppointments,
+            name: .reFetchModelCompleteAppointments,
             object: nil)
     }
 

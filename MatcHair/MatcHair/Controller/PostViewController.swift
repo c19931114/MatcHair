@@ -74,7 +74,8 @@ class PostViewController: UIViewController {
                     || nightButton.isSelected,
                 cityTextField != nil
                     && districtTextField != nil
-                    && addressTextField != nil else {
+                    && addressTextField != nil,
+                phoneTextField != nil else {
 
                     print("please complete")
                     showAlert()
@@ -282,6 +283,10 @@ extension PostViewController {
                 return
         }
 
+        if shareToFacebookSwitch.isOn {
+//            shareToFacebook()
+        }
+
         let fileName = NSUUID().uuidString
 
         storageRef.child("\(fileName).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
@@ -334,15 +339,16 @@ extension PostViewController {
                                             "city": self.cityTextField.text,
                                             "district": self.districtTextField.text,
                                             "address": self.addressTextField.text
-                                    ]
-                            ]
+                                        ]
+                                ],
+                            "phone": self.phoneTextField.text!
                         ]
                     )
 
                     self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
-                            "content": "\(self.descriptionTextField.text!)",
+                            "content": "\(self.descriptionTextField.text!)"
 //                            "authorUID": "\(authorUID)"
                         ]
                     )
@@ -352,7 +358,7 @@ extension PostViewController {
                     self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
-                            "content": "\(self.descriptionTextField.text!)",
+                            "content": "\(self.descriptionTextField.text!)"
 //                            "authorUID": "\(authorUID)"
                         ]
                     )
@@ -360,4 +366,6 @@ extension PostViewController {
             }
         }
     }
+
 }
+

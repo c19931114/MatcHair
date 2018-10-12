@@ -27,7 +27,7 @@ class DesignerSegementViewController: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             print("0")
-            NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .reFetchDesignerPendingAppointments, object: nil, userInfo: nil)
             
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 1
@@ -36,7 +36,7 @@ class DesignerSegementViewController: UIViewController {
             })
         case 1:
             print("1")
-            NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .reFetchDesignerConfirmAppointments, object: nil, userInfo: nil)
 
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0
@@ -45,7 +45,7 @@ class DesignerSegementViewController: UIViewController {
             })
         default:
             print("2")
-            NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .reFetchDesignerCompleteAppointments, object: nil, userInfo: nil)
 
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0

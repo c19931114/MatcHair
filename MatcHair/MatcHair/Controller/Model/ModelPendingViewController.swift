@@ -38,7 +38,7 @@ extension ModelPendingViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadModelPendingAppointments),
-            name: .reFetchModelAppointments,
+            name: .reFetchModelPendingAppointments,
             object: nil)
 
     }

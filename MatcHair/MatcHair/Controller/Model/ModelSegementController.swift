@@ -18,12 +18,10 @@ class ModelSegementController: UIViewController {
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 
-//        NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
-
         switch sender.selectedSegmentIndex {
         case 0:
             print("0")
-            NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .reFetchModelPendingAppointments, object: nil, userInfo: nil)
 
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 1
@@ -32,7 +30,7 @@ class ModelSegementController: UIViewController {
             })
         case 1:
             print("1")
-            NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .reFetchModelConfirmAppointments, object: nil, userInfo: nil)
 
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0
@@ -41,7 +39,7 @@ class ModelSegementController: UIViewController {
             })
         default:
             print("2")
-            NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .reFetchModelCompleteAppointments, object: nil, userInfo: nil)
             
             UIView.animate(withDuration: 0.2, animations: {
                 self.pendingView.alpha = 0

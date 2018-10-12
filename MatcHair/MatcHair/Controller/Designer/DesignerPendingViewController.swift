@@ -39,7 +39,7 @@ extension DesignerPendingViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadDesignerPendingAppointments),
-            name: .reFetchDesignerAppointments,
+            name: .reFetchDesignerPendingAppointments,
             object: nil)
 
     }

@@ -39,7 +39,7 @@ extension DesignerConfirmViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadDesignerConfirmAppointments),
-            name: .reFetchDesignerAppointments,
+            name: .reFetchDesignerConfirmAppointments,
             object: nil)
 
     }

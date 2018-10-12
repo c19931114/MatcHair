@@ -38,7 +38,7 @@ extension DesignerCompleteViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadModelCompleteAppointments),
-            name: .reFetchDesignerAppointments,
+            name: .reFetchDesignerCompleteAppointments,
             object: nil)
 
     }

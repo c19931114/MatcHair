@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class DetailViewController: UIViewController {
 
@@ -14,6 +16,7 @@ class DetailViewController: UIViewController {
     var myPost: MyPost?
     var categories = [String]()
     let swipcontroller = SwipeController()
+    var ref: DatabaseReference!
 
     @IBOutlet weak var moreButton: UIButton!
 
@@ -27,12 +30,25 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var descriptionTextView: UITextView!
 
-    @IBAction func more(_ sender: Any) {
-        showReportAlert()
+    @IBAction func moreForPost(_ sender: Any) {
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        if post?.authorUID == currentUserUID {
+            showEditAlert { (_) in
+                self.deletePost()
+            }
+        } else {
+            showReportAlert()
+        }
     }
 
-    @IBAction func edit(_ sender: Any) {
-        showEditAlert()
+    @IBAction func moreForMyPost(_ sender: Any) {
+
+        showEditAlert { (_) in
+            self.deleteMyPost()
+        }
+
     }
 
     @IBAction func goBackButton(_ sender: Any) {
@@ -45,6 +61,8 @@ extension DetailViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        ref = Database.database().reference()
 
         // 向下滑動
         let swipeDown = UISwipeGestureRecognizer(
@@ -76,7 +94,6 @@ extension DetailViewController {
 
                     return DetailViewController()
         }
-        print(post)
 
         detailVC.post = post
         return detailVC
@@ -150,7 +167,7 @@ extension DetailViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    func showEditAlert() {
+    func showEditAlert(completion: @escaping (UIAlertAction) -> Void) {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
@@ -160,10 +177,42 @@ extension DetailViewController {
         let editAction = UIAlertAction(title: "編輯", style: .default, handler: nil)
         alertController.addAction(editAction)
 
-        let deleteAction = UIAlertAction(title: "刪除", style: .destructive, handler: nil)
+        let deleteAction = UIAlertAction(title: "刪除", style: .destructive, handler: completion)
+
         alertController.addAction(deleteAction)
 
         self.present(alertController, animated: true, completion: nil)
 
     }
+
+//    func goEdit()  {
+//
+//        let editPost = PostViewController.editPost()
+//        self.present(detailForPost, animated: true)
+//    }
+
+    func deletePost() {
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let post = post else { return }
+
+        ref.child("usersPosts/\(currentUserUID)/\(post.postID)").removeValue()
+        ref.child("allPosts/\(post.postID)").removeValue()
+        NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
+        self.dismiss(animated: true, completion: nil)
+
+    }
+
+    func deleteMyPost() {
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let myPost = myPost else { return }
+
+        ref.child("usersPosts/\(currentUserUID)/\(myPost.postID)").removeValue()
+        ref.child("allPosts/\(myPost.postID)").removeValue()
+        NotificationCenter.default.post(name: .reFetchMyPosts, object: nil, userInfo: nil)
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+
 }

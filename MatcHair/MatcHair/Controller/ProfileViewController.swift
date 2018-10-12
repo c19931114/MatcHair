@@ -42,7 +42,13 @@ extension ProfileViewController {
 
         getUserImage()
 
-        loadProfilePosts()
+        loadMyPosts()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadMyPosts),
+            name: .reFetchMyPosts,
+            object: nil)
 
     }
 
@@ -79,7 +85,7 @@ extension ProfileViewController {
         })
     }
 
-    func loadProfilePosts() {
+    @objc func loadMyPosts() {
 
         self.myPosts = []
 

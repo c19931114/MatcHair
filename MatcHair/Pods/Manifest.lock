@@ -80,9 +80,9 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.0)
   - IQKeyboardManagerSwift (6.2.0)
-  - KeychainSwift (12.0.0)
   - Kingfisher (4.10.0)
   - leveldb-library (1.20)
+  - lottie-ios (2.5.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -103,8 +103,8 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseDatabase
   - IQKeyboardManagerSwift
-  - KeychainSwift (~> 12.0)
   - Kingfisher (~> 4.0)
+  - lottie-ios
   - SwiftLint
 
 SPEC REPOS:
@@ -128,9 +128,9 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
-    - KeychainSwift
     - Kingfisher
     - leveldb-library
+    - lottie-ios
     - nanopb
     - SwiftLint
 
@@ -154,12 +154,12 @@ SPEC CHECKSUMS:
   GoogleUtilities: 82f04aeff8426309dbdbc75f6c8accd1e584a5da
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
-  KeychainSwift: d5e776578587ee5958ce36601df22f168f65138a
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: e4b5ec00c1008e95cccf9e1ef82e9e53fb9dd5ed
+PODFILE CHECKSUM: f054265429b08409af7fcc438192f19f564adc2f
 
 COCOAPODS: 1.5.3

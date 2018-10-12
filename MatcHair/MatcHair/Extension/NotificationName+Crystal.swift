@@ -10,10 +10,9 @@ import Foundation
 
 extension Notification.Name {
 
+    static let reFetchAllPosts = Notification.Name("reFetchAllPosts")
+    static let reFetchMyPosts = Notification.Name("reFetchMyPosts")
     static let reFetchLikePosts = Notification.Name("reFetchLikePosts")
-
-//    static let reFetchModelAppointments = Notification.Name("reFetchModelAppointments")
-//    static let reFetchDesignerAppointments = Notification.Name("reFetchConfirmAppointments")
 
     static let reFetchModelPendingAppointments = Notification.Name("reFetchModelPendingAppointments")
     static let reFetchModelConfirmAppointments = Notification.Name("reFetchModelConfirmAppointments")

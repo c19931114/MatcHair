@@ -18,7 +18,8 @@ struct Post { // 這邊沒有要 Codable 喔
 struct MyPost: Codable {
     let content: String
     let pictureURL: String
-    //    let authorUID: String
+    let authorUID: String
+    let postID: String
 }
 
 struct PostInfo: Codable {

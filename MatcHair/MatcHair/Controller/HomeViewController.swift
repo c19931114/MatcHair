@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     let decoder = JSONDecoder()
     lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
+    var refreshControl: UIRefreshControl!
 
     var allPosts = [Post]() // [(PostInfo, User, URL)]
     var likePostIDs = [String]()
@@ -43,6 +44,17 @@ extension HomeViewController {
 
         ref = Database.database().reference()
 
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor(
+            red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+        refreshControl.attributedTitle = NSAttributedString(
+            string: "重新整理中...",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(
+                red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        homePostCollectionView.addSubview(refreshControl)
+
         setupCollectionView()
 
         loadAllPosts()
@@ -51,6 +63,12 @@ extension HomeViewController {
 //        let layout = UICollectionViewFlowLayout()
 //        layout.scrollDirection = .vertical
 //        homePostCollectionView.collectionViewLayout = layout
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadAllPosts),
+            name: .reFetchAllPosts,
+            object: nil)
 
     }
 
@@ -65,7 +83,7 @@ extension HomeViewController {
 
     }
 
-    func loadAllPosts() {   //   要新增下拉更新
+    @objc func loadAllPosts() {   //   要新增下拉更新
 
         ref.child("allPosts").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -149,6 +167,19 @@ extension HomeViewController {
 //            self.homePostCollectionView.reloadData()
 
         }
+    }
+
+    @objc func reloadData() {
+
+        refreshControl.beginRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+
+            self.loadAllPosts()
+            self.refreshControl.endRefreshing()
+
+//            self.homePostCollectionView.scrollToItem(at: [0, 0], at: .top, animated: true)
+        }
+
     }
 
 }
@@ -249,7 +280,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
                 self.uploadAppointment(with: reservationPost.info, timing: value)
 
-                NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
+                NotificationCenter.default.post(name: .reFetchModelPendingAppointments, object: nil, userInfo: nil)
 
                 // 向右換 tab 頁
                 self.transition.duration = 0.5

@@ -229,7 +229,7 @@ extension LikeViewController: UICollectionViewDataSource {
             self.selectedTiming = value
 
             self.uploadAppointment(post: reservationPost.info, with: value)
-            NotificationCenter.default.post(name: .reFetchModelAppointments, object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .reFetchModelPendingAppointments, object: nil, userInfo: nil)
 
             // 向左換 tab 頁
             self.transition.duration = 0.5

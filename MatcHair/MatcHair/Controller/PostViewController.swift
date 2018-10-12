@@ -18,6 +18,7 @@ class PostViewController: UIViewController {
     let storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
     var dateSelected: Bool = false
+    var myPost: MyPost?
 
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
@@ -187,6 +188,21 @@ extension PostViewController {
 
     }
 
+//    class func editPost(_ post: MyPost) -> PostViewController{
+//
+//        guard let postVC =
+//            UIStoryboard
+//                .postStoryboard()
+//                .instantiateInitialViewController() as? PostViewController else {
+//
+//                    return PostViewController()
+//        }
+//        
+//        postVC.myPost = post
+//        return postVC
+//
+//    }
+
     func showAlert() {
 
         let alertController = UIAlertController(
@@ -348,8 +364,9 @@ extension PostViewController {
                     self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
-                            "content": "\(self.descriptionTextField.text!)"
-//                            "authorUID": "\(authorUID)"
+                            "content": "\(self.descriptionTextField.text!)",
+                            "authorUID": "\(authorUID)",
+                            "postID": postID
                         ]
                     )
 
@@ -358,8 +375,9 @@ extension PostViewController {
                     self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
-                            "content": "\(self.descriptionTextField.text!)"
-//                            "authorUID": "\(authorUID)"
+                            "content": "\(self.descriptionTextField.text!)",
+                            "authorUID": "\(authorUID)",
+                            "postID": postID
                         ]
                     )
                 }

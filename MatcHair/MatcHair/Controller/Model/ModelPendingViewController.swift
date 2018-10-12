@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
+import Lottie
 
 class ModelPendingViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class ModelPendingViewController: UIViewController {
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
     let fullScreenSize = UIScreen.main.bounds.size
+    let animationView = LOTAnimationView(name: "no_appointment")
 
     var modelPendingAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
 
@@ -32,6 +34,8 @@ extension ModelPendingViewController {
 
         ref = Database.database().reference()
 
+        noAppointmentAnimate()
+
         setupCollectionView()
         loadModelPendingAppointments()
 
@@ -40,6 +44,17 @@ extension ModelPendingViewController {
             selector: #selector(loadModelPendingAppointments),
             name: .reFetchModelPendingAppointments,
             object: nil)
+
+    }
+
+    func noAppointmentAnimate() {
+
+        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopAnimation = true
+        view.addSubview(animationView)
+        animationView.play()
 
     }
 
@@ -159,6 +174,7 @@ extension ModelPendingViewController {
             print("------------------")
 
             self.modelPendingAppointments.sort(by: { $0.info.createTime > $1.info.createTime })
+            self.animationView.removeFromSuperview()
             self.modelPendingCollectionView.reloadData()
 
         }

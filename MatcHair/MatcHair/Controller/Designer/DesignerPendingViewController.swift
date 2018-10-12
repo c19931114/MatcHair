@@ -241,6 +241,10 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
                 "createTime": acceptTime
             ]
         )
+        NotificationCenter.default.post(
+            name: .reFetchModelPendingAppointments,
+            object: nil,
+            userInfo: nil)
 
     }
 

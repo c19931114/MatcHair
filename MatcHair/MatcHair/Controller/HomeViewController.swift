@@ -316,6 +316,11 @@ extension HomeViewController: UICollectionViewDataSource {
             ]
         )
 
+        NotificationCenter.default.post(
+            name: .reFetchModelPendingAppointments,
+            object: nil,
+            userInfo: nil)
+
     }
 
 }

@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
+import Lottie
 
 class HomeViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class HomeViewController: UIViewController {
     lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
     var refreshControl: UIRefreshControl!
+    let animationView = LOTAnimationView(name: "home_loading")
 
     var allPosts = [Post]() // [(PostInfo, User, URL)]
     var likePostIDs = [String]()
@@ -44,20 +46,12 @@ extension HomeViewController {
 
         ref = Database.database().reference()
 
-        refreshControl = UIRefreshControl()
-        refreshControl.tintColor = UIColor(
-            red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
-        refreshControl.attributedTitle = NSAttributedString(
-            string: "重新整理中...",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(
-                red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
-
-        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
-        homePostCollectionView.addSubview(refreshControl)
+        setRefreshControl()
 
         setupCollectionView()
 
         loadAllPosts()
+
 //        loadLikePosts()
 
 //        let layout = UICollectionViewFlowLayout()
@@ -72,6 +66,32 @@ extension HomeViewController {
 
     }
 
+    private func setRefreshControl() {
+
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor(
+        red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+        refreshControl.attributedTitle = NSAttributedString(
+        string: "重新整理中...",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor(
+            red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        homePostCollectionView.addSubview(refreshControl)
+    }
+
+    func homeLoadingAnimate() {
+
+        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopAnimation = true
+        animationView.animationSpeed = 1.5
+        view.addSubview(animationView)
+        animationView.play()
+
+    }
+
     private func setupCollectionView() {
 
         homePostCollectionView.dataSource = self
@@ -83,7 +103,7 @@ extension HomeViewController {
 
     }
 
-    @objc func loadAllPosts() {   //   要新增下拉更新
+    @objc func loadAllPosts() {
 
         ref.child("allPosts").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -177,7 +197,7 @@ extension HomeViewController {
             self.loadAllPosts()
             self.refreshControl.endRefreshing()
 
-//            self.homePostCollectionView.scrollToItem(at: [0, 0], at: .top, animated: true)
+//            self.homePostCollectionView.scrollToItem(at: [0, 0], at: .top, animated: true) // 要停在哪格
         }
 
     }
@@ -187,6 +207,13 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        if allPosts.count == 0 {
+            homeLoadingAnimate()
+        } else {
+            animationView.removeFromSuperview()
+        }
+
         return allPosts.count
     }
 
@@ -209,7 +236,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
         postCell.postImage.kf.setImage(with: URL(string: post.info.pictureURL))
         postCell.locationLabel.text =
-            "\(post.info.reservation.location.city), \(post.info.reservation.location.district)"
+            "\(post.info.reservation!.location.city), \(post.info.reservation!.location.district)"
 
         // target action
         postCell.likeButton.tag = indexPath.row
@@ -255,7 +282,7 @@ extension HomeViewController: UICollectionViewDataSource {
         var timingOption = [String]()
 
         let reservationPost = allPosts[sender.tag]
-        let timing = reservationPost.info.reservation.time
+        let timing = reservationPost.info.reservation!.time
 
         if timing.morning {
             timingOption.append("早上")
@@ -272,7 +299,7 @@ extension HomeViewController: UICollectionViewDataSource {
         print(timingOption)
 
         PickerDialog().show(
-            title: "\(reservationPost.info.reservation.date)",
+            title: "\(reservationPost.info.reservation!.date)",
             options: timingOption) {(value) -> Void in
 
                 print("selected: \(value)")

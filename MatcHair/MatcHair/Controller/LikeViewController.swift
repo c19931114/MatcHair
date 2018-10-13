@@ -15,6 +15,7 @@ import Kingfisher
 class LikeViewController: UIViewController {
 
     let decoder = JSONDecoder()
+    var refreshControl: UIRefreshControl!
 
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
@@ -39,6 +40,8 @@ extension LikeViewController {
 
         ref = Database.database().reference()
 
+        setRefreshControl()
+
         setupCollectionView()
 
         loadLikePosts()
@@ -48,6 +51,20 @@ extension LikeViewController {
             selector: #selector(loadLikePosts),
             name: Notification.Name.reFetchLikePosts,
             object: nil)
+    }
+
+    private func setRefreshControl() {
+
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor(
+            red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+        refreshControl.attributedTitle = NSAttributedString(
+            string: "重新整理中...",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(
+                red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        likePostCollectionView.addSubview(refreshControl)
     }
 
     private func setupCollectionView() {
@@ -125,7 +142,7 @@ extension LikeViewController {
             if let authorImageURL = url {
 
                 let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
-                self.likePosts.append(post)
+                self.likePosts.insert(post, at: 0)
 
             } else {
                 print(error as Any)
@@ -135,6 +152,18 @@ extension LikeViewController {
             self.likePostCollectionView.reloadData()
 
         })
+
+    }
+
+    @objc func reloadData() {
+
+        refreshControl.beginRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+
+            self.loadLikePosts()
+            self.refreshControl.endRefreshing()
+
+        }
 
     }
 
@@ -165,7 +194,7 @@ extension LikeViewController: UICollectionViewDataSource {
 
         postCell.postImage.kf.setImage(with: URL(string: post.info.pictureURL))
         postCell.locationLabel.text =
-            "\(post.info.reservation.location.city), \(post.info.reservation.location.district)"
+            "\(post.info.reservation!.location.city), \(post.info.reservation!.location.district)"
 
         // target action
         postCell.likeButton.tag = indexPath.row
@@ -205,7 +234,7 @@ extension LikeViewController: UICollectionViewDataSource {
         var timingOption = [String]()
 
         let reservationPost = likePosts[sender.tag]
-        let timing = reservationPost.info.reservation.time
+        let timing = reservationPost.info.reservation!.time
 
         if timing.morning {
             timingOption.append("早上")
@@ -222,7 +251,7 @@ extension LikeViewController: UICollectionViewDataSource {
         print(timingOption)
 
         PickerDialog().show(
-            title: "\(reservationPost.info.reservation.date)",
+            title: "\(reservationPost.info.reservation!.date)",
         options: timingOption) {(value) -> Void in
 
             print("selected: \(value)")

@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
+import Lottie
 
 class ProfileViewController: UIViewController {
 
@@ -19,6 +20,9 @@ class ProfileViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
+    var refreshControl: UIRefreshControl!
+    let animationView = LOTAnimationView(name: "home_loading")
+
     var myPosts: [MyPost] = []
     var currentUserImageURL: URL?
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
@@ -38,6 +42,8 @@ extension ProfileViewController {
 
         ref = Database.database().reference()
 
+        setRefreshControl()
+
         setupCollectionView()
 
         getUserImage()
@@ -51,6 +57,33 @@ extension ProfileViewController {
             object: nil)
 
     }
+
+    private func setRefreshControl() {
+
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor(
+            red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+        refreshControl.attributedTitle = NSAttributedString(
+            string: "重新整理中...",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(
+                red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        profileCollectionView.addSubview(refreshControl)
+    }
+
+    func homeLoadingAnimate() {
+
+        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopAnimation = true
+        animationView.animationSpeed = 1.5
+        view.addSubview(animationView)
+        animationView.play()
+
+    }
+
 
     private func setupCollectionView() {
 
@@ -105,9 +138,23 @@ extension ProfileViewController {
                 print(error)
             }
 
+            self.myPosts.sort(by: { $0.createTime > $1.createTime })
+
             self.profileCollectionView.reloadData()
 
         }
+    }
+
+    @objc func reloadData() {
+
+        refreshControl.beginRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+
+            self.loadMyPosts()
+            self.refreshControl.endRefreshing()
+
+        }
+
     }
 
 }
@@ -127,6 +174,13 @@ extension ProfileViewController: UICollectionViewDataSource {
             return 1
 
         default:
+
+            if myPosts.count == 0 {
+                homeLoadingAnimate()
+            } else {
+                animationView.removeFromSuperview()
+            }
+
             return myPosts.count
         }
     }

@@ -1,5 +1,5 @@
 //
-//  ModelCompleteCollectionViewCell.swift
+//  DesignerCompleteCollectionViewCell.swift
 //  MatcHair
 //
 //  Created by Crystal on 2018/10/9.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModelCompleteCollectionViewCell: UICollectionViewCell {
+class DesignerCompleteCollectionViewCell: UICollectionViewCell {
 
     let fullScreenSize = UIScreen.main.bounds.size
 
@@ -31,6 +31,7 @@ class ModelCompleteCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         setCellShadow()
+        scoreButton.isHidden = true
     }
 
     func setCellShadow() {
@@ -50,6 +51,5 @@ class ModelCompleteCollectionViewCell: UICollectionViewCell {
         self.layer.shadowOpacity = 0.5
         self.layer.masksToBounds = false
     }
-
 
 }

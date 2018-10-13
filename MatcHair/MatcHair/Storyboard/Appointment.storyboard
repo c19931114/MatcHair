@@ -17,14 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WVI-Ks-gLF">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WVI-Ks-gLF">
                                 <rect key="frame" x="16" y="80" width="343" height="29"/>
                                 <segments>
                                     <segment title="待確認"/>
                                     <segment title="已成立"/>
                                     <segment title="已完成"/>
                                 </segments>
-                                <color key="tintColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.015686274510000001" green="0.2784313725" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchStament:" destination="YpL-F9-EuT" eventType="valueChanged" id="vc1-XC-get"/>
                                 </connections>
@@ -105,7 +105,7 @@
                                     <segment title="已成立"/>
                                     <segment title="已完成"/>
                                 </segments>
-                                <color key="tintColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.015686274510000001" green="0.2784313725" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchStament:" destination="rol-q8-hzB" eventType="valueChanged" id="02Q-VK-xmu"/>
                                 </connections>
@@ -193,6 +193,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
@@ -380,6 +381,7 @@
                             <constraint firstItem="ao3-L3-VYT" firstAttribute="leading" secondItem="6QJ-20-QIg" secondAttribute="leading" id="F1X-lX-oyO"/>
                             <constraint firstAttribute="bottom" secondItem="ao3-L3-VYT" secondAttribute="bottom" id="ZCy-Tc-xHo"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="at3-x6-zfA"/>
                     </view>
                     <connections>
                         <outlet property="modelCompleteCollectionView" destination="ao3-L3-VYT" id="H8j-Oz-1zg"/>
@@ -416,6 +418,7 @@
                             <constraint firstAttribute="trailing" secondItem="FEH-L2-k3d" secondAttribute="trailing" id="ZSB-jx-QlE"/>
                             <constraint firstItem="FEH-L2-k3d" firstAttribute="leading" secondItem="A4I-Se-xgj" secondAttribute="leading" id="bE1-MX-DXf"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="VFr-Qe-0Ck"/>
                     </view>
                     <connections>
                         <outlet property="designerCompleteCollectionView" destination="FEH-L2-k3d" id="VKP-OX-8Tp"/>

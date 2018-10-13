@@ -180,25 +180,23 @@ extension PostViewController {
 
         postImage.image = picture
 
-        descriptionTextField.text = "test"
-
-        cityTextField.text = "台北市"
-        districtTextField.text = "信義區"
-        addressTextField.text = "基隆路一段180號"
+//        descriptionTextField.text = "test"
+//        cityTextField.text = "台北市"
+//        districtTextField.text = "信義區"
+//        addressTextField.text = "基隆路一段180號"
 
     }
 
-//    class func editPost(_ post: MyPost) -> PostViewController{
+//    class func editPost(_ post: PostInfo) -> PostViewController {
 //
-//        guard let postVC =
-//            UIStoryboard
-//                .postStoryboard()
-//                .instantiateInitialViewController() as? PostViewController else {
+//        let postStoryboard = UIStoryboard.postStoryboard()
+//        guard let postVC = postStoryboard.instantiateViewController(
+//            withIdentifier: "post") as? PostViewController else {
 //
 //                    return PostViewController()
 //        }
-//        
-//        postVC.myPost = post
+//
+////        postVC.myPost = post
 //        return postVC
 //
 //    }
@@ -221,6 +219,7 @@ extension PostViewController {
         print("tap")
 
     }
+
     func showOptions() {
 
         categoryLabel.isHidden = false
@@ -320,9 +319,10 @@ extension PostViewController {
 
                 guard let postID = self.ref.child("usersPosts").childByAutoId().key else { return }
 
+                let postTime = Date().millisecondsSince1970 // 1476889390939
+
                 if self.recruitModelSwitch.isOn {
 
-                    let postTime = Date().millisecondsSince1970 // 1476889390939
 
                     self.ref.child("allPosts/\(postID)").setValue(
                         [
@@ -364,6 +364,7 @@ extension PostViewController {
                     self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
+                            "createTime": postTime,
                             "content": "\(self.descriptionTextField.text!)",
                             "authorUID": "\(authorUID)",
                             "postID": postID
@@ -375,6 +376,7 @@ extension PostViewController {
                     self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
                         [
                             "pictureURL": "\(downloadURL)",
+                            "createTime": postTime,
                             "content": "\(self.descriptionTextField.text!)",
                             "authorUID": "\(authorUID)",
                             "postID": postID
@@ -386,4 +388,3 @@ extension PostViewController {
     }
 
 }
-

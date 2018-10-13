@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
+import Lottie
 
 class DesignerCompleteViewController: UIViewController {
 
@@ -18,6 +19,8 @@ class DesignerCompleteViewController: UIViewController {
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
     let fullScreenSize = UIScreen.main.bounds.size
+    var refreshControl: UIRefreshControl!
+    let animationView = LOTAnimationView(name: "no_appointment")
 
     var designerCompleteAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
 
@@ -32,7 +35,10 @@ extension DesignerCompleteViewController {
 
         ref = Database.database().reference()
 
+        setRefreshControl()
+
         setupCollectionView()
+        
         loadModelCompleteAppointments()
 
         NotificationCenter.default.addObserver(
@@ -43,6 +49,30 @@ extension DesignerCompleteViewController {
 
     }
 
+    private func setRefreshControl() {
+
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor(
+            red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+        refreshControl.attributedTitle = NSAttributedString(
+            string: "重新整理中...",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(
+                red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        designerCompleteCollectionView.addSubview(refreshControl)
+    }
+
+    func noAppointmentAnimate() {
+
+        animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
+        view.addSubview(animationView)
+        animationView.play()
+
+    }
+    
     private func setupCollectionView() {
 
         designerCompleteCollectionView.dataSource = self
@@ -159,12 +189,30 @@ extension DesignerCompleteViewController {
         }
     }
 
+    @objc func reloadData() {
+
+        refreshControl.beginRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+
+            self.loadModelCompleteAppointments()
+            self.refreshControl.endRefreshing()
+
+        }
+
+    }
+
 }
 
 extension DesignerCompleteViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
+        if designerCompleteAppointments.count == 0 {
+            noAppointmentAnimate()
+        } else {
+            animationView.removeFromSuperview()
+        }
+        
         return designerCompleteAppointments.count
 
     }
@@ -190,20 +238,20 @@ extension DesignerCompleteViewController: UICollectionViewDataSource {
         appointmentCell.designerImage.kf.setImage(with: appointment.designerImageURL)
         appointmentCell.designerNameLabel.text = appointment.designer?.name
         appointmentCell.reservationTimeLabel.text =
-        "\(appointment.postInfo.reservation.date), \(appointment.info.timing)"
+        "\(appointment.postInfo.reservation!.date), \(appointment.info.timing)"
 
-        if appointment.postInfo.category.shampoo { categories.append("洗髮") }
-        if appointment.postInfo.category.haircut { categories.append("剪髮") }
-        if appointment.postInfo.category.dye { categories.append("染髮") }
-        if appointment.postInfo.category.permanent { categories.append("燙髮") }
-        if appointment.postInfo.category.treatment { categories.append("護髮") }
-        if appointment.postInfo.category.other { categories.append("其他") }
+        if appointment.postInfo.category!.shampoo { categories.append("洗髮") }
+        if appointment.postInfo.category!.haircut { categories.append("剪髮") }
+        if appointment.postInfo.category!.dye { categories.append("染髮") }
+        if appointment.postInfo.category!.permanent { categories.append("燙髮") }
+        if appointment.postInfo.category!.treatment { categories.append("護髮") }
+        if appointment.postInfo.category!.other { categories.append("其他") }
 
         appointmentCell.categoryLabel.text = categories.joined(separator: ", ")
 
         // target action
-        //        postCell.completeButton.tag = indexPath.row
-        //        postCell.completeButton.addTarget(
+        //        postCell.scoreButton.tag = indexPath.row
+        //        postCell.scoreButton.addTarget(
         //            self,
         //            action: #selector(scoreButtonTapped(sender:)), for: .touchUpInside)
 
@@ -214,8 +262,6 @@ extension DesignerCompleteViewController: UICollectionViewDataSource {
     @objc func scoreButtonTapped(sender: UIButton) {
 
         let completePost = designerCompleteAppointments[sender.tag]
-
-        designerCompleteAppointments.remove(at: sender.tag)
 
         //        modelCompleteCollectionView.reloadData()
         //

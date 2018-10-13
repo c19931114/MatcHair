@@ -22,8 +22,6 @@ class DesignerSegementViewController: UIViewController {
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 
-//        NotificationCenter.default.post(name: .reFetchDesignerAppointments, object: nil, userInfo: nil) // 應該要放一個在 tab
-
         switch sender.selectedSegmentIndex {
         case 0:
             print("0")

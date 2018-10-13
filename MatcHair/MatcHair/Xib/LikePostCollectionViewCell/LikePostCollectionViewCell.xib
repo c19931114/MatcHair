@@ -95,8 +95,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC6-2B-Fqs">
-                                <rect key="frame" x="245" y="254.5" width="55" height="25"/>
-                                <color key="backgroundColor" red="0.01176470588" green="0.47450980390000003" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="245" y="244.5" width="55" height="25"/>
+                                <color key="backgroundColor" red="0.023529411760000001" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Wqt-z5-mHu"/>
                                     <constraint firstAttribute="width" constant="55" id="YBr-JT-z7z"/>
@@ -132,7 +132,7 @@
                             <constraint firstItem="uaM-m2-OTI" firstAttribute="centerY" secondItem="UXG-gr-FiV" secondAttribute="centerY" id="d4L-q2-wWQ"/>
                             <constraint firstItem="j0q-8k-aMz" firstAttribute="bottom" secondItem="E1v-JT-g04" secondAttribute="bottom" constant="2" id="gJf-v4-eeo"/>
                             <constraint firstItem="M17-wd-ZvG" firstAttribute="top" secondItem="DQA-ys-Ezj" secondAttribute="top" constant="10" id="kDJ-6D-yka"/>
-                            <constraint firstItem="SDW-Ei-TaH" firstAttribute="bottom" secondItem="hC6-2B-Fqs" secondAttribute="bottom" id="twd-HQ-TV8"/>
+                            <constraint firstItem="hC6-2B-Fqs" firstAttribute="bottom" secondItem="SDW-Ei-TaH" secondAttribute="centerY" id="twd-HQ-TV8"/>
                             <constraint firstAttribute="trailing" secondItem="hC6-2B-Fqs" secondAttribute="trailing" id="xYq-Kb-w89"/>
                             <constraint firstItem="j0q-8k-aMz" firstAttribute="centerY" secondItem="M17-wd-ZvG" secondAttribute="bottom" multiplier="0.98" id="xjW-p5-7db"/>
                             <constraint firstAttribute="width" secondItem="DQA-ys-Ezj" secondAttribute="height" multiplier="25:27" id="yfr-wy-Mry"/>

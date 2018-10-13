@@ -35,19 +35,34 @@ class DetailViewController: UIViewController {
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
         if post?.authorUID == currentUserUID {
-            showEditAlert { (_) in
-                self.deletePost()
-            }
+
+            showEditAlert(
+                editCompletion: { (_) in
+
+                    print("no edit")
+
+                }, deleteCompletion: { (_) in
+
+                    self.deletePost()
+                })
         } else {
+
             showReportAlert()
         }
     }
 
     @IBAction func moreForMyPost(_ sender: Any) {
 
-        showEditAlert { (_) in
-            self.deleteMyPost()
-        }
+        showEditAlert(
+
+            editCompletion: { (_) in
+
+                print("no edit")
+
+            }, deleteCompletion: { (_) in
+
+                self.deleteMyPost()
+            })
 
     }
 
@@ -118,18 +133,16 @@ extension DetailViewController {
 
     private func showPostData(for post: PostInfo) {
 
-        locationLabel.text = "\(post.reservation.location.city), \(post.reservation.location.district)"
+        locationLabel.text = "\(post.reservation!.location.city), \(post.reservation!.location.district)"
         postImage.kf.setImage(with: URL(string: post.pictureURL))
         descriptionTextView.text = post.content
 
-        print(post.category)
-
-        if post.category.shampoo { categories.append("洗髮") }
-        if post.category.haircut { categories.append("剪髮") }
-        if post.category.dye { categories.append("染髮") }
-        if post.category.permanent { categories.append("燙髮") }
-        if post.category.treatment { categories.append("護髮") }
-        if post.category.other { categories.append("其他") }
+        if post.category!.shampoo { categories.append("洗髮") }
+        if post.category!.haircut { categories.append("剪髮") }
+        if post.category!.dye { categories.append("染髮") }
+        if post.category!.permanent { categories.append("燙髮") }
+        if post.category!.treatment { categories.append("護髮") }
+        if post.category!.other { categories.append("其他") }
 
         categoryLabel.text = categories.joined(separator: ", ")
     }
@@ -167,17 +180,19 @@ extension DetailViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    func showEditAlert(completion: @escaping (UIAlertAction) -> Void) {
+    func showEditAlert(
+        editCompletion: @escaping (UIAlertAction) -> Void,
+        deleteCompletion: @escaping (UIAlertAction) -> Void) {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
 
-        let editAction = UIAlertAction(title: "編輯", style: .default, handler: nil)
-        alertController.addAction(editAction)
+//        let editAction = UIAlertAction(title: "編輯", style: .default, handler: editCompletion)
+//        alertController.addAction(editAction)
 
-        let deleteAction = UIAlertAction(title: "刪除", style: .destructive, handler: completion)
+        let deleteAction = UIAlertAction(title: "刪除", style: .destructive, handler: deleteCompletion)
 
         alertController.addAction(deleteAction)
 
@@ -185,10 +200,58 @@ extension DetailViewController {
 
     }
 
-//    func goEdit()  {
+//    func editPost() {
 //
-//        let editPost = PostViewController.editPost()
-//        self.present(detailForPost, animated: true)
+//        guard let post = post else { return }
+//        let editPost = PostViewController.editPost(post)
+//        self.present(editPost, animated: true)
+//        editPost.recruitModelSwitch.isOn = true
+//
+//        editPost.shampooButton.isSelected = post.category!.shampoo
+//        editPost.haircutButton.isSelected = post.category!.haircut
+//        editPost.dyeButton.isSelected = post.category!.dye
+//        editPost.permanentButton.isSelected = post.category!.permanent
+//        editPost.treatmentButton.isSelected = post.category!.treatment
+//        editPost.otherButton.isSelected = post.category!.other
+//
+//        if post.payment == "0" {
+//            editPost.paymentSegmentControl.selectedSegmentIndex = 0
+//        } else {
+//            editPost.paymentSegmentControl.selectedSegmentIndex = 1
+//            editPost.paymentLabel.text = post.payment!
+//        }
+//
+//        editPost.pickDateButton.setTitle("\(post.reservation!.date)", for: .normal)
+//        editPost.dateSelected = true
+//        editPost.morningButton.isSelected = post.reservation!.time.morning
+//        editPost.afternoonButton.isSelected = post.reservation!.time.afternoon
+//        editPost.nightButton.isSelected = post.reservation!.time.night
+//        editPost.cityTextField.text = post.reservation!.location.city
+//        editPost.districtTextField.text = post.reservation!.location.district
+//        editPost.addressTextField.text = post.reservation!.location.address
+//        editPost.phoneTextField.text = post.phone
+//
+//    }
+
+//    func editMyPost() {
+//
+//        guard let myPost = myPost else { return }
+//
+//        let post =
+//            PostInfo(
+//            postID: myPost.postID,
+//            category: nil,
+//            content: myPost.content,
+//            payment: nil,
+//            pictureURL: myPost.pictureURL,
+//            reservation: nil, authorUID:
+//            myPost.authorUID,
+//            createTime: myPost.createTime,
+//            phone: nil)
+//
+//        let editPost = PostViewController.editPost(post)
+//        self.present(editPost, animated: true)
+//        editPost.recruitModelSwitch.isOn = false
 //    }
 
     func deletePost() {

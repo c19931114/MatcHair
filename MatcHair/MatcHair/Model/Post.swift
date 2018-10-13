@@ -16,22 +16,25 @@ struct Post { // 這邊沒有要 Codable 喔
 }
 
 struct MyPost: Codable {
-    let content: String
+    let content: String?
     let pictureURL: String
     let authorUID: String
     let postID: String
+    let createTime: Int
 }
 
 struct PostInfo: Codable {
 
     let postID: String
-    let category: Category
-    let content: String
-    let payment: String
+    let category: Category?
+    let content: String?
+    let payment: String?
     let pictureURL: String
-    let reservation: Reservation
+    let reservation: Reservation?
     let authorUID: String
     let createTime: Int
+    let phone: String?
+    
 }
 
 struct Category: Codable {

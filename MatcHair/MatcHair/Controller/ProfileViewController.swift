@@ -84,7 +84,6 @@ extension ProfileViewController {
 
     }
 
-
     private func setupCollectionView() {
 
         profileCollectionView.dataSource = self
@@ -120,28 +119,30 @@ extension ProfileViewController {
 
     @objc func loadMyPosts() {
 
-        self.myPosts = []
-
         guard let currnetUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("usersPosts/\(currnetUserUID)").observe(.childAdded) { (snapshot) in
+        ref.child("usersPosts/\(currnetUserUID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            self.myPosts = []
 
             guard let value = snapshot.value as? NSDictionary else { return }
 
-            guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            for value in value.allValues {
 
-            do {
-                let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
-                self.myPosts.insert(postData, at: 0)
+                guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
-            } catch {
-                print(error)
+                do {
+                    let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
+                    self.myPosts.insert(postData, at: 0)
+
+                } catch {
+                    print(error)
+                }
+
+                self.myPosts.sort(by: { $0.createTime > $1.createTime })
+
+                self.profileCollectionView.reloadData()
             }
-
-            self.myPosts.sort(by: { $0.createTime > $1.createTime })
-
-            self.profileCollectionView.reloadData()
-
         }
     }
 

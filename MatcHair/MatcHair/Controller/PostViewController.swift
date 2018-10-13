@@ -323,7 +323,6 @@ extension PostViewController {
 
                 if self.recruitModelSwitch.isOn {
 
-
                     self.ref.child("allPosts/\(postID)").setValue(
                         [
                             "postID": "\(postID)",
@@ -383,6 +382,9 @@ extension PostViewController {
                         ]
                     )
                 }
+
+                NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
+                NotificationCenter.default.post(name: .reFetchMyPosts, object: nil, userInfo: nil)
             }
         }
     }

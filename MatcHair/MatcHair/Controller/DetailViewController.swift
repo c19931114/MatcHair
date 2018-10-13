@@ -262,6 +262,7 @@ extension DetailViewController {
         ref.child("usersPosts/\(currentUserUID)/\(post.postID)").removeValue()
         ref.child("allPosts/\(post.postID)").removeValue()
         NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
         self.dismiss(animated: true, completion: nil)
 
     }
@@ -274,6 +275,7 @@ extension DetailViewController {
         ref.child("usersPosts/\(currentUserUID)/\(myPost.postID)").removeValue()
         ref.child("allPosts/\(myPost.postID)").removeValue()
         NotificationCenter.default.post(name: .reFetchMyPosts, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
         self.dismiss(animated: true, completion: nil)
         
     }

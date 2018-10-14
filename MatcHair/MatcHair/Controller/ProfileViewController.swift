@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
     var refreshControl: UIRefreshControl!
-    let animationView = LOTAnimationView(name: "home_loading")
+    let animationView = LOTAnimationView(name: "empty_box")
 
     var myPosts: [MyPost] = []
     var currentUserImageURL: URL?
@@ -72,13 +72,13 @@ extension ProfileViewController {
         profileCollectionView.addSubview(refreshControl)
     }
 
-    func homeLoadingAnimate() {
+    func emptyAnimate() {
 
-        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         animationView.center = self.view.center
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
-        animationView.animationSpeed = 1.5
+//        animationView.animationSpeed = 1.5
         view.addSubview(animationView)
         animationView.play()
 
@@ -125,7 +125,12 @@ extension ProfileViewController {
 
             self.myPosts = []
 
-            guard let value = snapshot.value as? NSDictionary else { return }
+            guard let value = snapshot.value as? NSDictionary else {
+
+                self.profileCollectionView.reloadData()
+                return
+
+            }
 
             for value in value.allValues {
 
@@ -177,7 +182,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         default:
 
             if myPosts.count == 0 {
-                homeLoadingAnimate()
+                emptyAnimate()
             } else {
                 animationView.removeFromSuperview()
             }

@@ -94,7 +94,11 @@ extension ModelCompleteViewController {
 
                 self.modelCompleteAppointments = []
 
-                guard let value = snapshot.value as? NSDictionary else { return }
+                guard let value = snapshot.value as? NSDictionary else {
+
+                    self.modelCompleteCollectionView.reloadData()
+                    return
+                }
 
                 for value in value.allValues {
 

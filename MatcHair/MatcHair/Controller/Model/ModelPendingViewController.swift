@@ -95,7 +95,11 @@ extension ModelPendingViewController {
 
                 self.modelPendingAppointments = []
 
-                guard let value = snapshot.value as? NSDictionary else { return }
+                guard let value = snapshot.value as? NSDictionary else {
+
+                    self.modelPendingCollectionView.reloadData()
+                    return
+                }
 
                 for value in value.allValues {
 

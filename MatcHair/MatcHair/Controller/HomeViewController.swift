@@ -109,7 +109,12 @@ extension HomeViewController {
 
             self.allPosts = []
 
-            guard let value = snapshot.value as? NSDictionary else { return }
+            guard let value = snapshot.value as? NSDictionary else {
+
+                self.homePostCollectionView.reloadData()
+                return
+
+            }
 
             for value in value.allValues {
 
@@ -307,8 +312,6 @@ extension HomeViewController: UICollectionViewDataSource {
 
                 self.uploadAppointment(with: reservationPost.info, timing: value)
 
-                NotificationCenter.default.post(name: .reFetchModelPendingAppointments, object: nil, userInfo: nil)
-
                 // 向右換 tab 頁
                 self.transition.duration = 0.5
                 self.transition.type = CATransitionType.push
@@ -346,7 +349,8 @@ extension HomeViewController: UICollectionViewDataSource {
         NotificationCenter.default.post(
             name: .reFetchModelPendingAppointments,
             object: nil,
-            userInfo: nil)
+            userInfo: nil
+        )
 
     }
 

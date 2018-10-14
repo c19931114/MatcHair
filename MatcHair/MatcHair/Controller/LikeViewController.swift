@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
+import Lottie
 
 class LikeViewController: UIViewController {
 
@@ -22,6 +23,7 @@ class LikeViewController: UIViewController {
 
     var likePosts = [Post]() // [(PostInfo, User, URL)]
     let fullScreenSize = UIScreen.main.bounds.size
+    let animationView = LOTAnimationView(name: "empty_box")
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
     var selectedTiming: String?
     let transition = CATransition()
@@ -67,6 +69,18 @@ extension LikeViewController {
         likePostCollectionView.addSubview(refreshControl)
     }
 
+    func emptyAnimate() {
+
+        animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopAnimation = true
+//        animationView.animationSpeed = 1.5
+        view.addSubview(animationView)
+        animationView.play()
+
+    }
+
     private func setupCollectionView() {
 
         likePostCollectionView.dataSource = self
@@ -86,7 +100,12 @@ extension LikeViewController {
 
             self.likePosts = []
 
-            guard let value = snapshot.value as? NSDictionary else { return }
+            guard let value = snapshot.value as? NSDictionary else {
+
+                self.likePostCollectionView.reloadData()
+                return
+
+            }
 
             for postID in value.allKeys {
 
@@ -172,6 +191,13 @@ extension LikeViewController {
 extension LikeViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        if likePosts.count == 0 {
+            emptyAnimate()
+        } else {
+            animationView.removeFromSuperview()
+        }
+        
         return likePosts.count
     }
 
@@ -258,7 +284,6 @@ extension LikeViewController: UICollectionViewDataSource {
             self.selectedTiming = value
 
             self.uploadAppointment(post: reservationPost.info, with: value)
-            NotificationCenter.default.post(name: .reFetchModelPendingAppointments, object: nil, userInfo: nil)
 
             // 向左換 tab 頁
             self.transition.duration = 0.5
@@ -296,7 +321,8 @@ extension LikeViewController: UICollectionViewDataSource {
         NotificationCenter.default.post(
             name: .reFetchModelPendingAppointments,
             object: nil,
-            userInfo: nil)
+            userInfo: nil
+        )
 
     }
 

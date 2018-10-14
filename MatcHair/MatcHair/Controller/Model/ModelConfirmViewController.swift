@@ -94,7 +94,12 @@ extension ModelConfirmViewController {
 
                 self.modelConfirmAppointments = []
 
-                guard let value = snapshot.value as? NSDictionary else { return }
+                guard let value = snapshot.value as? NSDictionary else {
+
+                    self.modelConfirmCollectionView.reloadData()
+                    return
+
+                }
 
                 for value in value.allValues {
 

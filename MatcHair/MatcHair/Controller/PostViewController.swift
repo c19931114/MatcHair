@@ -262,14 +262,15 @@ extension PostViewController {
     }
 
     @objc func datePickerTapped() {
+        
         let currentDate = Date()
         var dateComponents = DateComponents()
         dateComponents.month = +6
         let threeMonthAfter = Calendar.current.date(byAdding: dateComponents, to: currentDate)
 
         let datePicker = DatePickerDialog(
-            textColor: UIColor(red: 3 / 255.0, green: 121 / 255.0, blue: 200 / 255.0, alpha: 1.0),
-            buttonColor: UIColor(red: 3 / 255.0, green: 121 / 255.0, blue: 200 / 255.0, alpha: 1.0),
+            textColor: UIColor(red: 4 / 255.0, green: 71 / 255.0, blue: 28 / 255.0, alpha: 1.0),
+            buttonColor: UIColor(red: 4 / 255.0, green: 71 / 255.0, blue: 28 / 255.0, alpha: 1.0),
             font: UIFont.boldSystemFont(ofSize: 17),
             showCancelButton: true)
         

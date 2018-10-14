@@ -31,6 +31,7 @@
 		F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */; };
 		F13BAFAE21721B9C0072378A /* home_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = F13BAFAD21721B9B0072378A /* home_loading.json */; };
 		F13BAFB021721F790072378A /* no_appointment.json in Resources */ = {isa = PBXBuildFile; fileRef = F13BAFAF21721F790072378A /* no_appointment.json */; };
+		F13BAFB42173A9690072378A /* empty_box.json in Resources */ = {isa = PBXBuildFile; fileRef = F13BAFB32173A9680072378A /* empty_box.json */; };
 		F13C31DD21631C9800498C2B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31DC21631C9800498C2B /* DetailViewController.swift */; };
 		F13C31DF21631CBD00498C2B /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13C31DE21631CBD00498C2B /* Detail.storyboard */; };
 		F13C31E72163ABF600498C2B /* PickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31E62163ABF500498C2B /* PickerDialog.swift */; };
@@ -110,6 +111,7 @@
 		F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F13BAFAD21721B9B0072378A /* home_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_loading.json; sourceTree = "<group>"; };
 		F13BAFAF21721F790072378A /* no_appointment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_appointment.json; sourceTree = "<group>"; };
+		F13BAFB32173A9680072378A /* empty_box.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty_box.json; sourceTree = "<group>"; };
 		F13C31DC21631C9800498C2B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13C31DE21631CBD00498C2B /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		F13C31E62163ABF500498C2B /* PickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDialog.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		F139AA042151EF3700B5B0D4 /* MatcHair */ = {
 			isa = PBXGroup;
 			children = (
+				F13BAFB32173A9680072378A /* empty_box.json */,
 				F13BAFAF21721F790072378A /* no_appointment.json */,
 				F13BAFAD21721B9B0072378A /* home_loading.json */,
 				F1546C27215256D8009AB3ED /* Support */,
@@ -562,6 +565,7 @@
 				F139AA102151EF3A00B5B0D4 /* LaunchScreen.storyboard in Resources */,
 				F13978B4216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.xib in Resources */,
 				F1A1A860215DE1070038F0CF /* Assets.xcassets in Resources */,
+				F13BAFB42173A9690072378A /* empty_box.json in Resources */,
 				F1A1A854215C7F010038F0CF /* MyPostCollectionViewCell.xib in Resources */,
 				F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */,
 				F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */,

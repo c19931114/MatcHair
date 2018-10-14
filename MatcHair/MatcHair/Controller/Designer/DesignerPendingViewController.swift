@@ -95,7 +95,11 @@ extension DesignerPendingViewController {
             .queryEqual(toValue: currentUserUID)
             .observeSingleEvent(of: .value) { (snapshot) in
 
-                guard let value = snapshot.value as? NSDictionary else { return }
+                guard let value = snapshot.value as? NSDictionary else {
+
+                    self.designerPendingCollectionView.reloadData()
+                    return
+                }
 
                 for value in value.allValues {
 

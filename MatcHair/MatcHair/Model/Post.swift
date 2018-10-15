@@ -34,7 +34,7 @@ struct PostInfo: Codable {
     let authorUID: String
     let createTime: Int
     let phone: String?
-    var isLiked: Bool?
+    var isLiked: Bool
     
 }
 

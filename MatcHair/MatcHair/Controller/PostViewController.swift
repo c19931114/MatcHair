@@ -357,7 +357,8 @@ extension PostViewController {
                                             "address": self.addressTextField.text
                                         ]
                                 ],
-                            "phone": self.phoneTextField.text!
+                            "phone": self.phoneTextField.text!,
+                            "isLiked": false
                         ]
                     )
 

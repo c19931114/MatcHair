@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import KeychainSwift
 
 class DetailViewController: UIViewController {
 
@@ -17,6 +18,7 @@ class DetailViewController: UIViewController {
     var categories = [String]()
     let swipcontroller = SwipeController()
     var ref: DatabaseReference!
+    let keychain = KeychainSwift()
 
     @IBOutlet weak var moreButton: UIButton!
 
@@ -33,6 +35,11 @@ class DetailViewController: UIViewController {
     @IBAction func moreForPost(_ sender: Any) {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        guard currentUserUID == keychain.get("userUID") else {
+            moreButton.isHidden = true
+            return
+        }
 
         if post?.authorUID == currentUserUID {
 
@@ -163,6 +170,9 @@ extension DetailViewController {
 
         let reportAction = UIAlertAction(title: "檢舉此貼文", style: .destructive, handler: showReceivedMessage)
         alertController.addAction(reportAction)
+
+        let reservationAction = UIAlertAction(title: "預約", style: .default, handler: nil)
+        alertController.addAction(reservationAction)
 
         self.present(alertController, animated: true, completion: nil)
     }

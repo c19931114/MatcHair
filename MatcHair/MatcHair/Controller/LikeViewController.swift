@@ -274,6 +274,7 @@ extension LikeViewController: UICollectionViewDataSource {
 
         likePostCollectionView.reloadData()
 
+        NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
     }
 
     @objc func reservationButtonTapped(sender: UIButton) {

@@ -52,7 +52,7 @@ extension HomeViewController {
 
         setupCollectionView()
 
-        loadAllPosts()
+        loadLikePosts()
 
 //        loadLikePosts()
 
@@ -62,7 +62,7 @@ extension HomeViewController {
 
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(loadAllPosts),
+            selector: #selector(loadLikePosts),
             name: .reFetchAllPosts,
             object: nil)
 
@@ -105,7 +105,26 @@ extension HomeViewController {
 
     }
 
-    @objc func loadAllPosts() {
+    @objc func loadLikePosts() {
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        ref.child("likePosts/\(currentUserUID)").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else {
+                self.loadAllPosts()
+                return
+            }
+
+            guard let likePostIDs = value.allKeys as? [String] else { return }
+            self.likePostIDs = likePostIDs
+
+            self.loadAllPosts()
+
+        }
+    }
+
+    func loadAllPosts() {
 
         ref.child("allPosts").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -123,7 +142,13 @@ extension HomeViewController {
                 guard let postJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
 
                 do {
-                    let postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
+                    var postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
+
+                    for likedPostID in self.likePostIDs {
+                        if postData.postID == likedPostID {
+                            postData.isLiked = true
+                        }
+                    }
                     self.getAuthorInfo(with: postData)
 
                 } catch {
@@ -181,21 +206,6 @@ extension HomeViewController {
 
     }
 
-    func loadLikePosts() {
-
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
-
-        ref.child("likePosts/\(currentUserUID)").observe(.value) { (snapshot) in
-
-            guard let value = snapshot.value as? NSDictionary else { return }
-            guard let likePostIDs = value.allKeys as? [String] else { return }
-            self.likePostIDs = likePostIDs
-
-//            self.homePostCollectionView.reloadData()
-
-        }
-    }
-
     @objc func reloadData() {
 
         refreshControl.beginRefreshing()
@@ -245,6 +255,13 @@ extension HomeViewController: UICollectionViewDataSource {
         postCell.locationLabel.text =
             "\(post.info.reservation!.location.city), \(post.info.reservation!.location.district)"
 
+        postCell.likeButton.isSelected = post.info.isLiked
+        if postCell.likeButton.isSelected {
+            postCell.likeButton.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
+        } else {
+            postCell.likeButton.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
+        }
+
         // target action
         postCell.likeButton.tag = indexPath.row
         postCell.likeButton.addTarget(
@@ -263,12 +280,12 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func likeButtonTapped(sender: UIButton) {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
-
-        guard currentUserUID == keychain.get("userUID") else {
+        guard keychain.get("userUID") != nil else {
             showVisitorAlert()
             return
         }
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
         NotificationCenter.default.post(name: .reFetchLikePosts, object: nil, userInfo: nil)
 
@@ -277,12 +294,12 @@ extension HomeViewController: UICollectionViewDataSource {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
 
-//            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "btn_like_selected"), for: .normal)
             ref.child("likePosts/\(currentUserUID)/\(likePost.info.postID)").setValue(true)
 
         } else {
 
-//            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "btn_like_normal"), for: .normal)
             ref.child("likePosts/\(currentUserUID)/\(likePost.info.postID)").removeValue()
 
         }
@@ -304,9 +321,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func reservationButtonTapped(sender: UIButton) {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
-
-        guard currentUserUID == keychain.get("userUID") else {
+        guard keychain.get("userUID") != nil else {
             showVisitorAlert()
             return
         }

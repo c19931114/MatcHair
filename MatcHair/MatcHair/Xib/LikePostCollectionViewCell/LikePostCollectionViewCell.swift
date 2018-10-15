@@ -20,7 +20,7 @@ class LikePostCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var reservationButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var pokeButton: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
 
     @IBAction func makeReservation(_ sender: UIButton) {
     }
@@ -35,6 +35,7 @@ class LikePostCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         setCellShadow()
+        chatButton.isHidden = true
 
     }
 

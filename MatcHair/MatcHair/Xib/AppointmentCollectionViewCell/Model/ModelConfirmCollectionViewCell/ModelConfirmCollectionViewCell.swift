@@ -20,7 +20,8 @@ class ModelConfirmCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var designerImage: UIImageView!
     @IBOutlet weak var designerNameLabel: UILabel!
     @IBOutlet weak var reservationTimeLabel: UILabel!
-
+    @IBOutlet weak var chatButton: UIButton!
+    
     @IBOutlet weak var completeButton: UIButton!
 
     @IBAction func chat(_ sender: UIButton) {
@@ -31,7 +32,7 @@ class ModelConfirmCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        chatButton.isHidden = true
         setCellShadow()
     }
 

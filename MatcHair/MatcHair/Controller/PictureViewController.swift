@@ -8,11 +8,14 @@
 
 import UIKit
 import Photos
+import FirebaseAuth
+import KeychainSwift
 
 class PictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let cameraController = CameraController()
     let transition = CATransition()
+    let keychain = KeychainSwift()
 
     @IBOutlet fileprivate var captureButton: UIButton!
     
@@ -114,6 +117,13 @@ extension PictureViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        guard currentUserUID == keychain.get("userUID") else {
+            showVisitorAlert()
+            return
+        }
         
         styleCaptureButton()
         configureCameraController()
@@ -130,6 +140,19 @@ extension PictureViewController {
         // 為視圖加入監聽手勢
         self.view.addGestureRecognizer(swipeDown)
         
+    }
+
+    func showVisitorAlert() {
+
+        let alertController = UIAlertController(
+            title: nil,
+            message: "請先登入",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func swipeOut() {

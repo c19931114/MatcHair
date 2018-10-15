@@ -11,11 +11,13 @@ import FBSDKLoginKit
 import Firebase
 import FBSDKCoreKit
 import IQKeyboardManagerSwift
+import KeychainSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let keychain = KeychainSwift()
 
     static let shared = UIApplication.shared.delegate as? AppDelegate
 
@@ -41,10 +43,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
 
-        guard UserManager.shared.getUserToken() == nil else {
+        guard keychain.get("userToken") == nil else {
             switchToMainStoryBoard()
             return true
         }
+
+//        guard UserManager.shared.getUserToken() == nil else {
+//            switchToMainStoryBoard()
+//            return true
+//        }
 
         return true
     }

@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 import Lottie
+import KeychainSwift
 
 class HomeViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class HomeViewController: UIViewController {
     lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
     var refreshControl: UIRefreshControl!
+    let keychain = KeychainSwift()
     let animationView = LOTAnimationView(name: "home_loading")
 
     var allPosts = [Post]() // [(PostInfo, User, URL)]
@@ -261,9 +263,14 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func likeButtonTapped(sender: UIButton) {
 
-        NotificationCenter.default.post(name: .reFetchLikePosts, object: nil, userInfo: nil)
-
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        guard currentUserUID == keychain.get("userUID") else {
+            showVisitorAlert()
+            return
+        }
+
+        NotificationCenter.default.post(name: .reFetchLikePosts, object: nil, userInfo: nil)
 
         let likePost = allPosts[sender.tag]
 
@@ -282,7 +289,27 @@ extension HomeViewController: UICollectionViewDataSource {
 
     }
 
+    func showVisitorAlert() {
+
+        let alertController = UIAlertController(
+            title: nil,
+            message: "請先登入",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
     @objc func reservationButtonTapped(sender: UIButton) {
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        guard currentUserUID == keychain.get("userUID") else {
+            showVisitorAlert()
+            return
+        }
 
         var timingOption = [String]()
 

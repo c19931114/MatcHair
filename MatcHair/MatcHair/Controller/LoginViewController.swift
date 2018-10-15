@@ -12,10 +12,13 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 import FBSDKShareKit
+import KeychainSwift
+
 
 class LoginViewController: UIViewController {
 
     private let fbLoginManager = FBSDKLoginManager()
+    let keychain = KeychainSwift()
 
     // Get a reference to the storage service using the default Firebase App
     // Create a storage reference from our storage service
@@ -74,8 +77,8 @@ extension LoginViewController {
                         let credential =
                             FacebookAuthProvider.credential(
                                 withAccessToken: FBSDKAccessToken.current().tokenString)
-
-                        self.userDefaults.set(FBSDKAccessToken.current().tokenString, forKey: "userToken")
+                        self.keychain.set(FBSDKAccessToken.current().tokenString, forKey: "userToken")
+//                        self.userDefaults.set(FBSDKAccessToken.current().tokenString, forKey: "userToken")
 
                         Auth.auth().signInAndRetrieveData(with: credential) { (authDataResult, error) in
 
@@ -87,6 +90,7 @@ extension LoginViewController {
                             } else {
 
                                 guard let uid = Auth.auth().currentUser?.uid else {return }
+                                self.keychain.set(uid, forKey: "userUID")
 //                                self.userDefaults.set(uid, forKey: "userUID")
 
                                 guard let userName

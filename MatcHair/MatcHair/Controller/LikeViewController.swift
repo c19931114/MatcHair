@@ -12,12 +12,13 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 import Lottie
+import KeychainSwift
 
 class LikeViewController: UIViewController {
 
     let decoder = JSONDecoder()
     var refreshControl: UIRefreshControl!
-
+    let keychain = KeychainSwift()
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
 
@@ -40,6 +41,13 @@ extension LikeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        guard currentUserUID == keychain.get("userUID") else {
+            showVisitorAlert()
+            return
+        }
+
         ref = Database.database().reference()
 
         setRefreshControl()
@@ -53,6 +61,19 @@ extension LikeViewController {
             selector: #selector(loadLikePosts),
             name: Notification.Name.reFetchLikePosts,
             object: nil)
+    }
+    
+    func showVisitorAlert() {
+
+        let alertController = UIAlertController(
+            title: nil,
+            message: "請先登入",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
     }
 
     private func setRefreshControl() {

@@ -39,6 +39,7 @@ class PostCollectionViewCell: UICollectionViewCell {
 //        postImage.addGestureRecognizer(tapGestureRecognizer)
 
         setCellShadow()
+        chatButton.isHidden = true
 
     }
 

@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -79,10 +80,12 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crystal Liu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDW-Ei-TaH">
-                                <rect key="frame" x="95" y="259" width="87.5" height="20.5"/>
+                                <rect key="frame" x="95" y="259" width="88.5" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2l-MQ-bFp">
                                 <rect key="frame" x="268" y="25" width="32" height="32"/>
@@ -95,7 +98,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC6-2B-Fqs">
-                                <rect key="frame" x="245" y="244.5" width="55" height="25"/>
+                                <rect key="frame" x="245" y="245" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.023529411760000001" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Wqt-z5-mHu"/>
@@ -156,6 +159,7 @@
             <viewLayoutGuide key="safeArea" id="Ua7-4j-3XD"/>
             <size key="customSize" width="375" height="379"/>
             <connections>
+                <outlet property="chatButton" destination="X2l-MQ-bFp" id="0cR-BO-rPo"/>
                 <outlet property="likeButton" destination="uaM-m2-OTI" id="Bpk-tN-J5Q"/>
                 <outlet property="locationLabel" destination="UXG-gr-FiV" id="K7s-nW-hIa"/>
                 <outlet property="postImage" destination="M17-wd-ZvG" id="OT9-fu-bzO"/>

@@ -18,7 +18,8 @@ class ModelCompleteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var designerImage: UIImageView!
     @IBOutlet weak var designerNameLabel: UILabel!
     @IBOutlet weak var reservationTimeLabel: UILabel!
-
+    @IBOutlet weak var chatButton: UIButton!
+    
     @IBOutlet weak var scoreButton: UIButton!
 
     @IBAction func chat(_ sender: UIButton) {
@@ -32,6 +33,7 @@ class ModelCompleteCollectionViewCell: UICollectionViewCell {
 
         setCellShadow()
         scoreButton.isHidden = true
+        chatButton.isHidden = true
     }
 
     func setCellShadow() {

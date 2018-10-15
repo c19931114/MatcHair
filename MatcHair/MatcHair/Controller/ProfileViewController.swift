@@ -12,11 +12,12 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 import Lottie
+import KeychainSwift
 
 class ProfileViewController: UIViewController {
 
     let decoder = JSONDecoder()
-
+    let keychain = KeychainSwift()
     let fullScreenSize = UIScreen.main.bounds.size
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
@@ -33,12 +34,27 @@ class ProfileViewController: UIViewController {
         self.present(chatRoomViewController, animated: true, completion: nil)
     }
 
+    @IBAction func logout(_ sender: Any) {
+
+        keychain.clear()
+
+        AppDelegate.shared?.window?.rootViewController
+            = UIStoryboard.loginStoryboard().instantiateInitialViewController()
+    }
+
 }
 
 extension ProfileViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+
+        guard currentUserUID == keychain.get("userUID") else {
+            showVisitorAlert()
+            return
+        }
 
         ref = Database.database().reference()
 
@@ -56,6 +72,19 @@ extension ProfileViewController {
             name: .reFetchMyPosts,
             object: nil)
 
+    }
+
+    func showVisitorAlert() {
+
+        let alertController = UIAlertController(
+            title: nil,
+            message: "請先登入",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
     }
 
     private func setRefreshControl() {

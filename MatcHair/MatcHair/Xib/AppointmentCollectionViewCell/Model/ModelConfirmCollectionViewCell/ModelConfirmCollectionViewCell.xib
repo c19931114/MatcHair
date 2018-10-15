@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -182,6 +183,7 @@
             <connections>
                 <outlet property="addressLabel" destination="6CU-tL-t10" id="1bg-c8-QbD"/>
                 <outlet property="categoryLabel" destination="ziE-y9-Ies" id="aLB-E0-2Ak"/>
+                <outlet property="chatButton" destination="qLa-tt-nY2" id="UF1-o8-ypK"/>
                 <outlet property="completeButton" destination="fgw-ki-GZ3" id="LT4-Yb-a6m"/>
                 <outlet property="designerImage" destination="3Zu-x6-kfZ" id="In7-hJ-ysg"/>
                 <outlet property="designerNameLabel" destination="bXX-2s-b4o" id="LRA-g4-h9x"/>

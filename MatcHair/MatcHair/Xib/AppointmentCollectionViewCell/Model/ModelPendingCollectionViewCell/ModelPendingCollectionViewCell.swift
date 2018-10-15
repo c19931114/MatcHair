@@ -18,6 +18,7 @@ class ModelPendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var designerImage: UIImageView!
     @IBOutlet weak var designerNameLabel: UILabel!
     @IBOutlet weak var reservationTimeLabel: UILabel!
+    @IBOutlet weak var chatButton: UIButton!
 
     @IBOutlet weak var cancelButton: UIButton!
 
@@ -29,6 +30,8 @@ class ModelPendingCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        chatButton.isHidden = true
 
         setCellShadow()
     }

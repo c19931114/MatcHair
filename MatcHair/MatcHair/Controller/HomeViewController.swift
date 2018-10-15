@@ -268,12 +268,6 @@ extension HomeViewController: UICollectionViewDataSource {
             self,
             action: #selector(self.likeButtonTapped(sender:)), for: .touchUpInside)
 
-        postCell.reservationButton.tag = indexPath.row
-        postCell.reservationButton.addTarget(
-            self,
-            action: #selector(reservationButtonTapped(sender:)),
-            for: .touchUpInside)
-
         return postCell
 
     }
@@ -317,83 +311,6 @@ extension HomeViewController: UICollectionViewDataSource {
             UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 
         self.present(alertController, animated: true, completion: nil)
-    }
-
-    @objc func reservationButtonTapped(sender: UIButton) {
-
-        guard keychain.get("userUID") != nil else {
-            showVisitorAlert()
-            return
-        }
-
-        var timingOption = [String]()
-
-        let reservationPost = allPosts[sender.tag]
-        let timing = reservationPost.info.reservation!.time
-
-        if timing.morning {
-            timingOption.append("早上")
-        }
-
-        if timing.afternoon {
-            timingOption.append("下午")
-        }
-
-        if timing.night {
-            timingOption.append("晚上")
-        }
-        print(timing)
-        print(timingOption)
-
-        PickerDialog().show(
-            title: "\(reservationPost.info.reservation!.date)",
-            options: timingOption) {(value) -> Void in
-
-                print("selected: \(value)")
-                self.selectedTiming = value
-
-                self.uploadAppointment(with: reservationPost.info, timing: value)
-
-                // 向右換 tab 頁
-                self.transition.duration = 0.5
-                self.transition.type = CATransitionType.push
-                self.transition.subtype = CATransitionSubtype.fromRight
-                self.transition.timingFunction = CAMediaTimingFunction(
-                    name: CAMediaTimingFunctionName.easeInEaseOut)
-                self.view.window!.layer.add(self.transition, forKey: kCATransition)
-
-                self.tabBarController?.selectedIndex = 1
-
-        }
-
-    }
-
-    private func uploadAppointment(with postInfo: PostInfo, timing: String) {
-
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {return }
-
-        let createTime = Date().millisecondsSince1970 // 1476889390939
-
-        guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
-
-        ref.child("appointments/\(appointmentID)").setValue(
-            [
-                "designerUID": postInfo.authorUID,
-                "modelUID": currentUserUID,
-                "postID": postInfo.postID,
-                "timing": timing,
-                "appointmentID": appointmentID,
-                "createTime": createTime,
-                "statement": "pending"
-            ]
-        )
-
-        NotificationCenter.default.post(
-            name: .reFetchModelPendingAppointments,
-            object: nil,
-            userInfo: nil
-        )
-
     }
 
 }
@@ -445,5 +362,6 @@ extension HomeViewController: UICollectionViewDelegate {
         self.present(detailForPost, animated: true)
         detailForPost.editButton.isHidden = true
         detailForPost.moreButton.isHidden = false
+
     }
 }

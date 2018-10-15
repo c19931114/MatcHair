@@ -94,43 +94,18 @@
                                 </constraints>
                                 <state key="normal" image="btn_chat_blue2"/>
                             </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0V8-KE-FdQ">
-                                <rect key="frame" x="245" y="246.5" width="55" height="25"/>
-                                <color key="backgroundColor" red="0.023529411760000001" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="e1m-e3-aJO"/>
-                                    <constraint firstAttribute="width" constant="55" id="fgg-8D-GlS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="  預約  ">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="makeReservation:" destination="gTV-IL-0wX" eventType="touchUpInside" id="e9H-dq-apP"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Wzc-kJ-Cgg" firstAttribute="top" secondItem="cCt-gV-dIK" secondAttribute="top" constant="25" id="5ng-4P-QrZ"/>
                             <constraint firstAttribute="width" secondItem="cCt-gV-dIK" secondAttribute="height" multiplier="25:27" id="G0X-em-8UT"/>
                             <constraint firstItem="AzB-sf-Fjm" firstAttribute="top" secondItem="cCt-gV-dIK" secondAttribute="top" constant="10" id="Ryd-tO-Mfi"/>
-                            <constraint firstAttribute="trailing" secondItem="0V8-KE-FdQ" secondAttribute="trailing" id="SZp-uB-iA2"/>
                             <constraint firstItem="oK5-zR-CMo" firstAttribute="leading" secondItem="cCt-gV-dIK" secondAttribute="leading" constant="20" id="VrK-rg-mPV"/>
                             <constraint firstItem="oK5-zR-CMo" firstAttribute="centerY" secondItem="AzB-sf-Fjm" secondAttribute="bottom" multiplier="0.98" id="aGc-25-QiA"/>
                             <constraint firstItem="oK5-zR-CMo" firstAttribute="bottom" secondItem="vxh-6a-o5f" secondAttribute="bottom" constant="2" id="aya-it-7Pp"/>
                             <constraint firstItem="4oT-bR-KPS" firstAttribute="trailing" secondItem="AzB-sf-Fjm" secondAttribute="trailing" id="fOM-1H-l0V"/>
                             <constraint firstItem="yNW-nr-jbg" firstAttribute="leading" secondItem="oK5-zR-CMo" secondAttribute="trailing" constant="15" id="fhN-Y0-Gcj"/>
                             <constraint firstItem="vxh-6a-o5f" firstAttribute="leading" secondItem="oK5-zR-CMo" secondAttribute="trailing" constant="10" id="ijz-hj-gPN"/>
-                            <constraint firstItem="0V8-KE-FdQ" firstAttribute="bottom" secondItem="yNW-nr-jbg" secondAttribute="centerY" id="j65-6j-xFT"/>
                             <constraint firstAttribute="trailing" secondItem="AzB-sf-Fjm" secondAttribute="trailing" constant="10" id="lf7-vo-CTY"/>
                             <constraint firstItem="AzB-sf-Fjm" firstAttribute="leading" secondItem="cCt-gV-dIK" secondAttribute="leading" constant="10" id="lqn-8W-iIl"/>
                             <constraint firstAttribute="trailing" secondItem="Wzc-kJ-Cgg" secondAttribute="trailing" id="mz8-1d-e0H"/>
@@ -160,7 +135,6 @@
                 <outlet property="likeButton" destination="4oT-bR-KPS" id="GZe-4b-Cwt"/>
                 <outlet property="locationLabel" destination="TBE-M0-08g" id="Agd-BF-pfc"/>
                 <outlet property="postImage" destination="AzB-sf-Fjm" id="Mh7-Bk-rE7"/>
-                <outlet property="reservationButton" destination="0V8-KE-FdQ" id="c6r-YS-Rzb"/>
                 <outlet property="userImage" destination="oK5-zR-CMo" id="1Jq-ae-o4O"/>
                 <outlet property="userNameLabel" destination="yNW-nr-jbg" id="Lz2-Sa-dxx"/>
                 <outlet property="view" destination="cCt-gV-dIK" id="uSd-FX-iNj"/>

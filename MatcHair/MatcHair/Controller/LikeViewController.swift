@@ -115,9 +115,9 @@ extension LikeViewController {
 
     @objc func loadLikePosts() {
 
-        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        ref.child("likePosts/\(currentUserID)").observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("likePosts/\(currentUserUID)").observeSingleEvent(of: .value) { (snapshot) in
 
             self.likePosts = []
 
@@ -249,12 +249,6 @@ extension LikeViewController: UICollectionViewDataSource {
             self,
             action: #selector(self.unlikeButtonTapped(sender:)), for: .touchUpInside)
 
-        postCell.reservationButton.tag = indexPath.row
-        postCell.reservationButton.addTarget(
-            self,
-            action: #selector(reservationButtonTapped(sender:)),
-            for: .touchUpInside)
-
         return postCell
 
     }
@@ -275,77 +269,6 @@ extension LikeViewController: UICollectionViewDataSource {
         likePostCollectionView.reloadData()
 
         NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
-    }
-
-    @objc func reservationButtonTapped(sender: UIButton) {
-
-        var timingOption = [String]()
-
-        let reservationPost = likePosts[sender.tag]
-        let timing = reservationPost.info.reservation!.time
-
-        if timing.morning {
-            timingOption.append("早上")
-        }
-
-        if timing.afternoon {
-            timingOption.append("下午")
-        }
-
-        if timing.night {
-            timingOption.append("晚上")
-        }
-        print(timing)
-        print(timingOption)
-
-        PickerDialog().show(
-            title: "\(reservationPost.info.reservation!.date)",
-        options: timingOption) {(value) -> Void in
-
-            print("selected: \(value)")
-            self.selectedTiming = value
-
-            self.uploadAppointment(post: reservationPost.info, with: value)
-
-            // 向左換 tab 頁
-            self.transition.duration = 0.5
-            self.transition.type = CATransitionType.push
-            self.transition.subtype = CATransitionSubtype.fromLeft
-            self.transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-            self.view.window!.layer.add(self.transition, forKey: kCATransition)
-
-            self.tabBarController?.selectedIndex = 1
-
-        }
-
-    }
-
-    private func uploadAppointment(post: PostInfo, with timing: String) {
-
-        guard let currentUserUID = UserManager.shared.getUserUID() else { return }
-
-        let createTime = Date().millisecondsSince1970 // 1476889390939
-
-        guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
-
-        ref.child("appointmentPosts/\(appointmentID)").setValue(
-            [
-                "designerUID": post.authorUID,
-                "modelUID": currentUserUID,
-                "postID": post.postID,
-                "timing": timing,
-                "appointmentID": appointmentID,
-                "createTime": createTime,
-                "statement": "pending"
-            ]
-        )
-
-        NotificationCenter.default.post(
-            name: .reFetchModelPendingAppointments,
-            object: nil,
-            userInfo: nil
-        )
-
     }
 
     // TODO

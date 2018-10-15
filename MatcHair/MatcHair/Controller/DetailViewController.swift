@@ -13,16 +13,20 @@ import KeychainSwift
 
 class DetailViewController: UIViewController {
 
-    var post: PostInfo?
+    var postInfo: PostInfo?
     var myPost: MyPost?
     var categories = [String]()
     let swipcontroller = SwipeController()
     var ref: DatabaseReference!
     let keychain = KeychainSwift()
+    var selectedTiming: String?
+    let transition = CATransition()
 
     @IBOutlet weak var moreButton: UIButton!
 
     @IBOutlet weak var editButton: UIButton!
+
+    @IBOutlet weak var reservationButton: UIButton!
 
     @IBOutlet weak var categoryLabel: UILabel!
 
@@ -36,12 +40,7 @@ class DetailViewController: UIViewController {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
 
-        guard currentUserUID == keychain.get("userUID") else {
-            moreButton.isHidden = true
-            return
-        }
-
-        if post?.authorUID == currentUserUID {
+        if postInfo?.authorUID == currentUserUID {
 
             showEditAlert(
                 editCompletion: { (_) in
@@ -77,6 +76,62 @@ class DetailViewController: UIViewController {
         self.dismiss(animated: true)
     }
 
+    @IBAction func makeReservation(_ sender: Any) {
+
+        guard let currentUserUID = keychain.get("userUID") else {
+//            showVisitorAlert()
+            return
+        }
+
+        guard let post = postInfo else { return }
+
+        if post.authorUID != currentUserUID {
+
+            var timingOption = [String]()
+
+            let timing = post.reservation!.time
+
+            if timing.morning {
+                timingOption.append("早上")
+            }
+
+            if timing.afternoon {
+                timingOption.append("下午")
+            }
+
+            if timing.night {
+                timingOption.append("晚上")
+            }
+
+            print(timingOption)
+
+            PickerDialog().show(
+                title: "\(post.reservation!.date)",
+            options: timingOption) {(value) -> Void in
+
+                print("selected: \(value)")
+                self.selectedTiming = value
+
+                self.uploadAppointment(with: post, timing: value)
+
+                // 向右換 tab 頁
+//                self.transition.duration = 0.5
+//                self.transition.type = CATransitionType.push
+//                self.transition.subtype = CATransitionSubtype.fromRight
+//                self.transition.timingFunction = CAMediaTimingFunction(
+//                    name: CAMediaTimingFunctionName.easeInEaseOut)
+//                self.view.window!.layer.add(self.transition, forKey: kCATransition)
+
+                let tabController = self.view.window!.rootViewController as? UITabBarController
+                self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+                tabController?.selectedIndex = 1
+
+            }
+
+        }
+        
+    }
+
 }
 
 extension DetailViewController {
@@ -95,11 +150,47 @@ extension DetailViewController {
         // 為視圖加入監聽手勢
         self.view.addGestureRecognizer(swipeDown)
 
-        if let post = post {
+        if let post = postInfo {
+
             showPostData(for: post)
+
+            if let currentUserUID = keychain.get("userUID") {
+                if post.authorUID == currentUserUID {
+                    reservationButton.isHidden = true
+                }
+            }
+
         } else if let myPost = myPost {
             showMyPostData(for: myPost)
         }
+
+    }
+
+    private func uploadAppointment(with postInfo: PostInfo, timing: String) {
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {return }
+
+        let createTime = Date().millisecondsSince1970 // 1476889390939
+
+        guard let appointmentID = self.ref.child("appointmentPosts").childByAutoId().key else { return }
+
+        ref.child("appointments/\(appointmentID)").setValue(
+            [
+                "designerUID": postInfo.authorUID,
+                "modelUID": currentUserUID,
+                "postID": postInfo.postID,
+                "timing": timing,
+                "appointmentID": appointmentID,
+                "createTime": createTime,
+                "statement": "pending"
+            ]
+        )
+
+        NotificationCenter.default.post(
+            name: .reFetchModelPendingAppointments,
+            object: nil,
+            userInfo: nil
+        )
 
     }
 
@@ -117,7 +208,7 @@ extension DetailViewController {
                     return DetailViewController()
         }
 
-        detailVC.post = post
+        detailVC.postInfo = post
         return detailVC
 
     }
@@ -170,9 +261,6 @@ extension DetailViewController {
 
         let reportAction = UIAlertAction(title: "檢舉此貼文", style: .destructive, handler: showReceivedMessage)
         alertController.addAction(reportAction)
-
-        let reservationAction = UIAlertAction(title: "預約", style: .default, handler: nil)
-        alertController.addAction(reservationAction)
 
         self.present(alertController, animated: true, completion: nil)
     }
@@ -267,7 +355,7 @@ extension DetailViewController {
     func deletePost() {
 
         guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
-        guard let post = post else { return }
+        guard let post = postInfo else { return }
 
         ref.child("usersPosts/\(currentUserUID)/\(post.postID)").removeValue()
         ref.child("allPosts/\(post.postID)").removeValue()

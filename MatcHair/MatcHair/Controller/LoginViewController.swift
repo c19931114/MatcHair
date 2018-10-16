@@ -14,7 +14,6 @@ import FirebaseDatabase
 import FBSDKShareKit
 import KeychainSwift
 
-
 class LoginViewController: UIViewController {
 
     private let fbLoginManager = FBSDKLoginManager()

@@ -92,11 +92,11 @@ extension ProfileViewController {
 
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor(
-            red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+            red: 234/255.0, green: 222/255.0, blue: 212/255.0, alpha: 1)
         refreshControl.attributedTitle = NSAttributedString(
-            string: "重新整理中...",
+            string: "重新整理中",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(
-                red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+                red: 209/255.0, green: 143/255.0, blue: 131/255.0, alpha: 1)])
 
         refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         profileCollectionView.addSubview(refreshControl)
@@ -105,7 +105,7 @@ extension ProfileViewController {
     func emptyAnimate() {
 
         animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-        animationView.center = self.view.center
+        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.65)
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
 //        animationView.animationSpeed = 1.5
@@ -318,12 +318,14 @@ extension ProfileViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let selectedPost = myPosts[indexPath.row]
-        let detailForPost = DetailViewController.detailForMyPost(selectedPost)
-        self.present(detailForPost, animated: true)
-        detailForPost.moreButton.isHidden = true
-        detailForPost.editButton.isHidden = false
-        detailForPost.reservationButton.isHidden = true
+        if indexPath.section == 1 {
+            let selectedPost = myPosts[indexPath.row]
+            let detailForPost = DetailViewController.detailForMyPost(selectedPost)
+            self.present(detailForPost, animated: true)
+            detailForPost.moreButton.isHidden = true
+            detailForPost.editButton.isHidden = false
+            detailForPost.reservationButton.isHidden = true
+        }
 
     }
 }

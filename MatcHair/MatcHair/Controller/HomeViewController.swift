@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     var refreshControl: UIRefreshControl!
     let keychain = KeychainSwift()
     let animationView = LOTAnimationView(name: "home_loading")
+    let emptyMessageLabel = UILabel()
 
     var allPosts = [Post]() // [(PostInfo, User, URL)]
     var likePostIDs = [String]()
@@ -72,11 +73,11 @@ extension HomeViewController {
 
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor(
-        red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+        red: 234/255.0, green: 222/255.0, blue: 212/255.0, alpha: 1)
         refreshControl.attributedTitle = NSAttributedString(
-        string: "重新整理中...",
+        string: "重新整理中",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor(
-            red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+            red: 209/255.0, green: 143/255.0, blue: 131/255.0, alpha: 1)])
 
         refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         homePostCollectionView.addSubview(refreshControl)
@@ -85,11 +86,20 @@ extension HomeViewController {
     func homeLoadingAnimate() {
 
         animationView.frame = CGRect(x: 0, y: 0, width: 120, height: 120)
-        animationView.center = self.view.center
+        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.5)
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
         animationView.animationSpeed = 1.5
         view.addSubview(animationView)
+
+        emptyMessageLabel.text = "loading..."
+        emptyMessageLabel.textColor = UIColor(red: 169/255.0, green: 185/255.0, blue: 192/255.0, alpha: 1)
+        emptyMessageLabel.textAlignment = .center
+        emptyMessageLabel.font = emptyMessageLabel.font.withSize(15)
+        emptyMessageLabel.frame = CGRect(x: 0, y: 0, width: fullScreenSize.width, height: 20)
+        emptyMessageLabel.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.6)
+        view.addSubview(emptyMessageLabel)
+
         animationView.play()
 
     }

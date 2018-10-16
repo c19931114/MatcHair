@@ -23,7 +23,6 @@ class ShowPictureViewController: UIViewController {
     let storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
 
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pictureView: UIImageView!
     
@@ -75,11 +74,7 @@ extension ShowPictureViewController {
     }
     
     private func setLayout() {
-        
-        saveButton.layer.borderColor = #colorLiteral(red: 0.9246133566, green: 0.9246349931, blue: 0.9246233106, alpha: 1)
-        saveButton.layer.borderWidth = 2
-        saveButton.layer.cornerRadius = 5
-        
+
         nextButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         nextButton.layer.borderWidth = 2
         nextButton.layer.cornerRadius = 5

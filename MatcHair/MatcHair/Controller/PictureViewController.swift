@@ -118,26 +118,26 @@ extension PictureViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard keychain.get("userUID") != nil else {
-            showVisitorAlert()
-            return
-        }
-        
         styleCaptureButton()
         configureCameraController()
 
         cameraModeButton.isHidden = true
         videoModeButton.isHidden = true
+
+        guard keychain.get("userUID") != nil else {
+            showVisitorAlert()
+            return
+        }
         
         // 向右滑動
-        let swipeDown = UISwipeGestureRecognizer(
-            target: self,
-            action: #selector(self.swipeOut))
-        swipeDown.direction = .down
-        
+//        let swipeDown = UISwipeGestureRecognizer(
+//            target: self,
+//            action: #selector(self.swipeOut))
+//        swipeDown.direction = .down
+
         // 為視圖加入監聽手勢
-        self.view.addGestureRecognizer(swipeDown)
-        
+//        self.view.addGestureRecognizer(swipeDown)
+
     }
 
     func showVisitorAlert() {

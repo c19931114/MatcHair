@@ -53,11 +53,11 @@ extension ModelPendingViewController {
 
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor(
-            red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+            red: 234/255.0, green: 222/255.0, blue: 212/255.0, alpha: 1)
         refreshControl.attributedTitle = NSAttributedString(
-            string: "重新整理中...",
+            string: "重新整理中",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(
-                red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+                red: 209/255.0, green: 143/255.0, blue: 131/255.0, alpha: 1)])
 
         refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         modelPendingCollectionView.addSubview(refreshControl)
@@ -66,7 +66,7 @@ extension ModelPendingViewController {
     func noAppointmentAnimate() {
 
         animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        animationView.center = self.view.center
+        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.6)
         animationView.contentMode = .scaleAspectFill
         view.addSubview(animationView)
         animationView.play()

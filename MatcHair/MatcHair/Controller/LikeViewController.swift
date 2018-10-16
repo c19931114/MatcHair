@@ -25,6 +25,7 @@ class LikeViewController: UIViewController {
     var likePosts = [Post]() // [(PostInfo, User, URL)]
     let fullScreenSize = UIScreen.main.bounds.size
     let animationView = LOTAnimationView(name: "empty_box")
+    let emptyMessageLabel = UILabel()
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
     var selectedTiming: String?
     let transition = CATransition()
@@ -78,11 +79,11 @@ extension LikeViewController {
 
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor(
-            red: 255/255.0, green: 249/255.0, blue: 91/255.0, alpha: 1)
+            red: 234/255.0, green: 222/255.0, blue: 212/255.0, alpha: 1)
         refreshControl.attributedTitle = NSAttributedString(
-            string: "重新整理中...",
+            string: "重新整理中",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(
-                red: 4/255.0, green: 71/255.0, blue: 28/255.0, alpha: 1)])
+                red: 209/255.0, green: 143/255.0, blue: 131/255.0, alpha: 1)])
 
         refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         likePostCollectionView.addSubview(refreshControl)
@@ -91,11 +92,20 @@ extension LikeViewController {
     func emptyAnimate() {
 
         animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-        animationView.center = self.view.center
+        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.65)
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
 //        animationView.animationSpeed = 1.5
         view.addSubview(animationView)
+
+        emptyMessageLabel.text = "還沒有任何收藏唷"
+        emptyMessageLabel.textColor = UIColor(red: 169/255.0, green: 185/255.0, blue: 192/255.0, alpha: 1)
+        emptyMessageLabel.textAlignment = .center
+        emptyMessageLabel.font = emptyMessageLabel.font.withSize(15)
+        emptyMessageLabel.frame = CGRect(x: 0, y: 0, width: fullScreenSize.width, height: 20)
+        emptyMessageLabel.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.75)
+        view.addSubview(emptyMessageLabel)
+
         animationView.play()
 
     }
@@ -215,6 +225,7 @@ extension LikeViewController: UICollectionViewDataSource {
             emptyAnimate()
         } else {
             animationView.removeFromSuperview()
+            emptyMessageLabel.removeFromSuperview()
         }
         
         return likePosts.count

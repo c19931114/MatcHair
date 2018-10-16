@@ -92,7 +92,7 @@ extension LikeViewController {
     func emptyAnimate() {
 
         animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.65)
+        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.55)
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
 //        animationView.animationSpeed = 1.5
@@ -103,7 +103,7 @@ extension LikeViewController {
         emptyMessageLabel.textAlignment = .center
         emptyMessageLabel.font = emptyMessageLabel.font.withSize(15)
         emptyMessageLabel.frame = CGRect(x: 0, y: 0, width: fullScreenSize.width, height: 20)
-        emptyMessageLabel.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.75)
+        emptyMessageLabel.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.65)
         view.addSubview(emptyMessageLabel)
 
         animationView.play()

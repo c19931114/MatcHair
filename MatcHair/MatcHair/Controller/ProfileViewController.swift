@@ -11,9 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
-import Lottie
 import KeychainSwift
-import FBSDKLoginKit
 
 class ProfileViewController: UIViewController {
 
@@ -23,7 +21,9 @@ class ProfileViewController: UIViewController {
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
     var refreshControl: UIRefreshControl!
-    let animationView = LOTAnimationView(name: "empty_box")
+
+    let emptyImageView = UIImageView(image: #imageLiteral(resourceName: "two_polaroid_pictures"))
+    let emptyMessageLabel = UILabel()
 
     var myPosts: [MyPost] = []
     var currentUserImageURL: URL?
@@ -33,16 +33,6 @@ class ProfileViewController: UIViewController {
 
     @IBAction private func goToChatRoom(_ sender: Any) {
         self.present(chatRoomViewController, animated: true, completion: nil)
-    }
-
-    @IBAction func logout(_ sender: Any) {
-
-        keychain.clear()
-
-        FBSDKLoginManager().logOut()
-
-        AppDelegate.shared?.window?.rootViewController
-            = UIStoryboard.loginStoryboard().instantiateInitialViewController()
     }
 
 }
@@ -102,16 +92,23 @@ extension ProfileViewController {
         profileCollectionView.addSubview(refreshControl)
     }
 
-    func emptyAnimate() {
+    func emptyPage() {
 
-        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.65)
-        animationView.contentMode = .scaleAspectFill
-        animationView.loopAnimation = true
-//        animationView.animationSpeed = 1.5
-        view.addSubview(animationView)
-        animationView.play()
+        emptyImageView.image = emptyImageView.image?.withRenderingMode(.alwaysTemplate)
+        emptyImageView.tintColor = #colorLiteral(red: 0.7568627451, green: 0.8274509804, blue: 0.8274509804, alpha: 1)
 
+        emptyImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        emptyImageView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.55)
+        emptyImageView.contentMode = .scaleAspectFill
+        view.addSubview(emptyImageView)
+
+        emptyMessageLabel.text = "還沒有新增作品唷"
+        emptyMessageLabel.textColor = UIColor(red: 169/255.0, green: 185/255.0, blue: 192/255.0, alpha: 1)
+        emptyMessageLabel.textAlignment = .center
+        emptyMessageLabel.font = emptyMessageLabel.font.withSize(15)
+        emptyMessageLabel.frame = CGRect(x: 0, y: 0, width: fullScreenSize.width, height: 20)
+        emptyMessageLabel.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.65)
+        view.addSubview(emptyMessageLabel)
     }
 
     private func setupCollectionView() {
@@ -212,9 +209,10 @@ extension ProfileViewController: UICollectionViewDataSource {
         default:
 
             if myPosts.count == 0 {
-                emptyAnimate()
+                emptyPage()
             } else {
-                animationView.removeFromSuperview()
+                emptyImageView.removeFromSuperview()
+                emptyMessageLabel.removeFromSuperview()
             }
 
             return myPosts.count

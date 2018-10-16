@@ -622,7 +622,7 @@
                                             <constraint firstAttribute="height" constant="45" id="gUW-ST-q2G"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="Rear Camera Icon"/>
+                                        <state key="normal" image="Front Camera Icon"/>
                                         <connections>
                                             <action selector="switchCameras:" destination="36v-2J-Gpy" eventType="touchUpInside" id="JfI-ZH-PSj"/>
                                         </connections>
@@ -806,8 +806,8 @@
     <resources>
         <image name="Album Camera Icon" width="32" height="32"/>
         <image name="Flash Off Icon" width="24" height="24"/>
+        <image name="Front Camera Icon" width="21" height="21"/>
         <image name="Photo Camera Icon" width="24" height="24"/>
-        <image name="Rear Camera Icon" width="24" height="24"/>
         <image name="Video Camera Icon" width="24" height="24"/>
         <image name="btn_back" width="34" height="34"/>
     </resources>

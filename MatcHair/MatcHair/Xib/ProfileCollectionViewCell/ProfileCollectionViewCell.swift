@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import KeychainSwift
+import FBSDKLoginKit
 
 class ProfileCollectionViewCell: UICollectionViewCell {
+
+    let keychain = KeychainSwift()
 
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -16,6 +20,16 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     
     @IBAction func editProfile(_ sender: Any) {
         
+    }
+
+    @IBAction func logout(_ sender: Any) {
+
+        keychain.clear()
+
+        FBSDKLoginManager().logOut()
+
+        AppDelegate.shared?.window?.rootViewController
+            = UIStoryboard.loginStoryboard().instantiateInitialViewController()
     }
 
     override func awakeFromNib() {

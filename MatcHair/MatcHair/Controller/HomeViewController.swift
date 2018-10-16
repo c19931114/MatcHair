@@ -84,7 +84,7 @@ extension HomeViewController {
 
     func homeLoadingAnimate() {
 
-        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        animationView.frame = CGRect(x: 0, y: 0, width: 120, height: 120)
         animationView.center = self.view.center
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
@@ -107,7 +107,9 @@ extension HomeViewController {
 
     @objc func loadLikePosts() {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            self.loadAllPosts()
+        return }
 
         ref.child("likePosts/\(currentUserUID)").observeSingleEvent(of: .value) { (snapshot) in
 
@@ -303,8 +305,8 @@ extension HomeViewController: UICollectionViewDataSource {
     func showVisitorAlert() {
 
         let alertController = UIAlertController(
-            title: nil,
-            message: "請先登入",
+            title: "Oppps!!",
+            message: "\n請先登入才能使用完整功能喔",
             preferredStyle: .alert)
 
         alertController.addAction(

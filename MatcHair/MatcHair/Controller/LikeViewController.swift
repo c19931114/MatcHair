@@ -41,9 +41,7 @@ extension LikeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
-
-        guard currentUserUID == keychain.get("userUID") else {
+        guard keychain.get("userUID") != nil else {
             showVisitorAlert()
             return
         }
@@ -66,8 +64,8 @@ extension LikeViewController {
     func showVisitorAlert() {
 
         let alertController = UIAlertController(
-            title: nil,
-            message: "請先登入",
+            title: "Oppps!!",
+            message: "\n請先登入才能使用完整功能喔",
             preferredStyle: .alert)
 
         alertController.addAction(
@@ -92,7 +90,7 @@ extension LikeViewController {
 
     func emptyAnimate() {
 
-        animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
         animationView.center = self.view.center
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true

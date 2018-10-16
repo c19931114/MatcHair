@@ -99,14 +99,17 @@ class TabBarController: UITabBarController {
 
         setupTab()
 
+        UITabBar.appearance().layer.borderWidth = 0
+        UITabBar.appearance().clipsToBounds = true
+
     }
 
     private func setupTab() {
 
         tabBar.unselectedItemTintColor = UIColor(
-            red: 182 / 255.0,
-            green: 227 / 255.0,
-            blue: 156 / 255.0,
+            red: 234 / 255.0,
+            green: 222 / 255.0,
+            blue: 212 / 255.0,
             alpha: 1.0)
 
 //        tabBar.unselectedItemTintColor = UIColor(
@@ -117,9 +120,9 @@ class TabBarController: UITabBarController {
         // #8ED4F2
 
         tabBar.tintColor = UIColor(
-            red: 4 / 255.0,
-            green: 71 / 255.0,
-            blue: 28 / 255.0,
+            red: 209 / 255.0,
+            green: 143 / 255.0,
+            blue: 131 / 255.0,
             alpha: 1.0)
 //        tabBar.tintColor = UIColor(
 //            red: 3 / 255.0,

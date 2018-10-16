@@ -72,8 +72,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Agx-El-5A5">
-                                <rect key="frame" x="291" y="619" width="68" height="32"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                <rect key="frame" x="288" y="619" width="71" height="32"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title=" 預約" image="btn_scissors_white"/>
                                 <connections>
                                     <action selector="makeReservation:" destination="6nl-D8-8yt" eventType="touchUpInside" id="LYe-8y-tD6"/>
@@ -84,7 +84,7 @@
                         <constraints>
                             <constraint firstItem="vhA-Yy-NpQ" firstAttribute="trailing" secondItem="B7r-pu-TV7" secondAttribute="trailing" constant="16" id="0Ia-0H-9zb"/>
                             <constraint firstItem="2EI-fP-HTv" firstAttribute="centerX" secondItem="aSY-Yk-Huh" secondAttribute="centerX" id="1rr-l5-hYd"/>
-                            <constraint firstAttribute="bottom" secondItem="Agx-El-5A5" secondAttribute="bottom" constant="16" id="5lk-d2-WS6"/>
+                            <constraint firstItem="vhA-Yy-NpQ" firstAttribute="bottom" secondItem="Agx-El-5A5" secondAttribute="bottom" constant="16" id="5lk-d2-WS6"/>
                             <constraint firstItem="Gd9-xO-hz2" firstAttribute="trailing" secondItem="B7r-pu-TV7" secondAttribute="trailing" id="ADM-JK-XPM"/>
                             <constraint firstItem="vhA-Yy-NpQ" firstAttribute="trailing" secondItem="gka-8k-fy0" secondAttribute="trailing" constant="16" id="DtK-UO-FgE"/>
                             <constraint firstItem="vhA-Yy-NpQ" firstAttribute="bottom" secondItem="WOi-o9-IYa" secondAttribute="bottom" constant="16" id="Ntf-lY-RDs"/>

@@ -38,7 +38,12 @@ class DetailViewController: UIViewController {
 
     @IBAction func moreForPost(_ sender: Any) {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+
+            showVisitorAlert()
+            return
+
+        }
 
         if postInfo?.authorUID == currentUserUID {
 
@@ -79,7 +84,7 @@ class DetailViewController: UIViewController {
     @IBAction func makeReservation(_ sender: Any) {
 
         guard let currentUserUID = keychain.get("userUID") else {
-//            showVisitorAlert()
+            showVisitorAlert()
             return
         }
 
@@ -115,12 +120,12 @@ class DetailViewController: UIViewController {
                 self.uploadAppointment(with: post, timing: value)
 
                 // 向右換 tab 頁
-//                self.transition.duration = 0.5
-//                self.transition.type = CATransitionType.push
-//                self.transition.subtype = CATransitionSubtype.fromRight
-//                self.transition.timingFunction = CAMediaTimingFunction(
-//                    name: CAMediaTimingFunctionName.easeInEaseOut)
-//                self.view.window!.layer.add(self.transition, forKey: kCATransition)
+                self.transition.duration = 0.5
+                self.transition.type = CATransitionType.push
+                self.transition.subtype = CATransitionSubtype.fromLeft
+                self.transition.timingFunction = CAMediaTimingFunction(
+                    name: CAMediaTimingFunctionName.easeInEaseOut)
+                self.view.window!.layer.add(self.transition, forKey: kCATransition)
 
                 let tabController = self.view.window!.rootViewController as? UITabBarController
                 self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
@@ -164,6 +169,19 @@ extension DetailViewController {
             showMyPostData(for: myPost)
         }
 
+    }
+
+    func showVisitorAlert() {
+
+        let alertController = UIAlertController(
+            title: "Oppps!!",
+            message: "\n請先登入才能使用完整功能喔",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
     }
 
     private func uploadAppointment(with postInfo: PostInfo, timing: String) {

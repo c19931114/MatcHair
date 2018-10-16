@@ -18,12 +18,8 @@ class LikePostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
 
-    @IBOutlet weak var reservationButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
-
-    @IBAction func makeReservation(_ sender: UIButton) {
-    }
 
     @IBAction func like(_ sender: UIButton) {
     }

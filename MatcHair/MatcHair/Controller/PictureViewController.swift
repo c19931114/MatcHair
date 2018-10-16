@@ -118,9 +118,7 @@ extension PictureViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
-
-        guard currentUserUID == keychain.get("userUID") else {
+        guard keychain.get("userUID") != nil else {
             showVisitorAlert()
             return
         }
@@ -145,8 +143,8 @@ extension PictureViewController {
     func showVisitorAlert() {
 
         let alertController = UIAlertController(
-            title: nil,
-            message: "請先登入",
+            title: "Oppps!!",
+            message: "\n請先登入才能使用完整功能喔",
             preferredStyle: .alert)
 
         alertController.addAction(

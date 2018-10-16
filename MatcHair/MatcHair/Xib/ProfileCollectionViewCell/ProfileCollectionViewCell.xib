@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="373" height="112"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_sticker_placeholder02" translatesAutoresizingMaskIntoConstraints="NO" id="1h5-5t-2bR">
-                                <rect key="frame" x="16" y="16" width="80" height="80"/>
+                                <rect key="frame" x="34.5" y="16" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="lfv-yu-8ed"/>
                                     <constraint firstAttribute="height" constant="80" id="yvr-wW-4CQ"/>
@@ -37,7 +38,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Kh-dE-k6D">
-                                <rect key="frame" x="112" y="32" width="80.5" height="23.5"/>
+                                <rect key="frame" x="146.5" y="21.5" width="80.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -47,26 +48,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMI-jJ-JwM">
-                                <rect key="frame" x="112" y="60" width="245" height="36"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                <state key="normal" title="編輯個人檔案">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="貼文數" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zn-lB-6nF">
-                                <rect key="frame" x="306" y="32" width="51" height="23.5"/>
+                                <rect key="frame" x="161" y="58.5" width="51" height="23.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -74,16 +57,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="sMI-jJ-JwM" secondAttribute="trailing" constant="16" id="3oa-gf-Pni"/>
-                            <constraint firstItem="sMI-jJ-JwM" firstAttribute="bottom" secondItem="1h5-5t-2bR" secondAttribute="bottom" id="7db-aH-gKP"/>
-                            <constraint firstItem="3zn-lB-6nF" firstAttribute="top" secondItem="8Kh-dE-k6D" secondAttribute="top" id="8vF-q1-1gO"/>
-                            <constraint firstAttribute="bottom" secondItem="1h5-5t-2bR" secondAttribute="bottom" constant="16" id="SX4-5f-kIR"/>
-                            <constraint firstItem="1h5-5t-2bR" firstAttribute="top" secondItem="s6h-yD-8dZ" secondAttribute="top" constant="16" id="eZd-x6-vLu"/>
-                            <constraint firstItem="sMI-jJ-JwM" firstAttribute="leading" secondItem="1h5-5t-2bR" secondAttribute="trailing" constant="16" id="haU-16-1aQ"/>
-                            <constraint firstItem="1h5-5t-2bR" firstAttribute="leading" secondItem="s6h-yD-8dZ" secondAttribute="leading" constant="16" id="kAu-Du-8W3"/>
-                            <constraint firstItem="8Kh-dE-k6D" firstAttribute="leading" secondItem="sMI-jJ-JwM" secondAttribute="leading" id="ocH-jq-rTP"/>
-                            <constraint firstItem="8Kh-dE-k6D" firstAttribute="top" secondItem="1h5-5t-2bR" secondAttribute="top" multiplier="2" id="vPa-jC-o3Q"/>
-                            <constraint firstItem="3zn-lB-6nF" firstAttribute="trailing" secondItem="sMI-jJ-JwM" secondAttribute="trailing" id="yGv-IX-CjF"/>
+                            <constraint firstItem="3zn-lB-6nF" firstAttribute="centerY" secondItem="1h5-5t-2bR" secondAttribute="centerY" multiplier="1.25" id="7QF-Yb-gLO"/>
+                            <constraint firstItem="1h5-5t-2bR" firstAttribute="centerY" secondItem="s6h-yD-8dZ" secondAttribute="centerY" id="Y5V-YC-4k3"/>
+                            <constraint firstItem="8Kh-dE-k6D" firstAttribute="centerX" secondItem="s6h-yD-8dZ" secondAttribute="trailing" multiplier="0.5" id="ger-Kg-aH7"/>
+                            <constraint firstItem="1h5-5t-2bR" firstAttribute="centerX" secondItem="s6h-yD-8dZ" secondAttribute="trailing" multiplier="0.2" id="kAu-Du-8W3"/>
+                            <constraint firstItem="3zn-lB-6nF" firstAttribute="centerX" secondItem="8Kh-dE-k6D" secondAttribute="centerX" id="pSl-A3-jKQ"/>
+                            <constraint firstItem="8Kh-dE-k6D" firstAttribute="bottom" secondItem="1h5-5t-2bR" secondAttribute="centerY" multiplier="0.8" id="vPa-jC-o3Q"/>
                         </constraints>
                     </view>
                 </subviews>

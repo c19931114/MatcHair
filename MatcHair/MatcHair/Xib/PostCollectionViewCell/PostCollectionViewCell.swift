@@ -44,7 +44,12 @@ class PostCollectionViewCell: UICollectionViewCell {
         let width = fullScreenSize.width - 40
         let height = width * 27 / 25
 
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowColor = UIColor(
+            red: 130 / 255.0,
+            green: 139 / 255.0,
+            blue: 160 / 255.0,
+            alpha: 1.0).cgColor
+
         self.layer.shadowPath = UIBezierPath(
             roundedRect: CGRect(x: 0, y: 0, width: width, height: height),
             cornerRadius: self.contentView.layer.cornerRadius
@@ -53,7 +58,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         // shadowOffset 偏移
         self.layer.shadowOffset = CGSize(width: 5, height: 5)
         self.layer.shadowRadius = 4.0
-        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOpacity = 0.2
         self.layer.masksToBounds = false
     }
 

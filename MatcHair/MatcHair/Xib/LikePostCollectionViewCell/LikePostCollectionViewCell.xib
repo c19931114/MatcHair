@@ -97,29 +97,6 @@
                                     <action selector="chat:" destination="i9w-SE-Pd1" eventType="touchUpInside" id="h5J-vH-9Ai"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC6-2B-Fqs">
-                                <rect key="frame" x="245" y="245" width="55" height="25"/>
-                                <color key="backgroundColor" red="0.023529411760000001" green="0.37647058820000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="Wqt-z5-mHu"/>
-                                    <constraint firstAttribute="width" constant="55" id="YBr-JT-z7z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="  預約  ">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="makeReservation:" destination="i9w-SE-Pd1" eventType="touchUpInside" id="gYN-QE-CzC"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -135,8 +112,6 @@
                             <constraint firstItem="uaM-m2-OTI" firstAttribute="centerY" secondItem="UXG-gr-FiV" secondAttribute="centerY" id="d4L-q2-wWQ"/>
                             <constraint firstItem="j0q-8k-aMz" firstAttribute="bottom" secondItem="E1v-JT-g04" secondAttribute="bottom" constant="2" id="gJf-v4-eeo"/>
                             <constraint firstItem="M17-wd-ZvG" firstAttribute="top" secondItem="DQA-ys-Ezj" secondAttribute="top" constant="10" id="kDJ-6D-yka"/>
-                            <constraint firstItem="hC6-2B-Fqs" firstAttribute="bottom" secondItem="SDW-Ei-TaH" secondAttribute="centerY" id="twd-HQ-TV8"/>
-                            <constraint firstAttribute="trailing" secondItem="hC6-2B-Fqs" secondAttribute="trailing" id="xYq-Kb-w89"/>
                             <constraint firstItem="j0q-8k-aMz" firstAttribute="centerY" secondItem="M17-wd-ZvG" secondAttribute="bottom" multiplier="0.98" id="xjW-p5-7db"/>
                             <constraint firstAttribute="width" secondItem="DQA-ys-Ezj" secondAttribute="height" multiplier="25:27" id="yfr-wy-Mry"/>
                         </constraints>
@@ -163,12 +138,11 @@
                 <outlet property="likeButton" destination="uaM-m2-OTI" id="Bpk-tN-J5Q"/>
                 <outlet property="locationLabel" destination="UXG-gr-FiV" id="K7s-nW-hIa"/>
                 <outlet property="postImage" destination="M17-wd-ZvG" id="OT9-fu-bzO"/>
-                <outlet property="reservationButton" destination="hC6-2B-Fqs" id="hQJ-bk-nlB"/>
                 <outlet property="userImage" destination="j0q-8k-aMz" id="0QB-Js-50M"/>
                 <outlet property="userNameLabel" destination="SDW-Ei-TaH" id="rnO-hv-j6X"/>
                 <outlet property="view" destination="DQA-ys-Ezj" id="3ua-dy-BUz"/>
             </connections>
-            <point key="canvasLocation" x="-909" y="-520"/>
+            <point key="canvasLocation" x="-910.39999999999998" y="-520.38980509745136"/>
         </collectionViewCell>
     </objects>
     <resources>

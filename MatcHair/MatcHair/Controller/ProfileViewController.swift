@@ -13,6 +13,7 @@ import FirebaseStorage
 import Kingfisher
 import Lottie
 import KeychainSwift
+import FBSDKLoginKit
 
 class ProfileViewController: UIViewController {
 
@@ -38,6 +39,8 @@ class ProfileViewController: UIViewController {
 
         keychain.clear()
 
+        FBSDKLoginManager().logOut()
+
         AppDelegate.shared?.window?.rootViewController
             = UIStoryboard.loginStoryboard().instantiateInitialViewController()
     }
@@ -49,9 +52,7 @@ extension ProfileViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
-
-        guard currentUserUID == keychain.get("userUID") else {
+        guard keychain.get("userUID") != nil else {
             showVisitorAlert()
             return
         }
@@ -77,8 +78,8 @@ extension ProfileViewController {
     func showVisitorAlert() {
 
         let alertController = UIAlertController(
-            title: nil,
-            message: "請先登入",
+            title: "Oppps!!",
+            message: "\n請先登入才能使用完整功能喔",
             preferredStyle: .alert)
 
         alertController.addAction(
@@ -103,7 +104,7 @@ extension ProfileViewController {
 
     func emptyAnimate() {
 
-        animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
         animationView.center = self.view.center
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
@@ -322,6 +323,7 @@ extension ProfileViewController: UICollectionViewDelegate {
         self.present(detailForPost, animated: true)
         detailForPost.moreButton.isHidden = true
         detailForPost.editButton.isHidden = false
+        detailForPost.reservationButton.isHidden = true
 
     }
 }

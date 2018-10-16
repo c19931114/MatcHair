@@ -29,8 +29,6 @@
 		F139AA2B2151FB2A00B5B0D4 /* Like.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */; };
 		F139AA2D2151FB3900B5B0D4 /* ChatRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2C2151FB3900B5B0D4 /* ChatRoom.storyboard */; };
 		F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */; };
-		F13BAFAE21721B9C0072378A /* home_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = F13BAFAD21721B9B0072378A /* home_loading.json */; };
-		F13BAFB021721F790072378A /* no_appointment.json in Resources */ = {isa = PBXBuildFile; fileRef = F13BAFAF21721F790072378A /* no_appointment.json */; };
 		F13BAFB42173A9690072378A /* empty_box.json in Resources */ = {isa = PBXBuildFile; fileRef = F13BAFB32173A9680072378A /* empty_box.json */; };
 		F13C31DD21631C9800498C2B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31DC21631C9800498C2B /* DetailViewController.swift */; };
 		F13C31DF21631CBD00498C2B /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13C31DE21631CBD00498C2B /* Detail.storyboard */; };
@@ -76,6 +74,8 @@
 		F1D0BBEA216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE8216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib */; };
 		F1D0BBEC21610A9400ABAE5D /* ModelSegementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */; };
 		F1D0BBEE2161400000ABAE5D /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBED2161400000ABAE5D /* ChatRoomViewController.swift */; };
+		F1DCA95E217586A500E387C0 /* home_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = F1DCA95D217586A500E387C0 /* home_loading.json */; };
+		F1DCA9602175885E00E387C0 /* no_appointment.json in Resources */ = {isa = PBXBuildFile; fileRef = F1DCA95F2175885D00E387C0 /* no_appointment.json */; };
 		F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */; };
 		F1DD3F3421536D3D00BBE710 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */; };
 		F1DD3F3521536D3D00BBE710 /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */; };
@@ -109,8 +109,6 @@
 		F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Like.storyboard; sourceTree = "<group>"; };
 		F139AA2C2151FB3900B5B0D4 /* ChatRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoom.storyboard; sourceTree = "<group>"; };
 		F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		F13BAFAD21721B9B0072378A /* home_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_loading.json; sourceTree = "<group>"; };
-		F13BAFAF21721F790072378A /* no_appointment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_appointment.json; sourceTree = "<group>"; };
 		F13BAFB32173A9680072378A /* empty_box.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty_box.json; sourceTree = "<group>"; };
 		F13C31DC21631C9800498C2B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13C31DE21631CBD00498C2B /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
@@ -156,6 +154,8 @@
 		F1D0BBE8216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelConfirmCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSegementController.swift; sourceTree = "<group>"; };
 		F1D0BBED2161400000ABAE5D /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		F1DCA95D217586A500E387C0 /* home_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_loading.json; sourceTree = "<group>"; };
+		F1DCA95F2175885D00E387C0 /* no_appointment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_appointment.json; sourceTree = "<group>"; };
 		F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F1DD3F3221536D3D00BBE710 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1DD3F3321536D3D00BBE710 /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -230,9 +230,9 @@
 		F139AA042151EF3700B5B0D4 /* MatcHair */ = {
 			isa = PBXGroup;
 			children = (
+				F1DCA95F2175885D00E387C0 /* no_appointment.json */,
+				F1DCA95D217586A500E387C0 /* home_loading.json */,
 				F13BAFB32173A9680072378A /* empty_box.json */,
-				F13BAFAF21721F790072378A /* no_appointment.json */,
-				F13BAFAD21721B9B0072378A /* home_loading.json */,
 				F1546C27215256D8009AB3ED /* Support */,
 				F1546C1221522C57009AB3ED /* Model */,
 				F139AA252151F9B500B5B0D4 /* Extension */,
@@ -557,10 +557,10 @@
 				F139AA2B2151FB2A00B5B0D4 /* Like.storyboard in Resources */,
 				F139AA192151F18300B5B0D4 /* Login.storyboard in Resources */,
 				F1D0BBEA216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib in Resources */,
-				F13BAFAE21721B9C0072378A /* home_loading.json in Resources */,
 				F139AA272151FB0D00B5B0D4 /* Home.storyboard in Resources */,
 				F1A1A85E215DDA900038F0CF /* DesignerPendingCollectionViewCell.xib in Resources */,
 				F139AA292151FB2000B5B0D4 /* Appointment.storyboard in Resources */,
+				F1DCA95E217586A500E387C0 /* home_loading.json in Resources */,
 				F1C2C3D72153CD2F0065E4EB /* Post.storyboard in Resources */,
 				F139AA102151EF3A00B5B0D4 /* LaunchScreen.storyboard in Resources */,
 				F13978B4216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.xib in Resources */,
@@ -572,8 +572,8 @@
 				F1D0BBE62161087300ABAE5D /* ModelPendingCollectionViewCell.xib in Resources */,
 				F139AA2D2151FB3900B5B0D4 /* ChatRoom.storyboard in Resources */,
 				F1DD3F3521536D3D00BBE710 /* PostCollectionViewCell.xib in Resources */,
+				F1DCA9602175885E00E387C0 /* no_appointment.json in Resources */,
 				F139AA0B2151EF3700B5B0D4 /* Main.storyboard in Resources */,
-				F13BAFB021721F790072378A /* no_appointment.json in Resources */,
 				F13978AA216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

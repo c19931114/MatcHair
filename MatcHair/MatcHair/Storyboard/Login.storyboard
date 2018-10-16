@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,6 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roberto-nickson-g-366181-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="z8p-bM-lwR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBB-lq-pkg">
                                 <rect key="frame" x="20" y="625" width="149" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,7 +36,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MatcHair" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnV-b7-wnb">
-                                <rect key="frame" x="143.33333333333334" y="255" width="127.33333333333334" height="42"/>
+                                <rect key="frame" x="143.33333333333334" y="328.66666666666669" width="127.33333333333334" height="42"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -74,18 +78,21 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.050980392156862744" green="0.15686274509803921" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ogt-uK-8u8" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.85" id="2As-6Z-y4P"/>
                             <constraint firstItem="rBB-lq-pkg" firstAttribute="leading" secondItem="TMm-5a-gYD" secondAttribute="leading" constant="20" id="4bW-4A-fVI"/>
                             <constraint firstItem="RW3-lA-5ca" firstAttribute="leading" secondItem="rBB-lq-pkg" secondAttribute="trailing" constant="30" id="4xB-Ah-j9M"/>
                             <constraint firstItem="RW3-lA-5ca" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.85" id="FX0-qv-cMn"/>
                             <constraint firstItem="rBB-lq-pkg" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.85" id="JX5-j8-htn"/>
+                            <constraint firstItem="z8p-bM-lwR" firstAttribute="leading" secondItem="TMm-5a-gYD" secondAttribute="leading" id="K37-Ln-9xt"/>
                             <constraint firstAttribute="trailing" secondItem="ogt-uK-8u8" secondAttribute="trailing" constant="20" id="KQq-9h-RJF"/>
                             <constraint firstItem="fnV-b7-wnb" firstAttribute="centerX" secondItem="TMm-5a-gYD" secondAttribute="centerX" id="LNz-g8-Ibd"/>
                             <constraint firstItem="ogt-uK-8u8" firstAttribute="leading" secondItem="RW3-lA-5ca" secondAttribute="trailing" constant="30" id="N5q-jz-OJL"/>
+                            <constraint firstItem="z8p-bM-lwR" firstAttribute="top" secondItem="TMm-5a-gYD" secondAttribute="top" id="PLs-Ar-kaS"/>
+                            <constraint firstAttribute="trailing" secondItem="z8p-bM-lwR" secondAttribute="trailing" id="PqU-BA-dcU"/>
                             <constraint firstItem="5K8-qh-UIc" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.9" id="SN8-yY-P57"/>
-                            <constraint firstItem="fnV-b7-wnb" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="centerY" multiplier="0.75" id="en8-fv-5lV"/>
+                            <constraint firstItem="fnV-b7-wnb" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="centerY" multiplier="0.95" id="en8-fv-5lV"/>
+                            <constraint firstAttribute="bottom" secondItem="z8p-bM-lwR" secondAttribute="bottom" id="lPe-l9-rgi"/>
                             <constraint firstItem="ccw-Ho-aNW" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.8" id="lpO-lM-YMM"/>
                             <constraint firstItem="RW3-lA-5ca" firstAttribute="centerX" secondItem="TMm-5a-gYD" secondAttribute="centerX" id="naa-Ob-8x5"/>
                             <constraint firstItem="5K8-qh-UIc" firstAttribute="centerX" secondItem="TMm-5a-gYD" secondAttribute="centerX" id="tZZ-eM-wSg"/>
@@ -103,4 +110,7 @@
             <point key="canvasLocation" x="-43.478260869565219" y="-252.71739130434784"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="roberto-nickson-g-366181-unsplash" width="4480" height="6720"/>
+    </resources>
 </document>

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class ModelSegementController: UIViewController {
 
+    let keychain = KeychainSwift()
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var pendingView: UIView!
@@ -54,3 +56,27 @@ class ModelSegementController: UIViewController {
 
 }
 
+extension ModelSegementController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        guard keychain.get("userUID") != nil else {
+            showVisitorAlert()
+            return
+        }
+    }
+
+    func showVisitorAlert() {
+
+        let alertController = UIAlertController(
+            title: "Oppps!!",
+            message: "\n請先登入才能使用完整功能喔",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+}

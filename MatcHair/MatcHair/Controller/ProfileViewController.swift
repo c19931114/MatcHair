@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController {
     var designerImageURL: URL?
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
+    @IBOutlet weak var emptyPage: UIView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
 
     @IBAction private func goToChatRoom(_ sender: Any) {
@@ -44,6 +45,12 @@ extension ProfileViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(loadDesignerPosts),
+            name: .reFetchMyPosts,
+            object: nil)
+
         ref = Database.database().reference()
 
         setRefreshControl()
@@ -51,6 +58,8 @@ extension ProfileViewController {
         setupCollectionView()
 
         if let designerUID = designerUID {
+
+            emptyPage.isHidden = true
             
             getUserName(with: designerUID)
             loadDesignerPosts(with: designerUID)
@@ -58,20 +67,16 @@ extension ProfileViewController {
         } else {
 
             guard let currentUserUID = keychain.get("userUID") else {
-                showVisitorAlert()
+                emptyPage.isHidden = false
                 return
             }
+
+            emptyPage.isHidden = true
 
             getUserName(with: currentUserUID)
             loadDesignerPosts(with: currentUserUID)
 
         }
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(loadDesignerPosts),
-            name: .reFetchMyPosts,
-            object: nil)
 
     }
 
@@ -118,7 +123,7 @@ extension ProfileViewController {
         profileCollectionView.addSubview(refreshControl)
     }
 
-    func emptyPage() {
+    func setEmptyView() {
 
         emptyImageView.image = emptyImageView.image?.withRenderingMode(.alwaysTemplate)
         emptyImageView.tintColor = #colorLiteral(red: 0.7568627451, green: 0.8274509804, blue: 0.8274509804, alpha: 1)
@@ -253,7 +258,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         default:
 
             if designerPosts.count == 0 {
-                emptyPage()
+                setEmptyView()
             } else {
                 emptyImageView.removeFromSuperview()
                 emptyMessageLabel.removeFromSuperview()

@@ -30,6 +30,7 @@ class LikeViewController: UIViewController {
     var selectedTiming: String?
     let transition = CATransition()
 
+    @IBOutlet weak var emptyPage: UIView!
     @IBOutlet weak var likePostCollectionView: UICollectionView!
 
     @IBAction private func goToChatRoom(_ sender: Any) {
@@ -43,9 +44,11 @@ extension LikeViewController {
         super.viewDidLoad()
 
         guard keychain.get("userUID") != nil else {
-            showVisitorAlert()
+            emptyPage.isHidden = false
             return
         }
+
+        emptyPage.isHidden = true
 
         ref = Database.database().reference()
 

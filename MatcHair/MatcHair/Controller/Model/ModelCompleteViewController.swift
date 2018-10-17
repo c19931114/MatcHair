@@ -12,10 +12,12 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 import Lottie
+import KeychainSwift
 
 class ModelCompleteViewController: UIViewController {
 
     let decoder = JSONDecoder()
+    let keychain = KeychainSwift()
     var ref: DatabaseReference!
     lazy var storageRef = Storage.storage().reference()
     let fullScreenSize = UIScreen.main.bounds.size
@@ -94,7 +96,7 @@ extension ModelCompleteViewController {
 
     @objc func loadModelCompleteAppointments() {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserUID = keychain.get("userUID") else { return }
 
         ref.child("appointments")
             .queryOrdered(byChild: "modelUID")

@@ -12,10 +12,12 @@ import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
 import Lottie
+import KeychainSwift
 
 class DesignerPendingViewController: UIViewController {
 
     let decoder = JSONDecoder()
+    let keychain = KeychainSwift()
     lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
     let fullScreenSize = UIScreen.main.bounds.size
@@ -95,14 +97,14 @@ extension DesignerPendingViewController {
 
     @objc func loadDesignerPendingAppointments() {
 
-        designerPendingAppointments = []
-
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserUID = keychain.get("userUID") else { return }
 
         ref.child("appointments")
             .queryOrdered(byChild: "designerUID")
             .queryEqual(toValue: currentUserUID)
             .observeSingleEvent(of: .value) { (snapshot) in
+
+                self.designerPendingAppointments = []
 
                 guard let value = snapshot.value as? NSDictionary else {
 

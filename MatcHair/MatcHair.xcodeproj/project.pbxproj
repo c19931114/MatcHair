@@ -33,6 +33,7 @@
 		F13C31DD21631C9800498C2B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31DC21631C9800498C2B /* DetailViewController.swift */; };
 		F13C31DF21631CBD00498C2B /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13C31DE21631CBD00498C2B /* Detail.storyboard */; };
 		F13C31E72163ABF600498C2B /* PickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31E62163ABF500498C2B /* PickerDialog.swift */; };
+		F145D3FC21773CD3006801D6 /* EmptyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145D3FB21773CD3006801D6 /* EmptyPageViewController.swift */; };
 		F14794A2215B57AD005E864C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14794A1215B57AD005E864C /* HomeViewController.swift */; };
 		F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1621522DD6009AB3ED /* FacebookManager.swift */; };
 		F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1C215231A4009AB3ED /* MatcHairError.swift */; };
@@ -113,6 +114,7 @@
 		F13C31DC21631C9800498C2B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F13C31DE21631CBD00498C2B /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		F13C31E62163ABF500498C2B /* PickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDialog.swift; sourceTree = "<group>"; };
+		F145D3FB21773CD3006801D6 /* EmptyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPageViewController.swift; sourceTree = "<group>"; };
 		F14794A1215B57AD005E864C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F1546C1621522DD6009AB3ED /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		F1546C1C215231A4009AB3ED /* MatcHairError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatcHairError.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				F1A1A858215CB09A0038F0CF /* LikeViewController.swift */,
 				F1D0BBED2161400000ABAE5D /* ChatRoomViewController.swift */,
 				F13C31DC21631C9800498C2B /* DetailViewController.swift */,
+				F145D3FB21773CD3006801D6 /* EmptyPageViewController.swift */,
 				F196CEAA216B680C001110E1 /* Model */,
 				F196CEB3216B91D4001110E1 /* Designer */,
 			);
@@ -680,6 +683,7 @@
 				F1D0BBE52161087300ABAE5D /* ModelPendingCollectionViewCell.swift in Sources */,
 				F13978A1216C619900B80B68 /* NotificationName+Crystal.swift in Sources */,
 				F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */,
+				F145D3FC21773CD3006801D6 /* EmptyPageViewController.swift in Sources */,
 				F13978A9216C8C6A00B80B68 /* ModelCompleteCollectionViewCell.swift in Sources */,
 				F13978A3216C8A3900B80B68 /* ModelCompleteViewController.swift in Sources */,
 				F14794A2215B57AD005E864C /* HomeViewController.swift in Sources */,

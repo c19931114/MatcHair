@@ -18,16 +18,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roberto-nickson-g-366181-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="m2A-tU-Ymo">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_7229 2" translatesAutoresizingMaskIntoConstraints="NO" id="m2A-tU-Ymo">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yL4-Lo-ORl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="m2A-tU-Ymo" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="9mq-8O-xaf"/>
+                            <constraint firstItem="yL4-Lo-ORl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VUg-uP-S1S"/>
                             <constraint firstItem="m2A-tU-Ymo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="YJ5-hU-Woj"/>
+                            <constraint firstItem="yL4-Lo-ORl" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="mHe-0i-f9i"/>
                             <constraint firstItem="m2A-tU-Ymo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="of8-Id-DFm"/>
+                            <constraint firstItem="yL4-Lo-ORl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qMi-kY-Aeh"/>
                             <constraint firstItem="m2A-tU-Ymo" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="qnP-dA-fR6"/>
+                            <constraint firstAttribute="bottom" secondItem="yL4-Lo-ORl" secondAttribute="bottom" id="teH-8g-4le"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,6 +46,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="roberto-nickson-g-366181-unsplash" width="4480" height="6720"/>
+        <image name="IMG_7229 2" width="2116" height="3015"/>
     </resources>
 </document>

@@ -17,6 +17,7 @@ class ModelSegementController: UIViewController {
     @IBOutlet weak var pendingView: UIView!
     @IBOutlet weak var confirmView: UIView!
     @IBOutlet weak var completeView: UIView!
+    @IBOutlet weak var emptyPage: UIView!
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 
@@ -62,21 +63,11 @@ extension ModelSegementController {
         super.viewDidLoad()
 
         guard keychain.get("userUID") != nil else {
-            showVisitorAlert()
+            emptyPage.isHidden = false
             return
         }
+
+        emptyPage.isHidden = true
     }
 
-    func showVisitorAlert() {
-
-        let alertController = UIAlertController(
-            title: "Oppps!!",
-            message: "\n請先登入才能使用完整功能喔",
-            preferredStyle: .alert)
-
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-        self.present(alertController, animated: true, completion: nil)
-    }
 }

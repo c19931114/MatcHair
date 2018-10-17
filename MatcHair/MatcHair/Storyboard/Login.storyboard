@@ -40,8 +40,8 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MatcHair" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnV-b7-wnb">
-                                <rect key="frame" x="143.33333333333334" y="273.33333333333331" width="127.33333333333334" height="42"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                <rect key="frame" x="137.66666666666669" y="165.33333333333334" width="138.66666666666669" height="37.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="29"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -98,7 +98,7 @@
                             <constraint firstItem="5K8-qh-UIc" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.9" id="SN8-yY-P57"/>
                             <constraint firstItem="P9s-kK-Tvp" firstAttribute="leading" secondItem="X41-4x-jZC" secondAttribute="leading" id="Toa-Sa-7BI"/>
                             <constraint firstItem="P9s-kK-Tvp" firstAttribute="top" secondItem="TMm-5a-gYD" secondAttribute="top" id="YMd-0R-ff3"/>
-                            <constraint firstItem="fnV-b7-wnb" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="centerY" multiplier="0.8" id="en8-fv-5lV"/>
+                            <constraint firstItem="fnV-b7-wnb" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="centerY" multiplier="0.5" id="en8-fv-5lV"/>
                             <constraint firstItem="X41-4x-jZC" firstAttribute="trailing" secondItem="P9s-kK-Tvp" secondAttribute="trailing" id="fRK-z7-x4O"/>
                             <constraint firstAttribute="bottom" secondItem="z8p-bM-lwR" secondAttribute="bottom" id="lPe-l9-rgi"/>
                             <constraint firstItem="ccw-Ho-aNW" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.8" id="lpO-lM-YMM"/>
@@ -119,6 +119,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IMG_7229 2" width="2116" height="3015"/>
+        <image name="IMG_7229 2" width="2110" height="2181"/>
     </resources>
 </document>

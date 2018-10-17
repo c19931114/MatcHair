@@ -601,10 +601,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFf-SQ-9j2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="439"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="HFf-SQ-9j2" secondAttribute="height" multiplier="1:1" constant="-64" id="fXi-eV-Gng"/>
+                                    <constraint firstAttribute="width" secondItem="HFf-SQ-9j2" secondAttribute="height" multiplier="1:1" id="fXi-eV-Gng"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54h-go-Exs">
@@ -700,7 +700,7 @@
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="leading" secondItem="Gpt-uk-RhG" secondAttribute="leading" id="Pnr-06-k6a"/>
                             <constraint firstItem="Gpt-uk-RhG" firstAttribute="bottom" secondItem="54h-go-Exs" secondAttribute="bottom" constant="20" id="WAG-I3-OXF"/>
                             <constraint firstItem="Krs-As-EoP" firstAttribute="top" secondItem="gGR-O4-iRa" secondAttribute="bottom" constant="91" id="Zli-Sl-j3K"/>
-                            <constraint firstItem="HFf-SQ-9j2" firstAttribute="top" secondItem="kB2-4a-s35" secondAttribute="top" id="Zrz-xI-Ciy"/>
+                            <constraint firstItem="HFf-SQ-9j2" firstAttribute="top" secondItem="Gpt-uk-RhG" secondAttribute="top" id="Zrz-xI-Ciy"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="trailing" secondItem="Gpt-uk-RhG" secondAttribute="trailing" id="cEC-wv-zDv"/>
                             <constraint firstItem="o0U-gJ-PQ6" firstAttribute="top" secondItem="gGR-O4-iRa" secondAttribute="bottom" id="cxD-fn-NqQ"/>
                             <constraint firstItem="54h-go-Exs" firstAttribute="width" secondItem="kB2-4a-s35" secondAttribute="width" multiplier="1/6" id="dbb-GQ-Vxa"/>
@@ -810,10 +810,10 @@
             </objects>
             <point key="canvasLocation" x="-2281" y="-1791"/>
         </scene>
-        <!--View Controller-->
+        <!--Empty Page View Controller-->
         <scene sceneID="NCJ-TL-en1">
             <objects>
-                <viewController id="vea-zT-ASI" sceneMemberID="viewController">
+                <viewController id="vea-zT-ASI" customClass="EmptyPageViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eiV-ot-yY2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -825,14 +825,14 @@
                                     <constraint firstAttribute="height" constant="80" id="oF2-nM-4nH"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請登入來使用收藏功能唷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvT-Bq-9NF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請登入來使用發文功能唷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvT-Bq-9NF">
                                 <rect key="frame" x="92" y="321" width="191" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AL-ZB-kM3">
-                                <rect key="frame" x="147.5" y="352" width="80" height="30"/>
+                                <rect key="frame" x="147.5" y="357" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="N0O-8M-PNC"/>
                                     <constraint firstAttribute="width" constant="80" id="PGA-Xy-kHK"/>
@@ -849,6 +849,9 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="fbLogin:" destination="vea-zT-ASI" eventType="touchUpInside" id="Ix0-ux-24b"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -857,10 +860,16 @@
                             <constraint firstItem="AvT-Bq-9NF" firstAttribute="centerY" secondItem="eiV-ot-yY2" secondAttribute="bottom" multiplier="0.55" id="MlN-fT-ggC"/>
                             <constraint firstItem="AvT-Bq-9NF" firstAttribute="top" secondItem="y27-FJ-idF" secondAttribute="bottom" constant="20" id="UJ8-zF-r2a"/>
                             <constraint firstItem="4AL-ZB-kM3" firstAttribute="centerX" secondItem="AvT-Bq-9NF" secondAttribute="centerX" id="XJp-rD-169"/>
-                            <constraint firstItem="4AL-ZB-kM3" firstAttribute="top" secondItem="AvT-Bq-9NF" secondAttribute="bottom" constant="10" id="YjL-6u-N8j"/>
+                            <constraint firstItem="4AL-ZB-kM3" firstAttribute="top" secondItem="AvT-Bq-9NF" secondAttribute="bottom" constant="15" id="YjL-6u-N8j"/>
                             <constraint firstItem="y27-FJ-idF" firstAttribute="centerX" secondItem="AvT-Bq-9NF" secondAttribute="centerX" id="tki-I3-kPj"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="L0d-LS-k1b"/>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="4AL-ZB-kM3" id="1pk-Hd-SPi"/>
+                        <outlet property="loginImage" destination="y27-FJ-idF" id="eDZ-qL-5aC"/>
+                        <outlet property="loginMessageLabel" destination="AvT-Bq-9NF" id="MPJ-HC-St5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uy4-i7-vn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

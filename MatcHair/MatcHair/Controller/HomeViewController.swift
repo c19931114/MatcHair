@@ -334,7 +334,8 @@ extension HomeViewController: UICollectionViewDataSource {
 
         let selectedDesignerUID = allPosts[sender.tag].info.authorUID
         let profileForDesigner = ProfileViewController.profileForDesigner(selectedDesignerUID)
-        self.navigationController?.pushViewController(profileForDesigner, animated: true)
+        self.navigationController?.show(profileForDesigner, sender: nil)
+//        pushViewController(profileForDesigner, animated: true)
 
     }
 

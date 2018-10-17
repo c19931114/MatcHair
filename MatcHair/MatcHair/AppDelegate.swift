@@ -27,11 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         UIApplication.shared.isStatusBarHidden = false
 
-        window?.tintColor = UIColor(
-            red: 3 / 255.0,
-            green: 121 / 255.0,
-            blue: 200 / 255.0,
-            alpha: 1.0)
+        window?.tintColor = #colorLiteral(red: 0.5176470588, green: 0.5843137255, blue: 0.6196078431, alpha: 1)
+
         FirebaseApp.configure() // 放後面會 crash
 
         FBSDKApplicationDelegate.sharedInstance().application(

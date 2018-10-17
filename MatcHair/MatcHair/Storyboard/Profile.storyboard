@@ -92,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="688.79999999999995" y="6.746626686656672"/>
         </scene>
-        <!--View Controller-->
+        <!--Empty Page View Controller-->
         <scene sceneID="LOF-ec-lH0">
             <objects>
-                <viewController id="adu-yI-Pko" sceneMemberID="viewController">
+                <viewController id="adu-yI-Pko" customClass="EmptyPageViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pbf-X6-n5S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,14 +107,14 @@
                                     <constraint firstAttribute="height" constant="80" id="sBE-Gm-rnT"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請登入來使用收藏功能唷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKn-Ei-gfr">
-                                <rect key="frame" x="92" y="321" width="191" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請登入來新增作品集唷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKn-Ei-gfr">
+                                <rect key="frame" x="100.5" y="321" width="174" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vm-cp-J22">
-                                <rect key="frame" x="147.5" y="352" width="80" height="30"/>
+                                <rect key="frame" x="147.5" y="357" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="6KQ-3i-dab"/>
                                     <constraint firstAttribute="height" constant="30" id="U9i-Hz-lCi"/>
@@ -131,18 +131,27 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="fbLogin:" destination="adu-yI-Pko" eventType="touchUpInside" id="lsy-pK-f6b"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="XKn-Ei-gfr" firstAttribute="top" secondItem="2fu-NP-6Fi" secondAttribute="bottom" constant="20" id="D3y-Qi-3LB"/>
-                            <constraint firstItem="2Vm-cp-J22" firstAttribute="top" secondItem="XKn-Ei-gfr" secondAttribute="bottom" constant="10" id="Mt3-Ak-1CT"/>
+                            <constraint firstItem="2Vm-cp-J22" firstAttribute="top" secondItem="XKn-Ei-gfr" secondAttribute="bottom" constant="15" id="Mt3-Ak-1CT"/>
                             <constraint firstItem="2fu-NP-6Fi" firstAttribute="centerX" secondItem="XKn-Ei-gfr" secondAttribute="centerX" id="XOP-WK-G9J"/>
                             <constraint firstItem="XKn-Ei-gfr" firstAttribute="centerY" secondItem="Pbf-X6-n5S" secondAttribute="bottom" multiplier="0.55" id="fFd-EO-rfb"/>
                             <constraint firstItem="2Vm-cp-J22" firstAttribute="centerX" secondItem="XKn-Ei-gfr" secondAttribute="centerX" id="pYu-5U-hvV"/>
                             <constraint firstItem="XKn-Ei-gfr" firstAttribute="centerX" secondItem="Pbf-X6-n5S" secondAttribute="centerX" id="tcR-eW-9vY"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="bdz-El-kag"/>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="2Vm-cp-J22" id="skF-PI-nGo"/>
+                        <outlet property="loginImage" destination="2fu-NP-6Fi" id="sKs-KE-5bN"/>
+                        <outlet property="loginMessageLabel" destination="XKn-Ei-gfr" id="1Vz-90-OFD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vBL-cf-LHI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

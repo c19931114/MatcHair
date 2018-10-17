@@ -45,17 +45,15 @@ extension ProfileViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ref = Database.database().reference()
+
+        setRefreshControl()
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(loadDesignerPosts),
             name: .reFetchMyPosts,
             object: nil)
-
-        ref = Database.database().reference()
-
-        setRefreshControl()
-
-        setupCollectionView()
 
         if let designerUID = designerUID {
 
@@ -78,6 +76,8 @@ extension ProfileViewController {
 
         }
 
+        setupCollectionView()
+
     }
 
     class func profileForDesigner(_ uid: String) -> ProfileViewController {
@@ -94,19 +94,6 @@ extension ProfileViewController {
         profileVC.designerUID = uid
 
         return profileVC
-    }
-
-    func showVisitorAlert() {
-
-        let alertController = UIAlertController(
-            title: "Oppps!!",
-            message: "\n請先登入才能使用完整功能喔",
-            preferredStyle: .alert)
-
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-        self.present(alertController, animated: true, completion: nil)
     }
 
     private func setRefreshControl() {

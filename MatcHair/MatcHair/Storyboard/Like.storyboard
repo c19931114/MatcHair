@@ -40,7 +40,7 @@
                         <constraints>
                             <constraint firstItem="JYN-Hy-znN" firstAttribute="trailing" secondItem="hEI-DP-Pnd" secondAttribute="trailing" id="9A1-dW-YBY"/>
                             <constraint firstItem="hp7-fM-W0L" firstAttribute="leading" secondItem="JYN-Hy-znN" secondAttribute="leading" id="QDG-Pc-0EM"/>
-                            <constraint firstItem="hp7-fM-W0L" firstAttribute="top" secondItem="wkJ-oi-sdk" secondAttribute="top" constant="64" id="WTn-hg-N1P"/>
+                            <constraint firstItem="hp7-fM-W0L" firstAttribute="top" secondItem="JYN-Hy-znN" secondAttribute="top" id="WTn-hg-N1P"/>
                             <constraint firstItem="hEI-DP-Pnd" firstAttribute="leading" secondItem="JYN-Hy-znN" secondAttribute="leading" id="eFo-jp-cIt"/>
                             <constraint firstItem="hEI-DP-Pnd" firstAttribute="top" secondItem="JYN-Hy-znN" secondAttribute="top" id="gBa-mk-hYg"/>
                             <constraint firstItem="hp7-fM-W0L" firstAttribute="trailing" secondItem="JYN-Hy-znN" secondAttribute="trailing" id="jcJ-mP-Yc9"/>
@@ -92,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="-73" y="-65"/>
         </scene>
-        <!--View Controller-->
+        <!--Empty Page View Controller-->
         <scene sceneID="1g3-fK-dEq">
             <objects>
-                <viewController id="rWj-hp-d4K" sceneMemberID="viewController">
+                <viewController id="rWj-hp-d4K" customClass="EmptyPageViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZJG-Yq-YEH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVj-Tm-5gU">
-                                <rect key="frame" x="147.5" y="352" width="80" height="30"/>
+                                <rect key="frame" x="147.5" y="357" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="a4k-rd-dvj"/>
                                     <constraint firstAttribute="width" constant="80" id="vgX-8l-BZR"/>
@@ -131,18 +131,27 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="fbLogin:" destination="rWj-hp-d4K" eventType="touchUpInside" id="FaF-We-GcP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vVj-Tm-5gU" firstAttribute="centerX" secondItem="E5c-G5-NPA" secondAttribute="centerX" id="DZd-YW-LC1"/>
                             <constraint firstItem="E5c-G5-NPA" firstAttribute="centerX" secondItem="ZJG-Yq-YEH" secondAttribute="centerX" id="L55-Oe-VxX"/>
-                            <constraint firstItem="vVj-Tm-5gU" firstAttribute="top" secondItem="E5c-G5-NPA" secondAttribute="bottom" constant="10" id="OmS-4O-FzE"/>
+                            <constraint firstItem="vVj-Tm-5gU" firstAttribute="top" secondItem="E5c-G5-NPA" secondAttribute="bottom" constant="15" id="OmS-4O-FzE"/>
                             <constraint firstItem="E5c-G5-NPA" firstAttribute="top" secondItem="u2F-Hp-gjz" secondAttribute="bottom" constant="20" id="YE0-Cv-Xc0"/>
                             <constraint firstItem="E5c-G5-NPA" firstAttribute="centerY" secondItem="ZJG-Yq-YEH" secondAttribute="bottom" multiplier="0.55" id="sVz-sk-e0g"/>
                             <constraint firstItem="u2F-Hp-gjz" firstAttribute="centerX" secondItem="E5c-G5-NPA" secondAttribute="centerX" id="xhN-2t-NQG"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="D6o-bS-bG1"/>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="vVj-Tm-5gU" id="tsS-Da-zSh"/>
+                        <outlet property="loginImage" destination="u2F-Hp-gjz" id="PEp-Ty-Kbm"/>
+                        <outlet property="loginMessageLabel" destination="E5c-G5-NPA" id="q4B-lu-9gz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lNJ-tx-QYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

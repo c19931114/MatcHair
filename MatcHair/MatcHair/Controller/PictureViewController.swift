@@ -119,6 +119,8 @@ extension PictureViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emptyPage.isHidden = true
+
         styleCaptureButton()
         configureCameraController()
 
@@ -126,44 +128,12 @@ extension PictureViewController {
         videoModeButton.isHidden = true
 
         guard keychain.get("userUID") != nil else {
-            showVisitorAlert()
+            emptyPage.isHidden = false
             return
         }
         
-        // 向右滑動
-//        let swipeDown = UISwipeGestureRecognizer(
-//            target: self,
-//            action: #selector(self.swipeOut))
-//        swipeDown.direction = .down
+        emptyPage.isHidden = true
 
-        // 為視圖加入監聽手勢
-//        self.view.addGestureRecognizer(swipeDown)
-
-    }
-
-    func showVisitorAlert() {
-
-        let alertController = UIAlertController(
-            title: "Oppps!!",
-            message: "\n請先登入才能使用完整功能喔",
-            preferredStyle: .alert)
-
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    @objc func swipeOut() {
-        
-        transition.duration = 0.5
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        self.view.window!.layer.add(transition, forKey: kCATransition)
-
-        self.dismiss(animated: false)
-        
     }
     
     func configureCameraController() {

@@ -16,21 +16,13 @@ class DesignerPendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var modelImage: UIImageView!
-    @IBOutlet weak var modelNameLabel: UILabel!
     @IBOutlet weak var reservationTimeLabel: UILabel!
-    @IBOutlet weak var chatButton: UIButton!
 
+    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var modelNameButton: UIButton!
+    @IBOutlet weak var modelImageButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-
-    @IBAction func chat(_ sender: UIButton) {
-    }
-
-    @IBAction func accept(_ sender: UIButton) {
-    }
-
-    @IBAction func cancel(_ sender: UIButton) {
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

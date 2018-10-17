@@ -39,9 +39,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYm-Ft-LHY">
                                 <rect key="frame" x="268" y="23" width="32" height="32"/>
                                 <state key="normal" image="btn_chat_blue2"/>
-                                <connections>
-                                    <action selector="chat:" destination="1St-Ve-5Sc" eventType="touchUpInside" id="U4T-aO-5C2"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="djn-V8-si7">
                                 <rect key="frame" x="20" y="254" width="60" height="60"/>
@@ -79,14 +76,6 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crystal Liu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPF-Q6-6js">
-                                <rect key="frame" x="95" y="259" width="87" height="24.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
-                            </label>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vom-XT-40q">
                                 <rect key="frame" x="20" y="27.5" width="76.5" height="23.5"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -114,27 +103,40 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="score:" destination="1St-Ve-5Sc" eventType="touchUpInside" id="C8P-LG-z6k"/>
-                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHx-QF-Kvq">
+                                <rect key="frame" x="20" y="254" width="60" height="60"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNE-7T-v0n">
+                                <rect key="frame" x="90" y="254" width="120" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="designerName">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="EHx-QF-Kvq" firstAttribute="height" secondItem="djn-V8-si7" secondAttribute="height" id="0rE-fq-Rdq"/>
                             <constraint firstItem="vom-XT-40q" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="leading" id="2bl-DY-nkz"/>
                             <constraint firstItem="gYm-Ft-LHY" firstAttribute="top" secondItem="xaS-El-C8E" secondAttribute="top" constant="23" id="2mD-Vn-AGn"/>
-                            <constraint firstItem="EPF-Q6-6js" firstAttribute="top" secondItem="djn-V8-si7" secondAttribute="top" constant="5" id="4MA-Rz-XvK"/>
-                            <constraint firstItem="EPF-Q6-6js" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="trailing" constant="15" id="5i8-MD-uD6"/>
+                            <constraint firstItem="EHx-QF-Kvq" firstAttribute="width" secondItem="djn-V8-si7" secondAttribute="width" id="5wb-1k-n0u"/>
                             <constraint firstItem="djn-V8-si7" firstAttribute="bottom" secondItem="ne2-xa-uPj" secondAttribute="bottom" id="B6V-Ne-1WP"/>
                             <constraint firstItem="efh-sg-6vg" firstAttribute="leading" secondItem="xaS-El-C8E" secondAttribute="leading" constant="10" id="CSH-0g-7dU"/>
                             <constraint firstItem="RiD-48-Fn4" firstAttribute="centerY" secondItem="gYm-Ft-LHY" secondAttribute="centerY" id="CnO-OB-aT8"/>
+                            <constraint firstItem="EHx-QF-Kvq" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="leading" id="DAB-g1-Twn"/>
                             <constraint firstAttribute="trailing" secondItem="gYm-Ft-LHY" secondAttribute="trailing" id="E1Q-Qj-XUv"/>
+                            <constraint firstItem="EHx-QF-Kvq" firstAttribute="top" secondItem="djn-V8-si7" secondAttribute="top" id="Ivq-Bj-LsC"/>
                             <constraint firstItem="fpp-eg-DyA" firstAttribute="trailing" secondItem="efh-sg-6vg" secondAttribute="trailing" id="KPU-KP-TmC"/>
                             <constraint firstItem="efh-sg-6vg" firstAttribute="top" secondItem="xaS-El-C8E" secondAttribute="top" constant="10" id="L7x-HM-MtS"/>
                             <constraint firstItem="djn-V8-si7" firstAttribute="centerY" secondItem="efh-sg-6vg" secondAttribute="bottom" multiplier="0.98" id="LGl-3J-jk8"/>
                             <constraint firstItem="vom-XT-40q" firstAttribute="centerY" secondItem="gYm-Ft-LHY" secondAttribute="centerY" id="LqM-WT-pr0"/>
                             <constraint firstItem="djn-V8-si7" firstAttribute="leading" secondItem="xaS-El-C8E" secondAttribute="leading" constant="20" id="Q54-G2-QaR"/>
                             <constraint firstItem="RiD-48-Fn4" firstAttribute="height" secondItem="vom-XT-40q" secondAttribute="height" id="St0-uu-ocJ"/>
+                            <constraint firstItem="eNE-7T-v0n" firstAttribute="top" secondItem="djn-V8-si7" secondAttribute="top" id="XH5-Ql-boC"/>
+                            <constraint firstItem="eNE-7T-v0n" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="trailing" constant="10" id="YKQ-fZ-kMN"/>
                             <constraint firstItem="RiD-48-Fn4" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="leading" id="ZqL-Vs-YlZ"/>
                             <constraint firstAttribute="trailing" secondItem="efh-sg-6vg" secondAttribute="trailing" constant="10" id="cIl-0u-mXc"/>
                             <constraint firstAttribute="width" secondItem="xaS-El-C8E" secondAttribute="height" multiplier="25:27" id="f7U-uB-U2W"/>
@@ -164,7 +166,8 @@
                 <outlet property="categoryLabel" destination="RiD-48-Fn4" id="I78-7A-DKY"/>
                 <outlet property="chatButton" destination="gYm-Ft-LHY" id="pPd-Dc-AM8"/>
                 <outlet property="designerImage" destination="djn-V8-si7" id="NYw-2a-Nc9"/>
-                <outlet property="designerNameLabel" destination="EPF-Q6-6js" id="VNR-99-XxD"/>
+                <outlet property="designerImageButton" destination="EHx-QF-Kvq" id="Nn3-FZ-LCV"/>
+                <outlet property="designerNameButton" destination="eNE-7T-v0n" id="TvU-3q-t39"/>
                 <outlet property="postImage" destination="efh-sg-6vg" id="q1c-B6-iQS"/>
                 <outlet property="reservationTimeLabel" destination="0U9-O8-2zy" id="bDP-YI-Tbo"/>
                 <outlet property="scoreButton" destination="fpp-eg-DyA" id="8c2-ay-ATc"/>

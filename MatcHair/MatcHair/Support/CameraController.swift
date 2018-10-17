@@ -170,8 +170,10 @@ extension CameraController {
         self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.previewLayer?.connection?.videoOrientation = .portrait
         
-        view.layer.insertSublayer(self.previewLayer!, at: 0)
+//        view.layer.insertSublayer(self.previewLayer!, at: 0)
+        view.layer.addSublayer(self.previewLayer!)
         self.previewLayer?.frame = view.frame //
+        print(view.frame)
     }
     
     func switchCameras() throws {

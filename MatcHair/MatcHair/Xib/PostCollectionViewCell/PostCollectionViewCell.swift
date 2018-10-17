@@ -15,8 +15,10 @@ class PostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+
+    @IBOutlet weak var userImageButton: UIButton!
+    @IBOutlet weak var userNameButton: UIButton!
 
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
@@ -24,15 +26,8 @@ class PostCollectionViewCell: UICollectionViewCell {
     @IBAction func like(_ sender: UIButton) {
     }
 
-    @IBAction func chat(_ sender: UIButton) {
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
-
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(postImageTapped))
-//        postImage.isUserInteractionEnabled = true
-//        postImage.addGestureRecognizer(tapGestureRecognizer)
 
         setCellShadow()
         chatButton.isHidden = true
@@ -60,13 +55,6 @@ class PostCollectionViewCell: UICollectionViewCell {
         self.layer.shadowRadius = 4.0
         self.layer.shadowOpacity = 0.2
         self.layer.masksToBounds = false
-    }
-
-    @objc func postImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-
-        let tappedImage = tapGestureRecognizer.view as? UIImageView
-        print("tap")
-        
     }
 
 }

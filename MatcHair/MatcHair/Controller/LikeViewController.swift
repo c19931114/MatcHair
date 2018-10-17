@@ -245,7 +245,7 @@ extension LikeViewController: UICollectionViewDataSource {
 
         let post = likePosts[indexPath.row]
 
-        postCell.userNameLabel.text = post.author.name
+        postCell.userNameButton.setTitle(post.author.name, for: .normal)
         postCell.userImage.kf.setImage(with: post.authorImageURL)
 
         postCell.postImage.kf.setImage(with: URL(string: post.info.pictureURL))
@@ -257,6 +257,18 @@ extension LikeViewController: UICollectionViewDataSource {
         postCell.likeButton.addTarget(
             self,
             action: #selector(self.unlikeButtonTapped(sender:)), for: .touchUpInside)
+
+        postCell.userImageButton.tag = indexPath.row
+        postCell.userImageButton.addTarget(
+            self,
+            action: #selector(userTapped(sender:)),
+            for: .touchUpInside)
+
+        postCell.userNameButton.tag = indexPath.row
+        postCell.userNameButton.addTarget(
+            self,
+            action: #selector(userTapped(sender:)),
+            for: .touchUpInside)
 
         return postCell
 
@@ -294,6 +306,14 @@ extension LikeViewController: UICollectionViewDataSource {
         alertController.addAction(cancle)
 
         present(alertController, animated: true, completion: nil)
+    }
+
+    @objc func userTapped(sender: UIButton) {
+
+        let selectedDesignerUID = likePosts[sender.tag].info.authorUID
+        let profileForDesigner = ProfileViewController.profileForDesigner(selectedDesignerUID)
+        self.navigationController?.pushViewController(profileForDesigner, animated: true)
+
     }
 
 }

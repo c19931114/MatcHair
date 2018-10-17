@@ -25,8 +25,10 @@ class ProfileViewController: UIViewController {
     let emptyImageView = UIImageView(image: #imageLiteral(resourceName: "two_polaroid_pictures"))
     let emptyMessageLabel = UILabel()
 
-    var myPosts: [MyPost] = []
-    var currentUserImageURL: URL?
+    var designerPosts: [MyPost] = []
+    var designerUID: String?
+    var designerName: String?
+    var designerImageURL: URL?
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var profileCollectionView: UICollectionView!
@@ -42,27 +44,51 @@ extension ProfileViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard keychain.get("userUID") != nil else {
-            showVisitorAlert()
-            return
-        }
-
         ref = Database.database().reference()
 
         setRefreshControl()
 
         setupCollectionView()
 
-        getUserImage()
+        if let designerUID = designerUID {
+            
+            getUserName(with: designerUID)
+            loadDesignerPosts(with: designerUID)
 
-        loadMyPosts()
+        } else {
+
+            guard let currentUserUID = keychain.get("userUID") else {
+                showVisitorAlert()
+                return
+            }
+
+            getUserName(with: currentUserUID)
+            loadDesignerPosts(with: currentUserUID)
+
+        }
 
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(loadMyPosts),
+            selector: #selector(loadDesignerPosts),
             name: .reFetchMyPosts,
             object: nil)
 
+    }
+
+    class func profileForDesigner(_ uid: String) -> ProfileViewController {
+
+        guard let profileVC =
+            UIStoryboard
+                .profileStoryboard()
+                .instantiateViewController(withIdentifier: "profile") as? ProfileViewController else {
+
+                    return ProfileViewController()
+        }
+        print(uid)
+
+        profileVC.designerUID = uid
+
+        return profileVC
     }
 
     func showVisitorAlert() {
@@ -126,31 +152,39 @@ extension ProfileViewController {
 
     }
 
-    func getUserImage() {
+    func getUserName(with uid: String) {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        ref.child("users/\(uid)/name").observeSingleEvent(of: .value) { (snapshot) in
+            guard let value = snapshot.value as? String else { return }
+            self.designerName = value
+            self.getUserImage(with: uid)
 
-        let fileName = currentUserUID
+        }
+    }
 
-        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+    func getUserImage(with uid: String) {
+
+        let fileName = uid
+
+        storageRef.child(fileName).downloadURL(completion: { (url, error) in
 
             if let url = url {
-                self.currentUserImageURL = url
+                self.designerImageURL = url
+
             } else {
                 print(error as Any)
             }
-            self.profileCollectionView.reloadData()
+
+           self.profileCollectionView.reloadData()
 
         })
     }
 
-    @objc func loadMyPosts() {
+    @objc func loadDesignerPosts(with uid: String) {
 
-        guard let currnetUserUID = Auth.auth().currentUser?.uid else { return }
+        ref.child("usersPosts/\(uid)").observeSingleEvent(of: .value) { (snapshot) in
 
-        ref.child("usersPosts/\(currnetUserUID)").observeSingleEvent(of: .value) { (snapshot) in
-
-            self.myPosts = []
+            self.designerPosts = []
 
             guard let value = snapshot.value as? NSDictionary else {
 
@@ -165,13 +199,13 @@ extension ProfileViewController {
 
                 do {
                     let postData = try self.decoder.decode(MyPost.self, from: postJSONData)
-                    self.myPosts.insert(postData, at: 0)
+                    self.designerPosts.insert(postData, at: 0)
 
                 } catch {
                     print(error)
                 }
 
-                self.myPosts.sort(by: { $0.createTime > $1.createTime })
+                self.designerPosts.sort(by: { $0.createTime > $1.createTime })
 
                 self.profileCollectionView.reloadData()
             }
@@ -183,7 +217,17 @@ extension ProfileViewController {
         refreshControl.beginRefreshing()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
 
-            self.loadMyPosts()
+            if let designerUID = self.designerUID {
+
+                self.loadDesignerPosts(with: designerUID)
+            } else {
+
+                guard let currentUserUID = self.keychain.get("userUID") else {
+                    return
+                }
+                self.loadDesignerPosts(with: currentUserUID)
+            }
+
             self.refreshControl.endRefreshing()
 
         }
@@ -208,14 +252,14 @@ extension ProfileViewController: UICollectionViewDataSource {
 
         default:
 
-            if myPosts.count == 0 {
+            if designerPosts.count == 0 {
                 emptyPage()
             } else {
                 emptyImageView.removeFromSuperview()
                 emptyMessageLabel.removeFromSuperview()
             }
 
-            return myPosts.count
+            return designerPosts.count
         }
     }
 
@@ -234,13 +278,13 @@ extension ProfileViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            if let userName = Auth.auth().currentUser?.displayName {
+            if let userName = designerName {
                 profileCell.userNameLabel.text = userName
             }
 
-            profileCell.userImage.kf.setImage(with: currentUserImageURL)
+            profileCell.userImage.kf.setImage(with: designerImageURL)
 
-            profileCell.postsCountLabel.text = "\(myPosts.count) 則貼文"
+            profileCell.postsCountLabel.text = "\(designerPosts.count) 則貼文"
 
             return profileCell
 
@@ -254,7 +298,7 @@ extension ProfileViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
 
-            let post = myPosts[indexPath.row]
+            let post = designerPosts[indexPath.row]
 
             postCell.postImage.kf.setImage(with: URL(string: post.pictureURL))
 
@@ -317,7 +361,7 @@ extension ProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if indexPath.section == 1 {
-            let selectedPost = myPosts[indexPath.row]
+            let selectedPost = designerPosts[indexPath.row]
             let detailForPost = DetailViewController.detailForMyPost(selectedPost)
             self.present(detailForPost, animated: true)
             detailForPost.moreButton.isHidden = true

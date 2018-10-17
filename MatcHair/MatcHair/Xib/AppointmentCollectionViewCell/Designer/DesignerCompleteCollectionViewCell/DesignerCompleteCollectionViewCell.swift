@@ -15,18 +15,14 @@ class DesignerCompleteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
-    @IBOutlet weak var designerImage: UIImageView!
-    @IBOutlet weak var designerNameLabel: UILabel!
+    @IBOutlet weak var modelImage: UIImageView!
     @IBOutlet weak var reservationTimeLabel: UILabel!
-    @IBOutlet weak var chatButton: UIButton!
 
+    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var modelNameButton: UIButton!
+    @IBOutlet weak var modelImageButton: UIButton!
     @IBOutlet weak var scoreButton: UIButton!
 
-    @IBAction func chat(_ sender: UIButton) {
-    }
-
-    @IBAction func score(_ sender: UIButton) {
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

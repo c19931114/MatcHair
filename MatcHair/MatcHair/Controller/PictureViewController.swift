@@ -173,6 +173,7 @@ extension PictureViewController {
             }
             
             try? self.cameraController.displayPreview(on: self.capturePreviewView)
+//            try? self.cameraController.displayPreview(on: self.view)
         }
     }
     

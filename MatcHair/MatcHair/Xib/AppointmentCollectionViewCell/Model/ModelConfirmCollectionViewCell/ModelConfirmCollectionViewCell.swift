@@ -18,17 +18,13 @@ class ModelConfirmCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var designerImage: UIImageView!
-    @IBOutlet weak var designerNameLabel: UILabel!
     @IBOutlet weak var reservationTimeLabel: UILabel!
+
     @IBOutlet weak var chatButton: UIButton!
-    
+    @IBOutlet weak var designerNameButton: UIButton!
+    @IBOutlet weak var designerImageButton: UIButton!
     @IBOutlet weak var completeButton: UIButton!
 
-    @IBAction func chat(_ sender: UIButton) {
-    }
-
-    @IBAction func complete(_ sender: UIButton) {
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

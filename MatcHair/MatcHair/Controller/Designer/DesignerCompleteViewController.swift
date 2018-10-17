@@ -21,6 +21,7 @@ class DesignerCompleteViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     var refreshControl: UIRefreshControl!
     let animationView = LOTAnimationView(name: "no_appointment")
+    let emptyMessageLabel = UILabel()
 
     var designerCompleteAppointments = [Appointment]() // [(AppointmentInfo, User, URL, PostInfo)]
 
@@ -66,10 +67,18 @@ extension DesignerCompleteViewController {
     func noAppointmentAnimate() {
 
         animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.6)
+        animationView.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.4)
         animationView.contentMode = .scaleAspectFill
         view.addSubview(animationView)
         animationView.play()
+
+        emptyMessageLabel.text = "還沒有已完成訂單唷"
+        emptyMessageLabel.textColor = UIColor(red: 169/255.0, green: 185/255.0, blue: 192/255.0, alpha: 1)
+        emptyMessageLabel.textAlignment = .center
+        emptyMessageLabel.font = emptyMessageLabel.font.withSize(15)
+        emptyMessageLabel.frame = CGRect(x: 0, y: 0, width: fullScreenSize.width, height: 20)
+        emptyMessageLabel.center = CGPoint(x: fullScreenSize.width / 2, y: fullScreenSize.height * 0.5)
+        view.addSubview(emptyMessageLabel)
 
     }
     
@@ -215,6 +224,7 @@ extension DesignerCompleteViewController: UICollectionViewDataSource {
             noAppointmentAnimate()
         } else {
             animationView.removeFromSuperview()
+            emptyMessageLabel.removeFromSuperview()
         }
         
         return designerCompleteAppointments.count
@@ -239,8 +249,8 @@ extension DesignerCompleteViewController: UICollectionViewDataSource {
         // (appointment, designerData, postData)
 
         appointmentCell.postImage.kf.setImage(with: URL(string: appointment.postInfo.pictureURL))
-        appointmentCell.designerImage.kf.setImage(with: appointment.designerImageURL)
-        appointmentCell.designerNameLabel.text = appointment.designer?.name
+        appointmentCell.modelImage.kf.setImage(with: appointment.designerImageURL)
+        appointmentCell.modelNameButton.setTitle(appointment.model?.name, for: .normal)
         appointmentCell.reservationTimeLabel.text =
         "\(appointment.postInfo.reservation!.date), \(appointment.info.timing)"
 
@@ -259,13 +269,33 @@ extension DesignerCompleteViewController: UICollectionViewDataSource {
         //            self,
         //            action: #selector(scoreButtonTapped(sender:)), for: .touchUpInside)
 
+        appointmentCell.modelImageButton.tag = indexPath.row
+        appointmentCell.modelImageButton.addTarget(
+            self,
+            action: #selector(modelTapped(sender:)),
+            for: .touchUpInside)
+
+        appointmentCell.modelNameButton.tag = indexPath.row
+        appointmentCell.modelNameButton.addTarget(
+            self,
+            action: #selector(modelTapped(sender:)),
+            for: .touchUpInside)
+
         return appointmentCell
+
+    }
+
+    @objc func modelTapped(sender: UIButton) {
+
+        let selectedModelUID = designerCompleteAppointments[sender.tag].info.modelUID
+        let profileForModel = ProfileViewController.profileForDesigner(selectedModelUID)
+        self.navigationController?.pushViewController(profileForModel, animated: true)
 
     }
 
     @objc func scoreButtonTapped(sender: UIButton) {
 
-        let completePost = designerCompleteAppointments[sender.tag]
+//        let completePost = designerCompleteAppointments[sender.tag]
 
         //        modelCompleteCollectionView.reloadData()
         //

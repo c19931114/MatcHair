@@ -15,16 +15,15 @@ class LikePostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+
+    @IBOutlet weak var userNameButton: UIButton!
+    @IBOutlet weak var userImageButton: UIButton!
 
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
 
     @IBAction func like(_ sender: UIButton) {
-    }
-
-    @IBAction func chat(_ sender: UIButton) {
     }
 
     override func awakeFromNib() {

@@ -13,7 +13,7 @@
         <!--Profile-->
         <scene sceneID="GSy-cJ-Gj0">
             <objects>
-                <viewController id="aaa-6I-2HB" customClass="ProfileViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profile" id="aaa-6I-2HB" customClass="ProfileViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gVW-OS-4Kv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

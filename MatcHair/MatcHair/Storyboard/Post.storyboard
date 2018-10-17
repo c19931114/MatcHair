@@ -597,48 +597,18 @@
             <objects>
                 <viewController id="36v-2J-Gpy" customClass="PictureViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kB2-4a-s35">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFf-SQ-9j2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-O4-iRa">
-                                        <rect key="frame" x="314" y="16" width="45" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="1BF-Nu-HmW"/>
-                                            <constraint firstAttribute="height" constant="45" id="KOQ-ex-MUc"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="Flash Off Icon"/>
-                                        <connections>
-                                            <action selector="toggleFlash:" destination="36v-2J-Gpy" eventType="touchUpInside" id="Po0-3s-URK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0U-gJ-PQ6">
-                                        <rect key="frame" x="314" y="61" width="45" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="23X-N2-XG1"/>
-                                            <constraint firstAttribute="height" constant="45" id="gUW-ST-q2G"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="Front Camera Icon"/>
-                                        <connections>
-                                            <action selector="switchCameras:" destination="36v-2J-Gpy" eventType="touchUpInside" id="JfI-ZH-PSj"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="439"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
-                                    <constraint firstItem="gGR-O4-iRa" firstAttribute="top" secondItem="HFf-SQ-9j2" secondAttribute="top" constant="16" id="KBb-0x-OqQ"/>
-                                    <constraint firstAttribute="width" secondItem="HFf-SQ-9j2" secondAttribute="height" multiplier="1:1" id="fXi-eV-Gng"/>
-                                    <constraint firstItem="o0U-gJ-PQ6" firstAttribute="top" secondItem="gGR-O4-iRa" secondAttribute="bottom" id="mdJ-Nk-2Xl"/>
-                                    <constraint firstAttribute="trailing" secondItem="gGR-O4-iRa" secondAttribute="trailing" constant="16" id="sfV-uN-BwL"/>
-                                    <constraint firstAttribute="trailing" secondItem="o0U-gJ-PQ6" secondAttribute="trailing" constant="16" id="xZc-eB-dax"/>
+                                    <constraint firstAttribute="width" secondItem="HFf-SQ-9j2" secondAttribute="height" multiplier="1:1" constant="-64" id="fXi-eV-Gng"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54h-go-Exs">
-                                <rect key="frame" x="156.5" y="520.5" width="62.5" height="62.5"/>
+                                <rect key="frame" x="156.5" y="584.5" width="62.5" height="62.5"/>
                                 <color key="backgroundColor" red="0.67450980392156867" green="0.73725490196078436" blue="0.76470588235294112" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="54h-go-Exs" secondAttribute="height" multiplier="1:1" id="faD-cD-zKN"/>
@@ -656,7 +626,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Krs-As-EoP">
-                                <rect key="frame" x="327" y="551" width="32" height="32"/>
+                                <rect key="frame" x="327" y="615" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="EHN-Gw-lE9"/>
                                     <constraint firstAttribute="height" constant="32" id="XJq-Ex-Mxa"/>
@@ -669,7 +639,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4uC-3d-KyF">
-                                <rect key="frame" x="16" y="538" width="45" height="45"/>
+                                <rect key="frame" x="16" y="602" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Onm-4g-BFV"/>
                                     <constraint firstAttribute="width" constant="45" id="yvy-ji-GhW"/>
@@ -678,13 +648,39 @@
                                 <state key="normal" image="Photo Camera Icon"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrD-vN-Lfe">
-                                <rect key="frame" x="16" y="494" width="44" height="44"/>
+                                <rect key="frame" x="16" y="558" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Z2z-3R-Eff"/>
                                     <constraint firstAttribute="width" constant="44" id="fLE-yM-4I3"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="Video Camera Icon"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGR-O4-iRa">
+                                <rect key="frame" x="0.0" y="479" width="45" height="45"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="1BF-Nu-HmW"/>
+                                    <constraint firstAttribute="height" constant="45" id="KOQ-ex-MUc"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="Flash Off Icon"/>
+                                <connections>
+                                    <action selector="toggleFlash:" destination="36v-2J-Gpy" eventType="touchUpInside" id="Po0-3s-URK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0U-gJ-PQ6">
+                                <rect key="frame" x="0.0" y="524" width="45" height="45"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="23X-N2-XG1"/>
+                                    <constraint firstAttribute="height" constant="45" id="gUW-ST-q2G"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="Front Camera Icon"/>
+                                <connections>
+                                    <action selector="switchCameras:" destination="36v-2J-Gpy" eventType="touchUpInside" id="H35-xH-rfZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -694,8 +690,10 @@
                             <constraint firstItem="vrD-vN-Lfe" firstAttribute="leading" secondItem="Gpt-uk-RhG" secondAttribute="leading" constant="16" id="Jhs-T3-HxH"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="leading" secondItem="Gpt-uk-RhG" secondAttribute="leading" id="Pnr-06-k6a"/>
                             <constraint firstItem="Gpt-uk-RhG" firstAttribute="bottom" secondItem="54h-go-Exs" secondAttribute="bottom" constant="20" id="WAG-I3-OXF"/>
-                            <constraint firstItem="HFf-SQ-9j2" firstAttribute="top" secondItem="Gpt-uk-RhG" secondAttribute="top" id="Zrz-xI-Ciy"/>
+                            <constraint firstItem="Krs-As-EoP" firstAttribute="top" secondItem="gGR-O4-iRa" secondAttribute="bottom" constant="91" id="Zli-Sl-j3K"/>
+                            <constraint firstItem="HFf-SQ-9j2" firstAttribute="top" secondItem="kB2-4a-s35" secondAttribute="top" id="Zrz-xI-Ciy"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="trailing" secondItem="Gpt-uk-RhG" secondAttribute="trailing" id="cEC-wv-zDv"/>
+                            <constraint firstItem="o0U-gJ-PQ6" firstAttribute="top" secondItem="gGR-O4-iRa" secondAttribute="bottom" id="cxD-fn-NqQ"/>
                             <constraint firstItem="54h-go-Exs" firstAttribute="width" secondItem="kB2-4a-s35" secondAttribute="width" multiplier="1/6" id="dbb-GQ-Vxa"/>
                             <constraint firstItem="Gpt-uk-RhG" firstAttribute="bottom" secondItem="4uC-3d-KyF" secondAttribute="bottom" constant="20" id="h3t-q5-i6V"/>
                             <constraint firstItem="4uC-3d-KyF" firstAttribute="top" secondItem="vrD-vN-Lfe" secondAttribute="bottom" id="hYm-1S-5DP"/>
@@ -704,7 +702,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gpt-uk-RhG"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="t5g-Bl-Ly6">
                         <barButtonItem key="backBarButtonItem" title="取消" id="6Uz-Mm-4L8"/>
                     </navigationItem>
@@ -721,7 +718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tq5-ti-ghj" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1549.2753623188407" y="-1791.8478260869567"/>
+            <point key="canvasLocation" x="-1549.5999999999999" y="-1792.353823088456"/>
         </scene>
         <!--Show Picture View Controller-->
         <scene sceneID="g6Q-z6-iwf">
@@ -779,7 +776,6 @@
         <!--Navigation Controller-->
         <scene sceneID="N8Q-iG-iOK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-bY-Q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pL2-pP-v5u" customClass="NavigationController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="btn_back" id="xmp-wV-fdP">
@@ -799,6 +795,7 @@
                         <segue destination="36v-2J-Gpy" kind="relationship" relationship="rootViewController" id="vRU-t5-MSQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-bY-Q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2281" y="-1791"/>
         </scene>

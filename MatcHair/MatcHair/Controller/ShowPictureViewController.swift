@@ -15,7 +15,8 @@ import FirebaseAuth
 class ShowPictureViewController: UIViewController {
     
     var picture: UIImage?
-    
+    @IBOutlet weak var gradietView: UIView!
+
     let transition = CATransition()
 
     // Get a reference to the storage service using the default Firebase App
@@ -46,16 +47,6 @@ class ShowPictureViewController: UIViewController {
             return
         }
 
-//        self.transition.duration = 0.5
-//        self.transition.type = CATransitionType.push
-//        self.transition.subtype = CATransitionSubtype.fromRight
-//        self.transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-//        self.view.window!.layer.add(self.transition, forKey: kCATransition)
-//        
-//        let tabController = self.view.window!.rootViewController as? UITabBarController
-//        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
-//        tabController?.selectedIndex = 2
-
         performSegue(withIdentifier: "goEdit", sender: image)
 
     }
@@ -69,15 +60,37 @@ extension ShowPictureViewController {
         
         ref = Database.database().reference()
         pictureView.image = picture
-        setLayout()
         
+    }
+
+    override func viewDidLayoutSubviews() {
+        setGradientView()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        setLayout()
     }
     
     private func setLayout() {
 
-        nextButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        nextButton.layer.borderWidth = 2
-        nextButton.layer.cornerRadius = 5
+        nextButton.setImage(#imageLiteral(resourceName: "btn_next").withRenderingMode(.alwaysTemplate), for: .normal)
+        nextButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    }
+
+    func setGradientView() {
+
+        let gradient = CAGradientLayer()
+        gradient.frame = gradietView.bounds
+
+        gradient.colors = [UIColor(red: 164/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0).cgColor,
+                           UIColor(red: 234/255.0, green: 188/255.0, blue: 171/255.0, alpha: 1.0).cgColor]
+
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 1, y: 0)
+
+        gradietView.layer.insertSublayer(gradient, at: 0)
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,7 +99,7 @@ extension ShowPictureViewController {
 
         guard let postViewController = segue.destination as? PostViewController else { return }
 
-        postViewController.picture = image // 為什麼不能馬上show照片Ｑ
+        postViewController.picture = image
 
     }
     

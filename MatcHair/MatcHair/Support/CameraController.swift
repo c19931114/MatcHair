@@ -170,10 +170,11 @@ extension CameraController {
         self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.previewLayer?.connection?.videoOrientation = .portrait
         
-//        view.layer.insertSublayer(self.previewLayer!, at: 0)
-        view.layer.addSublayer(self.previewLayer!)
-        self.previewLayer?.frame = view.frame //
-        print(view.frame)
+        view.layer.insertSublayer(self.previewLayer!, at: 0)
+        
+//        self.previewLayer?.frame = view.frame // 只適用全螢幕
+
+        previewLayer?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
     }
     
     func switchCameras() throws {
@@ -273,6 +274,7 @@ extension CameraController: AVCapturePhotoCaptureDelegate {
         
         if let error = error {
             self.photoCaptureCompletionBlock?(nil, error)
+
         } else if let buffer = photoSampleBuffer,
             let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil),
             let image = UIImage(data: data) {

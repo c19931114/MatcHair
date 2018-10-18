@@ -46,7 +46,7 @@ class DesignerCompleteCollectionViewCell: UICollectionViewCell {
         // shadowOffset 偏移
         self.layer.shadowOffset = CGSize(width: 5, height: 5)
         self.layer.shadowRadius = 4.0
-        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOpacity = 0.2
         self.layer.masksToBounds = false
     }
 

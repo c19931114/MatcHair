@@ -52,17 +52,7 @@ class PictureViewController: UIViewController, UIImagePickerControllerDelegate, 
         } catch {
             print(error)
         }
-        
-        switch cameraController.currentCameraPosition {
-        case .some(.front):
-            toggleCameraButton.setImage(#imageLiteral(resourceName: "Front Camera Icon"), for: .normal)
-            
-        case .some(.rear):
-            toggleCameraButton.setImage(#imageLiteral(resourceName: "Rear Camera Icon"), for: .normal)
-            
-        case .none:
-            return
-        }
+
     }
     
     @IBAction func captureImage(_ sender: UIButton) {
@@ -124,8 +114,8 @@ extension PictureViewController {
         styleCaptureButton()
         configureCameraController()
 
-        cameraModeButton.isHidden = true
-        videoModeButton.isHidden = true
+//        cameraModeButton.isHidden = true
+//        videoModeButton.isHidden = true
 
         guard keychain.get("userUID") != nil else {
             emptyPage.isHidden = false
@@ -135,14 +125,21 @@ extension PictureViewController {
         emptyPage.isHidden = true
 
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+//        configureCameraController() // 相機會一直當掉
+
+    }
     
     func configureCameraController() {
         cameraController.prepare {(error) in
-            
+
             if let error = error {
                 print(error)
             }
-            
+
             try? self.cameraController.displayPreview(on: self.capturePreviewView)
 //            try? self.cameraController.displayPreview(on: self.view)
         }

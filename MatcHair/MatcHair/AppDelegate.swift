@@ -12,6 +12,8 @@ import Firebase
 import FBSDKCoreKit
 import IQKeyboardManagerSwift
 import KeychainSwift
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.isStatusBarHidden = false
 
         window?.tintColor = #colorLiteral(red: 0.5176470588, green: 0.5843137255, blue: 0.6196078431, alpha: 1)
+        Fabric.with([Crashlytics.self])
 
         FirebaseApp.configure() // 放後面會 crash
 

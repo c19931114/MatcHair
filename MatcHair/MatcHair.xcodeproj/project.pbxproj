@@ -650,12 +650,13 @@
 			files = (
 			);
 			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\"${PODS_ROOT}/Fabric/run\" a961394b61cdd34c315385f5a2ebe77a99659292 e742d06cd6e63b0f4b1fd3ae7a68e1caa6ad44795416692787fad28f2aa6f1b5\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

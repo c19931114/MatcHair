@@ -92,6 +92,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chatButton" destination="i3t-VD-Nlh" id="DCr-ye-bah"/>
                         <outlet property="completeView" destination="RPa-9T-Nys" id="kXA-AL-Bqu"/>
                         <outlet property="confirmView" destination="5vu-TH-LaE" id="pVx-Xo-0B1"/>
                         <outlet property="emptyPage" destination="ZNI-my-e9j" id="dma-t0-FlI"/>
@@ -196,6 +197,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chatButton" destination="FGg-0o-az3" id="ePb-hc-Ia2"/>
                         <outlet property="completeView" destination="4sk-JY-8ZF" id="CFG-FR-mBw"/>
                         <outlet property="confirmView" destination="SmE-Fp-n0R" id="OeV-G1-LfI"/>
                         <outlet property="emptyPage" destination="wZm-OH-1Vn" id="iCB-0l-cve"/>

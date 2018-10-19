@@ -21,14 +21,9 @@ class NavigationController: UINavigationController {
 
         let titleAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 18)]
+            NSAttributedString.Key.font: UIFont(name: "Avenir", size: 18)]
         self.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
-
-        let leftButtonAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 17)]
-        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(
-            leftButtonAttributes as [NSAttributedString.Key : Any], for: .normal)
+        
 
     }
 

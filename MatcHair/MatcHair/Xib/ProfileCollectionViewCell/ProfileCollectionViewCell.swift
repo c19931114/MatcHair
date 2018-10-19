@@ -17,6 +17,7 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var postsCountLabel: UILabel!
+    @IBOutlet weak var logoutButton: UIButton!
     
     @IBAction func editProfile(_ sender: Any) {
         

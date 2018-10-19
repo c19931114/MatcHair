@@ -20,6 +20,11 @@ class PostViewController: UIViewController {
     var dateSelected: Bool = false
     var myPost: MyPost?
 
+    @IBOutlet weak var view1: UIView!
+    @IBOutlet weak var shareLabel: UILabel!
+    @IBOutlet weak var recruitLabel: UIView!
+
+
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
 
@@ -167,6 +172,11 @@ extension PostViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view1.isHidden = true
+        shareLabel.isHidden = true
+        recruitLabel.isHidden = true
+        shareToFacebookSwitch.isHidden = true
+
         ref = Database.database().reference()
 
         hideOptions()
@@ -269,8 +279,8 @@ extension PostViewController {
         let threeMonthAfter = Calendar.current.date(byAdding: dateComponents, to: currentDate)
 
         let datePicker = DatePickerDialog(
-            textColor: UIColor(red: 4 / 255.0, green: 71 / 255.0, blue: 28 / 255.0, alpha: 1.0),
-            buttonColor: UIColor(red: 4 / 255.0, green: 71 / 255.0, blue: 28 / 255.0, alpha: 1.0),
+            textColor: #colorLiteral(red: 0.5098039216, green: 0.5450980392, blue: 0.6274509804, alpha: 1),
+            buttonColor: #colorLiteral(red: 0.5098039216, green: 0.5450980392, blue: 0.6274509804, alpha: 1),
             font: UIFont.boldSystemFont(ofSize: 17),
             showCancelButton: true)
         

@@ -88,6 +88,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="119" height="116"/>
             <connections>
+                <outlet property="logoutButton" destination="Jd4-2s-x7d" id="P3Q-wu-Mcx"/>
                 <outlet property="postsCountLabel" destination="3zn-lB-6nF" id="Z93-EI-S3Y"/>
                 <outlet property="userImage" destination="1h5-5t-2bR" id="Ag2-vt-oCN"/>
                 <outlet property="userNameLabel" destination="8Kh-dE-k6D" id="dBt-dg-K9Z"/>

@@ -14,6 +14,7 @@ class DesignerCompleteCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var modelImage: UIImageView!
     @IBOutlet weak var reservationTimeLabel: UILabel!
@@ -22,7 +23,6 @@ class DesignerCompleteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var modelNameButton: UIButton!
     @IBOutlet weak var modelImageButton: UIButton!
     @IBOutlet weak var scoreButton: UIButton!
-
 
     override func awakeFromNib() {
         super.awakeFromNib()

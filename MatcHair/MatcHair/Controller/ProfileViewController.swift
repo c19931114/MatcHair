@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController {
     var designerImageURL: URL?
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
 
+    @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var emptyPage: UIView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
 
@@ -45,15 +46,18 @@ extension ProfileViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        chatButton.isHidden = true
+
         ref = Database.database().reference()
 
         setRefreshControl()
 
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(loadDesignerPosts),
+            selector: #selector(loadTest(_:)),
             name: .reFetchMyPosts,
-            object: nil)
+            object: nil
+        )
 
         if let designerUID = designerUID {
 
@@ -89,7 +93,6 @@ extension ProfileViewController {
 
                     return ProfileViewController()
         }
-        print(uid)
 
         profileVC.designerUID = uid
 
@@ -170,6 +173,15 @@ extension ProfileViewController {
            self.profileCollectionView.reloadData()
 
         })
+    }
+
+    @objc func loadTest(_ info: Notification) {
+
+        guard let currentUserUID = self.keychain.get("userUID") else {
+            return
+        }
+
+        loadDesignerPosts(with: currentUserUID)
     }
 
     @objc func loadDesignerPosts(with uid: String) {
@@ -275,8 +287,22 @@ extension ProfileViewController: UICollectionViewDataSource {
             }
 
             profileCell.userImage.kf.setImage(with: designerImageURL)
-
             profileCell.postsCountLabel.text = "\(designerPosts.count) 則貼文"
+
+            if designerUID == nil {
+
+                if self.keychain.get("userUID") != nil {
+                    profileCell.logoutButton.isHidden = false
+                }
+
+            } else {
+
+                if self.keychain.get("userUID") != nil {
+                    profileCell.logoutButton.isHidden = false
+                } else {
+                    profileCell.logoutButton.isHidden = true
+                }
+            }
 
             return profileCell
 

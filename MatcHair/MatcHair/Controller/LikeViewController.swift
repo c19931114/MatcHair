@@ -30,6 +30,7 @@ class LikeViewController: UIViewController {
     var selectedTiming: String?
     let transition = CATransition()
 
+    @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var emptyPage: UIView!
     @IBOutlet weak var likePostCollectionView: UICollectionView!
 
@@ -42,6 +43,8 @@ extension LikeViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        chatButton.isHidden = true
 
         guard keychain.get("userUID") != nil else {
             emptyPage.isHidden = false

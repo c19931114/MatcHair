@@ -35,6 +35,7 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var homePostCollectionView: UICollectionView!
 
+    @IBOutlet weak var chatButton: UIButton!
     @IBAction private func goToChatRoom(_ sender: Any) {
 
         self.present(chatRoomViewController, animated: true, completion: nil)
@@ -47,6 +48,7 @@ extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        chatButton.isHidden = true
         ref = Database.database().reference()
 
         setRefreshControl()
@@ -301,12 +303,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func likeButtonTapped(sender: UIButton) {
 
-//        guard keychain.get("userUID") != nil else {
-//            showVisitorAlert()
-//            return
-//        }
-
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+        guard let currentUserUID = keychain.get("userUID") else {
             showVisitorAlert()
             return
         }
@@ -334,8 +331,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
         let selectedDesignerUID = allPosts[sender.tag].info.authorUID
         let profileForDesigner = ProfileViewController.profileForDesigner(selectedDesignerUID)
-        self.navigationController?.show(profileForDesigner, sender: nil)
-//        pushViewController(profileForDesigner, animated: true)
+        self.navigationController?.pushViewController(profileForDesigner, animated: true)
 
     }
 
@@ -387,7 +383,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let width = fullScreenSize.width - 40
         let height = width * 27 / 25
         return CGSize(width: width, height: height)
-
     }
 
 }

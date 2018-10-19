@@ -52,6 +52,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chatButton" destination="qM5-oN-PPL" id="xbR-3D-qu6"/>
                         <outlet property="homePostCollectionView" destination="Bua-IT-Md1" id="8gA-cP-x9b"/>
                     </connections>
                 </viewController>

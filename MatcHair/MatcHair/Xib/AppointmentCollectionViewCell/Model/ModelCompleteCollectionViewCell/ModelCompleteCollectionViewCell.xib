@@ -36,6 +36,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zo-hR-qxV">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$$$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyN-K8-fgd">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYm-Ft-LHY">
                                 <rect key="frame" x="268" y="23" width="32" height="32"/>
                                 <state key="normal" image="btn_chat_blue2"/>
@@ -120,9 +130,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="EHx-QF-Kvq" firstAttribute="height" secondItem="djn-V8-si7" secondAttribute="height" id="0rE-fq-Rdq"/>
+                            <constraint firstItem="PyN-K8-fgd" firstAttribute="top" secondItem="RiD-48-Fn4" secondAttribute="bottom" constant="5" id="0up-Kr-R2O"/>
                             <constraint firstItem="vom-XT-40q" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="leading" id="2bl-DY-nkz"/>
                             <constraint firstItem="gYm-Ft-LHY" firstAttribute="top" secondItem="xaS-El-C8E" secondAttribute="top" constant="23" id="2mD-Vn-AGn"/>
+                            <constraint firstItem="7zo-hR-qxV" firstAttribute="height" secondItem="PyN-K8-fgd" secondAttribute="height" id="5Lh-mP-IAk"/>
                             <constraint firstItem="EHx-QF-Kvq" firstAttribute="width" secondItem="djn-V8-si7" secondAttribute="width" id="5wb-1k-n0u"/>
+                            <constraint firstItem="7zo-hR-qxV" firstAttribute="width" secondItem="PyN-K8-fgd" secondAttribute="width" id="8aq-wT-bpg"/>
                             <constraint firstItem="djn-V8-si7" firstAttribute="bottom" secondItem="ne2-xa-uPj" secondAttribute="bottom" id="B6V-Ne-1WP"/>
                             <constraint firstItem="efh-sg-6vg" firstAttribute="leading" secondItem="xaS-El-C8E" secondAttribute="leading" constant="10" id="CSH-0g-7dU"/>
                             <constraint firstItem="RiD-48-Fn4" firstAttribute="centerY" secondItem="gYm-Ft-LHY" secondAttribute="centerY" id="CnO-OB-aT8"/>
@@ -138,8 +151,11 @@
                             <constraint firstItem="eNE-7T-v0n" firstAttribute="top" secondItem="djn-V8-si7" secondAttribute="top" id="XH5-Ql-boC"/>
                             <constraint firstItem="eNE-7T-v0n" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="trailing" constant="10" id="YKQ-fZ-kMN"/>
                             <constraint firstItem="RiD-48-Fn4" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="leading" id="ZqL-Vs-YlZ"/>
+                            <constraint firstItem="PyN-K8-fgd" firstAttribute="leading" secondItem="7zo-hR-qxV" secondAttribute="leading" id="bIu-YK-Fvx"/>
                             <constraint firstAttribute="trailing" secondItem="efh-sg-6vg" secondAttribute="trailing" constant="10" id="cIl-0u-mXc"/>
+                            <constraint firstItem="PyN-K8-fgd" firstAttribute="leading" secondItem="EHx-QF-Kvq" secondAttribute="leading" id="drQ-k3-siZ"/>
                             <constraint firstAttribute="width" secondItem="xaS-El-C8E" secondAttribute="height" multiplier="25:27" id="f7U-uB-U2W"/>
+                            <constraint firstItem="PyN-K8-fgd" firstAttribute="centerY" secondItem="7zo-hR-qxV" secondAttribute="centerY" id="fMq-NU-Ldp"/>
                             <constraint firstItem="ne2-xa-uPj" firstAttribute="leading" secondItem="djn-V8-si7" secondAttribute="trailing" constant="10" id="ned-Po-bEB"/>
                             <constraint firstItem="fpp-eg-DyA" firstAttribute="centerY" secondItem="0U9-O8-2zy" secondAttribute="centerY" id="uJY-RD-vNP"/>
                             <constraint firstItem="RiD-48-Fn4" firstAttribute="width" secondItem="vom-XT-40q" secondAttribute="width" id="uax-4x-GpG"/>
@@ -169,6 +185,7 @@
                 <outlet property="designerImageButton" destination="EHx-QF-Kvq" id="Nn3-FZ-LCV"/>
                 <outlet property="designerNameButton" destination="eNE-7T-v0n" id="TvU-3q-t39"/>
                 <outlet property="postImage" destination="efh-sg-6vg" id="q1c-B6-iQS"/>
+                <outlet property="priceLabel" destination="PyN-K8-fgd" id="MlS-sJ-KY7"/>
                 <outlet property="reservationTimeLabel" destination="0U9-O8-2zy" id="bDP-YI-Tbo"/>
                 <outlet property="scoreButton" destination="fpp-eg-DyA" id="8c2-ay-ATc"/>
                 <outlet property="view" destination="xaS-El-C8E" id="7fT-V0-hy6"/>

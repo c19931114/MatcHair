@@ -120,6 +120,7 @@
                         <outlet property="locationLabel" destination="gka-8k-fy0" id="pLa-tU-Lg2"/>
                         <outlet property="moreButton" destination="bHs-u1-Va6" id="w7W-Nu-05A"/>
                         <outlet property="postImage" destination="2EI-fP-HTv" id="MBd-hA-4AV"/>
+                        <outlet property="priceLabel" destination="u6a-Tf-7FQ" id="Hwi-dX-dyn"/>
                         <outlet property="reservationButton" destination="Agx-El-5A5" id="VEh-zU-06l"/>
                     </connections>
                 </viewController>

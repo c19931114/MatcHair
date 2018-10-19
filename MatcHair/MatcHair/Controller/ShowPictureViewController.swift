@@ -15,7 +15,6 @@ import FirebaseAuth
 class ShowPictureViewController: UIViewController {
     
     var picture: UIImage?
-    @IBOutlet weak var gradietView: UIView!
 
     let transition = CATransition()
 
@@ -24,6 +23,7 @@ class ShowPictureViewController: UIViewController {
     let storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
 
+    @IBOutlet weak var gradietView: UIView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pictureView: UIImageView!
     

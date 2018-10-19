@@ -62,6 +62,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chatButton" destination="D8Q-at-dlD" id="7Xm-5d-I3R"/>
                         <outlet property="emptyPage" destination="hp7-fM-W0L" id="y7S-Cr-kHw"/>
                         <outlet property="likePostCollectionView" destination="hEI-DP-Pnd" id="UAw-7r-8Em"/>
                     </connections>

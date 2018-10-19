@@ -156,7 +156,11 @@ extension DesignerPendingViewController {
 
         self.ref.child("users/\(appointmentInfo.modelUID)").observeSingleEvent(of: .value) { (snapshot) in
 
-            guard let value = snapshot.value as? NSDictionary else { return }
+            guard let value = snapshot.value as? NSDictionary else {
+                
+                self.designerPendingCollectionView.reloadData()
+                return
+            }
 
             guard let modelJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
@@ -175,7 +179,11 @@ extension DesignerPendingViewController {
 
         self.ref.child("allPosts/\(appointmentInfo.postID)").observeSingleEvent(of: .value) { (snapshot) in
 
-            guard let value = snapshot.value as? NSDictionary else { return }
+            guard let value = snapshot.value as? NSDictionary else {
+
+                self.designerPendingCollectionView.reloadData()
+                return
+            }
 
             guard let postJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
@@ -261,6 +269,12 @@ extension DesignerPendingViewController: UICollectionViewDataSource {
         if appointment.postInfo.category!.other { categories.append("其他") }
 
         appointmentCell.categoryLabel.text = categories.joined(separator: ", ")
+
+        if appointment.postInfo.payment == "" {
+            appointmentCell.priceLabel.text = "$ 0"
+        } else {
+            appointmentCell.priceLabel.text = "$ \(appointment.postInfo.payment!)"
+        }
 
         // target action
         appointmentCell.cancelButton.tag = indexPath.row

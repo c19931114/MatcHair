@@ -14,6 +14,7 @@ class ModelPendingCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var designerImage: UIImageView!
     @IBOutlet weak var reservationTimeLabel: UILabel!

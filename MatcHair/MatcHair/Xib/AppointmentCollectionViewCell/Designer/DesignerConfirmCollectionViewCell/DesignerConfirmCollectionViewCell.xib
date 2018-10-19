@@ -36,6 +36,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2S-kG-ig6">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaB-Rz-gel">
                                 <rect key="frame" x="268" y="23" width="32" height="32"/>
                                 <state key="normal" image="btn_chat_blue2"/>
@@ -116,11 +120,20 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7L-ft-J1Z">
                                 <rect key="frame" x="20" y="254" width="60" height="60"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$$$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJi-gH-hdZ">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="wJi-gH-hdZ" firstAttribute="top" secondItem="bzO-oQ-zqg" secondAttribute="bottom" constant="5" id="14P-ow-3eg"/>
+                            <constraint firstItem="B2S-kG-ig6" firstAttribute="height" secondItem="wJi-gH-hdZ" secondAttribute="height" id="1iG-ZK-CsY"/>
                             <constraint firstAttribute="trailing" secondItem="PaB-Rz-gel" secondAttribute="trailing" id="6cw-XZ-Gi6"/>
                             <constraint firstItem="bzO-oQ-zqg" firstAttribute="leading" secondItem="vro-pM-scq" secondAttribute="leading" id="7pY-BU-aIc"/>
+                            <constraint firstItem="wJi-gH-hdZ" firstAttribute="leading" secondItem="P7L-ft-J1Z" secondAttribute="leading" id="8Fb-PZ-Hem"/>
                             <constraint firstItem="bzO-oQ-zqg" firstAttribute="width" secondItem="n8P-fo-3IV" secondAttribute="width" id="9Eg-MV-bEU"/>
                             <constraint firstItem="6NZ-Zx-W2S" firstAttribute="leading" secondItem="vro-pM-scq" secondAttribute="trailing" constant="10" id="AwW-qC-x10"/>
                             <constraint firstItem="P7L-ft-J1Z" firstAttribute="leading" secondItem="vro-pM-scq" secondAttribute="leading" id="BSi-ML-x3w"/>
@@ -134,9 +147,12 @@
                             <constraint firstItem="vro-pM-scq" firstAttribute="leading" secondItem="EQI-wB-MR2" secondAttribute="leading" constant="20" id="LdA-kw-Rbt"/>
                             <constraint firstAttribute="trailing" secondItem="Xzs-IL-35U" secondAttribute="trailing" constant="10" id="Nau-sP-3ae"/>
                             <constraint firstItem="hP7-st-7N2" firstAttribute="trailing" secondItem="Xzs-IL-35U" secondAttribute="trailing" id="Ott-d8-LK0"/>
+                            <constraint firstItem="wJi-gH-hdZ" firstAttribute="leading" secondItem="B2S-kG-ig6" secondAttribute="leading" id="UWp-Pv-few"/>
                             <constraint firstItem="2uJ-jV-Kcl" firstAttribute="top" secondItem="vro-pM-scq" secondAttribute="top" id="VcA-ef-aMT"/>
                             <constraint firstItem="n8P-fo-3IV" firstAttribute="leading" secondItem="vro-pM-scq" secondAttribute="leading" id="ZTU-qu-8r9"/>
                             <constraint firstItem="hP7-st-7N2" firstAttribute="centerY" secondItem="KUV-5R-klF" secondAttribute="centerY" id="b60-p0-Vw5"/>
+                            <constraint firstItem="wJi-gH-hdZ" firstAttribute="centerY" secondItem="B2S-kG-ig6" secondAttribute="centerY" id="bpL-Rx-vcV"/>
+                            <constraint firstItem="B2S-kG-ig6" firstAttribute="width" secondItem="wJi-gH-hdZ" secondAttribute="width" id="eMY-7M-7k1"/>
                             <constraint firstItem="n8P-fo-3IV" firstAttribute="centerY" secondItem="PaB-Rz-gel" secondAttribute="centerY" id="hKd-zT-k4O"/>
                             <constraint firstItem="vro-pM-scq" firstAttribute="bottom" secondItem="6NZ-Zx-W2S" secondAttribute="bottom" id="iLj-PQ-ND7"/>
                             <constraint firstItem="bzO-oQ-zqg" firstAttribute="centerY" secondItem="PaB-Rz-gel" secondAttribute="centerY" id="iZq-ul-ItA"/>
@@ -170,6 +186,7 @@
                 <outlet property="modelImageButton" destination="P7L-ft-J1Z" id="sws-Rt-M40"/>
                 <outlet property="modelNameButton" destination="2uJ-jV-Kcl" id="NDc-MA-JSj"/>
                 <outlet property="postImage" destination="Xzs-IL-35U" id="NBX-bH-wbZ"/>
+                <outlet property="priceLabel" destination="wJi-gH-hdZ" id="CHY-JU-wgr"/>
                 <outlet property="reservationTimeLabel" destination="KUV-5R-klF" id="nBY-en-Mlp"/>
                 <outlet property="view" destination="EQI-wB-MR2" id="4Me-Q3-uwB"/>
             </connections>

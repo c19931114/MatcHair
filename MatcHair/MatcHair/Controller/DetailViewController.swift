@@ -22,23 +22,18 @@ class DetailViewController: UIViewController {
     var selectedTiming: String?
     let transition = CATransition()
 
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
-
     @IBOutlet weak var editButton: UIButton!
-
     @IBOutlet weak var reservationButton: UIButton!
-
     @IBOutlet weak var categoryLabel: UILabel!
-
     @IBOutlet weak var locationLabel: UILabel!
-
     @IBOutlet weak var postImage: UIImageView!
-
     @IBOutlet weak var descriptionTextView: UITextView!
 
     @IBAction func moreForPost(_ sender: Any) {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+        guard let currentUserUID = keychain.get("userUID") else {
 
             showVisitorAlert()
             return
@@ -240,7 +235,6 @@ extension DetailViewController {
 
                     return DetailViewController()
         }
-        print(post)
 
         detailVC.myPost = post
         return detailVC
@@ -252,6 +246,12 @@ extension DetailViewController {
         locationLabel.text = "\(post.reservation!.location.city), \(post.reservation!.location.district)"
         postImage.kf.setImage(with: URL(string: post.pictureURL))
         descriptionTextView.text = post.content
+
+        if post.payment == "" {
+            priceLabel.text = "$ 0"
+        } else {
+            priceLabel.text = "$ \(post.payment!)"
+        }
 
         if post.category!.shampoo { categories.append("洗髮") }
         if post.category!.haircut { categories.append("剪髮") }
@@ -268,6 +268,7 @@ extension DetailViewController {
         locationLabel.isHidden = true
         postImage.kf.setImage(with: URL(string: post.pictureURL))
         descriptionTextView.text = post.content
+        priceLabel.isHidden = true
     }
 
     func showReportAlert() {
@@ -377,6 +378,7 @@ extension DetailViewController {
 
         ref.child("usersPosts/\(currentUserUID)/\(post.postID)").removeValue()
         ref.child("allPosts/\(post.postID)").removeValue()
+//        ref.child("likePosts").queryOrdered(byChild: post.postID).queryEqual(toValue: true).removeAllObservers()
         NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
         NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
         self.dismiss(animated: true, completion: nil)

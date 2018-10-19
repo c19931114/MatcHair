@@ -36,6 +36,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fcz-h0-DFW">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$$$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSG-NC-EEx">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83L-ex-Bhm">
                                 <rect key="frame" x="268" y="23" width="32" height="32"/>
                                 <state key="normal" image="btn_chat_blue2"/>
@@ -125,24 +135,30 @@
                             <constraint firstItem="UmD-On-ijn" firstAttribute="centerY" secondItem="UHL-jg-KpV" secondAttribute="bottom" multiplier="0.98" id="GEI-tp-CcN"/>
                             <constraint firstItem="UmD-On-ijn" firstAttribute="bottom" secondItem="SMJ-X3-vto" secondAttribute="bottom" id="JAk-qb-ZEb"/>
                             <constraint firstAttribute="width" secondItem="jOp-az-tlk" secondAttribute="height" multiplier="25:27" id="KTT-Eb-eUt"/>
+                            <constraint firstItem="Fcz-h0-DFW" firstAttribute="top" secondItem="vDK-oL-jhB" secondAttribute="bottom" constant="5" id="OIT-9m-x7y"/>
                             <constraint firstAttribute="trailing" secondItem="UHL-jg-KpV" secondAttribute="trailing" constant="10" id="OYB-OO-SKw"/>
                             <constraint firstItem="lBw-vD-bIU" firstAttribute="height" secondItem="vDK-oL-jhB" secondAttribute="height" id="QZg-JL-k0C"/>
                             <constraint firstItem="JSa-f4-9kr" firstAttribute="top" secondItem="UmD-On-ijn" secondAttribute="top" id="UkY-G9-nep"/>
                             <constraint firstItem="mhn-4B-8YY" firstAttribute="top" secondItem="UmD-On-ijn" secondAttribute="top" id="Vdv-WD-lIC"/>
                             <constraint firstItem="lBw-vD-bIU" firstAttribute="width" secondItem="vDK-oL-jhB" secondAttribute="width" id="Xe1-rD-pCz"/>
                             <constraint firstItem="JSa-f4-9kr" firstAttribute="width" secondItem="UmD-On-ijn" secondAttribute="width" id="Z5v-f3-2AY"/>
+                            <constraint firstItem="Fcz-h0-DFW" firstAttribute="leading" secondItem="XSG-NC-EEx" secondAttribute="leading" id="ZJt-Bi-JJ4"/>
                             <constraint firstItem="F9N-qg-cVC" firstAttribute="trailing" secondItem="UHL-jg-KpV" secondAttribute="trailing" id="cZj-So-C2s"/>
                             <constraint firstAttribute="trailing" secondItem="83L-ex-Bhm" secondAttribute="trailing" id="ePN-Zd-C6u"/>
                             <constraint firstItem="83L-ex-Bhm" firstAttribute="top" secondItem="jOp-az-tlk" secondAttribute="top" constant="23" id="eeg-bJ-R6o"/>
                             <constraint firstItem="mhn-4B-8YY" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="trailing" constant="15" id="gm3-YE-euu"/>
+                            <constraint firstItem="XSG-NC-EEx" firstAttribute="leading" secondItem="JSa-f4-9kr" secondAttribute="leading" id="gyq-iA-NgF"/>
                             <constraint firstItem="SMJ-X3-vto" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="trailing" constant="10" id="hFO-UQ-tlQ"/>
                             <constraint firstItem="UmD-On-ijn" firstAttribute="leading" secondItem="jOp-az-tlk" secondAttribute="leading" constant="20" id="hLs-G8-36U"/>
                             <constraint firstItem="lBw-vD-bIU" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="leading" id="iFl-Z4-qnd"/>
                             <constraint firstItem="vDK-oL-jhB" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="leading" id="lkg-x4-zku"/>
                             <constraint firstItem="F9N-qg-cVC" firstAttribute="centerY" secondItem="Y6c-Sh-Edf" secondAttribute="centerY" id="q5m-0X-POg"/>
                             <constraint firstItem="lBw-vD-bIU" firstAttribute="centerY" secondItem="83L-ex-Bhm" secondAttribute="centerY" id="r4g-F5-Hmu"/>
+                            <constraint firstItem="Fcz-h0-DFW" firstAttribute="width" secondItem="XSG-NC-EEx" secondAttribute="width" id="tAm-TS-6LH"/>
+                            <constraint firstItem="XSG-NC-EEx" firstAttribute="centerY" secondItem="Fcz-h0-DFW" secondAttribute="centerY" id="wH2-Dt-HLm"/>
                             <constraint firstItem="JSa-f4-9kr" firstAttribute="leading" secondItem="UmD-On-ijn" secondAttribute="leading" id="xkX-yn-n9K"/>
                             <constraint firstItem="JSa-f4-9kr" firstAttribute="height" secondItem="UmD-On-ijn" secondAttribute="height" id="yLr-DA-2ve"/>
+                            <constraint firstItem="Fcz-h0-DFW" firstAttribute="height" secondItem="XSG-NC-EEx" secondAttribute="height" id="yNs-Ya-FBs"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -170,6 +186,7 @@
                 <outlet property="designerImageButton" destination="JSa-f4-9kr" id="fRg-gY-2wa"/>
                 <outlet property="designerNameButton" destination="mhn-4B-8YY" id="TwB-V6-urP"/>
                 <outlet property="postImage" destination="UHL-jg-KpV" id="WRw-vu-Kbz"/>
+                <outlet property="priceLabel" destination="XSG-NC-EEx" id="DcA-Pn-tLp"/>
                 <outlet property="reservationTimeLabel" destination="Y6c-Sh-Edf" id="LKk-iN-ERx"/>
                 <outlet property="view" destination="jOp-az-tlk" id="51s-bX-89M"/>
             </connections>

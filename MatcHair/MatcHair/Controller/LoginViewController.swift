@@ -77,7 +77,6 @@ extension LoginViewController {
                             FacebookAuthProvider.credential(
                                 withAccessToken: FBSDKAccessToken.current().tokenString)
                         self.keychain.set(FBSDKAccessToken.current().tokenString, forKey: "userToken")
-//                        self.userDefaults.set(FBSDKAccessToken.current().tokenString, forKey: "userToken")
 
                         Auth.auth().signInAndRetrieveData(with: credential) { (authDataResult, error) in
 
@@ -90,18 +89,15 @@ extension LoginViewController {
 
                                 guard let uid = Auth.auth().currentUser?.uid else {return }
                                 self.keychain.set(uid, forKey: "userUID")
-//                                self.userDefaults.set(uid, forKey: "userUID")
 
                                 guard let userName
                                     = Auth.auth().currentUser?.displayName else { return }
-//                                self.userDefaults.set(userName, forKey: "userName")
 
                                 guard let photoURLString
                                     = Auth.auth().currentUser?.photoURL?.absoluteString else { return }
                                 let largePhotoURLString = photoURLString + "?type=large"
                                 let largePhotoURL = URL(string: largePhotoURLString)!
 
-//                                self.userDefaults.set(largePhotoURL, forKey: "userImageURL")
 
 //                                self.getUserDetail(with: uid, userName)
 

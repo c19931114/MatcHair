@@ -62,6 +62,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="chatButton" destination="jMg-fu-iV9" id="09A-bV-aog"/>
                         <outlet property="emptyPage" destination="vpj-Mc-Zrh" id="yZB-ah-QdI"/>
                         <outlet property="profileCollectionView" destination="zfh-LB-PgH" id="FfU-DL-chJ"/>
                     </connections>

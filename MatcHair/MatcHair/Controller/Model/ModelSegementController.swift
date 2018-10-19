@@ -18,6 +18,7 @@ class ModelSegementController: UIViewController {
     @IBOutlet weak var confirmView: UIView!
     @IBOutlet weak var completeView: UIView!
     @IBOutlet weak var emptyPage: UIView!
+    @IBOutlet weak var chatButton: UIButton!
 
     @IBAction func switchStament(_ sender: UISegmentedControl) {
 
@@ -61,6 +62,8 @@ extension ModelSegementController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        chatButton.isHidden = true
 
         guard keychain.get("userUID") != nil else {
             emptyPage.isHidden = false

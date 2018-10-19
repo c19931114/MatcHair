@@ -34,6 +34,8 @@ class EmptyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setEmptyPage()
+
         ref = Database.database().reference()
 
     }
@@ -41,8 +43,8 @@ class EmptyPageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
 
-        setEmptyPage()
-        
+//        setEmptyPage()
+
     }
 
     func setEmptyPage() {

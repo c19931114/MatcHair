@@ -36,6 +36,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Bw-75-f17">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$$$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2H-dh-Kvk">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSP-Nw-1IW">
                                 <rect key="frame" x="268" y="23" width="32" height="32"/>
                                 <state key="normal" image="btn_chat_blue2"/>
@@ -123,10 +133,12 @@
                             <constraint firstItem="ZcQ-S9-ytE" firstAttribute="centerY" secondItem="IRx-wX-yc6" secondAttribute="centerY" id="5bK-QF-r4n"/>
                             <constraint firstAttribute="width" secondItem="o6K-0s-cZO" secondAttribute="height" multiplier="25:27" id="7rH-Ga-mj8"/>
                             <constraint firstItem="cnO-2L-JbC" firstAttribute="leading" secondItem="64a-mX-eRT" secondAttribute="leading" id="9oK-rC-yfu"/>
+                            <constraint firstItem="a2H-dh-Kvk" firstAttribute="leading" secondItem="5EQ-5U-q27" secondAttribute="leading" id="AeJ-bY-QcH"/>
                             <constraint firstItem="64a-mX-eRT" firstAttribute="leading" secondItem="o6K-0s-cZO" secondAttribute="leading" constant="20" id="B02-gY-bJc"/>
                             <constraint firstAttribute="trailing" secondItem="iSP-Nw-1IW" secondAttribute="trailing" id="B7c-IF-mNG"/>
                             <constraint firstItem="kLB-6t-q1U" firstAttribute="leading" secondItem="o6K-0s-cZO" secondAttribute="leading" constant="10" id="C3E-uI-4si"/>
                             <constraint firstItem="ZcQ-S9-ytE" firstAttribute="trailing" secondItem="kLB-6t-q1U" secondAttribute="trailing" id="CQL-sm-cQ5"/>
+                            <constraint firstItem="a2H-dh-Kvk" firstAttribute="leading" secondItem="6Bw-75-f17" secondAttribute="leading" id="FUz-pv-KZl"/>
                             <constraint firstItem="5EQ-5U-q27" firstAttribute="top" secondItem="64a-mX-eRT" secondAttribute="top" id="Gex-h8-zvv"/>
                             <constraint firstItem="Iom-8d-nZA" firstAttribute="leading" secondItem="64a-mX-eRT" secondAttribute="trailing" constant="10" id="J52-9e-1JX"/>
                             <constraint firstItem="5EQ-5U-q27" firstAttribute="width" secondItem="64a-mX-eRT" secondAttribute="width" id="Jnq-RT-hDF"/>
@@ -136,11 +148,15 @@
                             <constraint firstItem="kLB-6t-q1U" firstAttribute="top" secondItem="o6K-0s-cZO" secondAttribute="top" constant="10" id="RgH-FM-DUh"/>
                             <constraint firstItem="cnO-2L-JbC" firstAttribute="centerY" secondItem="iSP-Nw-1IW" secondAttribute="centerY" id="Uzq-xC-WWG"/>
                             <constraint firstItem="64a-mX-eRT" firstAttribute="bottom" secondItem="Iom-8d-nZA" secondAttribute="bottom" id="Y9F-E9-Olo"/>
+                            <constraint firstItem="a2H-dh-Kvk" firstAttribute="centerY" secondItem="6Bw-75-f17" secondAttribute="centerY" id="buL-by-P89"/>
                             <constraint firstItem="q4P-bg-r1a" firstAttribute="centerY" secondItem="iSP-Nw-1IW" secondAttribute="centerY" id="er9-7U-tpR"/>
                             <constraint firstItem="5EQ-5U-q27" firstAttribute="leading" secondItem="64a-mX-eRT" secondAttribute="leading" id="haA-FY-dxO"/>
+                            <constraint firstItem="6Bw-75-f17" firstAttribute="width" secondItem="a2H-dh-Kvk" secondAttribute="width" id="kci-O4-4tY"/>
                             <constraint firstItem="cnO-2L-JbC" firstAttribute="width" secondItem="q4P-bg-r1a" secondAttribute="width" id="n5S-84-8pN"/>
                             <constraint firstItem="q4P-bg-r1a" firstAttribute="leading" secondItem="64a-mX-eRT" secondAttribute="leading" id="nxA-Cg-Wru"/>
                             <constraint firstItem="cnO-2L-JbC" firstAttribute="height" secondItem="q4P-bg-r1a" secondAttribute="height" id="oBK-vV-bBC"/>
+                            <constraint firstItem="a2H-dh-Kvk" firstAttribute="top" secondItem="cnO-2L-JbC" secondAttribute="bottom" constant="5" id="rOr-0N-Fc1"/>
+                            <constraint firstItem="6Bw-75-f17" firstAttribute="height" secondItem="a2H-dh-Kvk" secondAttribute="height" id="uA2-8s-PTU"/>
                             <constraint firstItem="iSP-Nw-1IW" firstAttribute="top" secondItem="o6K-0s-cZO" secondAttribute="top" constant="23" id="x0e-Q6-UKz"/>
                             <constraint firstItem="5EQ-5U-q27" firstAttribute="height" secondItem="64a-mX-eRT" secondAttribute="height" id="z8u-G6-Ozc"/>
                         </constraints>
@@ -169,6 +185,7 @@
                 <outlet property="modelImageButton" destination="5EQ-5U-q27" id="014-h4-NsZ"/>
                 <outlet property="modelNameButton" destination="Xqa-Q2-Tv3" id="pW5-jF-Nb9"/>
                 <outlet property="postImage" destination="kLB-6t-q1U" id="JF3-IZ-4rA"/>
+                <outlet property="priceLabel" destination="a2H-dh-Kvk" id="Wma-E5-bUG"/>
                 <outlet property="reservationTimeLabel" destination="IRx-wX-yc6" id="q0k-5s-EPT"/>
                 <outlet property="scoreButton" destination="ZcQ-S9-ytE" id="JDg-6A-cLF"/>
                 <outlet property="view" destination="o6K-0s-cZO" id="w0Z-3c-TKu"/>

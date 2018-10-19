@@ -36,6 +36,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ic-is-GhU">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgN-sL-CLG">
                                 <rect key="frame" x="268" y="23" width="32" height="32"/>
                                 <state key="normal" image="btn_chat_blue2"/>
@@ -96,7 +100,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0O-MB-13m">
                                 <rect key="frame" x="123" y="131.5" width="54" height="37"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.91764705882352937" green="0.73725490196078436" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" title="  接受  ">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -106,10 +110,10 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
@@ -135,6 +139,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xey-aR-siM">
                                 <rect key="frame" x="20" y="254" width="60" height="60"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$$$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gy2-hG-1U3">
+                                <rect key="frame" x="20" y="56" width="49.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -148,9 +158,13 @@
                             <constraint firstAttribute="trailing" secondItem="TgN-sL-CLG" secondAttribute="trailing" id="DLd-kJ-c2f"/>
                             <constraint firstItem="V0O-MB-13m" firstAttribute="centerX" secondItem="kwX-pm-Px0" secondAttribute="centerX" id="DrP-dG-uBC"/>
                             <constraint firstItem="BMI-zr-ZwZ" firstAttribute="trailing" secondItem="kwX-pm-Px0" secondAttribute="trailing" id="HK9-nZ-hdy"/>
+                            <constraint firstItem="Gy2-hG-1U3" firstAttribute="leading" secondItem="Xey-aR-siM" secondAttribute="leading" id="HLL-6x-cWM"/>
+                            <constraint firstItem="8Ic-is-GhU" firstAttribute="width" secondItem="Gy2-hG-1U3" secondAttribute="width" id="Li5-IR-L4L"/>
                             <constraint firstItem="Q5u-Vk-T6d" firstAttribute="bottom" secondItem="hww-G1-eaH" secondAttribute="bottom" id="MAI-ZB-ihV"/>
+                            <constraint firstItem="Gy2-hG-1U3" firstAttribute="top" secondItem="a3V-3G-DqO" secondAttribute="bottom" constant="5" id="N6l-rs-YC3"/>
                             <constraint firstItem="Xey-aR-siM" firstAttribute="height" secondItem="Q5u-Vk-T6d" secondAttribute="height" id="O5O-AK-OdU"/>
                             <constraint firstItem="a3V-3G-DqO" firstAttribute="height" secondItem="dhJ-Rh-aQz" secondAttribute="height" id="RGt-ce-Hyf"/>
+                            <constraint firstItem="8Ic-is-GhU" firstAttribute="height" secondItem="Gy2-hG-1U3" secondAttribute="height" id="RUK-Yr-MXN"/>
                             <constraint firstItem="Q5u-Vk-T6d" firstAttribute="leading" secondItem="zbp-8j-RQ4" secondAttribute="leading" constant="20" id="Rf4-BR-tS2"/>
                             <constraint firstItem="V0O-MB-13m" firstAttribute="centerY" secondItem="kwX-pm-Px0" secondAttribute="centerY" id="UK6-dw-2Rs"/>
                             <constraint firstAttribute="width" secondItem="zbp-8j-RQ4" secondAttribute="height" multiplier="25:27" id="Wgz-oz-spx"/>
@@ -162,8 +176,10 @@
                             <constraint firstItem="a3V-3G-DqO" firstAttribute="leading" secondItem="Q5u-Vk-T6d" secondAttribute="leading" id="hbC-EK-KWy"/>
                             <constraint firstAttribute="trailing" secondItem="kwX-pm-Px0" secondAttribute="trailing" constant="10" id="jOa-61-N1W"/>
                             <constraint firstItem="dhJ-Rh-aQz" firstAttribute="leading" secondItem="Q5u-Vk-T6d" secondAttribute="leading" id="odN-1u-WSa"/>
+                            <constraint firstItem="Gy2-hG-1U3" firstAttribute="leading" secondItem="8Ic-is-GhU" secondAttribute="leading" id="qFq-nS-zDr"/>
                             <constraint firstItem="TgN-sL-CLG" firstAttribute="top" secondItem="zbp-8j-RQ4" secondAttribute="top" constant="23" id="tCT-L5-4dg"/>
                             <constraint firstItem="kwX-pm-Px0" firstAttribute="top" secondItem="zbp-8j-RQ4" secondAttribute="top" constant="10" id="whK-mc-8HB"/>
+                            <constraint firstItem="Gy2-hG-1U3" firstAttribute="centerY" secondItem="8Ic-is-GhU" secondAttribute="centerY" id="wo8-Nd-FVh"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -192,6 +208,7 @@
                 <outlet property="modelImageButton" destination="Xey-aR-siM" id="W2Q-Lb-Bpu"/>
                 <outlet property="modelNameButton" destination="pFx-cl-gTY" id="WIB-RO-bNE"/>
                 <outlet property="postImage" destination="kwX-pm-Px0" id="0BP-xG-edl"/>
+                <outlet property="priceLabel" destination="Gy2-hG-1U3" id="YYn-vq-uWf"/>
                 <outlet property="reservationTimeLabel" destination="cDq-cX-Byh" id="Lqn-Gp-umH"/>
                 <outlet property="view" destination="zbp-8j-RQ4" id="A0X-OL-Pqw"/>
             </connections>

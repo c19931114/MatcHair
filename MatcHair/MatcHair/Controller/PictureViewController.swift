@@ -119,6 +119,8 @@ extension PictureViewController {
 
         guard keychain.get("userUID") != nil else {
             emptyPage.isHidden = false
+            toggleFlashButton.isHidden = true
+            toggleCameraButton.isHidden = true
             return
         }
         

@@ -11,6 +11,7 @@ import DatePickerDialog
 import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
+import Photos
 
 class PostViewController: UIViewController {
 
@@ -24,7 +25,6 @@ class PostViewController: UIViewController {
     @IBOutlet weak var shareLabel: UILabel!
     @IBOutlet weak var recruitLabel: UIView!
 
-
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
 
@@ -32,7 +32,7 @@ class PostViewController: UIViewController {
     @IBOutlet weak var recruitModelSwitch: UISwitch!
 
     @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var categoryStack: UIStackView!
+//    @IBOutlet weak var categoryStack: UIStackView!
     @IBOutlet weak var shampooButton: UIButton!
     @IBOutlet weak var haircutButton: UIButton!
     @IBOutlet weak var dyeButton: UIButton!
@@ -47,7 +47,7 @@ class PostViewController: UIViewController {
 
     @IBOutlet weak var reservationTimeLabel: UILabel!
     @IBOutlet weak var pickDateButton: UIButton!
-    @IBOutlet weak var timeIntervalStack: UIStackView!
+
     @IBOutlet weak var morningButton: UIButton!
     @IBOutlet weak var afternoonButton: UIButton!
     @IBOutlet weak var nightButton: UIButton!
@@ -95,8 +95,13 @@ class PostViewController: UIViewController {
             share()
         }
 
+        try? PHPhotoLibrary.shared().performChangesAndWait {
+            PHAssetChangeRequest.creationRequestForAsset(from: self.picture!)
+        } // 把照片存進手機
+
+        self.navigationController?.popToRootViewController(animated: false)
+
         let tabController = self.view.window!.rootViewController as? UITabBarController
-        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         tabController?.selectedIndex = 4
 
     }
@@ -172,10 +177,14 @@ extension PostViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view1.isHidden = true
-        shareLabel.isHidden = true
+        setLayout()
+
+        descriptionTextField.delegate = self
+
+//        view1.isHidden = true
+//        shareLabel.isHidden = true
         recruitLabel.isHidden = true
-        shareToFacebookSwitch.isHidden = true
+//        shareToFacebookSwitch.isHidden = true
 
         ref = Database.database().reference()
 
@@ -190,11 +199,10 @@ extension PostViewController {
 
         postImage.image = picture
 
-//        descriptionTextField.text = "test"
-//        cityTextField.text = "台北市"
-//        districtTextField.text = "信義區"
-//        addressTextField.text = "基隆路一段180號"
+    }
 
+    func setLayout() {
+//        otherButton.layer.borderWidth = 1
     }
 
 //    class func editPost(_ post: PostInfo) -> PostViewController {
@@ -233,12 +241,22 @@ extension PostViewController {
     func showOptions() {
 
         categoryLabel.isHidden = false
-        categoryStack.isHidden = false
+        shampooButton.isHidden = false
+        haircutButton.isHidden = false
+        dyeButton.isHidden = false
+        permanentButton.isHidden = false
+        treatmentButton.isHidden = false
+        otherButton.isHidden = false
+
         paymentLabel.isHidden = false
         paymentSegmentControl.isHidden = false
+
         reservationTimeLabel.isHidden = false
         pickDateButton.isHidden = false
-        timeIntervalStack.isHidden = false
+        morningButton.isHidden = false
+        afternoonButton.isHidden = false
+        nightButton.isHidden = false
+
         reservationLocationLabel.isHidden = false
         cityTextField.isHidden = false
         cityLabel.isHidden = false
@@ -252,14 +270,24 @@ extension PostViewController {
     func hideOptions() {
 
         categoryLabel.isHidden = true
-        categoryStack.isHidden = true
+        shampooButton.isHidden = true
+        haircutButton.isHidden = true
+        dyeButton.isHidden = true
+        permanentButton.isHidden = true
+        treatmentButton.isHidden = true
+        otherButton.isHidden = true
+
         paymentLabel.isHidden = true
         paymentSegmentControl.isHidden = true
         dolarSignLabel.isHidden = true
+
         priceTextField.isHidden = true
         reservationTimeLabel.isHidden = true
         pickDateButton.isHidden = true
-        timeIntervalStack.isHidden = true
+        morningButton.isHidden = true
+        afternoonButton.isHidden = true
+        nightButton.isHidden = true
+
         reservationLocationLabel.isHidden = true
         cityTextField.isHidden = true
         cityLabel.isHidden = true
@@ -309,9 +337,9 @@ extension PostViewController {
                 return
         }
 
-        if shareToFacebookSwitch.isOn {
+//        if shareToFacebookSwitch.isOn {
 //            shareToFacebook()
-        }
+//        }
 
         let fileName = NSUUID().uuidString
 
@@ -399,6 +427,14 @@ extension PostViewController {
                 NotificationCenter.default.post(name: .reFetchMyPosts, object: nil, userInfo: nil)
             }
         }
+    }
+
+}
+
+extension PostViewController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        descriptionTextField.text = ""
     }
 
 }

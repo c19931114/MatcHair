@@ -297,11 +297,12 @@ extension ProfileViewController: UICollectionViewDataSource {
 
             } else {
 
-                if self.keychain.get("userUID") != nil {
+                if designerUID == self.keychain.get("userUID") {
                     profileCell.logoutButton.isHidden = false
                 } else {
                     profileCell.logoutButton.isHidden = true
                 }
+
             }
 
             return profileCell

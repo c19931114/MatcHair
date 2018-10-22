@@ -41,10 +41,6 @@ class HomeViewController: UIViewController {
         self.present(chatRoomViewController, animated: true, completion: nil)
     }
 
-}
-
-extension HomeViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,8 +52,6 @@ extension HomeViewController {
         setupCollectionView()
 
         loadLikePosts()
-
-//        loadLikePosts()
 
 //        let layout = UICollectionViewFlowLayout()
 //        layout.scrollDirection = .vertical

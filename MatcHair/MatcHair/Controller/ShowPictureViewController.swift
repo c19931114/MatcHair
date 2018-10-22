@@ -51,10 +51,6 @@ class ShowPictureViewController: UIViewController {
 
     }
     
-}
-
-extension ShowPictureViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,7 +60,7 @@ extension ShowPictureViewController {
     }
 
     override func viewDidLayoutSubviews() {
-        setGradientView()
+//        setGradientView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -75,7 +71,7 @@ extension ShowPictureViewController {
     private func setLayout() {
 
         nextButton.setImage(#imageLiteral(resourceName: "btn_next").withRenderingMode(.alwaysTemplate), for: .normal)
-        nextButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        nextButton.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     }
 
     func setGradientView() {

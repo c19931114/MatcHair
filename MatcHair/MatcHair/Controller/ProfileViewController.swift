@@ -39,10 +39,6 @@ class ProfileViewController: UIViewController {
         self.present(chatRoomViewController, animated: true, completion: nil)
     }
 
-}
-
-extension ProfileViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

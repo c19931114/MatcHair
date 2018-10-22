@@ -37,11 +37,7 @@ class LoginViewController: UIViewController {
         AppDelegate.shared?.window?.rootViewController
             = UIStoryboard.mainStoryboard().instantiateInitialViewController()
     }
-    
-}
 
-extension LoginViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

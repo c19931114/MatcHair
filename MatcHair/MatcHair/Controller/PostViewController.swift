@@ -11,7 +11,6 @@ import DatePickerDialog
 import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
-import Photos
 
 class PostViewController: UIViewController {
 
@@ -95,10 +94,6 @@ class PostViewController: UIViewController {
             share()
         }
 
-        try? PHPhotoLibrary.shared().performChangesAndWait {
-            PHAssetChangeRequest.creationRequestForAsset(from: self.picture!)
-        } // 把照片存進手機
-
         self.navigationController?.popToRootViewController(animated: false)
 
         let tabController = self.view.window!.rootViewController as? UITabBarController
@@ -169,10 +164,6 @@ class PostViewController: UIViewController {
     @IBAction func night(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
     }
-
-}
-
-extension PostViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

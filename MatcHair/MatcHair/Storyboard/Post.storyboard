@@ -561,39 +561,82 @@
                                     <constraint firstAttribute="width" secondItem="HFf-SQ-9j2" secondAttribute="height" multiplier="1:1" id="fXi-eV-Gng"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54h-go-Exs">
-                                <rect key="frame" x="156.5" y="574.5" width="62.5" height="62.5"/>
-                                <color key="backgroundColor" red="0.67450980392156867" green="0.73725490196078436" blue="0.76470588235294112" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iF-Q7-FpN">
+                                <rect key="frame" x="0.0" y="439" width="375" height="228"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDv-W2-tlN">
+                                        <rect key="frame" x="150" y="76.5" width="75" height="75"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54h-go-Exs">
+                                        <rect key="frame" x="156.5" y="83" width="62.5" height="62.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="54h-go-Exs" secondAttribute="height" multiplier="1:1" id="faD-cD-zKN"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="captureImage:" destination="36v-2J-Gpy" eventType="touchUpInside" id="xed-xG-XIq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgA-hX-5ua">
+                                        <rect key="frame" x="40" y="57.5" width="45" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="VgA-hX-5ua" secondAttribute="height" multiplier="1:1" id="xsw-TN-E53"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="Flash Off Icon"/>
+                                        <connections>
+                                            <action selector="toggleFlash:" destination="36v-2J-Gpy" eventType="touchUpInside" id="aeN-tx-FCc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMb-7e-0oI">
+                                        <rect key="frame" x="40" y="125.5" width="45" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="yMb-7e-0oI" secondAttribute="height" multiplier="1:1" id="QMM-yh-TPV"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="Front Camera Icon"/>
+                                        <connections>
+                                            <action selector="switchCameras:" destination="36v-2J-Gpy" eventType="touchUpInside" id="mOn-03-QXd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Krs-As-EoP">
+                                        <rect key="frame" x="290" y="98" width="45" height="32"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="Album Camera Icon">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="choosePhoto:" destination="36v-2J-Gpy" eventType="touchUpInside" id="haP-GG-KCb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="54h-go-Exs" secondAttribute="height" multiplier="1:1" id="faD-cD-zKN"/>
+                                    <constraint firstItem="yMb-7e-0oI" firstAttribute="width" secondItem="CDv-W2-tlN" secondAttribute="width" multiplier="3/5" id="1pc-Ry-77W"/>
+                                    <constraint firstItem="CDv-W2-tlN" firstAttribute="height" secondItem="54h-go-Exs" secondAttribute="height" multiplier="1.2" id="6Dj-zl-XKc"/>
+                                    <constraint firstItem="CDv-W2-tlN" firstAttribute="width" secondItem="54h-go-Exs" secondAttribute="width" multiplier="1.2" id="AvB-aM-BT0"/>
+                                    <constraint firstItem="VgA-hX-5ua" firstAttribute="centerY" secondItem="54h-go-Exs" secondAttribute="centerY" multiplier="0.7" id="GwT-3h-usE"/>
+                                    <constraint firstItem="VgA-hX-5ua" firstAttribute="width" secondItem="CDv-W2-tlN" secondAttribute="width" multiplier="3/5" id="L4E-Rj-YCx"/>
+                                    <constraint firstItem="54h-go-Exs" firstAttribute="centerY" secondItem="8iF-Q7-FpN" secondAttribute="centerY" id="MFu-OD-orM"/>
+                                    <constraint firstItem="CDv-W2-tlN" firstAttribute="centerX" secondItem="54h-go-Exs" secondAttribute="centerX" id="Ma3-R8-zvP"/>
+                                    <constraint firstItem="yMb-7e-0oI" firstAttribute="centerX" secondItem="8iF-Q7-FpN" secondAttribute="trailing" multiplier="1/6" id="Nvp-f0-REH"/>
+                                    <constraint firstItem="54h-go-Exs" firstAttribute="centerX" secondItem="8iF-Q7-FpN" secondAttribute="centerX" id="SMK-Tt-UW1"/>
+                                    <constraint firstItem="Krs-As-EoP" firstAttribute="centerX" secondItem="8iF-Q7-FpN" secondAttribute="trailing" multiplier="5/6" id="TY8-I4-AVa"/>
+                                    <constraint firstItem="yMb-7e-0oI" firstAttribute="centerY" secondItem="54h-go-Exs" secondAttribute="centerY" multiplier="1.3" id="Wl9-Kj-P5h"/>
+                                    <constraint firstItem="Krs-As-EoP" firstAttribute="centerY" secondItem="54h-go-Exs" secondAttribute="centerY" id="ZAk-wh-iY8"/>
+                                    <constraint firstItem="Krs-As-EoP" firstAttribute="width" secondItem="CDv-W2-tlN" secondAttribute="width" multiplier="3/5" id="ZUa-YM-2Cd"/>
+                                    <constraint firstItem="CDv-W2-tlN" firstAttribute="centerY" secondItem="54h-go-Exs" secondAttribute="centerY" id="hdE-9p-Mev"/>
+                                    <constraint firstItem="54h-go-Exs" firstAttribute="width" secondItem="8iF-Q7-FpN" secondAttribute="width" multiplier="1/6" id="sa5-IU-Zmv"/>
+                                    <constraint firstItem="VgA-hX-5ua" firstAttribute="centerX" secondItem="8iF-Q7-FpN" secondAttribute="trailing" multiplier="1/6" id="uCj-Yb-yIW"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.50980392156862742" green="0.54509803921568623" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="captureImage:" destination="36v-2J-Gpy" eventType="touchUpInside" id="xed-xG-XIq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Krs-As-EoP">
-                                <rect key="frame" x="327" y="615" width="32" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="EHN-Gw-lE9"/>
-                                    <constraint firstAttribute="height" constant="32" id="XJq-Ex-Mxa"/>
-                                </constraints>
-                                <state key="normal" image="Album Camera Icon">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="choosePhoto:" destination="36v-2J-Gpy" eventType="touchUpInside" id="haP-GG-KCb"/>
-                                </connections>
-                            </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLs-id-YWY">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cLs-id-YWY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="244"/>
                                 <connections>
                                     <segue destination="vea-zT-ASI" kind="embed" id="LBy-Ta-aEO"/>
                                 </connections>
@@ -603,60 +646,27 @@
                         <constraints>
                             <constraint firstItem="cLs-id-YWY" firstAttribute="leading" secondItem="Gpt-uk-RhG" secondAttribute="leading" id="3yd-Nh-VvZ"/>
                             <constraint firstItem="cLs-id-YWY" firstAttribute="trailing" secondItem="Gpt-uk-RhG" secondAttribute="trailing" id="7ps-4j-F9c"/>
-                            <constraint firstItem="Gpt-uk-RhG" firstAttribute="trailing" secondItem="Krs-As-EoP" secondAttribute="trailing" constant="16" id="GA7-EO-avQ"/>
                             <constraint firstItem="cLs-id-YWY" firstAttribute="bottom" secondItem="Gpt-uk-RhG" secondAttribute="bottom" id="I2f-bx-bcW"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="leading" secondItem="Gpt-uk-RhG" secondAttribute="leading" id="Pnr-06-k6a"/>
-                            <constraint firstItem="Gpt-uk-RhG" firstAttribute="bottom" secondItem="54h-go-Exs" secondAttribute="bottom" constant="30" id="WAG-I3-OXF"/>
+                            <constraint firstItem="8iF-Q7-FpN" firstAttribute="top" secondItem="HFf-SQ-9j2" secondAttribute="bottom" id="Tp2-9c-xAM"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="top" secondItem="Gpt-uk-RhG" secondAttribute="top" id="Zrz-xI-Ciy"/>
                             <constraint firstItem="HFf-SQ-9j2" firstAttribute="trailing" secondItem="Gpt-uk-RhG" secondAttribute="trailing" id="cEC-wv-zDv"/>
-                            <constraint firstItem="54h-go-Exs" firstAttribute="width" secondItem="kB2-4a-s35" secondAttribute="width" multiplier="1/6" id="dbb-GQ-Vxa"/>
-                            <constraint firstItem="54h-go-Exs" firstAttribute="centerX" secondItem="Gpt-uk-RhG" secondAttribute="centerX" id="lV3-cD-oDa"/>
+                            <constraint firstItem="8iF-Q7-FpN" firstAttribute="bottom" secondItem="Gpt-uk-RhG" secondAttribute="bottom" id="dk3-OD-Ym8"/>
+                            <constraint firstItem="8iF-Q7-FpN" firstAttribute="leading" secondItem="Gpt-uk-RhG" secondAttribute="leading" id="ea6-Sg-iUa"/>
+                            <constraint firstItem="8iF-Q7-FpN" firstAttribute="trailing" secondItem="Gpt-uk-RhG" secondAttribute="trailing" id="lCY-u7-U5p"/>
                             <constraint firstItem="cLs-id-YWY" firstAttribute="top" secondItem="Gpt-uk-RhG" secondAttribute="top" id="vQL-Dr-QCW"/>
-                            <constraint firstItem="Gpt-uk-RhG" firstAttribute="bottom" secondItem="Krs-As-EoP" secondAttribute="bottom" constant="20" id="zCc-wZ-5SY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gpt-uk-RhG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Post" id="t5g-Bl-Ly6">
-                        <barButtonItem key="backBarButtonItem" title="取消" id="6Uz-Mm-4L8"/>
-                        <rightBarButtonItems>
-                            <barButtonItem style="plain" id="6rx-CR-4RF">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o0U-gJ-PQ6">
-                                    <rect key="frame" x="314" y="0.0" width="45" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="45" id="23X-N2-XG1"/>
-                                    </constraints>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" image="Front Camera Icon"/>
-                                    <connections>
-                                        <action selector="switchCameras:" destination="36v-2J-Gpy" eventType="touchUpInside" id="H35-xH-rfZ"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="OSL-6J-FAS">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gGR-O4-iRa">
-                                    <rect key="frame" x="261" y="0.0" width="45" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="45" id="1BF-Nu-HmW"/>
-                                        <constraint firstAttribute="height" constant="45" id="KOQ-ex-MUc"/>
-                                    </constraints>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <state key="normal" image="Flash Off Icon"/>
-                                    <connections>
-                                        <action selector="toggleFlash:" destination="36v-2J-Gpy" eventType="touchUpInside" id="Po0-3s-URK"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Post" id="t5g-Bl-Ly6"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="captureButton" destination="54h-go-Exs" id="yhN-ei-GAF"/>
+                        <outlet property="captureButtonBackgroundView" destination="CDv-W2-tlN" id="n0O-le-Rkh"/>
                         <outlet property="capturePreviewView" destination="HFf-SQ-9j2" id="rDv-ny-gJn"/>
                         <outlet property="emptyPage" destination="cLs-id-YWY" id="F6k-dI-dEf"/>
-                        <outlet property="toggleCameraButton" destination="o0U-gJ-PQ6" id="zXi-N0-UBG"/>
-                        <outlet property="toggleFlashButton" destination="gGR-O4-iRa" id="xrT-mh-ZzC"/>
+                        <outlet property="toggleCameraButton" destination="yMb-7e-0oI" id="mNK-q6-si3"/>
+                        <outlet property="toggleFlashButton" destination="VgA-hX-5ua" id="hXs-Vm-Kpe"/>
                         <segue destination="0uP-mC-dje" kind="show" identifier="showPicture" animates="NO" id="vuo-XJ-dJy"/>
                     </connections>
                 </viewController>
@@ -682,7 +692,7 @@
                                 <rect key="frame" x="0.0" y="439" width="375" height="228"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVA-K6-xrS">
-                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="228"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="228"/>
                                         <state key="normal" image="btn_next">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -695,7 +705,7 @@
                                 <constraints>
                                     <constraint firstItem="gVA-K6-xrS" firstAttribute="centerY" secondItem="08l-Sw-yJ2" secondAttribute="centerY" id="DIn-Uk-zDR"/>
                                     <constraint firstItem="gVA-K6-xrS" firstAttribute="height" secondItem="08l-Sw-yJ2" secondAttribute="height" id="PH5-Qr-P4o"/>
-                                    <constraint firstItem="gVA-K6-xrS" firstAttribute="width" secondItem="08l-Sw-yJ2" secondAttribute="width" multiplier="1/2" id="g3U-fH-AMf"/>
+                                    <constraint firstItem="gVA-K6-xrS" firstAttribute="width" secondItem="08l-Sw-yJ2" secondAttribute="width" multiplier="1/2" constant="187.5" id="g3U-fH-AMf"/>
                                     <constraint firstItem="gVA-K6-xrS" firstAttribute="trailing" secondItem="08l-Sw-yJ2" secondAttribute="trailing" id="wAY-cC-lIe"/>
                                 </constraints>
                             </view>
@@ -724,7 +734,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xSy-FK-HeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-765.21739130434787" y="-1791.8478260869567"/>
+            <point key="canvasLocation" x="-765.60000000000002" y="-1792.353823088456"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="N8Q-iG-iOK">
@@ -757,24 +767,24 @@
             <objects>
                 <viewController id="vea-zT-ASI" customClass="EmptyPageViewController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eiV-ot-yY2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_add_post" translatesAutoresizingMaskIntoConstraints="NO" id="y27-FJ-idF">
-                                <rect key="frame" x="147.5" y="221" width="80" height="80"/>
+                                <rect key="frame" x="147.5" y="23.5" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="hR6-mF-hy7"/>
                                     <constraint firstAttribute="height" constant="80" id="oF2-nM-4nH"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請登入來使用發文功能唷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvT-Bq-9NF">
-                                <rect key="frame" x="92" y="321" width="191" height="21"/>
+                                <rect key="frame" x="92" y="123.5" width="191" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AL-ZB-kM3">
-                                <rect key="frame" x="147.5" y="357" width="80" height="30"/>
+                                <rect key="frame" x="147.5" y="159.5" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="N0O-8M-PNC"/>
                                     <constraint firstAttribute="width" constant="80" id="PGA-Xy-kHK"/>
@@ -819,9 +829,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Album Camera Icon" width="48" height="48"/>
-        <image name="Flash Off Icon" width="24" height="24"/>
-        <image name="Front Camera Icon" width="21" height="21"/>
+        <image name="Album Camera Icon" width="32" height="32"/>
+        <image name="Flash Off Icon" width="32" height="32"/>
+        <image name="Front Camera Icon" width="32" height="32"/>
         <image name="btn_back" width="34" height="34"/>
         <image name="btn_next" width="64" height="64"/>
         <image name="facebook_logo" width="21" height="21"/>

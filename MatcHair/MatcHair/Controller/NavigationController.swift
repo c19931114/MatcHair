@@ -24,7 +24,6 @@ class NavigationController: UINavigationController {
             NSAttributedString.Key.font: UIFont(name: "Avenir", size: 18)]
         self.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
         
-
     }
 
     func setBarGradient() {

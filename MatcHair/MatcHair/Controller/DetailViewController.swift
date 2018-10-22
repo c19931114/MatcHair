@@ -132,10 +132,6 @@ class DetailViewController: UIViewController {
         
     }
 
-}
-
-extension DetailViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

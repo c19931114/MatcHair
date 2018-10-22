@@ -38,9 +38,6 @@ class LikeViewController: UIViewController {
         self.present(chatRoomViewController, animated: true, completion: nil)
     }
 
-}
-extension LikeViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

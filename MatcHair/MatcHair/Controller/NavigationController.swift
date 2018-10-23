@@ -16,14 +16,22 @@ class NavigationController: UINavigationController {
         UINavigationBar.appearance().shadowImage = UIImage()
 //        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 
-        setBarGradient()
+        navigationBar.barTintColor = UIColor(
+            red: 209 / 255.0,
+            green: 143 / 255.0,
+            blue: 131 / 255.0,
+            alpha: 1.0)
+
+        navigationBar.tintColor = UIColor.white
+
+//        setBarGradient()
         //addShadowToBar()
 
         let titleAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(name: "Avenir", size: 18)]
-        self.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
-        
+        navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
+
     }
 
     func setBarGradient() {

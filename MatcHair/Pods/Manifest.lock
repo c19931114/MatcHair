@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - BTNavigationDropdownMenu (0.5)
   - Crashlytics (3.10.9):
     - Fabric (~> 1.7.13)
   - DatePickerDialog (2.0)
@@ -93,6 +94,7 @@ PODS:
 
 DEPENDENCIES:
   - Bolts
+  - BTNavigationDropdownMenu
   - Crashlytics
   - DatePickerDialog
   - Fabric
@@ -112,6 +114,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
+    - BTNavigationDropdownMenu
     - Crashlytics
     - DatePickerDialog
     - Fabric
@@ -139,6 +142,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  BTNavigationDropdownMenu: ba3a26fdb6a56c4721c31df8a0875106c259663a
   Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
   DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
@@ -164,6 +168,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 075ac17afd4e64331573b0e63edb7b6d7c16a2ff
+PODFILE CHECKSUM: d52f011fd00df66a5aea7185613e4035b74216d2
 
 COCOAPODS: 1.5.3

@@ -23,6 +23,7 @@ target 'MatcHair' do
    pod 'Crashlytics'
    pod 'lottie-ios'
    pod 'KeychainSwift', '~> 12.0'
+   pod 'BTNavigationDropdownMenu'
 
    
 

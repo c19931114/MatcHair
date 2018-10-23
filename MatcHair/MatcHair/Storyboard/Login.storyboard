@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="透過臉書登入將使用您個人公開資訊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwL-vH-RsD">
-                                <rect key="frame" x="125.33333333333333" y="670.66666666666663" width="163.66666666666669" height="13"/>
+                                <rect key="frame" x="125.33333333333333" y="678" width="163.66666666666669" height="13"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -90,7 +90,7 @@
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您也可以使用訪客身份快速瀏覽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOh-II-tV9">
-                                <rect key="frame" x="135" y="692.66666666666663" width="144.33333333333337" height="13"/>
+                                <rect key="frame" x="135" y="700" width="144.33333333333337" height="13"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -99,10 +99,10 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="tOh-II-tV9" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.95" id="1TG-3M-R48"/>
+                            <constraint firstItem="tOh-II-tV9" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.96" id="1TG-3M-R48"/>
                             <constraint firstItem="rBB-lq-pkg" firstAttribute="leading" secondItem="TMm-5a-gYD" secondAttribute="leading" constant="20" id="4bW-4A-fVI"/>
                             <constraint firstItem="RW3-lA-5ca" firstAttribute="leading" secondItem="rBB-lq-pkg" secondAttribute="trailing" constant="30" id="4xB-Ah-j9M"/>
-                            <constraint firstItem="uwL-vH-RsD" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.92" id="6Oc-vj-KKy"/>
+                            <constraint firstItem="uwL-vH-RsD" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.93" id="6Oc-vj-KKy"/>
                             <constraint firstItem="P9s-kK-Tvp" firstAttribute="bottom" secondItem="TMm-5a-gYD" secondAttribute="bottom" id="7c1-tK-oeJ"/>
                             <constraint firstItem="uwL-vH-RsD" firstAttribute="centerX" secondItem="TMm-5a-gYD" secondAttribute="centerX" id="E6O-eO-sR4"/>
                             <constraint firstItem="RW3-lA-5ca" firstAttribute="centerY" secondItem="TMm-5a-gYD" secondAttribute="bottom" multiplier="0.8" id="FX0-qv-cMn"/>

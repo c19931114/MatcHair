@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainSwift
+import BTNavigationDropdownMenu
 
 class ModelSegementController: UIViewController {
 
@@ -56,12 +57,23 @@ class ModelSegementController: UIViewController {
         self.present(chatRoomViewController, animated: true, completion: nil)
     }
 
-}
-
-extension ModelSegementController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        let items = ["Model", "Designer"]
+//
+//        let menuView = BTNavigationDropdownMenu(
+//            navigationController: self.navigationController,
+//            containerView: self.navigationController!.view,
+//            title: BTTitle.title("Model"),
+//            items: items)
+//
+//        self.navigationItem.titleView = menuView
+//
+//        menuView.didSelectItemAtIndexHandler = { [weak self] (indexPath: Int) -> () in
+//
+//            print("Did select item at index: \(indexPath)")
+//        }
 
         chatButton.isHidden = true
 

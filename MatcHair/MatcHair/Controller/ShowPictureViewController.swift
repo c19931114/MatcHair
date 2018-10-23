@@ -26,20 +26,11 @@ class ShowPictureViewController: UIViewController {
     @IBOutlet weak var gradietView: UIView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pictureView: UIImageView!
-    
-    @IBAction func save(_ sender: Any) {
-        
-        guard let image = picture else {
-            print("no image")
-            return
-        }
-        
-        try? PHPhotoLibrary.shared().performChangesAndWait {
-            PHAssetChangeRequest.creationRequestForAsset(from: image)
-        } // 把照片存進手機
-        
+
+    @IBAction func redo(_ sender: Any) {
+        self.navigationController?.popViewController(animated: false)
     }
-    
+
     @IBAction func next(_ sender: Any) {
         
         guard let image = picture else {
@@ -72,7 +63,7 @@ class ShowPictureViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
-//        navigationItem.hidesBackButton = true
+        navigationItem.hidesBackButton = true
 
     }
     

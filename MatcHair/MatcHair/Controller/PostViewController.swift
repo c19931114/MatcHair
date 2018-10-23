@@ -31,7 +31,6 @@ class PostViewController: UIViewController {
     @IBOutlet weak var recruitModelSwitch: UISwitch!
 
     @IBOutlet weak var categoryLabel: UILabel!
-//    @IBOutlet weak var categoryStack: UIStackView!
     @IBOutlet weak var shampooButton: UIButton!
     @IBOutlet weak var haircutButton: UIButton!
     @IBOutlet weak var dyeButton: UIButton!
@@ -112,7 +111,7 @@ class PostViewController: UIViewController {
 
     @IBAction func shampoo(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        shampooButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+//        shampooButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
     }
 
     @IBAction func haircut(_ sender: UIButton) {
@@ -299,8 +298,8 @@ class PostViewController: UIViewController {
         let threeMonthAfter = Calendar.current.date(byAdding: dateComponents, to: currentDate)
 
         let datePicker = DatePickerDialog(
-            textColor: #colorLiteral(red: 0.5098039216, green: 0.5450980392, blue: 0.6274509804, alpha: 1),
-            buttonColor: #colorLiteral(red: 0.5098039216, green: 0.5450980392, blue: 0.6274509804, alpha: 1),
+            textColor: #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1),
+            buttonColor: #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1),
             font: UIFont.boldSystemFont(ofSize: 17),
             showCancelButton: true)
         

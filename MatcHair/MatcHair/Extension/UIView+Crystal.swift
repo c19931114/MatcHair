@@ -43,3 +43,20 @@ extension UIView {
         return views?.first as? UIView
     }
 }
+
+extension UIView {
+
+    func shadow() {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = 15
+        self.layer.shadowOpacity = 1
+        self.layer.cornerRadius = 10
+    }
+
+    func background() {
+        
+    }
+
+
+}

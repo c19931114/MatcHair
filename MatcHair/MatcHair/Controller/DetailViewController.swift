@@ -319,7 +319,7 @@ class DetailViewController: UIViewController {
         if let postInfo = postInfo {
             ref.child("users/\(currentUserUID)/blockedUIDs/\(postInfo.authorUID)").setValue(true)
         }
-        
+        NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
         self.dismiss(animated: true, completion: nil)
     }
 

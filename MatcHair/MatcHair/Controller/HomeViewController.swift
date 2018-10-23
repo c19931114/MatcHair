@@ -141,6 +141,7 @@ class HomeViewController: UIViewController {
         ref.child("users/\(currentUserUID)/blockedUIDs").observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else {
+                self.blockedUIDs = []
                 self.loadAllPosts()
                 return
             }

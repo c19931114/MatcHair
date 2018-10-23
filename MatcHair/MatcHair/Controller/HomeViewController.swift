@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
     var likePostIndex: Int?
     var selectedTiming: String?
     let transition = CATransition()
+    var blockedUIDs = [String]()
 
     let fullScreenSize = UIScreen.main.bounds.size
     let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
@@ -45,6 +46,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         chatButton.isHidden = true
+
         ref = Database.database().reference()
 
         setRefreshControl()
@@ -113,22 +115,40 @@ class HomeViewController: UIViewController {
 
     @objc func loadLikePosts() {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+        guard let currentUserUID = keychain.get("userUID") else {
+
             self.loadAllPosts()
-        return }
+            return
+        }
 
         ref.child("likePosts/\(currentUserUID)").observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else {
-                self.loadAllPosts()
+                self.loadBlockedUser(with: currentUserUID)
                 return
             }
 
             guard let likePostIDs = value.allKeys as? [String] else { return }
             self.likePostIDs = likePostIDs
 
-            self.loadAllPosts()
+            self.loadBlockedUser(with: currentUserUID)
 
+        }
+    }
+
+    func loadBlockedUser(with currentUserUID: String) {
+
+        ref.child("users/\(currentUserUID)/blockedUIDs").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else {
+                self.loadAllPosts()
+                return
+            }
+
+            guard let blockedUIDs = value.allKeys as? [String] else { return }
+            self.blockedUIDs = blockedUIDs
+
+            self.loadAllPosts()
         }
     }
 
@@ -153,6 +173,7 @@ class HomeViewController: UIViewController {
                     var postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
 
                     for likedPostID in self.likePostIDs {
+
                         if postData.postID == likedPostID {
                             postData.isLiked = true
                         }
@@ -196,7 +217,23 @@ class HomeViewController: UIViewController {
             if let authorImageURL = url {
                 
                 let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
-                self.allPosts.insert(post, at: 0)
+
+                var flag = true
+
+                for blockedUID in self.blockedUIDs {
+
+//                    if post.info.authorUID != blockedUID {
+//                        self.allPosts.insert(post, at: 0)
+//                    } // 會一直重複新增
+
+                    if post.info.authorUID == blockedUID {
+                        flag = false
+                    }
+                }
+
+                if flag {
+                    self.allPosts.insert(post, at: 0)
+                }
 
             } else {
                 print(error as Any)
@@ -219,7 +256,9 @@ class HomeViewController: UIViewController {
         refreshControl.beginRefreshing()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
 
-            self.loadAllPosts()
+            guard let currentUserUID = self.keychain.get("userUID") else { return }
+
+            self.loadBlockedUser(with: currentUserUID)
             self.refreshControl.endRefreshing()
 
 //            self.homePostCollectionView.scrollToItem(at: [0, 0], at: .top, animated: true) // 要停在哪格

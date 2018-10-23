@@ -112,6 +112,7 @@ class PostViewController: UIViewController {
 
     @IBAction func shampoo(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        shampooButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
     }
 
     @IBAction func haircut(_ sender: UIButton) {

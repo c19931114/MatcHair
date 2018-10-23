@@ -544,7 +544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OR4-SJ-VG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="17.39130434782609" y="-1791.9642857142856"/>
+            <point key="canvasLocation" x="16.800000000000001" y="-1792.353823088456"/>
         </scene>
         <!--Post-->
         <scene sceneID="C8P-Fs-c3w">
@@ -658,7 +658,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gpt-uk-RhG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Post" id="t5g-Bl-Ly6"/>
+                    <navigationItem key="navigationItem" title="Post" id="t5g-Bl-Ly6">
+                        <barButtonItem key="backBarButtonItem" title=" " id="XJA-xw-9Cf"/>
+                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="captureButton" destination="54h-go-Exs" id="yhN-ei-GAF"/>
@@ -739,6 +741,7 @@
         <!--Navigation Controller-->
         <scene sceneID="N8Q-iG-iOK">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-bY-Q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pL2-pP-v5u" customClass="NavigationController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="btn_back" id="xmp-wV-fdP">
@@ -758,7 +761,6 @@
                         <segue destination="36v-2J-Gpy" kind="relationship" relationship="rootViewController" id="vRU-t5-MSQ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-bY-Q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2281" y="-1791"/>
         </scene>

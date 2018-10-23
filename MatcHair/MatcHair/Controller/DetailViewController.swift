@@ -177,7 +177,7 @@ class DetailViewController: UIViewController {
 
     private func uploadAppointment(with postInfo: PostInfo, timing: String) {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {return }
+        guard let currentUserUID = keychain.get("userUID") else {return }
 
         let createTime = Date().millisecondsSince1970 // 1476889390939
 
@@ -274,8 +274,11 @@ class DetailViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
 
-        let reportAction = UIAlertAction(title: "檢舉此貼文", style: .destructive, handler: showReceivedMessage)
+        let reportAction = UIAlertAction(title: "檢舉不當內容", style: .destructive, handler: showReceivedMessage)
         alertController.addAction(reportAction)
+
+        let blockAction = UIAlertAction(title: "屏蔽此用戶", style: .destructive, handler: showBlockMessage)
+        alertController.addAction(blockAction)
 
         self.present(alertController, animated: true, completion: nil)
     }
@@ -288,9 +291,36 @@ class DetailViewController: UIViewController {
             preferredStyle: .alert)
 
         alertController.addAction(
-            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            UIAlertAction(title: "OK", style: .default, handler: nil))
 
         self.present(alertController, animated: true, completion: nil)
+    }
+
+    func showBlockMessage(alert: UIAlertAction) {
+
+        let alertController = UIAlertController(
+            title: nil,
+            message: "確定屏蔽此用戶？",
+            preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        alertController.addAction(
+            UIAlertAction(title: "確定", style: .destructive, handler: uploadBlockedUID))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func uploadBlockedUID(alert: UIAlertAction) {
+
+        guard let currentUserUID = keychain.get("userUID") else { return }
+
+        if let postInfo = postInfo {
+            ref.child("users/\(currentUserUID)/blockedUIDs/\(postInfo.authorUID)").setValue(true)
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
 
     func showEditAlert(
@@ -369,7 +399,7 @@ class DetailViewController: UIViewController {
 
     func deletePost() {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserUID = keychain.get("userUID") else { return }
         guard let post = postInfo else { return }
 
         ref.child("usersPosts/\(currentUserUID)/\(post.postID)").removeValue()
@@ -383,7 +413,7 @@ class DetailViewController: UIViewController {
 
     func deleteMyPost() {
 
-        guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserUID = keychain.get("userUID") else { return }
         guard let myPost = myPost else { return }
 
         ref.child("usersPosts/\(currentUserUID)/\(myPost.postID)").removeValue()

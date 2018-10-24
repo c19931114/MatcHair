@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol PaymentProtocol: AnyObject {
+    func sendPayment(data: String)
+}
+
 class PaymentTableViewCell: UITableViewCell {
 
-    var payment: String? = "0"
+    weak var paymentDelegate: PaymentProtocol?
 
     @IBOutlet weak var dolarSignLabel: UILabel!
     @IBOutlet weak var priceTextField: UITextField!
@@ -30,12 +34,6 @@ class PaymentTableViewCell: UITableViewCell {
             priceTextField.text = ""
         }
 
-        if priceTextField.text == "" {
-            payment = "0"
-        } else {
-            payment = priceTextField.text
-        }
-
     }
 
     override func awakeFromNib() {
@@ -44,6 +42,8 @@ class PaymentTableViewCell: UITableViewCell {
         dolarSignLabel.isHidden = true
         priceTextField.isHidden = true
 
+        priceTextField.delegate = self
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,4 +51,11 @@ class PaymentTableViewCell: UITableViewCell {
 
     }
     
+}
+
+extension PaymentTableViewCell: UITextFieldDelegate {
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        paymentDelegate?.sendPayment(data: textField.text ?? "0")
+    }
 }

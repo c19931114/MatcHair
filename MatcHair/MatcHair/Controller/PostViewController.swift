@@ -20,6 +20,14 @@ class PostViewController: UIViewController {
     var dateSelected: Bool = false
     var myPost: MyPost?
 
+    var category = [String: Bool]() //
+    var categorySelected = false
+    var payment: String? = "0"
+    var reservationDate: String? //
+    var reservationTime = [String: Bool]() //
+    var reservationTimeSelected = false
+    var phone: String?
+
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var seperateView: UIView!
@@ -30,7 +38,25 @@ class PostViewController: UIViewController {
 
         //先判斷有無缺項 //TODO
 
+        for value in category.values {
+            if value {
+                categorySelected = true
+            }
+        }
+
+        for value in reservationTime.values {
+            if value {
+                reservationTimeSelected = true
+            }
+        }
+
         if recruitModelSwitch.isOn {
+
+            guard categorySelected, reservationDate != nil, reservationTimeSelected else {
+                print("please complete")
+                showAlert()
+                return
+            }
 
 //            guard shampooButton.isSelected ||
 //                    haircutButton.isSelected ||
@@ -52,11 +78,11 @@ class PostViewController: UIViewController {
 //                    return
 //            }
 
-            share()
+//            share()
 
         } else {
 
-            share()
+//            share()
         }
 
         self.navigationController?.popToRootViewController(animated: false)
@@ -267,14 +293,6 @@ class PostViewController: UIViewController {
 
 }
 
-extension PostViewController: UITextViewDelegate {
-
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        descriptionTextField.text = ""
-    }
-
-}
-
 extension PostViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -296,6 +314,8 @@ extension PostViewController: UITableViewDataSource {
 
             guard let categoryCell = cell as? CategoryTableViewCell else { return cell }
 
+            categoryCell.categoryDelegate = self
+
             return categoryCell
 
         case 1:
@@ -305,6 +325,8 @@ extension PostViewController: UITableViewDataSource {
                 for: indexPath)
 
             guard let paymentCell = cell as? PaymentTableViewCell else { return cell }
+
+            //
 
             return paymentCell
 
@@ -349,4 +371,31 @@ extension PostViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+}
+
+extension PostViewController: CategoryProtocol, PaymentProtocol, ReservationTimeProtocol {
+
+    func sendCategory(data: [String : Bool]) {
+        category = data
+    }
+
+    func sendPayment(data: String) {
+        payment = data
+    }
+
+    func sendReservationDate(data: String) {
+        reservationDate = data
+    }
+
+    func sendReservationTime(data: [String : Bool]) {
+        reservationTime = data
+    }
+}
+
+extension PostViewController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        descriptionTextField.text = ""
+    }
+
 }

@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         UIApplication.shared.isStatusBarHidden = false
 
-        window?.tintColor = #colorLiteral(red: 0.5176470588, green: 0.5843137255, blue: 0.6196078431, alpha: 1)
+        window?.tintColor = #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1)
         Fabric.with([Crashlytics.self])
 
         FirebaseApp.configure() // 放後面會 crash

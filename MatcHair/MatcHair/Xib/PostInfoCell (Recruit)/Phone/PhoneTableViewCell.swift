@@ -8,16 +8,32 @@
 
 import UIKit
 
+protocol PhoneProtocol: AnyObject {
+    func sendPhone(data: String)
+}
+
 class PhoneTableViewCell: UITableViewCell {
+
+    weak var phoneDelegate : PhoneProtocol?
+
+    @IBOutlet weak var phoneTextField: UITextField!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        phoneTextField.delegate = self
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+    }
+}
+
+extension PhoneTableViewCell: UITextFieldDelegate {
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        phoneDelegate?.sendPhone(data: textField.text ?? "")
     }
 }

@@ -44,7 +44,7 @@
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JDM-8Q-V35">
                                 <rect key="frame" x="255" y="183.5" width="51" height="31"/>
-                                <color key="onTintColor" red="0.75686274509999996" green="0.82745098039999998" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="onTintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="recruitModel:" destination="k4v-yN-R2Z" eventType="valueChanged" id="ap0-DE-i8O"/>
                                 </connections>

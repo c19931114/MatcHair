@@ -12,21 +12,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="KGk-i7-Jjw" customClass="ReservationLocationTableViewCell" customModule="MatcHair" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="382" height="103"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="144" id="KGk-i7-Jjw" customClass="ReservationLocationTableViewCell" customModule="MatcHair" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="144"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="382" height="102.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="382" height="143.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ry-k9-j8i">
-                        <rect key="frame" x="94" y="19" width="64" height="30"/>
+                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ry-k9-j8i">
+                        <rect key="frame" x="90" y="8" width="63.5" height="30"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預約地點" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnU-cJ-sh2">
-                        <rect key="frame" x="20" y="23" width="64" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="預約地點" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnU-cJ-sh2">
+                        <rect key="frame" x="16" y="12" width="64" height="22"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,8 +36,8 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="縣市" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opk-Iq-ab9">
-                        <rect key="frame" x="163" y="26" width="24" height="16.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="縣市" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opk-Iq-ab9">
+                        <rect key="frame" x="158.5" y="15" width="24" height="16.5"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -47,20 +47,20 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LXZ-61-p5A">
-                        <rect key="frame" x="94" y="53.5" width="215" height="30"/>
+                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LXZ-61-p5A">
+                        <rect key="frame" x="90" y="57.5" width="214.5" height="30"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ce4-hx-dvB">
-                        <rect key="frame" x="192" y="19" width="64" height="30"/>
+                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ce4-hx-dvB">
+                        <rect key="frame" x="187.5" y="8" width="64" height="30"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鄉鎮市區" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-vI-IOx">
-                        <rect key="frame" x="261" y="26" width="48" height="16.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="鄉鎮市區" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-vI-IOx">
+                        <rect key="frame" x="256.5" y="15" width="48" height="16.5"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -73,20 +73,21 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ce4-hx-dvB" firstAttribute="leading" secondItem="opk-Iq-ab9" secondAttribute="trailing" constant="5" id="4Oy-H1-IAm"/>
-                    <constraint firstItem="9ry-k9-j8i" firstAttribute="width" secondItem="hnU-cJ-sh2" secondAttribute="width" id="6wY-5A-i2Z"/>
-                    <constraint firstItem="hnU-cJ-sh2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="bottom" multiplier="1/3" id="9KT-48-g96"/>
+                    <constraint firstItem="LXZ-61-p5A" firstAttribute="leading" secondItem="9ry-k9-j8i" secondAttribute="leading" id="6U7-ds-a2k"/>
                     <constraint firstItem="5eE-vI-IOx" firstAttribute="leading" secondItem="ce4-hx-dvB" secondAttribute="trailing" constant="5" id="FPm-wk-l0S"/>
                     <constraint firstItem="opk-Iq-ab9" firstAttribute="centerY" secondItem="9ry-k9-j8i" secondAttribute="centerY" id="HPb-eI-LDT"/>
-                    <constraint firstItem="9ry-k9-j8i" firstAttribute="centerY" secondItem="hnU-cJ-sh2" secondAttribute="centerY" id="IZT-aH-hYm"/>
-                    <constraint firstItem="LXZ-61-p5A" firstAttribute="trailing" secondItem="5eE-vI-IOx" secondAttribute="trailing" id="Ngf-fI-Mpv"/>
+                    <constraint firstItem="LXZ-61-p5A" firstAttribute="trailing" secondItem="5eE-vI-IOx" secondAttribute="trailing" id="L8J-gK-XD6"/>
                     <constraint firstItem="opk-Iq-ab9" firstAttribute="leading" secondItem="9ry-k9-j8i" secondAttribute="trailing" constant="5" id="QY6-p9-vPS"/>
-                    <constraint firstItem="ce4-hx-dvB" firstAttribute="width" secondItem="9ry-k9-j8i" secondAttribute="width" id="X0Q-h0-ugK"/>
+                    <constraint firstItem="9ry-k9-j8i" firstAttribute="centerY" secondItem="hnU-cJ-sh2" secondAttribute="centerY" id="gHl-DZ-UVZ"/>
                     <constraint firstItem="9ry-k9-j8i" firstAttribute="leading" secondItem="hnU-cJ-sh2" secondAttribute="trailing" constant="10" id="heG-rN-Pev"/>
-                    <constraint firstItem="LXZ-61-p5A" firstAttribute="leading" secondItem="9ry-k9-j8i" secondAttribute="leading" id="oan-da-9D2"/>
+                    <constraint firstItem="LXZ-61-p5A" firstAttribute="top" secondItem="9ry-k9-j8i" secondAttribute="bottom" constant="5" id="l5t-v9-cZV"/>
+                    <constraint firstAttribute="bottom" secondItem="LXZ-61-p5A" secondAttribute="bottom" constant="8" id="s3d-bH-TYa"/>
                     <constraint firstItem="ce4-hx-dvB" firstAttribute="centerY" secondItem="opk-Iq-ab9" secondAttribute="centerY" id="u6U-it-w5Y"/>
-                    <constraint firstItem="LXZ-61-p5A" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="bottom" multiplier="2/3" id="xUv-Vv-r3u"/>
+                    <constraint firstItem="ce4-hx-dvB" firstAttribute="width" secondItem="9ry-k9-j8i" secondAttribute="width" id="uuN-1R-9ik"/>
+                    <constraint firstItem="9ry-k9-j8i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="wwB-EV-JRv"/>
                     <constraint firstItem="5eE-vI-IOx" firstAttribute="centerY" secondItem="ce4-hx-dvB" secondAttribute="centerY" id="xgO-3j-ezY"/>
-                    <constraint firstItem="hnU-cJ-sh2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="xhc-tt-x44"/>
+                    <constraint firstItem="hnU-cJ-sh2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="xhc-tt-x44"/>
+                    <constraint firstItem="9ry-k9-j8i" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/6" id="yFO-1m-mt9"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -95,7 +96,7 @@
                 <outlet property="cityTextField" destination="9ry-k9-j8i" id="DHu-mC-nkV"/>
                 <outlet property="districtTextField" destination="ce4-hx-dvB" id="fXw-Cz-Val"/>
             </connections>
-            <point key="canvasLocation" x="187.19999999999999" y="77.811094452773617"/>
+            <point key="canvasLocation" x="198.40000000000001" y="165.51724137931035"/>
         </tableViewCell>
     </objects>
 </document>

@@ -60,455 +60,31 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="類別" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xti-x0-0dE">
-                                <rect key="frame" x="24" y="230.5" width="32" height="22"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1L-h8-75Z">
-                                <rect key="frame" x="117" y="227.5" width="46" height="28"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 剪髮 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="haircut:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="ui8-V7-ull"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0O-is-biE">
-                                <rect key="frame" x="168" y="227.5" width="46" height="28"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 染髮 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="dye:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="LfT-Iz-cov"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmv-DZ-Iyu">
-                                <rect key="frame" x="66" y="260.5" width="46" height="28"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 燙髮 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="perm:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="puo-D4-qCo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzG-CY-Roq">
-                                <rect key="frame" x="117" y="260.5" width="46" height="28"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 護髮 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="treate:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="8Wp-pL-w5h"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agt-53-uAO">
-                                <rect key="frame" x="168" y="260.5" width="46" height="28"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 其他 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="other:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="kEl-pL-dmj"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="費用" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dX9-Tr-RGw">
-                                <rect key="frame" x="24" y="302.5" width="32" height="22"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aBq-oe-7f2">
-                                <rect key="frame" x="66" y="298.5" width="123" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="hcC-PI-EIN"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="免費"/>
-                                    <segment title="酌收材料費"/>
-                                </segments>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pay:" destination="k4v-yN-R2Z" eventType="valueChanged" id="eBc-3G-bpe"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZW-sI-g9C">
-                                <rect key="frame" x="199" y="303.5" width="9" height="20.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XN3-ml-iHs">
-                                <rect key="frame" x="218" y="298.5" width="74" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-Tz-ROV">
-                                <rect key="frame" x="98" y="412.5" width="64" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預約時間" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLP-qs-9r7">
-                                <rect key="frame" x="24" y="344.5" width="64" height="22"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqP-yx-9MG">
-                                <rect key="frame" x="147" y="377" width="44" height="27"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 下午 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="afternoon:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="ZDa-PA-WLk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njd-yX-LBc">
-                                <rect key="frame" x="196" y="377" width="44" height="27"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 晚上 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="night:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="LaH-fs-Xfb"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="預約地點" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSI-q6-S9c">
-                                <rect key="frame" x="24" y="416.5" width="64" height="22"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="縣市" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="380-2k-mG3">
-                                <rect key="frame" x="167" y="417.5" width="32" height="20.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MLa-Xc-DJa">
-                                <rect key="frame" x="98" y="445.5" width="64" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cC2-uV-ITq">
-                                <rect key="frame" x="98" y="478.5" width="194" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聯絡電話" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0C-Fh-XKa">
-                                <rect key="frame" x="24" y="518.5" width="64" height="22"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4li-e2-Zg3">
-                                <rect key="frame" x="98" y="514.5" width="128" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmR-oa-qqR">
-                                <rect key="frame" x="98" y="339" width="98" height="33"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title=" 點擊選擇日期 "/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pickDate:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="zRS-5R-aI1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tK-fN-CI7">
-                                <rect key="frame" x="66" y="227.5" width="46" height="28"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                <color key="tintColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 洗髮 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="shampoo:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="Mqf-AL-VVc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6X-lu-bXc">
-                                <rect key="frame" x="98" y="377" width="44" height="27"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <color key="tintColor" red="0.66274509800000003" green="0.72549019609999998" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                <state key="normal" title=" 早上 ">
-                                    <color key="titleColor" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.81960784310000001" green="0.56078431370000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="morning:" destination="k4v-yN-R2Z" eventType="touchUpInside" id="sGh-UU-8eg"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鄉鎮市區" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDt-ce-waj">
-                                <rect key="frame" x="167" y="450.5" width="64" height="20.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q2g-AO-rPt">
+                                <rect key="frame" x="0.0" y="220.5" width="320" height="347.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="S8k-dU-tPh" firstAttribute="leading" secondItem="8Tf-mR-5XV" secondAttribute="leading" constant="16" id="04R-h0-5ab"/>
-                            <constraint firstItem="dX9-Tr-RGw" firstAttribute="top" secondItem="xti-x0-0dE" secondAttribute="bottom" constant="50" id="1ZC-9u-Jnf"/>
-                            <constraint firstItem="pDt-ce-waj" firstAttribute="leading" secondItem="MLa-Xc-DJa" secondAttribute="trailing" constant="5" id="2sD-c8-KVU"/>
-                            <constraint firstItem="fSI-q6-S9c" firstAttribute="leading" secondItem="bLP-qs-9r7" secondAttribute="leading" id="2xK-cj-ket"/>
-                            <constraint firstItem="pDt-ce-waj" firstAttribute="width" secondItem="MLa-Xc-DJa" secondAttribute="width" id="318-Kd-5al"/>
-                            <constraint firstItem="380-2k-mG3" firstAttribute="width" secondItem="XCp-Tz-ROV" secondAttribute="width" multiplier="0.5" id="39z-td-vlp"/>
-                            <constraint firstItem="cC2-uV-ITq" firstAttribute="top" secondItem="MLa-Xc-DJa" secondAttribute="bottom" constant="3" id="4Wh-R8-hJL"/>
-                            <constraint firstItem="njd-yX-LBc" firstAttribute="centerY" secondItem="j6X-lu-bXc" secondAttribute="centerY" id="5x8-Wd-N7W"/>
-                            <constraint firstItem="dX9-Tr-RGw" firstAttribute="leading" secondItem="xti-x0-0dE" secondAttribute="leading" id="6OP-Yp-Rnm"/>
                             <constraint firstItem="brV-kT-ypB" firstAttribute="top" secondItem="vVs-6Z-AUS" secondAttribute="bottom" constant="10" id="8eo-zr-bc7"/>
-                            <constraint firstItem="Q0O-is-biE" firstAttribute="leading" secondItem="g1L-h8-75Z" secondAttribute="trailing" constant="5" id="8z2-oh-r5k"/>
-                            <constraint firstItem="cmR-oa-qqR" firstAttribute="centerY" secondItem="bLP-qs-9r7" secondAttribute="centerY" id="92Z-pT-12L"/>
-                            <constraint firstItem="MLa-Xc-DJa" firstAttribute="leading" secondItem="fSI-q6-S9c" secondAttribute="trailing" constant="10" id="Cdd-WJ-Pdz"/>
                             <constraint firstItem="JDM-8Q-V35" firstAttribute="centerY" secondItem="brV-kT-ypB" secondAttribute="centerY" id="CqX-Sv-5w2"/>
-                            <constraint firstItem="cC2-uV-ITq" firstAttribute="leading" secondItem="XCp-Tz-ROV" secondAttribute="leading" id="ESt-2o-gaT"/>
-                            <constraint firstItem="rqP-yx-9MG" firstAttribute="leading" secondItem="j6X-lu-bXc" secondAttribute="trailing" constant="5" id="Evr-M4-6Y3"/>
-                            <constraint firstItem="bLP-qs-9r7" firstAttribute="leading" secondItem="dX9-Tr-RGw" secondAttribute="leading" id="FRo-ZG-mXh"/>
-                            <constraint firstItem="XN3-ml-iHs" firstAttribute="leading" secondItem="EZW-sI-g9C" secondAttribute="trailing" constant="10" id="GHk-4U-77g"/>
-                            <constraint firstItem="fSI-q6-S9c" firstAttribute="top" secondItem="bLP-qs-9r7" secondAttribute="bottom" constant="50" id="I0A-pO-sdn"/>
-                            <constraint firstItem="g1L-h8-75Z" firstAttribute="leading" secondItem="7tK-fN-CI7" secondAttribute="trailing" constant="5" id="IIy-EB-e4H"/>
+                            <constraint firstItem="8Tf-mR-5XV" firstAttribute="bottom" secondItem="Q2g-AO-rPt" secondAttribute="bottom" id="Fzg-KX-XDg"/>
                             <constraint firstItem="8Tf-mR-5XV" firstAttribute="trailing" secondItem="Hg5-aD-Pt3" secondAttribute="trailing" constant="16" id="JLC-5Q-d4K"/>
-                            <constraint firstItem="MLa-Xc-DJa" firstAttribute="width" secondItem="XCp-Tz-ROV" secondAttribute="width" id="Jgn-BT-pKp"/>
-                            <constraint firstItem="XCp-Tz-ROV" firstAttribute="centerY" secondItem="fSI-q6-S9c" secondAttribute="centerY" id="KBv-5M-sJE"/>
-                            <constraint firstItem="EZW-sI-g9C" firstAttribute="leading" secondItem="aBq-oe-7f2" secondAttribute="trailing" constant="10" id="LLl-7D-uUy"/>
-                            <constraint firstItem="aBq-oe-7f2" firstAttribute="centerY" secondItem="dX9-Tr-RGw" secondAttribute="centerY" id="MXH-OJ-4q1"/>
-                            <constraint firstItem="j6X-lu-bXc" firstAttribute="top" secondItem="cmR-oa-qqR" secondAttribute="bottom" constant="5" id="PKp-Ft-euX"/>
                             <constraint firstItem="vVs-6Z-AUS" firstAttribute="leading" secondItem="S8k-dU-tPh" secondAttribute="leading" id="Pxp-5Y-gHC"/>
-                            <constraint firstItem="g1L-h8-75Z" firstAttribute="centerY" secondItem="xti-x0-0dE" secondAttribute="centerY" id="Q6u-lf-7Fn"/>
-                            <constraint firstItem="j6X-lu-bXc" firstAttribute="leading" secondItem="bLP-qs-9r7" secondAttribute="trailing" constant="10" id="Qxi-Ic-9YN"/>
                             <constraint firstItem="Hg5-aD-Pt3" firstAttribute="leading" secondItem="S8k-dU-tPh" secondAttribute="trailing" constant="8" id="Rhc-JV-pYQ"/>
-                            <constraint firstItem="agt-53-uAO" firstAttribute="centerY" secondItem="PzG-CY-Roq" secondAttribute="centerY" id="TOQ-eB-SkG"/>
-                            <constraint firstItem="4li-e2-Zg3" firstAttribute="leading" secondItem="cC2-uV-ITq" secondAttribute="leading" id="TmZ-iQ-NWd"/>
-                            <constraint firstItem="4li-e2-Zg3" firstAttribute="width" secondItem="XCp-Tz-ROV" secondAttribute="width" multiplier="2" id="U4U-Qf-Nw1"/>
-                            <constraint firstItem="PzG-CY-Roq" firstAttribute="leading" secondItem="Zmv-DZ-Iyu" secondAttribute="trailing" constant="5" id="U91-mv-ZlC"/>
                             <constraint firstItem="Hg5-aD-Pt3" firstAttribute="height" secondItem="S8k-dU-tPh" secondAttribute="height" id="Vwh-OZ-W4I"/>
                             <constraint firstItem="S8k-dU-tPh" firstAttribute="top" secondItem="8Tf-mR-5XV" secondAttribute="top" constant="16" id="W5z-RF-2Qb"/>
-                            <constraint firstItem="7tK-fN-CI7" firstAttribute="leading" secondItem="xti-x0-0dE" secondAttribute="trailing" constant="10" id="WTL-gR-aMk"/>
-                            <constraint firstItem="aBq-oe-7f2" firstAttribute="leading" secondItem="dX9-Tr-RGw" secondAttribute="trailing" constant="10" id="Z1u-20-Rh6"/>
-                            <constraint firstItem="xti-x0-0dE" firstAttribute="leading" secondItem="brV-kT-ypB" secondAttribute="leading" multiplier="1.5" id="ZFf-A2-P8W"/>
-                            <constraint firstItem="f0C-Fh-XKa" firstAttribute="top" secondItem="fSI-q6-S9c" secondAttribute="bottom" constant="80" id="ZJs-8r-x46"/>
-                            <constraint firstItem="4li-e2-Zg3" firstAttribute="centerY" secondItem="f0C-Fh-XKa" secondAttribute="centerY" id="aVz-rg-qRx"/>
-                            <constraint firstItem="agt-53-uAO" firstAttribute="centerY" secondItem="Zmv-DZ-Iyu" secondAttribute="centerY" id="aet-jK-oGo"/>
-                            <constraint firstItem="XCp-Tz-ROV" firstAttribute="width" secondItem="fSI-q6-S9c" secondAttribute="width" id="cOZ-II-Gb9"/>
-                            <constraint firstItem="380-2k-mG3" firstAttribute="leading" secondItem="XCp-Tz-ROV" secondAttribute="trailing" constant="5" id="cZr-2U-l4P"/>
-                            <constraint firstItem="njd-yX-LBc" firstAttribute="leading" secondItem="rqP-yx-9MG" secondAttribute="trailing" constant="5" id="cat-gN-5ul"/>
+                            <constraint firstItem="Q2g-AO-rPt" firstAttribute="leading" secondItem="8Tf-mR-5XV" secondAttribute="leading" id="Z4p-fT-5Ff"/>
                             <constraint firstItem="Hg5-aD-Pt3" firstAttribute="top" secondItem="8Tf-mR-5XV" secondAttribute="top" constant="16" id="ckB-Lt-xGb"/>
                             <constraint firstItem="vVs-6Z-AUS" firstAttribute="trailing" secondItem="Hg5-aD-Pt3" secondAttribute="trailing" id="dAX-gF-eT5"/>
-                            <constraint firstItem="XCp-Tz-ROV" firstAttribute="leading" secondItem="fSI-q6-S9c" secondAttribute="trailing" constant="10" id="dQ4-PP-Mo5"/>
-                            <constraint firstItem="7tK-fN-CI7" firstAttribute="centerY" secondItem="xti-x0-0dE" secondAttribute="centerY" id="gAv-mN-HrW"/>
-                            <constraint firstItem="XN3-ml-iHs" firstAttribute="width" secondItem="aBq-oe-7f2" secondAttribute="width" multiplier="0.6" id="gsk-Ic-jhS"/>
                             <constraint firstItem="JDM-8Q-V35" firstAttribute="trailing" secondItem="Hg5-aD-Pt3" secondAttribute="trailing" id="gwA-Wt-6fC"/>
-                            <constraint firstItem="XN3-ml-iHs" firstAttribute="centerY" secondItem="dX9-Tr-RGw" secondAttribute="centerY" id="hbb-DE-tv2"/>
-                            <constraint firstItem="pDt-ce-waj" firstAttribute="centerY" secondItem="MLa-Xc-DJa" secondAttribute="centerY" id="hcP-bu-ONa"/>
                             <constraint firstItem="S8k-dU-tPh" firstAttribute="width" secondItem="UrO-47-ngK" secondAttribute="width" multiplier="1/4" id="hjJ-up-tfM"/>
-                            <constraint firstItem="EZW-sI-g9C" firstAttribute="centerY" secondItem="dX9-Tr-RGw" secondAttribute="centerY" id="jDv-9p-P0d"/>
-                            <constraint firstItem="bLP-qs-9r7" firstAttribute="top" secondItem="dX9-Tr-RGw" secondAttribute="bottom" constant="20" id="jIT-E5-gE5"/>
-                            <constraint firstItem="Q0O-is-biE" firstAttribute="centerY" secondItem="xti-x0-0dE" secondAttribute="centerY" id="mki-dY-pg1"/>
-                            <constraint firstItem="agt-53-uAO" firstAttribute="top" secondItem="Q0O-is-biE" secondAttribute="bottom" constant="5" id="qhT-KK-I9B"/>
-                            <constraint firstItem="Zmv-DZ-Iyu" firstAttribute="leading" secondItem="xti-x0-0dE" secondAttribute="trailing" constant="10" id="rbJ-Jh-Ee0"/>
-                            <constraint firstItem="f0C-Fh-XKa" firstAttribute="leading" secondItem="fSI-q6-S9c" secondAttribute="leading" id="sbf-MB-Vvh"/>
-                            <constraint firstItem="agt-53-uAO" firstAttribute="leading" secondItem="PzG-CY-Roq" secondAttribute="trailing" constant="5" id="uOV-aE-Hhg"/>
+                            <constraint firstItem="8Tf-mR-5XV" firstAttribute="trailing" secondItem="Q2g-AO-rPt" secondAttribute="trailing" id="mTc-4h-mVP"/>
+                            <constraint firstItem="Q2g-AO-rPt" firstAttribute="top" secondItem="brV-kT-ypB" secondAttribute="bottom" constant="10" id="rFl-Z6-i62"/>
                             <constraint firstItem="vVs-6Z-AUS" firstAttribute="top" secondItem="S8k-dU-tPh" secondAttribute="bottom" constant="16" id="umU-DV-h7T"/>
-                            <constraint firstItem="MLa-Xc-DJa" firstAttribute="top" secondItem="XCp-Tz-ROV" secondAttribute="bottom" constant="3" id="vmZ-pb-wGC"/>
-                            <constraint firstItem="cmR-oa-qqR" firstAttribute="leading" secondItem="bLP-qs-9r7" secondAttribute="trailing" constant="10" id="xX0-PQ-K8T"/>
-                            <constraint firstItem="cC2-uV-ITq" firstAttribute="trailing" secondItem="XN3-ml-iHs" secondAttribute="trailing" id="yAU-6c-fY6"/>
                             <constraint firstItem="brV-kT-ypB" firstAttribute="leading" secondItem="S8k-dU-tPh" secondAttribute="leading" id="ykJ-2G-iog"/>
-                            <constraint firstItem="xti-x0-0dE" firstAttribute="top" secondItem="brV-kT-ypB" secondAttribute="bottom" constant="20" id="ysb-w9-Hhg"/>
-                            <constraint firstItem="380-2k-mG3" firstAttribute="centerY" secondItem="XCp-Tz-ROV" secondAttribute="centerY" id="zD9-hx-b7d"/>
-                            <constraint firstItem="njd-yX-LBc" firstAttribute="centerY" secondItem="rqP-yx-9MG" secondAttribute="centerY" id="znT-6m-LuJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Tf-mR-5XV"/>
                         <userDefinedRuntimeAttributes>
@@ -526,34 +102,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addressTextField" destination="cC2-uV-ITq" id="A5s-P4-Vqi"/>
-                        <outlet property="afternoonButton" destination="rqP-yx-9MG" id="DYz-Pv-9js"/>
-                        <outlet property="categoryLabel" destination="xti-x0-0dE" id="aSh-R2-PTE"/>
-                        <outlet property="cityLabel" destination="380-2k-mG3" id="WcS-td-203"/>
-                        <outlet property="cityTextField" destination="XCp-Tz-ROV" id="g6r-Wp-ivz"/>
                         <outlet property="descriptionTextField" destination="Hg5-aD-Pt3" id="DE2-NO-WEt"/>
-                        <outlet property="districtLabel" destination="pDt-ce-waj" id="yGr-nt-tdz"/>
-                        <outlet property="districtTextField" destination="MLa-Xc-DJa" id="SYR-1s-Rag"/>
-                        <outlet property="dolarSignLabel" destination="EZW-sI-g9C" id="yYG-bX-L6J"/>
-                        <outlet property="dyeButton" destination="Q0O-is-biE" id="tAr-Ho-lhB"/>
-                        <outlet property="haircutButton" destination="g1L-h8-75Z" id="e6K-JZ-c9O"/>
-                        <outlet property="morningButton" destination="j6X-lu-bXc" id="hUs-Fn-ph8"/>
-                        <outlet property="nightButton" destination="njd-yX-LBc" id="FWo-Wb-u6j"/>
-                        <outlet property="otherButton" destination="agt-53-uAO" id="4u3-o0-ht1"/>
-                        <outlet property="paymentLabel" destination="dX9-Tr-RGw" id="eqq-bg-8uF"/>
-                        <outlet property="paymentSegmentControl" destination="aBq-oe-7f2" id="tmV-WL-caL"/>
-                        <outlet property="permanentButton" destination="Zmv-DZ-Iyu" id="SSK-Ck-dfy"/>
-                        <outlet property="phoneLabel" destination="f0C-Fh-XKa" id="L2b-bF-1to"/>
-                        <outlet property="phoneTextField" destination="4li-e2-Zg3" id="WGY-C1-x8K"/>
-                        <outlet property="pickDateButton" destination="cmR-oa-qqR" id="UJy-z5-qHK"/>
                         <outlet property="postImage" destination="S8k-dU-tPh" id="Qze-bP-fyc"/>
-                        <outlet property="priceTextField" destination="XN3-ml-iHs" id="rbH-Z0-yGd"/>
-                        <outlet property="recruitLabel" destination="vVs-6Z-AUS" id="Jgg-ZJ-6KM"/>
                         <outlet property="recruitModelSwitch" destination="JDM-8Q-V35" id="515-MO-NFu"/>
-                        <outlet property="reservationLocationLabel" destination="fSI-q6-S9c" id="YfF-J1-wif"/>
-                        <outlet property="reservationTimeLabel" destination="bLP-qs-9r7" id="Zdb-SC-WNO"/>
-                        <outlet property="shampooButton" destination="7tK-fN-CI7" id="2WS-J3-T0W"/>
-                        <outlet property="treatmentButton" destination="PzG-CY-Roq" id="8Vu-Ex-j5g"/>
+                        <outlet property="recruitTableView" destination="Q2g-AO-rPt" id="ami-hZ-aNq"/>
+                        <outlet property="seperateView" destination="vVs-6Z-AUS" id="Jgg-ZJ-6KM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OR4-SJ-VG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -762,7 +315,6 @@
         <!--Navigation Controller-->
         <scene sceneID="N8Q-iG-iOK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-bY-Q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pL2-pP-v5u" customClass="NavigationController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="btn_back" id="xmp-wV-fdP">
@@ -782,6 +334,7 @@
                         <segue destination="36v-2J-Gpy" kind="relationship" relationship="rootViewController" id="vRU-t5-MSQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-bY-Q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2281" y="-1791"/>
         </scene>

@@ -40,6 +40,10 @@ class PaymentTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        dolarSignLabel.isHidden = true
+        priceTextField.isHidden = true
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -397,7 +397,7 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		F15B2CB42180226400DE4E3E /* PostCell */ = {
+		F15B2CB42180226400DE4E3E /* PostInfoCell (Recruit) */ = {
 			isa = PBXGroup;
 			children = (
 				F15B2CB52180227700DE4E3E /* Category */,
@@ -406,7 +406,7 @@
 				F15B2CB8218022CD00DE4E3E /* ReservationLocation */,
 				F15B2CB92180231300DE4E3E /* Phone */,
 			);
-			path = PostCell;
+			path = "PostInfoCell (Recruit)";
 			sourceTree = "<group>";
 		};
 		F15B2CB52180227700DE4E3E /* Category */ = {
@@ -560,7 +560,7 @@
 		F1DD3F3121536D0F00BBE710 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				F15B2CB42180226400DE4E3E /* PostCell */,
+				F15B2CB42180226400DE4E3E /* PostInfoCell (Recruit) */,
 				F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */,
 				F1A1A856215CB03C0038F0CF /* ProfileCollectionViewCell */,
 				F1A1A857215CB04F0038F0CF /* MyPostCollectionViewCell */,

@@ -20,12 +20,15 @@ class PostViewController: UIViewController {
     var dateSelected: Bool = false
     var myPost: MyPost?
 
-    var category = [String: Bool]() //
+    var categories = [String: Bool]()
     var categorySelected = false
     var payment: String? = "0"
-    var reservationDate: String? //
-    var reservationTime = [String: Bool]() //
+    var reservationDate: String?
+    var reservationTimes = [String: Bool]()
     var reservationTimeSelected = false
+    var reservationCity: String?
+    var reservationDistrict: String?
+    var reservationAddress: String?
     var phone: String?
 
     @IBOutlet weak var postImage: UIImageView!
@@ -38,13 +41,13 @@ class PostViewController: UIViewController {
 
         //先判斷有無缺項 //TODO
 
-        for value in category.values {
+        for value in categories.values {
             if value {
                 categorySelected = true
             }
         }
 
-        for value in reservationTime.values {
+        for value in reservationTimes.values {
             if value {
                 reservationTimeSelected = true
             }
@@ -312,7 +315,9 @@ extension PostViewController: UITableViewDataSource {
                 withIdentifier: String(describing: CategoryTableViewCell.self),
                 for: indexPath)
 
-            guard let categoryCell = cell as? CategoryTableViewCell else { return cell }
+            guard let categoryCell = cell as? CategoryTableViewCell else {
+                return cell
+            }
 
             categoryCell.categoryDelegate = self
 
@@ -324,9 +329,11 @@ extension PostViewController: UITableViewDataSource {
                 withIdentifier: String(describing: PaymentTableViewCell.self),
                 for: indexPath)
 
-            guard let paymentCell = cell as? PaymentTableViewCell else { return cell }
+            guard let paymentCell = cell as? PaymentTableViewCell else {
+                return cell
+            }
 
-            //
+            paymentCell.paymentDelegate = self
 
             return paymentCell
 
@@ -336,7 +343,11 @@ extension PostViewController: UITableViewDataSource {
                 withIdentifier: String(describing: ReservationTimeTableViewCell.self),
                 for: indexPath)
 
-            guard let reservationTimeCell = cell as? ReservationTimeTableViewCell else { return cell }
+            guard let reservationTimeCell = cell as? ReservationTimeTableViewCell else {
+                return cell
+            }
+
+            reservationTimeCell.reservationTimeDelegate = self
 
             return reservationTimeCell
 
@@ -346,7 +357,11 @@ extension PostViewController: UITableViewDataSource {
                 withIdentifier: String(describing: ReservationLocationTableViewCell.self),
                 for: indexPath)
 
-            guard let reservationLocationCell = cell as? ReservationLocationTableViewCell else { return cell }
+            guard let reservationLocationCell = cell as? ReservationLocationTableViewCell else {
+                return cell
+            }
+
+            reservationLocationCell.reservationLocationDelegate = self
 
             return reservationLocationCell
 
@@ -373,10 +388,10 @@ extension PostViewController: UITableViewDelegate {
     }
 }
 
-extension PostViewController: CategoryProtocol, PaymentProtocol, ReservationTimeProtocol {
+extension PostViewController: CategoryProtocol, PaymentProtocol, ReservationTimeProtocol, ReservationLocationProtocol {
 
     func sendCategory(data: [String : Bool]) {
-        category = data
+        categories = data
     }
 
     func sendPayment(data: String) {
@@ -388,7 +403,19 @@ extension PostViewController: CategoryProtocol, PaymentProtocol, ReservationTime
     }
 
     func sendReservationTime(data: [String : Bool]) {
-        reservationTime = data
+        reservationTimes = data
+    }
+
+    func sendReservationLocationCity(data: String) {
+        reservationCity = data
+    }
+
+    func sendReservationLocationDistrict(data: String) {
+        reservationDistrict = data
+    }
+
+    func sendReservationLocationAddress(data: String) {
+        reservationAddress = data
     }
 }
 

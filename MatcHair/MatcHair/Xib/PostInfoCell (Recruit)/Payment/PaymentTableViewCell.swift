@@ -55,7 +55,12 @@ class PaymentTableViewCell: UITableViewCell {
 
 extension PaymentTableViewCell: UITextFieldDelegate {
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String) -> Bool {
+
         paymentDelegate?.sendPayment(data: textField.text ?? "0")
+        return true
     }
 }

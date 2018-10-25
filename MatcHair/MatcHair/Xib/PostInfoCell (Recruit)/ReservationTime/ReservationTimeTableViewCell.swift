@@ -18,7 +18,7 @@ class ReservationTimeTableViewCell: UITableViewCell {
 
     weak var reservationTimeDelegate: ReservationTimeProtocol?
 
-    var reservationTime = [String: Bool]()
+    var reservationTimes = [String: Bool]()
 
     @IBOutlet weak var pickDateButton: UIButton!
 
@@ -28,20 +28,20 @@ class ReservationTimeTableViewCell: UITableViewCell {
 
     @IBAction func morning(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        reservationTime["morning"] = sender.isSelected
-        reservationTimeDelegate?.sendReservationTime(data: reservationTime)
+        reservationTimes["morning"] = sender.isSelected
+        reservationTimeDelegate?.sendReservationTime(data: reservationTimes)
     }
 
     @IBAction func afternoon(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        reservationTime["afternoon"] = sender.isSelected
-        reservationTimeDelegate?.sendReservationTime(data: reservationTime)
+        reservationTimes["afternoon"] = sender.isSelected
+        reservationTimeDelegate?.sendReservationTime(data: reservationTimes)
     }
 
     @IBAction func night(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        reservationTime["night"] = sender.isSelected
-        reservationTimeDelegate?.sendReservationTime(data: reservationTime)
+        reservationTimes["night"] = sender.isSelected
+        reservationTimeDelegate?.sendReservationTime(data: reservationTimes)
     }
 
     override func awakeFromNib() {

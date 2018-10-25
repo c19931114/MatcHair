@@ -33,7 +33,12 @@ class PhoneTableViewCell: UITableViewCell {
 
 extension PhoneTableViewCell: UITextFieldDelegate {
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String) -> Bool {
+
         phoneDelegate?.sendPhone(data: textField.text ?? "")
+        return true
     }
 }

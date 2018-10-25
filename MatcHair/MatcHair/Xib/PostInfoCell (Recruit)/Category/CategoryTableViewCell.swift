@@ -16,41 +16,41 @@ class CategoryTableViewCell: UITableViewCell {
 
     weak var categoryDelegate: CategoryProtocol?
     
-    var category = [String: Bool]()
+    var categories = [String: Bool]()
 
     @IBAction func shampoo(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        category["shampoo"] = sender.isSelected
-        categoryDelegate?.sendCategory(data: category)
+        categories["shampoo"] = sender.isSelected
+        categoryDelegate?.sendCategory(data: categories)
     }
 
     @IBAction func haircut(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        category["haircut"] = sender.isSelected
-        categoryDelegate?.sendCategory(data: category)
+        categories["haircut"] = sender.isSelected
+        categoryDelegate?.sendCategory(data: categories)
     }
 
     @IBAction func dye(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        category["dye"] = sender.isSelected
-        categoryDelegate?.sendCategory(data: category)
+        categories["dye"] = sender.isSelected
+        categoryDelegate?.sendCategory(data: categories)
     }
 
     @IBAction func perm(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        category["permanent"] = sender.isSelected
-        categoryDelegate?.sendCategory(data: category)
+        categories["permanent"] = sender.isSelected
+        categoryDelegate?.sendCategory(data: categories)
     }
     @IBAction func treat(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        category["treatment"] = sender.isSelected
-        categoryDelegate?.sendCategory(data: category)
+        categories["treatment"] = sender.isSelected
+        categoryDelegate?.sendCategory(data: categories)
     }
 
     @IBAction func other(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        category["other"] = sender.isSelected
-        categoryDelegate?.sendCategory(data: category)
+        categories["other"] = sender.isSelected
+        categoryDelegate?.sendCategory(data: categories)
     }
 
     override func awakeFromNib() {

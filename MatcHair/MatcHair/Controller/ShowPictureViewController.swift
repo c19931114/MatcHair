@@ -70,7 +70,7 @@ class ShowPictureViewController: UIViewController {
     private func setLayout() {
 
         nextButton.setImage(#imageLiteral(resourceName: "btn_next").withRenderingMode(.alwaysTemplate), for: .normal)
-        nextButton.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        nextButton.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
 
     func setGradientView() {

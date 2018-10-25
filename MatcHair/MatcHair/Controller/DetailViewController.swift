@@ -406,7 +406,7 @@ class DetailViewController: UIViewController {
         ref.child("allPosts/\(post.postID)").removeValue()
 //        ref.child("likePosts").queryOrdered(byChild: post.postID).queryEqual(toValue: true).removeAllObservers()
         NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
-        NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .reFetchMyPosts, object: nil, userInfo: nil)
         self.dismiss(animated: true, completion: nil)
 
     }

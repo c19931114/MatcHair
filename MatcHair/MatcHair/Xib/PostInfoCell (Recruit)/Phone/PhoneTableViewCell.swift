@@ -14,7 +14,7 @@ protocol PhoneProtocol: AnyObject {
 
 class PhoneTableViewCell: UITableViewCell {
 
-    weak var phoneDelegate : PhoneProtocol?
+    weak var phoneDelegate: PhoneProtocol?
 
     @IBOutlet weak var phoneTextField: UITextField!
 
@@ -38,7 +38,12 @@ extension PhoneTableViewCell: UITextFieldDelegate {
         shouldChangeCharactersIn range: NSRange,
         replacementString string: String) -> Bool {
 
-        phoneDelegate?.sendPhone(data: textField.text ?? "")
+        if let text = textField.text,
+            let textRange = Range(range, in: text) {
+
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            phoneDelegate?.sendPhone(data: updatedText)
+        }
         return true
     }
 }

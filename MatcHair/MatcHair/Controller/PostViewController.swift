@@ -46,46 +46,32 @@ class PostViewController: UIViewController {
                 categorySelected = true
             }
         }
+        print(categorySelected)
 
         for value in reservationTimes.values {
             if value {
                 reservationTimeSelected = true
             }
         }
+        print(reservationTimeSelected)
 
         if recruitModelSwitch.isOn {
 
-            guard categorySelected, reservationDate != nil, reservationTimeSelected else {
-                print("please complete")
-                showAlert()
-                return
+            guard categorySelected, reservationDate != nil, reservationTimeSelected,
+                reservationCity != nil, reservationDistrict != nil, reservationAddress != nil,
+                phone != nil else {
+
+                    print("please complete")
+
+                    showAlert()
+                    return
             }
 
-//            guard shampooButton.isSelected ||
-//                    haircutButton.isSelected ||
-//                    dyeButton.isSelected ||
-//                    permanentButton.isSelected ||
-//                    treatmentButton.isSelected ||
-//                    otherButton.isSelected,
-//                dateSelected,
-//                morningButton.isSelected
-//                    || afternoonButton.isSelected
-//                    || nightButton.isSelected,
-//                cityTextField != nil
-//                    && districtTextField != nil
-//                    && addressTextField != nil,
-//                phoneTextField != nil else {
-//
-//                    print("please complete")
-//                    showAlert()
-//                    return
-//            }
-
-//            share()
+            share()
 
         } else {
-
-//            share()
+            
+            share()
         }
 
         self.navigationController?.popToRootViewController(animated: false)
@@ -198,7 +184,7 @@ class PostViewController: UIViewController {
 
     }
 
-    func share() {
+    private func share() {
 
         guard let postPicture = picture,
             let uploadData = postPicture.jpegData(compressionQuality: 0.1) else {
@@ -215,82 +201,69 @@ class PostViewController: UIViewController {
                 return
             }
 
-//            self.storageRef.child("\(fileName).jpeg").downloadURL { (url, error) in
-//
-//                guard let downloadURL = url else { return }
-//
-//                guard let authorUID = Auth.auth().currentUser?.uid else { return }
-//
-//                guard let postID = self.ref.child("usersPosts").childByAutoId().key else { return }
-//
-//                let postTime = Date().millisecondsSince1970 // 1476889390939
-//
-//                if self.recruitModelSwitch.isOn {
-//
-//                    self.ref.child("allPosts/\(postID)").setValue(
-//                        [
-//                            "postID": "\(postID)",
-//                            "createTime": postTime,
-//                            "authorUID": "\(authorUID)",
-//                            "pictureURL": "\(downloadURL)",
-//                            "content": "\(self.descriptionTextField.text!)",
-//                            "category":
-//                                [
-//                                    "shampoo": self.shampooButton.isSelected,
-//                                    "haircut": self.haircutButton.isSelected,
-//                                    "dye": self.dyeButton.isSelected,
-//                                    "permanent": self.permanentButton.isSelected,
-//                                    "treatment": self.treatmentButton.isSelected,
-//                                    "other": self.otherButton.isSelected
-//                                ],
-//                            "payment": self.priceTextField.text!,
-//                            "reservation":
-//                                [
-//                                    "date": "\(self.pickDateButton.titleLabel!.text!)",
-//                                    "time":
-//                                        [
-//                                            "morning": self.morningButton.isSelected,
-//                                            "afternoon": self.afternoonButton.isSelected,
-//                                            "night": self.nightButton.isSelected
-//                                        ],
-//                                    "location":
-//                                        [
-//                                            "city": self.cityTextField.text,
-//                                            "district": self.districtTextField.text,
-//                                            "address": self.addressTextField.text
-//                                        ]
-//                                ],
-//                            "phone": self.phoneTextField.text!,
-//                            "isLiked": false
-//                        ]
-//                    )
-//
-//                    self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
-//                        [
-//                            "pictureURL": "\(downloadURL)",
-//                            "createTime": postTime,
-//                            "content": "\(self.descriptionTextField.text!)",
-//                            "authorUID": "\(authorUID)",
-//                            "postID": postID
-//                        ]
-//                    )
-//
-//                } else {
-//
-//                    self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
-//                        [
-//                            "pictureURL": "\(downloadURL)",
-//                            "createTime": postTime,
-//                            "content": "\(self.descriptionTextField.text!)",
-//                            "authorUID": "\(authorUID)",
-//                            "postID": postID
-//                        ]
-//                    )
-//                }
-//
-//                NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
-//                NotificationCenter.default.post(name: .reFetchMyPosts, object: nil, userInfo: nil)
-//            }
+            self.storageRef.child("\(fileName).jpeg").downloadURL { (url, error) in
+
+                guard let downloadURL = url else { return }
+
+                guard let authorUID = Auth.auth().currentUser?.uid else { return }
+
+                guard let postID = self.ref.child("usersPosts").childByAutoId().key else { return }
+
+                let postTime = Date().millisecondsSince1970 // 1476889390939
+
+                if self.recruitModelSwitch.isOn {
+
+                    self.ref.child("allPosts/\(postID)").setValue(
+                        [
+                            "postID": "\(postID)",
+                            "createTime": postTime,
+                            "authorUID": "\(authorUID)",
+                            "pictureURL": "\(downloadURL)",
+                            "content": "\(self.descriptionTextField.text!)",
+                            "category": self.categories,
+                            "payment": self.payment!,
+                            "reservation":
+                                [
+                                    "date": self.reservationDate!,
+                                    "time": self.reservationTimes,
+                                    "location":
+                                        [
+                                            "city": self.reservationCity,
+                                            "district": self.reservationDistrict,
+                                            "address": self.reservationAddress
+                                        ]
+                                ],
+                            "phone": self.phone!,
+                            "isLiked": false
+                        ]
+                    )
+
+                    self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
+                        [
+                            "pictureURL": "\(downloadURL)",
+                            "createTime": postTime,
+                            "content": "\(self.descriptionTextField.text!)",
+                            "authorUID": "\(authorUID)",
+                            "postID": postID
+                        ]
+                    )
+
+                } else {
+
+                    self.ref.child("usersPosts/\(authorUID)/\(postID)").setValue(
+                        [
+                            "pictureURL": "\(downloadURL)",
+                            "createTime": postTime,
+                            "content": "\(self.descriptionTextField.text!)",
+                            "authorUID": "\(authorUID)",
+                            "postID": postID
+                        ]
+                    )
+                }
+
+                NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
+                NotificationCenter.default.post(name: .reFetchMyPosts, object: nil, userInfo: nil)
+            }
         }
     }
 
@@ -373,6 +346,8 @@ extension PostViewController: UITableViewDataSource {
 
             guard let phoneCell = cell as? PhoneTableViewCell else { return cell }
 
+            phoneCell.phoneDelegate = self
+
             return phoneCell
 
         }
@@ -388,9 +363,9 @@ extension PostViewController: UITableViewDelegate {
     }
 }
 
-extension PostViewController: CategoryProtocol, PaymentProtocol, ReservationTimeProtocol, ReservationLocationProtocol {
+extension PostViewController: CategoryProtocol, PaymentProtocol, ReservationTimeProtocol, ReservationLocationProtocol, PhoneProtocol {
 
-    func sendCategory(data: [String : Bool]) {
+    func sendCategory(data: [String: Bool]) {
         categories = data
     }
 
@@ -402,7 +377,7 @@ extension PostViewController: CategoryProtocol, PaymentProtocol, ReservationTime
         reservationDate = data
     }
 
-    func sendReservationTime(data: [String : Bool]) {
+    func sendReservationTime(data: [String: Bool]) {
         reservationTimes = data
     }
 
@@ -417,12 +392,24 @@ extension PostViewController: CategoryProtocol, PaymentProtocol, ReservationTime
     func sendReservationLocationAddress(data: String) {
         reservationAddress = data
     }
+
+    func sendPhone(data: String) {
+        phone = data
+    }
 }
 
 extension PostViewController: UITextViewDelegate {
 
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        descriptionTextField.text = ""
-    }
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
 
+        if textView.text == "作品介紹..." {
+            descriptionTextField.text = ""
+        }
+        return true
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            descriptionTextField.text = "作品介紹..."
+        }
+    }
 }

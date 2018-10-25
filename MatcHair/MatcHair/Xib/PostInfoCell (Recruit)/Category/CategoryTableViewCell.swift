@@ -16,7 +16,8 @@ class CategoryTableViewCell: UITableViewCell {
 
     weak var categoryDelegate: CategoryProtocol?
     
-    var categories = [String: Bool]()
+    var categories: [String: Bool] =
+        ["shampoo": false, "haircut": false, "dye": false, "permanent": false, "treatment": false, "other": false]
 
     @IBAction func shampoo(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected

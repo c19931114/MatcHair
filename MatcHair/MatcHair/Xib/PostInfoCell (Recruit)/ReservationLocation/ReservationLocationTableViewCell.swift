@@ -24,6 +24,10 @@ class ReservationLocationTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        cityTextField.delegate = self
+        districtTextField.delegate = self
+        addressTextField.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,16 +47,36 @@ extension ReservationLocationTableViewCell: UITextFieldDelegate {
         switch textField {
 
         case cityTextField:
-            reservationLocationDelegate?
-                .sendReservationLocationCity(data: cityTextField.text ?? "")
+
+            if let text = textField.text,
+                let textRange = Range(range, in: text) {
+
+                let updatedText = text.replacingCharacters(in: textRange, with: string)
+
+                reservationLocationDelegate?
+                    .sendReservationLocationCity(data: updatedText)
+            }
 
         case districtTextField:
-            reservationLocationDelegate?
-                .sendReservationLocationDistrict(data: districtTextField.text ?? "")
+
+            if let text = textField.text,
+                let textRange = Range(range, in: text) {
+
+                let updatedText = text.replacingCharacters(in: textRange, with: string)
+                reservationLocationDelegate?
+                    .sendReservationLocationDistrict(data: updatedText)
+            }
 
         default:
-            reservationLocationDelegate?
-                .sendReservationLocationAddress(data: addressTextField.text ?? "")
+
+            if let text = textField.text,
+                let textRange = Range(range, in: text) {
+
+                let updatedText = text.replacingCharacters(in: textRange, with: string)
+
+                reservationLocationDelegate?
+                    .sendReservationLocationAddress(data: updatedText)
+            }
 
         }
         return true

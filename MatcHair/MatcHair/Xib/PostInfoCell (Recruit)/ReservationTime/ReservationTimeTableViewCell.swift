@@ -18,7 +18,7 @@ class ReservationTimeTableViewCell: UITableViewCell {
 
     weak var reservationTimeDelegate: ReservationTimeProtocol?
 
-    var reservationTimes = [String: Bool]()
+    var reservationTimes: [String: Bool] = ["morning": false, "afternoon": false, "night": false]
 
     @IBOutlet weak var pickDateButton: UIButton!
 

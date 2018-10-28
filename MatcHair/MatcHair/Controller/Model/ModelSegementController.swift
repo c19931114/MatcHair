@@ -13,7 +13,7 @@ import BTNavigationDropdownMenu
 class ModelSegementController: UIViewController {
 
     let keychain = KeychainSwift()
-    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
+    let chatRoomViewController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var pendingView: UIView!
     @IBOutlet weak var confirmView: UIView!
@@ -75,7 +75,7 @@ class ModelSegementController: UIViewController {
 //            print("Did select item at index: \(indexPath)")
 //        }
 
-        chatButton.isHidden = true
+//        chatButton.isHidden = true
 
         guard keychain.get("userUID") != nil else {
             emptyPage.isHidden = false

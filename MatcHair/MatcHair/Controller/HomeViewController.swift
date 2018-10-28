@@ -32,20 +32,20 @@ class HomeViewController: UIViewController {
     var blockedUIDs = [String]()
 
     let fullScreenSize = UIScreen.main.bounds.size
-    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
+    let messageController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var homePostCollectionView: UICollectionView!
 
     @IBOutlet weak var chatButton: UIButton!
     @IBAction private func goToChatRoom(_ sender: Any) {
 
-        self.present(chatRoomViewController, animated: true, completion: nil)
+        self.present(messageController, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        chatButton.isHidden = true
+//        chatButton.isHidden = true
 
         ref = Database.database().reference()
 
@@ -331,6 +331,12 @@ extension HomeViewController: UICollectionViewDataSource {
             action: #selector(userTapped(sender:)),
             for: .touchUpInside)
 
+        postCell.chatButton.tag = indexPath.row
+        postCell.chatButton.addTarget(
+            self,
+            action: #selector(chatButtonTapped),
+            for: .touchUpInside)
+
         return postCell
 
     }
@@ -366,6 +372,14 @@ extension HomeViewController: UICollectionViewDataSource {
         let selectedDesignerUID = allPosts[sender.tag].info.authorUID
         let profileForDesigner = ProfileViewController.profileForDesigner(selectedDesignerUID)
         self.navigationController?.pushViewController(profileForDesigner, animated: true)
+
+    }
+
+    @objc func chatButtonTapped() {
+        
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+
+        navigationController?.pushViewController(chatLogController, animated: true)
 
     }
 

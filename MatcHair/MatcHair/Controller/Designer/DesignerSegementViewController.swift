@@ -12,7 +12,7 @@ import KeychainSwift
 class DesignerSegementViewController: UIViewController {
 
     let keychain = KeychainSwift()
-    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
+    let chatRoomViewController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var pendingView: UIView!
     @IBOutlet weak var confirmView: UIView!
@@ -71,7 +71,7 @@ extension DesignerSegementViewController {
             return
         }
 
-        emptyPage.isHidden = true
+//        emptyPage.isHidden = true
     }
 
 }

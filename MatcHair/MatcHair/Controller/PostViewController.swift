@@ -205,7 +205,7 @@ class PostViewController: UIViewController {
 
                 guard let downloadURL = url else { return }
 
-                guard let authorUID = Auth.auth().currentUser?.uid else { return }
+                guard let authorUID = Auth.auth().currentUser?.uid else { return } // TODO keychain
 
                 guard let postID = self.ref.child("usersPosts").childByAutoId().key else { return }
 

@@ -26,7 +26,7 @@ class LikeViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let animationView = LOTAnimationView(name: "empty_box")
     let emptyMessageLabel = UILabel()
-    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
+    let chatRoomViewController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
     var selectedTiming: String?
     let transition = CATransition()
 
@@ -41,7 +41,7 @@ class LikeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        chatButton.isHidden = true
+//        chatButton.isHidden = true
 
         guard keychain.get("userUID") != nil else {
             emptyPage.isHidden = false

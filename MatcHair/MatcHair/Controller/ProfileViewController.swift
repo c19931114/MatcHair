@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
     var designerUID: String?
     var designerName: String?
     var designerImageURL: URL?
-    let chatRoomViewController = UIStoryboard.chatRoomStoryboard().instantiateInitialViewController()!
+    let chatRoomViewController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var emptyPage: UIView!
@@ -42,7 +42,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        chatButton.isHidden = true
+//        chatButton.isHidden = true
 
         ref = Database.database().reference()
 

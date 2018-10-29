@@ -71,7 +71,8 @@ extension DesignerSegementViewController {
             return
         }
 
-//        emptyPage.isHidden = true
+        emptyPage.isHidden = true
+
     }
 
 }

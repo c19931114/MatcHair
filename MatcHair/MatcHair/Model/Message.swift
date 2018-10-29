@@ -9,6 +9,11 @@
 import Foundation
 import Firebase
 
+struct MessageInfo {
+    let message: Message
+    let user: User
+}
+
 struct Message: Codable {
 
     let fromID: String
@@ -16,8 +21,8 @@ struct Message: Codable {
     let timestamp: Int
     let toID: String
     let imageUrl: String?
-    let imageWidth: Int
-    let imageHeight: Int
+    let imageWidth: Int?
+    let imageHeight: Int?
     
     func chatPartnerId() -> String? {
         return fromID == Auth.auth().currentUser?.uid ? toID : fromID

@@ -44,9 +44,11 @@
 		F15B2CBC2180236500DE4E3E /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15B2CBA2180236500DE4E3E /* CategoryTableViewCell.swift */; };
 		F15B2CBD2180236500DE4E3E /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F15B2CBB2180236500DE4E3E /* CategoryTableViewCell.xib */; };
 		F164B07F218308D10033B019 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B07E218308D10033B019 /* Message.swift */; };
-		F164B08121834D460033B019 /* MessageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B08021834D460033B019 /* MessageListCell.swift */; };
 		F164B0872185DAD30033B019 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B0862185DAD30033B019 /* ChatLogController.swift */; };
 		F164B0892186AC540033B019 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B0882186AC540033B019 /* MessageController.swift */; };
+		F164B08B218719970033B019 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B08A218719960033B019 /* NewMessageController.swift */; };
+		F164B08D218734710033B019 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B08C218734710033B019 /* UserCell.swift */; };
+		F164B08F218739C00033B019 /* UIImageView+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B08E218739C00033B019 /* UIImageView+Crystal.swift */; };
 		F196CEA521672DE9001110E1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA421672DE9001110E1 /* Post.swift */; };
 		F196CEA7216733E1001110E1 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA6216733E1001110E1 /* Appointment.swift */; };
 		F196CEA9216B3B87001110E1 /* Date+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA8216B3B87001110E1 /* Date+Crystal.swift */; };
@@ -139,9 +141,11 @@
 		F15B2CBA2180236500DE4E3E /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		F15B2CBB2180236500DE4E3E /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		F164B07E218308D10033B019 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		F164B08021834D460033B019 /* MessageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListCell.swift; sourceTree = "<group>"; };
 		F164B0862185DAD30033B019 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		F164B0882186AC540033B019 /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
+		F164B08A218719960033B019 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		F164B08C218734710033B019 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		F164B08E218739C00033B019 /* UIImageView+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Crystal.swift"; sourceTree = "<group>"; };
 		F196CEA421672DE9001110E1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F196CEA6216733E1001110E1 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		F196CEA8216B3B87001110E1 /* Date+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Crystal.swift"; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				F164B0882186AC540033B019 /* MessageController.swift */,
+				F164B08A218719960033B019 /* NewMessageController.swift */,
 				F164B0862185DAD30033B019 /* ChatLogController.swift */,
 				F1D0BBED2161400000ABAE5D /* ChatroomController.swift */,
 				F139AA212151F87200B5B0D4 /* TabBarController.swift */,
@@ -326,6 +331,7 @@
 				F1365CFA21533224009419F5 /* UILabel+Crystal.swift */,
 				F196CEA8216B3B87001110E1 /* Date+Crystal.swift */,
 				F13978A0216C619900B80B68 /* NotificationName+Crystal.swift */,
+				F164B08E218739C00033B019 /* UIImageView+Crystal.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -571,7 +577,7 @@
 		F1DD3F3121536D0F00BBE710 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				F164B08021834D460033B019 /* MessageListCell.swift */,
+				F164B08C218734710033B019 /* UserCell.swift */,
 				F15B2CB42180226400DE4E3E /* RecruitInfoCell */,
 				F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */,
 				F1A1A856215CB03C0038F0CF /* ProfileCollectionViewCell */,
@@ -780,7 +786,7 @@
 				F1D0BBE9216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift in Sources */,
 				F196CEB5216B9448001110E1 /* DesignerPendingViewController.swift in Sources */,
 				F1ECE36B21803DF200DC154D /* ReservationLocationTableViewCell.swift in Sources */,
-				F164B08121834D460033B019 /* MessageListCell.swift in Sources */,
+				F164B08B218719970033B019 /* NewMessageController.swift in Sources */,
 				F164B07F218308D10033B019 /* Message.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
 				F1D0BBE52161087300ABAE5D /* ModelPendingCollectionViewCell.swift in Sources */,
@@ -811,9 +817,11 @@
 				F15B2CBC2180236500DE4E3E /* CategoryTableViewCell.swift in Sources */,
 				F1ECE3632180297800DC154D /* PaymentTableViewCell.swift in Sources */,
 				F1A1A859215CB09B0038F0CF /* LikeViewController.swift in Sources */,
+				F164B08D218734710033B019 /* UserCell.swift in Sources */,
 				F1A1A84F215C7D190038F0CF /* ProfileCollectionViewCell.swift in Sources */,
 				F1C2C3E12154B3170065E4EB /* SwipeController.swift in Sources */,
 				F139AA242151F9AF00B5B0D4 /* UIStoryboard+Crystal.swift in Sources */,
+				F164B08F218739C00033B019 /* UIImageView+Crystal.swift in Sources */,
 				F13978B3216C8EB300B80B68 /* DesignerCompleteCollectionViewCell.swift in Sources */,
 				F196CEA9216B3B87001110E1 /* Date+Crystal.swift in Sources */,
 				F1C2C3DF2153CED20065E4EB /* CameraController.swift in Sources */,

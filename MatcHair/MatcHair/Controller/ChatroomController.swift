@@ -25,9 +25,9 @@ class ChatroomController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        messageListTableView.register(
-            MessageListCell.self,
-            forCellReuseIdentifier: String(describing: MessageListCell.self))
+//        messageListTableView.register(
+//            MessageListCell.self,
+//            forCellReuseIdentifier: String(describing: MessageListCell.self))
 
         ref = Database.database().reference()
 

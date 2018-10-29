@@ -189,10 +189,11 @@ class LoginViewController: UIViewController {
 
     func uploadUserInfoToDatabaseWith(_ uid: String, _ userName: String, _ userImage: URL) {
 
-        ref.child("users/\(uid)").setValue(
+        ref.child("users/\(uid)").updateChildValues(
             [
                 "name": userName,
-                "image": userImage.absoluteString
+                "image": userImage.absoluteString,
+                "uid": uid
             ]
         )
 

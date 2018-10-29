@@ -57,28 +57,31 @@ class ChatLogController: UICollectionViewController {
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         containerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
         let sendButton = UIButton(type: .system)
-        sendButton.setTitle("Send", for: .normal)
+//        sendButton.setTitle("Send", for: .normal)
+        sendButton.setImage(#imageLiteral(resourceName: "btn_send").withRenderingMode(.alwaysTemplate), for: .normal)
+        sendButton.tintColor = #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1)
+//        sendButton.contentMode = .center
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         containerView.addSubview(sendButton)
         //x,y,w,h
         sendButton.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         sendButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        sendButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         sendButton.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
 
-        containerView.addSubview(self.inputTextField)
+        containerView.addSubview(inputTextField)
         //x,y,w,h
-        self.inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
-        self.inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        self.inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
-        self.inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
+        inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
+        inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
+        inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
 
         let separatorLineView = UIView()
-        separatorLineView.backgroundColor = UIColor.lightGray
+        separatorLineView.backgroundColor = #colorLiteral(red: 0.9374653697, green: 0.7858970761, blue: 0.7262797952, alpha: 1) //UIColor.lightGray
         separatorLineView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(separatorLineView)
         //x,y,w,h
@@ -95,7 +98,7 @@ class ChatLogController: UICollectionViewController {
 
         let toID = user!.uid
         guard let fromID = keychain.get("userUID") else { return }
-        let timestamp = NSDate().timeIntervalSince1970
+        let timestamp = Int(Date().timeIntervalSince1970)
 
         ref.child("messages/\(messageID)").updateChildValues(
             [

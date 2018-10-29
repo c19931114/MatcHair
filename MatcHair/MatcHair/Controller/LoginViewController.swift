@@ -94,7 +94,6 @@ class LoginViewController: UIViewController {
                                 let largePhotoURLString = photoURLString + "?type=large"
                                 let largePhotoURL = URL(string: largePhotoURLString)!
 
-
 //                                self.getUserDetail(with: uid, userName)
 
                                 self.uploadUserImageToStorage(with: uid, userName, largePhotoURL)
@@ -172,27 +171,28 @@ class LoginViewController: UIViewController {
                     return
                 }
 
-//                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
-//
-//                    guard let userImageURL = url else {
-//                        return
-//                    }
-//
-//                    self.uploadUserInfoToDatabase(with: uid, userName)
-//
-//                })
-                
-                self.uploadUserInfoToDatabase(with: uid, userName)
+                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+
+                    guard let userImageURL = url else {
+                        return
+                    }
+
+                    self.uploadUserInfoToDatabaseWith(uid, userName, userImageURL)
+
+                })
+
+//                self.uploadUserInfoToDatabaseWith(with: uid, userName)
 
         }
 
     }
 
-    func uploadUserInfoToDatabase(with uid: String, _ userName: String) {
+    func uploadUserInfoToDatabaseWith(_ uid: String, _ userName: String, _ userImage: URL) {
 
         ref.child("users/\(uid)").setValue(
             [
-                "name": userName
+                "name": userName,
+                "image": userImage.absoluteString
             ]
         )
 

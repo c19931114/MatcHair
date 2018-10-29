@@ -32,14 +32,19 @@ class HomeViewController: UIViewController {
     var blockedUIDs = [String]()
 
     let fullScreenSize = UIScreen.main.bounds.size
-    let messageController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
+//    let chatroomController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
+
+//    var messageController: MessageController?
 
     @IBOutlet weak var homePostCollectionView: UICollectionView!
 
     @IBOutlet weak var chatButton: UIButton!
     @IBAction private func goToChatRoom(_ sender: Any) {
 
-        self.present(messageController, animated: true, completion: nil)
+        let messageController = MessageController()
+        let navController = NavigationController(rootViewController: messageController)
+        present(navController, animated: true, completion: nil)
+//        self.present(chatroomController, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
@@ -376,10 +381,15 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     @objc func chatButtonTapped() {
-        
-        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
 
-        navigationController?.pushViewController(chatLogController, animated: true)
+//        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+////        navigationController?.pushViewController(chatLogController, animated: true)
+//        present(chatLogController, animated: true, completion: nil)
+
+//        let messageController = MessageController()
+//        let navController = NavigationController(rootViewController: messageController)
+//        present(navController, animated: true, completion: nil)
+//        messageController.showChatLogControllerForUser()
 
     }
 

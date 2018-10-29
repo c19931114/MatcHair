@@ -266,7 +266,6 @@ class PostViewController: UIViewController {
             }
         }
     }
-
 }
 
 extension PostViewController: UITableViewDataSource {
@@ -349,11 +348,8 @@ extension PostViewController: UITableViewDataSource {
             phoneCell.phoneDelegate = self
 
             return phoneCell
-
         }
-
     }
-
 }
 
 extension PostViewController: UITableViewDelegate {

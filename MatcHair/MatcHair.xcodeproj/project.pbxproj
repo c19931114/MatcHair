@@ -46,6 +46,7 @@
 		F164B07F218308D10033B019 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B07E218308D10033B019 /* Message.swift */; };
 		F164B08121834D460033B019 /* MessageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B08021834D460033B019 /* MessageListCell.swift */; };
 		F164B0872185DAD30033B019 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B0862185DAD30033B019 /* ChatLogController.swift */; };
+		F164B0892186AC540033B019 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B0882186AC540033B019 /* MessageController.swift */; };
 		F196CEA521672DE9001110E1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA421672DE9001110E1 /* Post.swift */; };
 		F196CEA7216733E1001110E1 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA6216733E1001110E1 /* Appointment.swift */; };
 		F196CEA9216B3B87001110E1 /* Date+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA8216B3B87001110E1 /* Date+Crystal.swift */; };
@@ -79,7 +80,7 @@
 		F1D0BBE9216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE7216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift */; };
 		F1D0BBEA216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE8216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib */; };
 		F1D0BBEC21610A9400ABAE5D /* ModelSegementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */; };
-		F1D0BBEE2161400000ABAE5D /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBED2161400000ABAE5D /* MessageController.swift */; };
+		F1D0BBEE2161400000ABAE5D /* ChatroomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBED2161400000ABAE5D /* ChatroomController.swift */; };
 		F1DCA95E217586A500E387C0 /* home_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = F1DCA95D217586A500E387C0 /* home_loading.json */; };
 		F1DCA9602175885E00E387C0 /* no_appointment.json in Resources */ = {isa = PBXBuildFile; fileRef = F1DCA95F2175885D00E387C0 /* no_appointment.json */; };
 		F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */; };
@@ -140,6 +141,7 @@
 		F164B07E218308D10033B019 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F164B08021834D460033B019 /* MessageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListCell.swift; sourceTree = "<group>"; };
 		F164B0862185DAD30033B019 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		F164B0882186AC540033B019 /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		F196CEA421672DE9001110E1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F196CEA6216733E1001110E1 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		F196CEA8216B3B87001110E1 /* Date+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Crystal.swift"; sourceTree = "<group>"; };
@@ -173,7 +175,7 @@
 		F1D0BBE7216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConfirmCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBE8216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelConfirmCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSegementController.swift; sourceTree = "<group>"; };
-		F1D0BBED2161400000ABAE5D /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
+		F1D0BBED2161400000ABAE5D /* ChatroomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomController.swift; sourceTree = "<group>"; };
 		F1DCA95D217586A500E387C0 /* home_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_loading.json; sourceTree = "<group>"; };
 		F1DCA95F2175885D00E387C0 /* no_appointment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_appointment.json; sourceTree = "<group>"; };
 		F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -296,8 +298,9 @@
 		F139AA1C2151F59B00B5B0D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F164B0882186AC540033B019 /* MessageController.swift */,
 				F164B0862185DAD30033B019 /* ChatLogController.swift */,
-				F1D0BBED2161400000ABAE5D /* MessageController.swift */,
+				F1D0BBED2161400000ABAE5D /* ChatroomController.swift */,
 				F139AA212151F87200B5B0D4 /* TabBarController.swift */,
 				F1C2C3E62154C9660065E4EB /* NavigationController.swift */,
 				F139AA1D2151F5B800B5B0D4 /* LoginViewController.swift */,
@@ -768,7 +771,8 @@
 				F1D0BBD6215FCE9300ABAE5D /* LikePostCollectionViewCell.swift in Sources */,
 				F196CEA7216733E1001110E1 /* Appointment.swift in Sources */,
 				F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */,
-				F1D0BBEE2161400000ABAE5D /* MessageController.swift in Sources */,
+				F1D0BBEE2161400000ABAE5D /* ChatroomController.swift in Sources */,
+				F164B0892186AC540033B019 /* MessageController.swift in Sources */,
 				F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */,
 				F1D0BBEC21610A9400ABAE5D /* ModelSegementController.swift in Sources */,
 				F1C2C3E52154B8AE0065E4EB /* PostViewController.swift in Sources */,

@@ -13,7 +13,7 @@
         <!--Chat Room-->
         <scene sceneID="JX5-k9-9U4">
             <objects>
-                <viewController id="bYG-1s-Tcv" customClass="MessageController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bYG-1s-Tcv" customClass="ChatroomController" customModule="MatcHair" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f1b-G6-6zG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,7 +46,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="showChatLog:" destination="bYG-1s-Tcv" eventType="touchUpInside" id="I1v-Nl-7Mn"/>
+                                    <action selector="showChat:" destination="bYG-1s-Tcv" eventType="touchUpInside" id="I1v-Nl-7Mn"/>
                                 </connections>
                             </button>
                         </barButtonItem>

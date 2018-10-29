@@ -16,7 +16,7 @@ struct User: Codable {
 
     let image: String?
 
-    let id: String?
+    let uid: String
 
     let blockedUID: String?
 }

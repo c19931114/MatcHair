@@ -26,8 +26,11 @@ class ReservationLocationTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         cityTextField.delegate = self
+        cityTextField.placeholder = "縣市"
         districtTextField.delegate = self
+        districtTextField.placeholder = "鄉鎮市區"
         addressTextField.delegate = self
+        addressTextField.placeholder = "完整地址"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -11,16 +11,16 @@ import Firebase
 
 struct Message: Codable {
 
-    let fromId: String
+    let fromID: String
     let text: String
     let timestamp: Int
-    let toId: String
+    let toID: String
     let imageUrl: String?
     let imageWidth: Int
     let imageHeight: Int
     
     func chatPartnerId() -> String? {
-        return fromId == Auth.auth().currentUser?.uid ? toId : fromId
+        return fromID == Auth.auth().currentUser?.uid ? toID : fromID
     }
 
 }

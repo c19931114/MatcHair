@@ -14,11 +14,11 @@ struct User: Codable {
 
     let email: String?
 
-    let image: String?
+    let image: String
 
     let uid: String
 
-    let blockedUID: String?
+    let blockedUIDs: [String: Bool]?
 }
 
 struct ProfileResponse: Codable {

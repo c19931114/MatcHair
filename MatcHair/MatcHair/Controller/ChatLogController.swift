@@ -92,12 +92,17 @@ class ChatLogController: UICollectionViewController {
     @objc func handleSend() {
 
         guard let messageID = ref.child("messages").childByAutoId().key else { return }
-        let toID = user?.uid
+
+        let toID = user!.uid
+        guard let fromID = keychain.get("userUID") else { return }
+        let timestamp = NSDate().timeIntervalSince1970
 
         ref.child("messages/\(messageID)").updateChildValues(
             [
                 "text": inputTextField.text!,
-                "toID": toID
+                "toID": toID,
+                "fromID": fromID,
+                "timestamp": timestamp
             ]
         )
 

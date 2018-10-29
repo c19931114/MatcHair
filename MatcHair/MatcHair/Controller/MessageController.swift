@@ -17,6 +17,7 @@ class MessageController: UITableViewController {
     let decoder = JSONDecoder()
     var users = [User]()
     var messageInfos = [MessageInfo]()
+    var messageInfosDictionary = [String: MessageInfo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,9 @@ class MessageController: UITableViewController {
 
                 let userData = try self.decoder.decode(User.self, from: userJSONData)
                 self.messageInfos.append(MessageInfo(message: message, user: userData))
+
+                self.messageInfosDictionary[message.toID] = MessageInfo(message: message, user: userData)
+
                 self.tableView.reloadData()
 
             } catch {
@@ -111,7 +115,7 @@ class MessageController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageInfos.count
+        return messageInfosDictionary.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -126,9 +130,11 @@ class MessageController: UITableViewController {
 
         let messageInfo = messageInfos[indexPath.row]
 
-        cell.profileImageView.kf.setImage(with: URL(string: messageInfo.user.image))
-        cell.textLabel?.text = messageInfo.user.name
-        cell.detailTextLabel?.text = messageInfo.message.text
+        cell.messageInfo = messageInfo
+
+//        cell.profileImageView.kf.setImage(with: URL(string: messageInfo.user.image))
+//        cell.textLabel?.text = messageInfo.user.name
+//        cell.detailTextLabel?.text = messageInfo.message.text
 
         return cell
     }

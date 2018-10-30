@@ -202,20 +202,38 @@ class ChatLogController: UICollectionViewController {
         let message = messages[indexPath.item]
         cell.textView.text = message.text
 
-        if message.fromID == Auth.auth().currentUser?.uid {
-            //outgoing
-            cell.bubbleView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9490196078, alpha: 1)
-        } else {
-            //incomming
-            cell.bubbleView.backgroundColor = .white
-            cell.bubbleView.layer.borderWidth = 1
-            cell.bubbleView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
-        }
+        setupCellStyle(cell, message: message)
 
         cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: message.text).width + 32
 
         return cell
+    }
+
+    fileprivate func setupCellStyle(_ cell: ChatMessageCell, message: Message) {
+
+//        if let profileImageUrl = self.user?.image {
+//            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+//        }
+
+        if message.fromID == Auth.auth().currentUser?.uid {
+            //outgoing
+            cell.bubbleView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9490196078, alpha: 1)
+            cell.profileImageView.isHidden = true
+            cell.bubbleViewRightAnchor?.isActive = true
+            cell.bubbleViewLeftAnchor?.isActive = false
+            cell.bubbleView.layer.borderWidth = 0
+
+        } else {
+            //incoming gray
+            cell.bubbleView.backgroundColor = .white
+            cell.profileImageView.isHidden = false
+            cell.bubbleViewRightAnchor?.isActive = false
+            cell.bubbleViewLeftAnchor?.isActive = true
+            cell.bubbleView.layer.borderWidth = 1
+            cell.bubbleView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+
+        }
+
     }
 
 }
@@ -231,7 +249,7 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
 
         let text = messages[indexPath.item].text
 
-        height = estimateFrameForText(text: text).height + 20
+        height = estimateFrameForText(text: text).height + 16
 
         return CGSize(width: view.frame.width, height: height)
     }

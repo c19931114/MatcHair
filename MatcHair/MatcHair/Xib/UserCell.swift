@@ -33,7 +33,7 @@ class UserCell: UITableViewCell {
 
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "icon_person")
+        imageView.image = #imageLiteral(resourceName: "tab_profile_normal")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 25
         imageView.layer.masksToBounds = true

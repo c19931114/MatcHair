@@ -43,6 +43,7 @@ class ChatLogController: UICollectionViewController {
 //        navigationItem.backBarButtonItem = UIBarButtonItem(title: "asd", style: .plain, target: nil, action: nil)
 
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .white
         collectionView.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
@@ -197,8 +198,18 @@ class ChatLogController: UICollectionViewController {
         }
 
         let message = messages[indexPath.item]
-
         cell.textView.text = message.text
+
+        if message.fromID == Auth.auth().currentUser?.uid {
+            //outgoing
+            cell.bubbleView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9490196078, alpha: 1)
+        } else {
+            //incomming
+            cell.bubbleView.backgroundColor = .white
+            cell.bubbleView.layer.borderWidth = 1
+            cell.bubbleView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+        }
 
         cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: message.text).width + 32
 

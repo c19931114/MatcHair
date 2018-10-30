@@ -18,7 +18,6 @@ class MessageController: UITableViewController {
     let decoder = JSONDecoder()
     let keychain = KeychainSwift()
 
-    var users = [User]()
     var messageInfos = [MessageInfo]()
     var messageInfosDictionary = [String: MessageInfo]()
     var chatPartner: String?
@@ -45,15 +44,14 @@ class MessageController: UITableViewController {
 
         ref = Database.database().reference()
 
-//        observeMessages()
         observeUserMessages()
 
     }
 
     func observeUserMessages() {
 
-//        messageInfos.removeAll()
-//        messageInfosDictionary.removeAll()
+        messageInfos.removeAll()
+        messageInfosDictionary.removeAll()
 //        tableView.reloadData()
 
         guard let currentUserUID = keychain.get("userUID") else {
@@ -72,7 +70,7 @@ class MessageController: UITableViewController {
 
     func fetchMessagesWith(_ messageID: String, _ currentUserUID: String) {
 
-        ref.child("messages").observe(.childAdded) { (snapshot) in
+        ref.child("messages").child(messageID).observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else {
 
@@ -91,36 +89,6 @@ class MessageController: UITableViewController {
                 print(error)
             }
         }
-    }
-
-    func observeMessages() {
-
-        guard let currentUserUID = keychain.get("userUID") else {
-            tableView.reloadData()
-            return
-        }
-
-        ref.child("messages").observe(.childAdded) { (snapshot) in
-
-            guard let value = snapshot.value as? NSDictionary else {
-
-                self.tableView.reloadData()
-                return
-            }
-
-            guard let messageJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
-
-            do {
-
-                let messageData = try self.decoder.decode(Message.self, from: messageJSONData)
-
-                self.fetchUserWith(messageData, currentUserUID)
-
-            } catch {
-                print(error)
-            }
-        }
-
     }
 
     func fetchUserWith(_ message: Message, _ currentUserUID: String) {
@@ -145,7 +113,13 @@ class MessageController: UITableViewController {
                 let userData = try self.decoder.decode(User.self, from: userJSONData)
 //                self.messageInfos.append(MessageInfo(message: message, user: userData))
 
-                self.messageInfosDictionary[message.toID] = MessageInfo(message: message, user: userData)
+                if message.fromID == currentUserUID {
+                    self.chatPartnerUID = message.toID
+                } else {
+                    self.chatPartnerUID = message.fromID
+                }
+
+                self.messageInfosDictionary[self.chatPartnerUID!] = MessageInfo(message: message, user: userData)
                 self.messageInfos = Array(self.messageInfosDictionary.values)
 
                 self.messageInfos.sort(by: { (message1, message2) -> Bool in
@@ -163,6 +137,7 @@ class MessageController: UITableViewController {
     }
 
     func showChatLogControllerForUser(user: User) {
+
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
         navigationController?.pushViewController(chatLogController, animated: true)
@@ -204,9 +179,11 @@ class MessageController: UITableViewController {
         return cell
     }
 
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let user = users[indexPath.row]
-//        showChatLogControllerForUser(user: user)
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let messageInfo = messageInfos[indexPath.row]
+
+        showChatLogControllerForUser(user: messageInfo.user)
+    }
 
 }

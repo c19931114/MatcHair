@@ -49,6 +49,7 @@
 		F164B08B218719970033B019 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B08A218719960033B019 /* NewMessageController.swift */; };
 		F164B08D218734710033B019 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B08C218734710033B019 /* UserCell.swift */; };
 		F164B08F218739C00033B019 /* UIImageView+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B08E218739C00033B019 /* UIImageView+Crystal.swift */; };
+		F164B092218852110033B019 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164B091218852110033B019 /* ChatMessageCell.swift */; };
 		F196CEA521672DE9001110E1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA421672DE9001110E1 /* Post.swift */; };
 		F196CEA7216733E1001110E1 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA6216733E1001110E1 /* Appointment.swift */; };
 		F196CEA9216B3B87001110E1 /* Date+Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196CEA8216B3B87001110E1 /* Date+Crystal.swift */; };
@@ -146,6 +147,7 @@
 		F164B08A218719960033B019 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		F164B08C218734710033B019 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		F164B08E218739C00033B019 /* UIImageView+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Crystal.swift"; sourceTree = "<group>"; };
+		F164B091218852110033B019 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		F196CEA421672DE9001110E1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F196CEA6216733E1001110E1 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		F196CEA8216B3B87001110E1 /* Date+Crystal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Crystal.swift"; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 			isa = PBXGroup;
 			children = (
 				F164B08C218734710033B019 /* UserCell.swift */,
+				F164B091218852110033B019 /* ChatMessageCell.swift */,
 				F15B2CB42180226400DE4E3E /* RecruitInfoCell */,
 				F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */,
 				F1A1A856215CB03C0038F0CF /* ProfileCollectionViewCell */,
@@ -789,6 +792,7 @@
 				F164B08B218719970033B019 /* NewMessageController.swift in Sources */,
 				F164B07F218308D10033B019 /* Message.swift in Sources */,
 				F1365CFB21533224009419F5 /* UILabel+Crystal.swift in Sources */,
+				F164B092218852110033B019 /* ChatMessageCell.swift in Sources */,
 				F1D0BBE52161087300ABAE5D /* ModelPendingCollectionViewCell.swift in Sources */,
 				F13978A1216C619900B80B68 /* NotificationName+Crystal.swift in Sources */,
 				F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */,

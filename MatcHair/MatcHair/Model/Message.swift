@@ -24,8 +24,8 @@ struct Message: Codable {
     let imageWidth: Int?
     let imageHeight: Int?
     
-    func chatPartnerId() -> String? {
-        return fromID == Auth.auth().currentUser?.uid ? toID : fromID
-    }
+//    func chatPartnerId() -> String? {
+//        return fromID == Auth.auth().currentUser?.uid ? toID : fromID
+//    }
 
 }

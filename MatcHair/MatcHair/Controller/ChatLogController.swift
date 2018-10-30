@@ -12,13 +12,19 @@ import KeychainSwift
 
 class ChatLogController: UICollectionViewController {
 
+    let cellId = "cellId"
     lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!
+    let decoder = JSONDecoder()
     let keychain = KeychainSwift()
+
+    var messages = [Message]()
 
     var user: User? {
         didSet {
             navigationItem.title = user?.name
+
+            observeMessages()
         }
     }
 
@@ -31,14 +37,15 @@ class ChatLogController: UICollectionViewController {
         return textField
     }()
 
-    let cellId = "cellId"
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
 //        navigationItem.backBarButtonItem = UIBarButtonItem(title: "asd", style: .plain, target: nil, action: nil)
 
+        collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
+        collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .white
+        collectionView.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
 
         setupInputComponents()
 
@@ -115,6 +122,8 @@ class ChatLogController: UICollectionViewController {
                 return
             }
 
+            self.inputTextField.text = nil
+
             self.ref.child("user-messages").child(fromID).updateChildValues([messageID: 1])
 
             self.ref.child("user-messages").child(toID).updateChildValues([messageID: 1])
@@ -125,6 +134,109 @@ class ChatLogController: UICollectionViewController {
 //        sendMessageWithProperties(properties as [String : AnyObject])
     }
 
+    func observeMessages() {
+
+        guard let currentUserUID = keychain.get("userUID") else {
+            collectionView.reloadData()
+            return
+        }
+
+        // 不用 ref 因為還來不及初始化
+        Database.database().reference()
+            .child("user-messages").child(currentUserUID).observe(.childAdded) { (snapshot) in
+
+            let messageID = snapshot.key
+
+            self.fetchMessagesWith(messageID, currentUserUID)
+        }
+
+    }
+
+    func fetchMessagesWith(_ messageID: String, _ currentUserUID: String) {
+
+        ref.child("messages").child(messageID).observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else {
+
+                self.collectionView.reloadData()
+                return
+            }
+
+            guard let messageJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+                let messageData = try self.decoder.decode(Message.self, from: messageJSONData)
+
+//                if messageData.toID == self.user?.uid {
+
+                    self.messages.append(messageData)
+                    self.collectionView.reloadData()
+
+//                }
+
+            } catch {
+                print(error)
+            }
+
+        }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
+    }
+
+    override func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: cellId,
+            for: indexPath) as? ChatMessageCell else {
+                
+            return UICollectionViewCell()
+        }
+
+        let message = messages[indexPath.item]
+
+        cell.textView.text = message.text
+
+        cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: message.text).width + 32
+
+        return cell
+    }
+
+}
+
+extension ChatLogController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        var height: CGFloat = 80
+
+        let text = messages[indexPath.item].text
+
+        height = estimateFrameForText(text: text).height + 20
+
+        return CGSize(width: view.frame.width, height: height)
+    }
+
+    fileprivate func estimateFrameForText(text: String) -> CGRect {
+
+        // 200 是 ChatMessageCell 裡 bubbleView 的寬
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+
+        // 16 是 ChatMessageCell 裡 textView 的 font size
+        return NSString(string: text)
+            .boundingRect(
+                with: size,
+                options: options,
+                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
+                context: nil)
+    }
 }
 
 extension ChatLogController: UITextFieldDelegate {

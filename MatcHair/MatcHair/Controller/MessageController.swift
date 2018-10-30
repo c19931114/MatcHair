@@ -17,6 +17,8 @@ class MessageController: UITableViewController {
     var ref: DatabaseReference!
     let decoder = JSONDecoder()
     let keychain = KeychainSwift()
+//    var timer: Timer? // 可以設定只 reload tableview 一次, 改天再處理Ｑ
+    // https://youtu.be/JK7pHuSfLyA?list=PL0dzCUj1L5JEfHqwjBV0XFb9qx9cGXwkq&t=1354
 
     var messageInfos = [MessageInfo]()
     var messageInfosDictionary = [String: MessageInfo]()
@@ -61,9 +63,16 @@ class MessageController: UITableViewController {
 
         ref.child("user-messages").child(currentUserUID).observe(.childAdded) { (snapshot) in
 
-            let messageID = snapshot.key
+            let chatPartnerUID = snapshot.key
 
-            self.fetchMessagesWith(messageID, currentUserUID)
+            self.ref.child("user-messages")
+                .child(currentUserUID)
+                .child(chatPartnerUID)
+                .observe(.childAdded, with: { (snapshot) in
+
+                let messageID = snapshot.key
+                self.fetchMessagesWith(messageID, currentUserUID)
+            })
 
         }
     }

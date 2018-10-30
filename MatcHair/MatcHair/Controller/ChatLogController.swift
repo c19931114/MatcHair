@@ -125,9 +125,9 @@ class ChatLogController: UICollectionViewController {
 
             self.inputTextField.text = nil
 
-            self.ref.child("user-messages").child(fromID).updateChildValues([messageID: 1])
+            self.ref.child("user-messages").child(fromID).child(toID).updateChildValues([messageID: 1])
 
-            self.ref.child("user-messages").child(toID).updateChildValues([messageID: 1])
+            self.ref.child("user-messages").child(toID).child(fromID).updateChildValues([messageID: 1])
 
         }
 
@@ -137,14 +137,18 @@ class ChatLogController: UICollectionViewController {
 
     func observeMessages() {
 
-        guard let currentUserUID = keychain.get("userUID") else {
+        guard let currentUserUID = keychain.get("userUID"),
+            let chatPartnerUID = user?.uid else {
             collectionView.reloadData()
             return
         }
 
         // 不用 ref 因為還來不及初始化
         Database.database().reference()
-            .child("user-messages").child(currentUserUID).observe(.childAdded) { (snapshot) in
+            .child("user-messages")
+            .child(currentUserUID)
+            .child(chatPartnerUID)
+            .observe(.childAdded) { (snapshot) in
 
             let messageID = snapshot.key
 
@@ -211,9 +215,9 @@ class ChatLogController: UICollectionViewController {
 
     fileprivate func setupCellStyle(_ cell: ChatMessageCell, message: Message) {
 
-//        if let profileImageUrl = self.user?.image {
-//            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-//        }
+        if let profileImageUrl = self.user?.image {
+            cell.profileImageView.kf.setImage(with: URL(string: profileImageUrl))
+        }
 
         if message.fromID == Auth.auth().currentUser?.uid {
             //outgoing

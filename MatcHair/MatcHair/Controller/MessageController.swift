@@ -9,15 +9,20 @@
 import UIKit
 import Firebase
 import Kingfisher
+import KeychainSwift
 
 class MessageController: UITableViewController {
 
     let cellId = "cellId"
     var ref: DatabaseReference!
     let decoder = JSONDecoder()
+    let keychain = KeychainSwift()
+
     var users = [User]()
     var messageInfos = [MessageInfo]()
     var messageInfosDictionary = [String: MessageInfo]()
+    var chatPartner: String?
+    var chatPartnerUID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +45,62 @@ class MessageController: UITableViewController {
 
         ref = Database.database().reference()
 
-        observeMessages()
+//        observeMessages()
+        observeUserMessages()
 
+    }
+
+    func observeUserMessages() {
+
+//        messageInfos.removeAll()
+//        messageInfosDictionary.removeAll()
+//        tableView.reloadData()
+
+        guard let currentUserUID = keychain.get("userUID") else {
+            tableView.reloadData()
+            return
+        }
+
+        ref.child("user-messages").child(currentUserUID).observe(.childAdded) { (snapshot) in
+
+            let messageID = snapshot.key
+
+            self.fetchMessagesWith(messageID, currentUserUID)
+
+        }
+    }
+
+    func fetchMessagesWith(_ messageID: String, _ currentUserUID: String) {
+
+        ref.child("messages").observe(.childAdded) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else {
+
+                self.tableView.reloadData()
+                return
+            }
+
+            guard let messageJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+
+            do {
+
+                let messageData = try self.decoder.decode(Message.self, from: messageJSONData)
+                self.fetchUserWith(messageData, currentUserUID)
+
+            } catch {
+                print(error)
+            }
+        }
     }
 
     func observeMessages() {
 
+        guard let currentUserUID = keychain.get("userUID") else {
+            tableView.reloadData()
+            return
+        }
+
         ref.child("messages").observe(.childAdded) { (snapshot) in
-            print(snapshot)
 
             guard let value = snapshot.value as? NSDictionary else {
 
@@ -61,7 +114,7 @@ class MessageController: UITableViewController {
 
                 let messageData = try self.decoder.decode(Message.self, from: messageJSONData)
 
-                self.fetchUserWith(messageData)
+                self.fetchUserWith(messageData, currentUserUID)
 
             } catch {
                 print(error)
@@ -70,9 +123,15 @@ class MessageController: UITableViewController {
 
     }
 
-    func fetchUserWith(_ message: Message) {
+    func fetchUserWith(_ message: Message, _ currentUserUID: String) {
 
-        ref.child("users").child(message.toID).observeSingleEvent(of: .value) { (snapshot) in
+        if message.fromID == currentUserUID {
+            chatPartnerUID = message.toID
+        } else {
+            chatPartnerUID = message.fromID
+        }
+
+        ref.child("users").child(chatPartnerUID!).observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else {
                 self.tableView.reloadData()
@@ -84,9 +143,15 @@ class MessageController: UITableViewController {
             do {
 
                 let userData = try self.decoder.decode(User.self, from: userJSONData)
-                self.messageInfos.append(MessageInfo(message: message, user: userData))
+//                self.messageInfos.append(MessageInfo(message: message, user: userData))
 
                 self.messageInfosDictionary[message.toID] = MessageInfo(message: message, user: userData)
+                self.messageInfos = Array(self.messageInfosDictionary.values)
+
+                self.messageInfos.sort(by: { (message1, message2) -> Bool in
+
+                    return message1.message.timestamp > message2.message.timestamp
+                })
 
                 self.tableView.reloadData()
 
@@ -115,7 +180,7 @@ class MessageController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageInfosDictionary.count
+        return messageInfos.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -68,7 +68,7 @@ class ChatLogController: UICollectionViewController {
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         containerView.addSubview(sendButton)
         //x,y,w,h
-        sendButton.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        sendButton.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -5).isActive = true
         sendButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         sendButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         sendButton.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
@@ -100,14 +100,26 @@ class ChatLogController: UICollectionViewController {
         guard let fromID = keychain.get("userUID") else { return }
         let timestamp = Int(Date().timeIntervalSince1970)
 
-        ref.child("messages/\(messageID)").updateChildValues(
+        let values =
             [
                 "text": inputTextField.text!,
                 "toID": toID,
                 "fromID": fromID,
                 "timestamp": timestamp
-            ]
-        )
+            ] as [String: Any]
+
+        ref.child("messages/\(messageID)").updateChildValues(values) { (error, ref) in
+
+            if error != nil {
+                print(error!)
+                return
+            }
+
+            self.ref.child("user-messages").child(fromID).updateChildValues([messageID: 1])
+
+            self.ref.child("user-messages").child(toID).updateChildValues([messageID: 1])
+
+        }
 
 //        let properties = ["text": inputTextField.text!]
 //        sendMessageWithProperties(properties as [String : AnyObject])

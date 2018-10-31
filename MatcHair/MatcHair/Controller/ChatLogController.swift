@@ -23,18 +23,29 @@ class ChatLogController: UICollectionViewController {
     var user: User? {
         didSet {
             navigationItem.title = user?.name
-
-            observeMessages()
+//            observeMessages() // 移到 viewDidLoad 不然會一直進來跑, 因為user一直丟進來
         }
     }
 
     lazy var inputTextField: UITextField = {
-
         let textField = UITextField()
         textField.placeholder = "Enter message..."
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self // laxy var 才可以, let 不行
         return textField
+    }()
+
+    lazy var sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        //        sendButton.setTitle("Send", for: .normal)
+        button.setImage(#imageLiteral(resourceName: "btn_send").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1)
+        //        sendButton.contentMode = .center
+        button.layer.masksToBounds = true
+        button.contentMode = .scaleAspectFill
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        return button
     }()
 
     lazy var inputContainerView: UIView = {
@@ -61,15 +72,6 @@ class ChatLogController: UICollectionViewController {
         uploadImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         uploadImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
 
-        let sendButton = UIButton(type: .system)
-        //        sendButton.setTitle("Send", for: .normal)
-        sendButton.setImage(#imageLiteral(resourceName: "btn_send").withRenderingMode(.alwaysTemplate), for: .normal)
-        sendButton.tintColor = #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1)
-        //        sendButton.contentMode = .center
-        sendButton.layer.masksToBounds = true
-        sendButton.contentMode = .scaleAspectFill
-        sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         containerView.addSubview(sendButton)
         //x,y,w,h
         sendButton.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -5).isActive = true
@@ -112,6 +114,7 @@ class ChatLogController: UICollectionViewController {
         setupInputComponents()
 
         ref = Database.database().reference()
+        observeMessages()
 
     }
 

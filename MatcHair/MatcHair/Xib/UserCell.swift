@@ -12,17 +12,23 @@ import Firebase
 class UserCell: UITableViewCell {
 
     var ref: DatabaseReference!
-    let decoder = JSONDecoder()
+//    var userName: String?
 
     var messageInfo: MessageInfo? {
         didSet {
-            profileImageView.kf.setImage(with: URL(string: (messageInfo?.user.imageURL)!))
-            textLabel?.text = messageInfo?.user.name
-            detailTextLabel?.text = messageInfo?.message.text
 
-            if let isRead = messageInfo?.isRead {
+            if let messageInfo = messageInfo {
 
-                if isRead {
+                profileImageView.kf.setImage(with: URL(string: messageInfo.user.imageURL))
+                textLabel?.text = messageInfo.user.name
+
+                if messageInfo.message.imageURL == nil {
+                    detailTextLabel?.text = messageInfo.message.text
+                } else {
+                    detailTextLabel?.text = "\(messageInfo.user.name) 傳送了一張圖片"
+                }
+
+                if messageInfo.isRead {
                     detailTextLabel?.textColor = .darkGray
                 } else {
                     detailTextLabel?.textColor = .black

@@ -12,6 +12,7 @@ import Firebase
 struct MessageInfo {
     let message: Message
     let user: User
+    let isRead: Bool
 }
 
 struct Message: Codable {

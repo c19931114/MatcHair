@@ -20,6 +20,16 @@ class UserCell: UITableViewCell {
             textLabel?.text = messageInfo?.user.name
             detailTextLabel?.text = messageInfo?.message.text
 
+            if let isRead = messageInfo?.isRead {
+
+                if isRead {
+                    detailTextLabel?.textColor = .darkGray
+                } else {
+                    detailTextLabel?.textColor = .black
+                }
+
+            }
+
             if let seconds = messageInfo?.message.timestamp {
 
                 let timestampDate = Date(timeIntervalSince1970: TimeInterval(seconds))

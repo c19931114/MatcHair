@@ -163,8 +163,9 @@ class ChatLogController: UICollectionViewController {
             }
             self.inputTextField.text = nil
 
-            self.ref.child("user-messages").child(fromID).child(toID).updateChildValues([messageID: 1])
-            self.ref.child("user-messages").child(toID).child(fromID).updateChildValues([messageID: 1])
+            //true:已讀, false:未讀
+            self.ref.child("user-messages").child(fromID).child(toID).updateChildValues([messageID: false])
+            self.ref.child("user-messages").child(toID).child(fromID).updateChildValues([messageID: false])
         }
 //        let properties = ["text": inputTextField.text!]
 //        sendMessageWithProperties(properties as [String : AnyObject])
@@ -209,8 +210,9 @@ class ChatLogController: UICollectionViewController {
 
             self.inputTextField.text = nil
 
-            self.ref.child("user-messages").child(fromID).child(toID).updateChildValues([messageID: 1])
-            self.ref.child("user-messages").child(toID).child(fromID).updateChildValues([messageID: 1])
+            //true:已讀, false:未讀
+            self.ref.child("user-messages").child(fromID).child(toID).updateChildValues([messageID: false])
+            self.ref.child("user-messages").child(toID).child(fromID).updateChildValues([messageID: false])
 
         }
     }
@@ -232,12 +234,12 @@ class ChatLogController: UICollectionViewController {
 
             let messageID = snapshot.key
 
-            self.fetchMessagesWith(messageID, currentUserUID)
+            self.fetchMessagesWith(messageID, currentUserUID, chatPartnerUID)
         }
 
     }
 
-    func fetchMessagesWith(_ messageID: String, _ currentUserUID: String) {
+    private func fetchMessagesWith(_ messageID: String, _ currentUserUID: String, _ chatPartnerUID: String) {
 
         ref.child("messages").child(messageID).observeSingleEvent(of: .value) { (snapshot) in
 
@@ -260,12 +262,20 @@ class ChatLogController: UICollectionViewController {
                     self.collectionView.reloadData()
 
 //                }
+                self.handleMessageBeenReadWith(messageID, currentUserUID, chatPartnerUID)
 
             } catch {
                 print(error)
             }
 
         }
+    }
+
+    //true:已讀, false:未讀
+    private func handleMessageBeenReadWith(_ messageID: String, _ currentUserUID: String, _ chatPartnerUID: String) {
+
+        ref.child("user-messages").child(currentUserUID).child(chatPartnerUID)
+            .updateChildValues([messageID: true])
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

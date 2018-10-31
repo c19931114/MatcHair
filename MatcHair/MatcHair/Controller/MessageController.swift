@@ -17,7 +17,7 @@ class MessageController: UITableViewController {
     var ref: DatabaseReference!
     let decoder = JSONDecoder()
     let keychain = KeychainSwift()
-    var timer: Timer? // 可以設定只 sort & reload tableview 一次
+    var timer: Timer? // 可以設定只 sort & reload tableview 一次 (attemptReloadOfTable)
     // https://youtu.be/JK7pHuSfLyA?list=PL0dzCUj1L5JEfHqwjBV0XFb9qx9cGXwkq&t=1354
 
     var messageInfos = [MessageInfo]()
@@ -46,15 +46,19 @@ class MessageController: UITableViewController {
 
         ref = Database.database().reference()
 
-        observeUserMessages()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        observeUserMessages()
     }
 
     func observeUserMessages() {
 
         messageInfos.removeAll()
         messageInfosDictionary.removeAll()
-//        tableView.reloadData()
+        tableView.reloadData()
 
         guard let currentUserUID = keychain.get("userUID") else {
             tableView.reloadData()
@@ -65,19 +69,21 @@ class MessageController: UITableViewController {
 
             let chatPartnerUID = snapshot.key
 
-            self.ref.child("user-messages")
-                .child(currentUserUID)
-                .child(chatPartnerUID)
+            self.ref.child("user-messages").child(currentUserUID).child(chatPartnerUID)
                 .observe(.childAdded, with: { (snapshot) in
 
-                let messageID = snapshot.key
-                self.fetchMessagesWith(messageID, currentUserUID)
+                    //true:已讀, false:未讀
+                    let messageID = snapshot.key
+                    guard let isRead = snapshot.value as? Bool else { return }
+
+                    self.fetchMessagesWith(messageID, currentUserUID, isRead)
+
             })
 
         }
     }
 
-    fileprivate func fetchMessagesWith(_ messageID: String, _ currentUserUID: String) {
+    fileprivate func fetchMessagesWith(_ messageID: String, _ currentUserUID: String, _ isRead: Bool) {
 
         ref.child("messages").child(messageID).observeSingleEvent(of: .value) { (snapshot) in
 
@@ -92,7 +98,7 @@ class MessageController: UITableViewController {
             do {
 
                 let messageData = try self.decoder.decode(Message.self, from: messageJSONData)
-                self.fetchUserWith(messageData, currentUserUID)
+                self.fetchUserWith(messageData, currentUserUID, isRead)
 
             } catch {
                 print(error)
@@ -100,7 +106,7 @@ class MessageController: UITableViewController {
         }
     }
 
-    fileprivate func fetchUserWith(_ message: Message, _ currentUserUID: String) {
+    fileprivate func fetchUserWith(_ message: Message, _ currentUserUID: String, _ isRead: Bool) {
 
         if message.fromID == currentUserUID {
             chatPartnerUID = message.toID
@@ -128,7 +134,9 @@ class MessageController: UITableViewController {
                     self.chatPartnerUID = message.fromID
                 }
 
-                self.messageInfosDictionary[self.chatPartnerUID!] = MessageInfo(message: message, user: userData)
+                // 存成 dictionary 就可以更新至最後一筆
+                self.messageInfosDictionary[self.chatPartnerUID!] =
+                    MessageInfo(message: message, user: userData, isRead: isRead)
 
                 self.attemptReloadOfTable()
 

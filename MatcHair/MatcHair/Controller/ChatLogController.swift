@@ -175,14 +175,11 @@ class ChatLogController: UICollectionViewController {
                 // 這邊要 handle 好 >< 不過改了 user-messages 結構就不用了 ><
 //                if messageData.toID == self.user?.uid
 //                    || messageData.fromID == self.user?.uid {
-//
-//                    self.messages.append(messageData)
-//                    self.collectionView.reloadData()
-//
-//                }
 
-                self.messages.append(messageData)
-                self.collectionView.reloadData()
+                    self.messages.append(messageData)
+                    self.collectionView.reloadData()
+
+//                }
 
             } catch {
                 print(error)

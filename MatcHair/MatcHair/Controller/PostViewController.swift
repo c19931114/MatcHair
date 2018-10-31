@@ -39,21 +39,26 @@ class PostViewController: UIViewController {
 
     @IBAction func post(_ sender: Any) {
 
-        //先判斷有無缺項 //TODO
+        //判斷有無缺項
+        categorySelected = false
+//        for value in categories.values {
+//            if value {
+//                categorySelected = true
+//            }
+//        }
 
-        for value in categories.values {
-            if value {
-                categorySelected = true
-            }
+        for value in categories.values where value {
+            categorySelected = true
         }
-        print(categorySelected)
+        print("categorySelected", categorySelected)
 
+        reservationTimeSelected = false
         for value in reservationTimes.values {
             if value {
                 reservationTimeSelected = true
             }
         }
-        print(reservationTimeSelected)
+        print("reservationTimeSelected", reservationTimeSelected)
 
         if recruitModelSwitch.isOn {
 
@@ -62,6 +67,7 @@ class PostViewController: UIViewController {
                 phone != nil else {
 
                     print("please complete")
+                    print(">>>>>>>>>>>>>>>>>>>>>>>")
 
                     showAlert()
                     return

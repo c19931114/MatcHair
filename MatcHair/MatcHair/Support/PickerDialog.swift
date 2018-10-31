@@ -91,7 +91,13 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     /* Create the dialog view, and animate opening the dialog */
-    func show(title: String, doneButtonTitle: String = "Done", cancelButtonTitle: String = "Cancel", options: [String], callback: @escaping PickerCallback) {
+    func show(
+        title: String,
+        doneButtonTitle: String = "Done",
+        cancelButtonTitle: String = "Cancel",
+        options: [String],
+        callback: @escaping PickerCallback) {
+        
         self.titleLabel.text = title
         self.pickerData = options
         self.doneButton.setTitle(doneButtonTitle, for: .normal)
@@ -101,7 +107,11 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         UIApplication.shared.windows.first!.addSubview(self)
         UIApplication.shared.windows.first!.endEditing(true)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.deviceOrientationDidChange(notification:)), name: UIDevice.orientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.deviceOrientationDidChange(notification:)),
+            name: UIDevice.orientationDidChangeNotification,
+            object: nil)
 
         /* Anim */
         UIView.animate(
@@ -135,7 +145,8 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             options: .curveLinear /*UIViewAnimationOptions.TransitionNone*/,
             animations: { () -> Void in
                 self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-                self.dialogView.layer.transform = CATransform3DConcat(currentTransform, CATransform3DMakeScale(0.6, 0.6, 1))
+                self.dialogView.layer.transform =
+                    CATransform3DConcat(currentTransform, CATransform3DMakeScale(0.6, 0.6, 1))
                 self.dialogView.layer.opacity = 0
         }) { (finished: Bool) -> Void in
             for v in self.subviews {
@@ -190,7 +201,9 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         // There is a line above the button
         let lineView = UIView(frame: CGRect(
             x: 0,
-            y: dialogContainer.bounds.size.height - kPickerDialogDefaultButtonHeight - kPickerDialogDefaultButtonSpacerHeight,
+            y: dialogContainer.bounds.size.height
+                - kPickerDialogDefaultButtonHeight
+                - kPickerDialogDefaultButtonSpacerHeight,
             width: dialogContainer.bounds.size.width,
             height: kPickerDialogDefaultButtonSpacerHeight))
         lineView.backgroundColor = UIColor(red: 198/255, green: 198/255, blue: 198/255, alpha: 1)

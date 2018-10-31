@@ -44,16 +44,19 @@ class ChatLogController: UICollectionViewController {
         containerView.backgroundColor = UIColor.white
 
         let uploadImageView = UIImageView()
-        uploadImageView.isUserInteractionEnabled = true // 預設不能點擊
-        uploadImageView.image = #imageLiteral(resourceName: "Album Camera Icon")
+        uploadImageView.backgroundColor = #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1)
+        uploadImageView.image = #imageLiteral(resourceName: "Album Camera Icon").withRenderingMode(.alwaysTemplate)
+        uploadImageView.tintColor = .white
         uploadImageView.translatesAutoresizingMaskIntoConstraints = false
+        uploadImageView.layer.cornerRadius = 16
         uploadImageView.layer.masksToBounds = true
         uploadImageView.contentMode = .scaleAspectFill
+        uploadImageView.isUserInteractionEnabled = true // 預設不能點擊
         uploadImageView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(handleUploadTap)))
         containerView.addSubview(uploadImageView)
         //x,y,w,h
-        uploadImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
+        uploadImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10).isActive = true
         uploadImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         uploadImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         uploadImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
@@ -63,6 +66,8 @@ class ChatLogController: UICollectionViewController {
         sendButton.setImage(#imageLiteral(resourceName: "btn_send").withRenderingMode(.alwaysTemplate), for: .normal)
         sendButton.tintColor = #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1)
         //        sendButton.contentMode = .center
+        sendButton.layer.masksToBounds = true
+        sendButton.contentMode = .scaleAspectFill
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         containerView.addSubview(sendButton)
@@ -74,7 +79,7 @@ class ChatLogController: UICollectionViewController {
 
         containerView.addSubview(inputTextField)
         //x,y,w,h
-        inputTextField.leftAnchor.constraint(equalTo: uploadImageView.rightAnchor, constant: 8).isActive = true
+        inputTextField.leftAnchor.constraint(equalTo: uploadImageView.rightAnchor, constant: 10).isActive = true
         inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
         inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true

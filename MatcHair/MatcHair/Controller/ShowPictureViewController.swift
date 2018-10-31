@@ -63,7 +63,8 @@ class ShowPictureViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
-        navigationItem.hidesBackButton = true
+        navigationItem.backBarButtonItem?.title = ""
+//        navigationItem.hidesBackButton = true
 
     }
     

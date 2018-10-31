@@ -53,10 +53,8 @@ class PostViewController: UIViewController {
         print("categorySelected", categorySelected)
 
         reservationTimeSelected = false
-        for value in reservationTimes.values {
-            if value {
-                reservationTimeSelected = true
-            }
+        for value in reservationTimes.values where value {
+            reservationTimeSelected = true
         }
         print("reservationTimeSelected", reservationTimeSelected)
 

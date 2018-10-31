@@ -178,11 +178,9 @@ class HomeViewController: UIViewController {
                 do {
                     var postData = try self.decoder.decode(PostInfo.self, from: postJSONData)
 
-                    for likedPostID in self.likePostIDs {
+                    for likedPostID in self.likePostIDs where postData.postID == likedPostID {
 
-                        if postData.postID == likedPostID {
-                            postData.isLiked = true
-                        }
+                        postData.isLiked = true
                     }
                     self.getAuthorInfo(with: postData)
 
@@ -224,17 +222,11 @@ class HomeViewController: UIViewController {
                 
                 let post = Post(info: postData, author: userData, authorImageURL: authorImageURL)
 
-                var flag = true
+                var flag = true // 沒有 flag 會一直重複新增
 
-                for blockedUID in self.blockedUIDs {
+                for blockedUID in self.blockedUIDs where post.info.authorUID == blockedUID {
 
-//                    if post.info.authorUID != blockedUID {
-//                        self.allPosts.insert(post, at: 0)
-//                    } // 會一直重複新增
-
-                    if post.info.authorUID == blockedUID {
-                        flag = false
-                    }
+                    flag = false
                 }
 
                 if flag {

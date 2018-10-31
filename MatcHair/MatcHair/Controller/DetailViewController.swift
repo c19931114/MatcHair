@@ -37,7 +37,6 @@ class DetailViewController: UIViewController {
 
             showVisitorAlert()
             return
-
         }
 
         if postInfo?.authorUID == currentUserUID {
@@ -52,7 +51,6 @@ class DetailViewController: UIViewController {
                     self.deletePost()
                 })
         } else {
-
             showReportAlert()
         }
     }
@@ -125,11 +123,8 @@ class DetailViewController: UIViewController {
                 let tabController = self.view.window!.rootViewController as? UITabBarController
                 self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
                 tabController?.selectedIndex = 1
-
             }
-
         }
-        
     }
 
     override func viewDidLoad() {
@@ -423,5 +418,4 @@ class DetailViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
         
     }
-
 }

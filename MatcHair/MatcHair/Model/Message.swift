@@ -17,10 +17,10 @@ struct MessageInfo {
 struct Message: Codable {
 
     let fromID: String
-    let text: String
+    let text: String?
     let timestamp: Int
     let toID: String
-    let imageUrl: String?
+    let imageURL: String?
     let imageWidth: Int?
     let imageHeight: Int?
     

@@ -98,10 +98,10 @@ class PictureViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     // 圖片picker控制器任務結束回呼
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        picker.dismiss(animated: false, completion: nil)
-//    }
-    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: false, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

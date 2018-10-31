@@ -188,7 +188,8 @@ class LikeViewController: UIViewController {
 
         let fileName = postData.authorUID
 
-        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+        self.storageRef.child("user-images").child(fileName)
+            .downloadURL(completion: { (url, error) in
 
             if let authorImageURL = url {
 

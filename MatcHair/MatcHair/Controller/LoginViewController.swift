@@ -161,8 +161,7 @@ class LoginViewController: UIViewController {
 
         let fileName: String = "\(uid)"
 
-        storageRef
-            .child(fileName)
+        storageRef.child("user-images").child(fileName)
             .putData(uploadData, metadata: metadata) { (metadata, error) in
 
                 guard metadata != nil else {
@@ -171,9 +170,11 @@ class LoginViewController: UIViewController {
                     return
                 }
 
-                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+                self.storageRef.child("user-images").child(fileName)
+                    .downloadURL(completion: { (url, error) in
 
                     guard let userImageURL = url else {
+                        print(error as Any)
                         return
                     }
 
@@ -192,7 +193,7 @@ class LoginViewController: UIViewController {
         ref.child("users/\(uid)").updateChildValues(
             [
                 "name": userName,
-                "image": userImage.absoluteString,
+                "imageURL": userImage.absoluteString,
                 "uid": uid
             ]
         )

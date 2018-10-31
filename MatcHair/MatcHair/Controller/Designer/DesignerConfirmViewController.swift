@@ -139,7 +139,7 @@ extension DesignerConfirmViewController {
 
         let fileName = appointment.modelUID
 
-        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+        self.storageRef.child("user-images").child(fileName).downloadURL(completion: { (url, error) in
 
             if let modelImageURL = url {
 

@@ -198,14 +198,16 @@ class PostViewController: UIViewController {
 
         let fileName = NSUUID().uuidString
 
-        storageRef.child("\(fileName).jpeg").putData(uploadData, metadata: nil) { (metadata, error) in
+        storageRef.child("post-images").child("\(fileName).jpeg")
+            .putData(uploadData, metadata: nil) { (metadata, error) in
 
             guard metadata != nil else {
                 // Uh-oh, an error occurred!
                 return
             }
 
-            self.storageRef.child("\(fileName).jpeg").downloadURL { (url, error) in
+            self.storageRef.child("post-images").child("\(fileName).jpeg")
+                .downloadURL { (url, error) in
 
                 guard let downloadURL = url else { return }
 

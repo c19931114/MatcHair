@@ -202,7 +202,7 @@ class MessageController: UITableViewController {
 
         cell.messageInfo = messageInfo
 
-//        cell.profileImageView.kf.setImage(with: URL(string: messageInfo.user.image))
+//        cell.profileImageView.kf.setImage(with: URL(string: messageInfo.user.imageURL))
 //        cell.textLabel?.text = messageInfo.user.name
 //        cell.detailTextLabel?.text = messageInfo.message.text
 

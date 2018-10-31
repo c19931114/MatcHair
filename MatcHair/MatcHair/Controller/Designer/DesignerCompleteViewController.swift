@@ -139,11 +139,11 @@ extension DesignerCompleteViewController {
 
         let fileName = appointmentInfo.designerUID
 
-        self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
+        self.storageRef.child("user-images").child(fileName).downloadURL(completion: { (url, error) in
 
             if let designerImageURL = url {
 
-                self.getDesignerInfoWiyh(appointmentInfo, designerImageURL)
+                self.getDesignerInfoWith(appointmentInfo, designerImageURL)
 
             } else {
                 print(error as Any)
@@ -153,7 +153,7 @@ extension DesignerCompleteViewController {
 
     }
 
-    func getDesignerInfoWiyh(_ appointmentInfo: AppointmentInfo, _ designerImageURL: URL) {
+    func getDesignerInfoWith(_ appointmentInfo: AppointmentInfo, _ designerImageURL: URL) {
 
         self.ref.child("users/\(appointmentInfo.designerUID)").observeSingleEvent(of: .value) { (snapshot) in
 

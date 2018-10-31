@@ -157,7 +157,8 @@ class ProfileViewController: UIViewController {
 
         let fileName = uid
 
-        storageRef.child(fileName).downloadURL(completion: { (url, error) in
+        storageRef.child("user-images").child(fileName)
+            .downloadURL(completion: { (url, error) in
 
             if let url = url {
                 self.designerImageURL = url

@@ -16,7 +16,7 @@ class UserCell: UITableViewCell {
 
     var messageInfo: MessageInfo? {
         didSet {
-            profileImageView.kf.setImage(with: URL(string: (messageInfo?.user.image)!))
+            profileImageView.kf.setImage(with: URL(string: (messageInfo?.user.imageURL)!))
             textLabel?.text = messageInfo?.user.name
             detailTextLabel?.text = messageInfo?.message.text
 

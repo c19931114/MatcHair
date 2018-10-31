@@ -17,7 +17,7 @@ class MessageController: UITableViewController {
     var ref: DatabaseReference!
     let decoder = JSONDecoder()
     let keychain = KeychainSwift()
-//    var timer: Timer? // 可以設定只 reload tableview 一次, 改天再處理Ｑ
+    var timer: Timer? // 可以設定只 sort & reload tableview 一次
     // https://youtu.be/JK7pHuSfLyA?list=PL0dzCUj1L5JEfHqwjBV0XFb9qx9cGXwkq&t=1354
 
     var messageInfos = [MessageInfo]()
@@ -77,7 +77,7 @@ class MessageController: UITableViewController {
         }
     }
 
-    func fetchMessagesWith(_ messageID: String, _ currentUserUID: String) {
+    fileprivate func fetchMessagesWith(_ messageID: String, _ currentUserUID: String) {
 
         ref.child("messages").child(messageID).observeSingleEvent(of: .value) { (snapshot) in
 
@@ -100,7 +100,7 @@ class MessageController: UITableViewController {
         }
     }
 
-    func fetchUserWith(_ message: Message, _ currentUserUID: String) {
+    fileprivate func fetchUserWith(_ message: Message, _ currentUserUID: String) {
 
         if message.fromID == currentUserUID {
             chatPartnerUID = message.toID
@@ -129,20 +129,39 @@ class MessageController: UITableViewController {
                 }
 
                 self.messageInfosDictionary[self.chatPartnerUID!] = MessageInfo(message: message, user: userData)
-                self.messageInfos = Array(self.messageInfosDictionary.values)
 
-                self.messageInfos.sort(by: { (message1, message2) -> Bool in
-
-                    return message1.message.timestamp > message2.message.timestamp
-                })
-
-                self.tableView.reloadData()
+                self.attemptReloadOfTable()
 
             } catch {
                 print(error)
             }
         }
 
+    }
+
+    fileprivate func attemptReloadOfTable() {
+
+        self.timer?.invalidate()
+
+        self.timer = Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(self.handleReloadTable),
+            userInfo: nil, repeats: false)
+    }
+
+    @objc func handleReloadTable() {
+
+        messageInfos = Array(self.messageInfosDictionary.values)
+        messageInfos.sort(by: { (message1, message2) -> Bool in
+            return message1.message.timestamp > message2.message.timestamp
+        })
+
+        tableView.reloadData()
+
+//        DispatchQueue.main.async(execute: {
+//            self.tableView.reloadData()
+//        }) //this will crash because of background thread, so lets call this on dispatch_async main thread
     }
 
     func showChatLogControllerForUser(user: User) {
@@ -153,6 +172,7 @@ class MessageController: UITableViewController {
     }
 
     @objc func handleNewMessage() {
+        
         let newMessageController = NewMessageController()
         newMessageController.messageController = self
         let navController = NavigationController(rootViewController: newMessageController)
@@ -174,6 +194,7 @@ class MessageController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? UserCell else {
+
             return UITableViewCell()
         }
 

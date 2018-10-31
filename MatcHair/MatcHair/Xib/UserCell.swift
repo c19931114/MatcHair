@@ -60,7 +60,7 @@ class UserCell: UITableViewCell {
     let timeLabel: UILabel = {
         let label = UILabel()
 //        label.text = "HH:SS:MM"
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = UIColor.darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -71,15 +71,20 @@ class UserCell: UITableViewCell {
 
         textLabel?.frame = CGRect(
             x: 64,
-            y: textLabel!.frame.origin.y - 2,
-            width: textLabel!.frame.width,
+            y: textLabel!.frame.origin.y - 1,
+            width: textLabel!.frame.width + 10,
             height: textLabel!.frame.height)
+
+        textLabel?.font = textLabel?.font.withSize(18)
 
         detailTextLabel?.frame = CGRect(
             x: 64,
             y: detailTextLabel!.frame.origin.y + 2,
-            width: detailTextLabel!.frame.width,
+            width: detailTextLabel!.frame.width + 10,
             height: detailTextLabel!.frame.height)
+
+        detailTextLabel?.font = detailTextLabel?.font.withSize(14)
+
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -96,8 +101,8 @@ class UserCell: UITableViewCell {
 
         addSubview(timeLabel)
         //x,y,w,h
-        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
+        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 8).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
         timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         timeLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
     }

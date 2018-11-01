@@ -72,7 +72,7 @@ class ChatLogController: UICollectionViewController {
         button.layer.masksToBounds = true
         button.contentMode = .scaleAspectFill
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleSendTextMessage), for: .touchUpInside)
         return button
     }()
 
@@ -147,12 +147,10 @@ class ChatLogController: UICollectionViewController {
     @objc func showUserProfile() {
 
         dismiss(animated: false, completion: nil)
-//
         let profileForDesigner = ProfileViewController.profileForDesigner(self.user!.uid)
         let homeNav = UIStoryboard.homeStoryboard().instantiateInitialViewController()
         print(homeNav)
         homeNav?.navigationController?.pushViewController(profileForDesigner, animated: true) // 失敗Ｑ
-
     }
 
     func setupInputComponents() {
@@ -178,68 +176,35 @@ class ChatLogController: UICollectionViewController {
         present(imagePickerController, animated: true, completion: nil)
     }
 
-    @objc func handleSend() {
+    @objc func handleSendTextMessage() {
 
-        guard let messageID = ref.child("messages").childByAutoId().key else { return }
-
-        guard let toID = user?.uid,
-            let fromID = keychain.get("userUID") else { return }
-        
-        let timestamp = Int(Date().timeIntervalSince1970)
-
-        let values =
-            [
-                "text": inputTextField.text!,
-                "toID": toID,
-                "fromID": fromID,
-                "timestamp": timestamp
-            ] as [String: Any]
-
-        ref.child("messages/\(messageID)").updateChildValues(values) { (error, ref) in
-
-            if error != nil {
-                print(error as Any)
-                return
-            }
-            self.inputTextField.text = nil
-
-            //true:已讀, false:未讀
-            self.ref.child("user-messages").child(fromID).child(toID).updateChildValues([messageID: false])
-            self.ref.child("user-messages").child(toID).child(fromID).updateChildValues([messageID: false])
-        }
-//        let properties = ["text": inputTextField.text!]
-//        sendMessageWithProperties(properties as [String : AnyObject])
+        let text = ["text": inputTextField.text!]
+        sendMessage(with: text)
     }
 
-    fileprivate func sendMessageWithImageURL(_ imageURL: String, image: UIImage) {
+    fileprivate func sendImageMessageWith(_ imageURL: String, image: UIImage) {
 
         let imageInfo = [
-                "imageURL": imageURL,
-                "imageWidth": image.size.width,
-                "imageHeight": image.size.height
+            "imageURL": imageURL,
+            "imageWidth": image.size.width,
+            "imageHeight": image.size.height
             ] as [String: Any]
 
-        sendMessageWithImageInfo(imageURL)
+        sendMessage(with: imageInfo)
     }
 
-    fileprivate func sendMessageWithImageInfo(_ imageURL: String) {
+    private func sendMessage(with properties: [String: Any]) {
 
         guard let messageID = ref.child("messages").childByAutoId().key else { return }
-
         guard let toID = user?.uid,
             let fromID = keychain.get("userUID") else { return }
-
         let timestamp = Int(Date().timeIntervalSince1970)
 
-        let values = [
-            "imageURL": imageURL,
-            "toID": toID, "fromID": fromID,
-            "timestamp": timestamp
-        ] as [String: Any]
+        var values = ["toID": toID, "fromID": fromID, "timestamp": timestamp] as [String: Any]
 
         //append properties dictionary onto values somehow??
         //key $0, value $1
-//        imageInfo.forEach({values[$0] = $1})
+        properties.forEach({values[$0] = $1})
 
         ref.child("messages/\(messageID)").updateChildValues(values) { (error, ref) in
 
@@ -247,13 +212,11 @@ class ChatLogController: UICollectionViewController {
                 print(error as Any)
                 return
             }
-
             self.inputTextField.text = nil
 
             //true:已讀, false:未讀
             self.ref.child("user-messages").child(fromID).child(toID).updateChildValues([messageID: false])
             self.ref.child("user-messages").child(toID).child(fromID).updateChildValues([messageID: false])
-
         }
     }
 
@@ -318,6 +281,7 @@ class ChatLogController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(messages.count)
         return messages.count
     }
 
@@ -338,8 +302,11 @@ class ChatLogController: UICollectionViewController {
         setupCellStyle(cell, message: message)
 
         if let text = message.text {
-            cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: text).width + 32
-        } 
+            cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: text).width + 30
+        } else if message.imageURL != nil {
+            //fall in here if it is an image
+            cell.bubbleWidthAnchor?.constant = 200
+        }
 
         return cell
     }
@@ -389,11 +356,21 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
 
         var height: CGFloat = 80
 
-        if let text = messages[indexPath.item].text {
+        let message = messages[indexPath.item]
+        if let text = message.text {
             height = estimateFrameForText(text: text).height + 16
+        } else if let imageWidth = message.imageWidth, let imageHeight = message.imageHeight {
+            //fall in here if it is an image
+
+            // h1 / w1 = h2 / w2
+            // solve for h1
+            // h1 = h2 / w2 * w1
+            height = CGFloat(imageHeight) / CGFloat(imageWidth) * 200
+            // cell.bubbleWidthAnchor?.constant = 200
         }
 
         return CGSize(width: view.frame.width, height: height)
+        // cell 是整個螢幕的寬度沒錯喔 但只顯示 bubbleView 所以 width 的值是沒有錯的唷
     }
 
     fileprivate func estimateFrameForText(text: String) -> CGRect {
@@ -416,7 +393,7 @@ extension ChatLogController: UITextFieldDelegate {
 
     // 按 Enter 送出
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        handleSend()
+        handleSendTextMessage()
         return true
     }
 }
@@ -468,7 +445,7 @@ extension ChatLogController: UIImagePickerControllerDelegate, UINavigationContro
                                 print(error as Any)
                                 return
                             }
-                            self.sendMessageWithImageURL(url.absoluteString, image: image)
+                            self.sendImageMessageWith(url.absoluteString, image: image)
                     })
             })
         }
@@ -477,6 +454,5 @@ extension ChatLogController: UIImagePickerControllerDelegate, UINavigationContro
 
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(
     _ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-
     return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }

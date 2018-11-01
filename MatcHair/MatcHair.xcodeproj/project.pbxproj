@@ -27,7 +27,6 @@
 		F139AA272151FB0D00B5B0D4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA262151FB0D00B5B0D4 /* Home.storyboard */; };
 		F139AA292151FB2000B5B0D4 /* Appointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA282151FB2000B5B0D4 /* Appointment.storyboard */; };
 		F139AA2B2151FB2A00B5B0D4 /* Like.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */; };
-		F139AA2D2151FB3900B5B0D4 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2C2151FB3900B5B0D4 /* Message.storyboard */; };
 		F139AA2F2151FB4600B5B0D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */; };
 		F13BAFB42173A9690072378A /* empty_box.json in Resources */ = {isa = PBXBuildFile; fileRef = F13BAFB32173A9680072378A /* empty_box.json */; };
 		F13C31DD21631C9800498C2B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31DC21631C9800498C2B /* DetailViewController.swift */; };
@@ -83,7 +82,6 @@
 		F1D0BBE9216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBE7216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift */; };
 		F1D0BBEA216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D0BBE8216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib */; };
 		F1D0BBEC21610A9400ABAE5D /* ModelSegementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */; };
-		F1D0BBEE2161400000ABAE5D /* ChatroomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D0BBED2161400000ABAE5D /* ChatroomController.swift */; };
 		F1DCA95E217586A500E387C0 /* home_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = F1DCA95D217586A500E387C0 /* home_loading.json */; };
 		F1DCA9602175885E00E387C0 /* no_appointment.json in Resources */ = {isa = PBXBuildFile; fileRef = F1DCA95F2175885D00E387C0 /* no_appointment.json */; };
 		F1DD3F3021535DAC00BBE710 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */; };
@@ -125,7 +123,6 @@
 		F139AA262151FB0D00B5B0D4 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		F139AA282151FB2000B5B0D4 /* Appointment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Appointment.storyboard; sourceTree = "<group>"; };
 		F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Like.storyboard; sourceTree = "<group>"; };
-		F139AA2C2151FB3900B5B0D4 /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F13BAFB32173A9680072378A /* empty_box.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty_box.json; sourceTree = "<group>"; };
 		F13C31DC21631C9800498C2B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -181,7 +178,6 @@
 		F1D0BBE7216108D900ABAE5D /* ModelConfirmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConfirmCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1D0BBE8216108D900ABAE5D /* ModelConfirmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelConfirmCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1D0BBEB21610A9400ABAE5D /* ModelSegementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSegementController.swift; sourceTree = "<group>"; };
-		F1D0BBED2161400000ABAE5D /* ChatroomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomController.swift; sourceTree = "<group>"; };
 		F1DCA95D217586A500E387C0 /* home_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_loading.json; sourceTree = "<group>"; };
 		F1DCA95F2175885D00E387C0 /* no_appointment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_appointment.json; sourceTree = "<group>"; };
 		F1DD3F2F21535DAC00BBE710 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -295,7 +291,6 @@
 				F1C2C3D62153CD2F0065E4EB /* Post.storyboard */,
 				F139AA2A2151FB2A00B5B0D4 /* Like.storyboard */,
 				F139AA2E2151FB4600B5B0D4 /* Profile.storyboard */,
-				F139AA2C2151FB3900B5B0D4 /* Message.storyboard */,
 				F13C31DE21631CBD00498C2B /* Detail.storyboard */,
 			);
 			path = Storyboard;
@@ -307,7 +302,6 @@
 				F164B0882186AC540033B019 /* MessageController.swift */,
 				F164B08A218719960033B019 /* NewMessageController.swift */,
 				F164B0862185DAD30033B019 /* ChatLogController.swift */,
-				F1D0BBED2161400000ABAE5D /* ChatroomController.swift */,
 				F139AA212151F87200B5B0D4 /* TabBarController.swift */,
 				F1C2C3E62154C9660065E4EB /* NavigationController.swift */,
 				F139AA1D2151F5B800B5B0D4 /* LoginViewController.swift */,
@@ -675,7 +669,6 @@
 				F1546C2D21528F6B009AB3ED /* GoogleService-Info.plist in Resources */,
 				F1D0BBE62161087300ABAE5D /* ModelPendingCollectionViewCell.xib in Resources */,
 				F1ECE37021803FF800DC154D /* PhoneTableViewCell.xib in Resources */,
-				F139AA2D2151FB3900B5B0D4 /* Message.storyboard in Resources */,
 				F1ECE36C21803DF200DC154D /* ReservationLocationTableViewCell.xib in Resources */,
 				F15B2CBD2180236500DE4E3E /* CategoryTableViewCell.xib in Resources */,
 				F1DD3F3521536D3D00BBE710 /* PostCollectionViewCell.xib in Resources */,
@@ -780,7 +773,6 @@
 				F1D0BBD6215FCE9300ABAE5D /* LikePostCollectionViewCell.swift in Sources */,
 				F196CEA7216733E1001110E1 /* Appointment.swift in Sources */,
 				F1C2C3DD2153CE3E0065E4EB /* ShowPictureViewController.swift in Sources */,
-				F1D0BBEE2161400000ABAE5D /* ChatroomController.swift in Sources */,
 				F164B0892186AC540033B019 /* MessageController.swift in Sources */,
 				F1DD3F39215388A400BBE710 /* UserManager.swift in Sources */,
 				F1D0BBEC21610A9400ABAE5D /* ModelSegementController.swift in Sources */,

@@ -32,7 +32,6 @@ class HomeViewController: UIViewController {
     var blockedUIDs = [String]()
 
     let fullScreenSize = UIScreen.main.bounds.size
-//    let chatroomController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
 
 //    var messageController: MessageController?
 
@@ -44,7 +43,6 @@ class HomeViewController: UIViewController {
         let messageController = MessageController()
         let navController = NavigationController(rootViewController: messageController)
         present(navController, animated: true, completion: nil)
-//        self.present(chatroomController, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

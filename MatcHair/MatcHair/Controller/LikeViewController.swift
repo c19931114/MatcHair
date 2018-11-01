@@ -26,7 +26,6 @@ class LikeViewController: UIViewController {
     let fullScreenSize = UIScreen.main.bounds.size
     let animationView = LOTAnimationView(name: "empty_box")
     let emptyMessageLabel = UILabel()
-    let chatRoomViewController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
     var selectedTiming: String?
     let transition = CATransition()
 
@@ -35,7 +34,9 @@ class LikeViewController: UIViewController {
     @IBOutlet weak var likePostCollectionView: UICollectionView!
 
     @IBAction private func goToChatRoom(_ sender: Any) {
-        self.present(chatRoomViewController, animated: true, completion: nil)
+        let messageController = MessageController()
+        let navController = NavigationController(rootViewController: messageController)
+        present(navController, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

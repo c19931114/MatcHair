@@ -53,7 +53,7 @@ class MessageController: UITableViewController {
             object: nil)
 
         ref = Database.database().reference()
-//        observeUserMessages()
+//        observeUserMessages() // 移到 viewWillAppear 才能在離開聊天室後在再次更新成已讀狀態
 
     }
 

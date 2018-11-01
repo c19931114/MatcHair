@@ -29,14 +29,15 @@ class ProfileViewController: UIViewController {
     var designerUID: String?
     var designerName: String?
     var designerImageURL: URL?
-    let chatRoomViewController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var emptyPage: UIView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
 
     @IBAction private func goToChatRoom(_ sender: Any) {
-        self.present(chatRoomViewController, animated: true, completion: nil)
+        let messageController = MessageController()
+        let navController = NavigationController(rootViewController: messageController)
+        present(navController, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

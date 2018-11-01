@@ -13,7 +13,6 @@ import BTNavigationDropdownMenu
 class ModelSegementController: UIViewController {
 
     let keychain = KeychainSwift()
-    let chatRoomViewController = UIStoryboard.messageStoryboard().instantiateInitialViewController()!
 
     @IBOutlet weak var pendingView: UIView!
     @IBOutlet weak var confirmView: UIView!
@@ -54,7 +53,9 @@ class ModelSegementController: UIViewController {
         }
     }
     @IBAction private func goToChatRoom(_ sender: Any) {
-        self.present(chatRoomViewController, animated: true, completion: nil)
+        let messageController = MessageController()
+        let navController = NavigationController(rootViewController: messageController)
+        present(navController, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

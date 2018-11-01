@@ -258,11 +258,13 @@ class ChatLogController: UICollectionViewController {
                 let messageData = try self.decoder.decode(Message.self, from: messageJSONData)
 
                 // 這邊要 handle 好 >< 不過改了 user-messages 結構就不用了 ><
-//                if messageData.toID == self.user?.uid
-//                    || messageData.fromID == self.user?.uid {
+//                if messageData.toID == self.user?.uid || messageData.fromID == self.user?.uid {
 
                     self.messages.append(messageData)
                     self.collectionView.reloadData()
+                    //scroll to the last index
+                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
 
 //                }
                 self.handleMessageBeenReadWith(messageID, currentUserUID, chatPartnerUID)

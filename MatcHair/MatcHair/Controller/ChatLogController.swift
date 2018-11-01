@@ -17,7 +17,7 @@ class ChatLogController: UICollectionViewController {
     var ref: DatabaseReference!
     let decoder = JSONDecoder()
     let keychain = KeychainSwift()
-
+    
     var messages = [Message]()
 
     var user: User? {
@@ -56,6 +56,7 @@ class ChatLogController: UICollectionViewController {
     }()
 
     lazy var inputTextField: UITextField = {
+
         let textField = UITextField()
         textField.placeholder = "Enter message..."
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -64,9 +65,9 @@ class ChatLogController: UICollectionViewController {
     }()
 
     lazy var sendButton: UIButton = {
+
         let button = UIButton(type: .system)
-        // sendButton.setTitle("Send", for: .normal)
-        button.setImage(#imageLiteral(resourceName: "btn_send").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.setTitle("👋", for: .normal)
         button.tintColor = #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1)
         //  sendButton.contentMode = .center
         button.layer.masksToBounds = true
@@ -132,25 +133,75 @@ class ChatLogController: UICollectionViewController {
         super.viewDidLoad()
 
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+//        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .white
         collectionView.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
 
+        //collectionView?.keyboardDismissMode = .interactive
+        //尚未處理 inputContainerView 會有黑畫面
+
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(image: #imageLiteral(resourceName: "btn_more_three_dots"), style: .plain, target: self, action: #selector(handleBlockUser))
         setupInputComponents()
 
         ref = Database.database().reference()
         observeMessages()
 
     }
+    
+    @objc func handleBlockUser() {
+        showBlockAlert()
+    }
+    func showBlockAlert() {
+
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        let blockAction = UIAlertAction(title: "封鎖此用戶", style: .destructive, handler: showBlockMessage)
+        alertController.addAction(blockAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func showBlockMessage(alert: UIAlertAction) {
+
+        let alertController = UIAlertController(
+            title: nil,
+            message: "確定封鎖此用戶？",
+            preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        alertController.addAction(
+            UIAlertAction(title: "確定", style: .destructive, handler: uploadBlockedUID))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func uploadBlockedUID(alert: UIAlertAction) {
+
+        guard let currentUserUID = keychain.get("userUID") else { return }
+
+        if let user = user {
+            ref.child("users/\(currentUserUID)/blockedUIDs/\(user.uid)").setValue(true)
+        }
+
+        NotificationCenter.default.post(name: .reFetchAllPosts, object: nil, userInfo: nil)
+        navigationController?.popViewController(animated: true)
+    }
 
     @objc func showUserProfile() {
 
-        dismiss(animated: false, completion: nil)
-        let profileForDesigner = ProfileViewController.profileForDesigner(self.user!.uid)
         let homeNav = UIStoryboard.homeStoryboard().instantiateInitialViewController()
-        print(homeNav)
-        homeNav?.navigationController?.pushViewController(profileForDesigner, animated: true) // 失敗Ｑ
+        dismiss(animated: false, completion: nil)
+
+        let profileForDesigner = ProfileViewController.profileForDesigner(self.user!.uid)
+        homeNav?.navigationController?.pushViewController(profileForDesigner, animated: true) //失敗
+
     }
 
     func setupInputComponents() {
@@ -161,7 +212,7 @@ class ChatLogController: UICollectionViewController {
         inputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         inputContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        inputContainerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        inputContainerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
     }
 
@@ -177,8 +228,19 @@ class ChatLogController: UICollectionViewController {
     }
 
     @objc func handleSendTextMessage() {
+        var text = [String: String]()
+        let textString = inputTextField.text!
+//        print(sendButton)
+//        print(sendButton.titleLabel)
+//        print(sendButton.titleLabel?.text)
+        if textString.trimmingCharacters(in: .whitespaces).isEmpty {
+            print("emptyText")
+            text = ["text": "👋"]
+        } else {
+            text = ["text": inputTextField.text!]
+        }
 
-        let text = ["text": inputTextField.text!]
+//        if sendButton.titleLabel?.text
         sendMessage(with: text)
     }
 
@@ -213,6 +275,8 @@ class ChatLogController: UICollectionViewController {
                 return
             }
             self.inputTextField.text = nil
+            self.sendButton.setTitle("👋", for: .normal)
+            self.sendButton.setImage(nil, for: .normal)
 
             //true:已讀, false:未讀
             self.ref.child("user-messages").child(fromID).child(toID).updateChildValues([messageID: false])
@@ -223,20 +287,12 @@ class ChatLogController: UICollectionViewController {
     func observeMessages() {
 
         guard let currentUserUID = keychain.get("userUID"),
-            let chatPartnerUID = user?.uid else {
-            collectionView.reloadData()
-            return
-        }
+            let chatPartnerUID = user?.uid else { return }
 
-        // 不用 ref 因為還來不及初始化
-        Database.database().reference()
-            .child("user-messages")
-            .child(currentUserUID)
-            .child(chatPartnerUID)
+        ref.child("user-messages").child(currentUserUID).child(chatPartnerUID)
             .observe(.childAdded) { (snapshot) in
 
             let messageID = snapshot.key
-
             self.fetchMessagesWith(messageID, currentUserUID, chatPartnerUID)
         }
 
@@ -246,13 +302,10 @@ class ChatLogController: UICollectionViewController {
 
         ref.child("messages").child(messageID).observeSingleEvent(of: .value) { (snapshot) in
 
-            guard let value = snapshot.value as? NSDictionary else {
+            guard let value = snapshot.value as? NSDictionary else { return }
 
-                self.collectionView.reloadData()
-                return
-            }
-
-            guard let messageJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+            guard let messageJSONData =
+                try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
                 let messageData = try self.decoder.decode(Message.self, from: messageJSONData)
@@ -265,7 +318,6 @@ class ChatLogController: UICollectionViewController {
                     //scroll to the last index
                     let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
                     self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-
 //                }
                 self.handleMessageBeenReadWith(messageID, currentUserUID, chatPartnerUID)
 
@@ -398,6 +450,28 @@ extension ChatLogController: UITextFieldDelegate {
         handleSendTextMessage()
         return true
     }
+
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String) -> Bool {
+
+        if let text = textField.text, let textRange = Range(range, in: text) {
+
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+
+            if updatedText.trimmingCharacters(in: .whitespaces).isEmpty {
+                sendButton.setTitle("👋", for: .normal)
+                sendButton.setImage(nil, for: .normal)
+            } else {
+                sendButton.setTitle("", for: .normal)
+                sendButton.setImage(#imageLiteral(resourceName: "btn_send").withRenderingMode(.alwaysTemplate), for: .normal)
+            }
+        }
+
+        return true
+    }
+    
 }
 
 extension ChatLogController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

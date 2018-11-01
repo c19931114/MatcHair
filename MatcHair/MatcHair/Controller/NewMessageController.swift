@@ -9,14 +9,17 @@
 import UIKit
 import Firebase
 import Kingfisher
+import KeychainSwift
 
 class NewMessageController: UITableViewController {
 
     let cellId = "cellId"
     var ref: DatabaseReference!
     let decoder = JSONDecoder()
+    var keychain = KeychainSwift()
     var users = [User]()
     var messages = [Message]()
+    var blockedUIDs = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +36,31 @@ class NewMessageController: UITableViewController {
 
         ref = Database.database().reference()
 
-        fetchUser()
+//        fetchUser()
+        loadBlockedUser()
 
     }
 
-    func fetchUser() {
+    func loadBlockedUser() {
+
+        guard let currentUserUID = keychain.get("userUID") else { return }
+
+        ref.child("users/\(currentUserUID)/blockedUIDs").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else {
+                self.blockedUIDs = []
+                self.fetchUser(with: currentUserUID)
+                return
+            }
+
+            guard let blockedUIDs = value.allKeys as? [String] else { return }
+            self.blockedUIDs = blockedUIDs
+
+            self.fetchUser(with: currentUserUID)
+        }
+    }
+
+    func fetchUser(with currentUserUID: String) {
 
         ref.child("users").observe(.childAdded) { (snapshot) in
 
@@ -52,7 +75,18 @@ class NewMessageController: UITableViewController {
             do {
 
                 let userData = try self.decoder.decode(User.self, from: userJSONData)
-                self.users.append(userData)
+
+                var flag = true // 沒有 flag 會一直重複新增
+                for blockedUID in self.blockedUIDs {
+                    if userData.uid == blockedUID || userData.uid == currentUserUID {
+                        flag = false
+                    }
+                }
+
+                if flag {
+                    self.users.append(userData)
+                }
+
                 self.tableView.reloadData()
 
             } catch {

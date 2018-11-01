@@ -30,7 +30,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         setCellShadow()
-//        chatButton.isHidden = true
+        chatButton.isHidden = true
 
     }
 

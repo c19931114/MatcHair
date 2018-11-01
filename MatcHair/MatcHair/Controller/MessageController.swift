@@ -25,6 +25,8 @@ class MessageController: UITableViewController {
     var chatPartner: String?
     var chatPartnerUID: String?
 
+    var blockedUIDs = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,12 +48,6 @@ class MessageController: UITableViewController {
 
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
 
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(observeUserMessages),
-            name: .reFetchMessages,
-            object: nil)
-
         ref = Database.database().reference()
 //        observeUserMessages() // 移到 viewWillAppear 才能在離開聊天室後在再次更新成已讀狀態
 
@@ -60,7 +56,27 @@ class MessageController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        observeUserMessages()
+//        observeUserMessages()
+        loadBlockedUser()
+    }
+
+    func loadBlockedUser() {
+
+        guard let currentUserUID = keychain.get("userUID") else { return }
+
+        ref.child("users/\(currentUserUID)/blockedUIDs").observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let value = snapshot.value as? NSDictionary else {
+                self.blockedUIDs = []
+                self.observeUserMessages()
+                return
+            }
+
+            guard let blockedUIDs = value.allKeys as? [String] else { return }
+            self.blockedUIDs = blockedUIDs
+
+            self.observeUserMessages()
+        }
     }
 
      @objc func observeUserMessages() {
@@ -78,17 +94,22 @@ class MessageController: UITableViewController {
 
             let chatPartnerUID = snapshot.key
 
-            self.ref.child("user-messages").child(currentUserUID).child(chatPartnerUID)
-                .observe(.childAdded, with: { (snapshot) in
+            var flag = true // 沒有 flag 會一直重複新增
+            for blockedUID in self.blockedUIDs where chatPartnerUID == blockedUID {
+                flag = false
+            }
 
-                    //true:已讀, false:未讀
-                    let messageID = snapshot.key
-                    guard let isRead = snapshot.value as? Bool else { return }
+            if flag {
+                self.ref.child("user-messages").child(currentUserUID).child(chatPartnerUID)
+                    .observe(.childAdded, with: { (snapshot) in
 
-                    self.fetchMessagesWith(messageID, currentUserUID, isRead)
+                        //true:已讀, false:未讀
+                        let messageID = snapshot.key
+                        guard let isRead = snapshot.value as? Bool else { return }
 
-            })
-
+                        self.fetchMessagesWith(messageID, currentUserUID, isRead)
+                })
+            }
         }
     }
 

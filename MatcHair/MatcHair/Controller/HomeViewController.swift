@@ -40,6 +40,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var chatButton: UIButton!
     @IBAction private func goToChatRoom(_ sender: Any) {
 
+        guard keychain.get("userUID") != nil else {
+            showVisitorAlert()
+            return
+        }
         let messageController = MessageController()
         let navController = NavigationController(rootViewController: messageController)
         present(navController, animated: true, completion: nil)

@@ -35,6 +35,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileCollectionView: UICollectionView!
 
     @IBAction private func goToChatRoom(_ sender: Any) {
+        guard keychain.get("userUID") != nil else {
+            showVisitorAlert()
+            return
+        }
         let messageController = MessageController()
         let navController = NavigationController(rootViewController: messageController)
         present(navController, animated: true, completion: nil)

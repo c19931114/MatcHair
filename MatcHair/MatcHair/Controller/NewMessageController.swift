@@ -76,15 +76,19 @@ class NewMessageController: UITableViewController {
 
                 let userData = try self.decoder.decode(User.self, from: userJSONData)
 
-                var flag = true // 沒有 flag 會一直重複新增
-                for blockedUID in self.blockedUIDs {
-                    if userData.uid == blockedUID || userData.uid == currentUserUID {
-                        flag = false
-                    }
-                }
+                if userData.uid != currentUserUID {
 
-                if flag {
-                    self.users.append(userData)
+                    var flag = true // 沒有 flag 會一直重複新增
+                    for blockedUID in self.blockedUIDs {
+                        if userData.uid == blockedUID {
+                            flag = false
+                        }
+                    }
+
+                    if flag {
+
+                        self.users.append(userData)
+                    }
                 }
 
                 self.tableView.reloadData()

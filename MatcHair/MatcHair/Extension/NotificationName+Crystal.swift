@@ -22,4 +22,6 @@ extension Notification.Name {
     static let reFetchDesignerConfirmAppointments = Notification.Name("reFetchDesignerConfirmAppointments")
     static let reFetchDesignerCompleteAppointments = Notification.Name("reFetchCompleteConfirmAppointments")
 
+    static let reFetchMessages = Notification.Name("reFetchMessages")
+
 }

@@ -42,9 +42,18 @@ class MessageController: UITableViewController {
             target: self,
             action: #selector(handleNewMessage))
 
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(observeUserMessages),
+            name: .reFetchMessages,
+            object: nil)
+
         ref = Database.database().reference()
+//        observeUserMessages()
 
     }
 
@@ -54,7 +63,7 @@ class MessageController: UITableViewController {
         observeUserMessages()
     }
 
-    func observeUserMessages() {
+     @objc func observeUserMessages() {
 
         messageInfos.removeAll()
         messageInfosDictionary.removeAll()
@@ -210,7 +219,6 @@ class MessageController: UITableViewController {
 
         cell.messageInfo = messageInfo
 
-
 //        cell.profileImageView.kf.setImage(with: URL(string: messageInfo.user.imageURL))
 //        cell.textLabel?.text = messageInfo.user.name
 //        cell.detailTextLabel?.text = messageInfo.message.text
@@ -224,5 +232,4 @@ class MessageController: UITableViewController {
 
         showChatLogControllerForUser(user: messageInfo.user)
     }
-
 }

@@ -72,6 +72,12 @@ class HomeViewController: UIViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+
     private func setRefreshControl() {
 
         refreshControl = UIRefreshControl()
@@ -374,8 +380,14 @@ extension HomeViewController: UICollectionViewDataSource {
 
     @objc func chatButtonTapped() {
 
-//        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-////        navigationController?.pushViewController(chatLogController, animated: true)
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(chatLogController, animated: true)
+//        tabBarController?.tabBar.isHidden = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "",
+            style: .plain,
+            target: self,
+            action: #selector(showTabBar))
 //        present(chatLogController, animated: true, completion: nil)
 
 //        let messageController = MessageController()
@@ -383,6 +395,10 @@ extension HomeViewController: UICollectionViewDataSource {
 //        present(navController, animated: true, completion: nil)
 //        messageController.showChatLogControllerForUser()
 
+    }
+
+    @objc func showTabBar() {
+        tabBarController?.tabBar.isHidden = false
     }
 
     func showVisitorAlert() {

@@ -22,10 +22,38 @@ class ChatLogController: UICollectionViewController {
 
     var user: User? {
         didSet {
-            navigationItem.title = user?.name
+
+            if let user = user {
+//                nameLabel.text = "\(user.name) >"
+                nameLabel.text = "\(user.name)"
+                navigationItem.titleView = titleView
+//                titleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showUserProfile)))
+            }
 //            observeMessages() // 移到 viewDidLoad 不然會一直進來跑, 因為user一直丟進來
         }
     }
+
+    lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    lazy var titleView: UIView = {
+
+        let containerView = UIView()
+        containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+
+        containerView.addSubview(nameLabel)
+        //x,y,w,h
+        nameLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
+        nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+
+        return containerView
+    }()
 
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
@@ -37,10 +65,10 @@ class ChatLogController: UICollectionViewController {
 
     lazy var sendButton: UIButton = {
         let button = UIButton(type: .system)
-        //        sendButton.setTitle("Send", for: .normal)
+        // sendButton.setTitle("Send", for: .normal)
         button.setImage(#imageLiteral(resourceName: "btn_send").withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = #colorLiteral(red: 0.8645840287, green: 0.5463376045, blue: 0.5011332035, alpha: 1)
-        //        sendButton.contentMode = .center
+        //  sendButton.contentMode = .center
         button.layer.masksToBounds = true
         button.contentMode = .scaleAspectFill
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -103,8 +131,6 @@ class ChatLogController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "asd", style: .plain, target: nil, action: nil)
-
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         collectionView.alwaysBounceVertical = true
@@ -115,6 +141,17 @@ class ChatLogController: UICollectionViewController {
 
         ref = Database.database().reference()
         observeMessages()
+
+    }
+
+    @objc func showUserProfile() {
+
+        dismiss(animated: false, completion: nil)
+//
+        let profileForDesigner = ProfileViewController.profileForDesigner(self.user!.uid)
+        let homeNav = UIStoryboard.homeStoryboard().instantiateInitialViewController()
+        print(homeNav)
+        homeNav?.navigationController?.pushViewController(profileForDesigner, animated: true) // 失敗Ｑ
 
     }
 
@@ -277,8 +314,7 @@ class ChatLogController: UICollectionViewController {
     //true:已讀, false:未讀
     private func handleMessageBeenReadWith(_ messageID: String, _ currentUserUID: String, _ chatPartnerUID: String) {
 
-        ref.child("user-messages").child(currentUserUID).child(chatPartnerUID)
-            .updateChildValues([messageID: true])
+        ref.child("user-messages").child(currentUserUID).child(chatPartnerUID).updateChildValues([messageID: true])
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

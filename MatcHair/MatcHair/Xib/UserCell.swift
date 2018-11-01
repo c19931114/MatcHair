@@ -30,8 +30,11 @@ class UserCell: UITableViewCell {
 
                 if messageInfo.isRead {
                     detailTextLabel?.textColor = .darkGray
+
                 } else {
+                    textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
                     detailTextLabel?.textColor = .black
+                    detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
                 }
 
             }
@@ -69,26 +72,28 @@ class UserCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+//        textLabel?.font = textLabel?.font.withSize(18)
+//        detailTextLabel?.font = detailTextLabel?.font.withSize(14)
+
         textLabel?.frame = CGRect(
             x: 64,
             y: textLabel!.frame.origin.y - 1,
-            width: textLabel!.frame.width + 10,
+            width: textLabel!.frame.width,
             height: textLabel!.frame.height)
-
-        textLabel?.font = textLabel?.font.withSize(18)
 
         detailTextLabel?.frame = CGRect(
             x: 64,
             y: detailTextLabel!.frame.origin.y + 2,
-            width: detailTextLabel!.frame.width + 10,
+            width: detailTextLabel!.frame.width,
             height: detailTextLabel!.frame.height)
-
-        detailTextLabel?.font = detailTextLabel?.font.withSize(14)
 
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+
+        textLabel?.font = textLabel?.font.withSize(18)
+        detailTextLabel?.font = detailTextLabel?.font.withSize(14)
 
         ref = Database.database().reference()
 

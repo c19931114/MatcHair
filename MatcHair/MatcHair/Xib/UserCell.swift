@@ -29,6 +29,7 @@ class UserCell: UITableViewCell {
                 }
 
                 if messageInfo.isRead {
+                    textLabel?.font = UIFont.systemFont(ofSize: 18.0)
                     detailTextLabel?.textColor = .darkGray
 
                 } else {
@@ -72,6 +73,7 @@ class UserCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        // 放這邊還讀不到 要放 init
 //        textLabel?.font = textLabel?.font.withSize(18)
 //        detailTextLabel?.font = detailTextLabel?.font.withSize(14)
 

@@ -90,4 +90,17 @@ class ModelSegementController: UIViewController {
         emptyPage.isHidden = true
     }
 
+    func showVisitorAlert() {
+
+        let alertController = UIAlertController(
+            title: "Oppps!!",
+            message: "\n請先登入才能使用完整功能喔",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
 }

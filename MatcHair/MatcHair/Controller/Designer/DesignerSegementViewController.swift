@@ -69,8 +69,6 @@ extension DesignerSegementViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        chatButton.isHidden = true
-
         guard keychain.get("userUID") != nil else {
             emptyPage.isHidden = false
             return
@@ -78,6 +76,19 @@ extension DesignerSegementViewController {
 
         emptyPage.isHidden = true
 
+    }
+
+    func showVisitorAlert() {
+
+        let alertController = UIAlertController(
+            title: "Oppps!!",
+            message: "\n請先登入才能使用完整功能喔",
+            preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }

@@ -412,7 +412,7 @@ extension ChatLogController: UICollectionViewDelegateFlowLayout {
 
         let message = messages[indexPath.item]
         if let text = message.text {
-            height = estimateFrameForText(text: text).height + 16
+            height = estimateFrameForText(text: text).height + 20
         } else if let imageWidth = message.imageWidth, let imageHeight = message.imageHeight {
             //fall in here if it is an image
 

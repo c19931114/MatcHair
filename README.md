@@ -18,7 +18,7 @@
 - Developed in good coding style with SwiftLint to make code more readable.
 - Tracked app crashes by Fabric and Crashlytics.
 ### ++Parsing Data From Firebase++
-**Take Chat Log As Example**
+**Take Chat Log For Example**
 
 - Create message model with Codable.
 
@@ -68,7 +68,7 @@ do {
 }
 ```
 ### ++MVC++
-**Take Message Page As Example**
+**Take Message Page For Example**
 - Model
 ``` Swift
 struct MessageInfo {

@@ -1,6 +1,6 @@
 
 # MatcHair
-<a href="https://itunes.apple.com/us/app/matchair/id1439561086?l=zh&ls=1&mt=8"><img src="https://i.imgur.com/JBz4hfK.png" width="100"></a> 
+<a href="https://itunes.apple.com/us/app/matchair/id1439561086?l=zh&ls=1&mt=8"><img src="https://i.imgur.com/JBz4hfK.png" width="100"></a> **<-- Click to Download in App Store**
 1. MatcHair is a C2C sharing platform for hair models and hair designers.
 
 2. MatcHair allows designers to give their works a good exposure, and have more opportunities to improve skills by practicing.

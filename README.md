@@ -117,9 +117,11 @@ var messageInfo: MessageInfo? {
 
     didSet {
     
-        profileImageView.kf.setImage(with: URL(string: messageInfo.user.imageURL))
-        textLabel?.text = messageInfo.user.name
-        detailTextLabel?.text = messageInfo.message.text     
+        if let messageInfo = messageInfo {
+            profileImageView.kf.setImage(with: URL(string: messageInfo.user.imageURL))
+            textLabel?.text = messageInfo.user.name
+            detailTextLabel?.text = messageInfo.message.text  
+        }
     }  
 }
 

@@ -17,7 +17,7 @@
 - Use Firebase as back-end database.
 - Developed in good coding style with SwiftLint to make code more readable.
 - Tracked app crashes by Fabric and Crashlytics.
-### ++Parsing Data From Firebase++
+### Parsing Data From Firebase
 **Take Chat Log For Example**
 
 - Create message model with Codable.
@@ -67,7 +67,7 @@ do {
     print(error)
 }
 ```
-### ++MVC++
+### MVC
 **Take Message Page For Example**
 - Model
 ``` Swift

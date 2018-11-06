@@ -1,23 +1,25 @@
-
 # MatcHair
+
 <a href="https://itunes.apple.com/us/app/matchair/id1439561086?l=zh&ls=1&mt=8"><img src="https://i.imgur.com/JBz4hfK.png" width="100"></a> **<-- Click to Download in App Store**
+
 1. MatcHair is a C2C sharing platform for hair models and hair designers.
 
 2. MatcHair allows designers to give their works a good exposure, and have more opportunities to improve skills by practicing.
 3. Matching by MatcHair, models have more and better choices of hair style, and spend less money changing different kinds of hairstyle.
 
-## Screenshot
-![](https://i.imgur.com/yJqt5mU.png) ![](https://i.imgur.com/YqmATw1.png) 
-![](https://i.imgur.com/aTQoaDz.png) ![](https://i.imgur.com/d7Z8YUh.png) 
-![](https://i.imgur.com/wZhZMnv.png) ![](https://i.imgur.com/WPR5gzt.png)
+## Screenshots
+![](https://i.imgur.com/7wp1iuF.png)
+
 
 ## Skills
 
 - User can login with Facebook account.
 - Use Firebase as back-end database.
+- Implement MVC design pattern in some case.
 - Developed in good coding style with SwiftLint to make code more readable.
 - Tracked app crashes by Fabric and Crashlytics.
-### Parsing Data From Firebase
+
+### ++Parsing Data From Firebase++
 **Take Chat Log For Example**
 
 - Create message model with Codable.
@@ -67,8 +69,8 @@ do {
     print(error)
 }
 ```
-### MVC
-**Take Message Page For Example**
+### ++MVC++
+#### Take Message Page For Example 
 - Model
 ``` Swift
 struct MessageInfo {
@@ -102,7 +104,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         // throw data to UserCell
         cell.messageInfo = messageInfo
         
-        // coupling below
+        // accur couple below
         // cell.profileImageView.kf.setImage(with: URL(string: messageInfo.user.imageURL))
         // cell.textLabel?.text = messageInfo.user.name
         // cell.detailTextLabel?.text = messageInfo.message.text
@@ -126,6 +128,53 @@ var messageInfo: MessageInfo? {
 }
 
 ```
+
+
+#### Take Post Page For Example
+![](https://i.imgur.com/rRCpp7n.png)
+
+- Add Protocol
+``` Swift
+protocol CategoryProtocol: AnyObject {
+    // throw data to PostViewController
+    func sendCategory(data: [String: Bool])
+}
+```
+- Create a Delegate Property
+``` Swift
+// in CategoryTableViewCell
+weak var categoryDelegate: CategoryProtocol?
+```
+- Conform to Protocol
+``` Swift
+// in PostViewController
+PostViewController: UIViewController, CategoryProtocol {
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = recruitTableView.dequeueReusableCell(
+                withIdentifier: String(describing: CategoryTableViewCell.self),
+                for: indexPath)
+
+        guard let categoryCell = cell as? CategoryTableViewCell else {
+                return cell
+        }
+        
+        // add the delegate method call
+        categoryCell.categoryDelegate = self
+
+        return categoryCell
+    }
+    
+    // conform the protocol
+    func sendCategory(data: [String: Bool]) {
+        // add any implementation inside it
+    }
+}
+```
+
+
+
 ## Library
 
 - SwiftLint

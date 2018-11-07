@@ -15,7 +15,7 @@ import Lottie
 import KeychainSwift
 
 class HomeViewController: UIViewController {
-    
+
     let decoder = JSONDecoder()
     lazy var storageRef = Storage.storage().reference()
     var ref: DatabaseReference!

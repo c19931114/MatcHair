@@ -185,7 +185,8 @@ class MessageController: UITableViewController {
             timeInterval: 0.1,
             target: self,
             selector: #selector(self.handleReloadTable),
-            userInfo: nil, repeats: false)
+            userInfo: nil,
+            repeats: false)
     }
 
     @objc func handleReloadTable() {

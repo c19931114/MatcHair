@@ -130,6 +130,7 @@
 		F13C31E62163ABF500498C2B /* PickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDialog.swift; sourceTree = "<group>"; };
 		F145D3FB21773CD3006801D6 /* EmptyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPageViewController.swift; sourceTree = "<group>"; };
 		F14794A1215B57AD005E864C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F147FCB72192B5EC00D1D1EE /* MatcHair.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MatcHair.entitlements; sourceTree = "<group>"; };
 		F1546C1621522DD6009AB3ED /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		F1546C1C215231A4009AB3ED /* MatcHairError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatcHairError.swift; sourceTree = "<group>"; };
 		F1546C1E21523244009AB3ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -262,6 +263,7 @@
 		F139AA042151EF3700B5B0D4 /* MatcHair */ = {
 			isa = PBXGroup;
 			children = (
+				F147FCB72192B5EC00D1D1EE /* MatcHair.entitlements */,
 				F1DCA95F2175885D00E387C0 /* no_appointment.json */,
 				F1DCA95D217586A500E387C0 /* home_loading.json */,
 				F13BAFB32173A9680072378A /* empty_box.json */,
@@ -269,7 +271,7 @@
 				F1546C1221522C57009AB3ED /* Model */,
 				F139AA252151F9B500B5B0D4 /* Extension */,
 				F139AA1C2151F59B00B5B0D4 /* Controller */,
-				F1DD3F3121536D0F00BBE710 /* Xib */,
+				F1DD3F3121536D0F00BBE710 /* View */,
 				F139AA172151EF4600B5B0D4 /* Storyboard */,
 				F139AA052151EF3700B5B0D4 /* AppDelegate.swift */,
 				F139AA072151EF3700B5B0D4 /* ViewController.swift */,
@@ -570,7 +572,7 @@
 			path = ModelPendingCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		F1DD3F3121536D0F00BBE710 /* Xib */ = {
+		F1DD3F3121536D0F00BBE710 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				F164B08C218734710033B019 /* UserCell.swift */,
@@ -582,7 +584,7 @@
 				F1A1A855215CB0290038F0CF /* PostCollectionViewCell */,
 				F1D0BBD8215FCEA000ABAE5D /* LikePostCollectionViewCell */,
 			);
-			path = Xib;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -620,6 +622,11 @@
 				TargetAttributes = {
 					F139AA012151EF3700B5B0D4 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -882,7 +889,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -969,7 +976,9 @@
 			baseConfigurationReference = B95A55F15F9234D82EDC18BB /* Pods-MatcHair.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MatcHair/MatcHair.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = J2AQB8YCYK;
 				INFOPLIST_FILE = MatcHair/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -989,6 +998,7 @@
 			baseConfigurationReference = E2AED2B853FE316240AEACF8 /* Pods-MatcHair.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MatcHair/MatcHair.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J2AQB8YCYK;
 				INFOPLIST_FILE = MatcHair/Info.plist;

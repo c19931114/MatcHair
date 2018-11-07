@@ -119,7 +119,7 @@ class NewMessageController: UITableViewController {
 
         let user = users[indexPath.row]
         cell.textLabel?.text = user.name
-        cell.detailTextLabel?.text = user.name
+//        cell.detailTextLabel?.text = user.name
         cell.profileImageView.kf.setImage(with: URL(string: user.imageURL))
 
         return cell

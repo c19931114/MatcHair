@@ -49,6 +49,18 @@ class ShowPictureViewController: UIViewController {
         pictureView.image = picture
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+        navigationItem.backBarButtonItem?.title = ""
+        //        navigationItem.hidesBackButton = true
+
+    }
+
+    override func viewWillLayoutSubviews() {
+        //
+    }
 
     override func viewDidLayoutSubviews() {
 //        setGradientView()
@@ -57,14 +69,6 @@ class ShowPictureViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         setLayout()
-
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-        navigationItem.backBarButtonItem?.title = ""
-//        navigationItem.hidesBackButton = true
 
     }
     

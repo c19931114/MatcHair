@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Firebase
 
 struct MessageInfo {
     let message: Message

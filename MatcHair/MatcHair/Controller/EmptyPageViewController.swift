@@ -102,20 +102,16 @@ class EmptyPageViewController: UIViewController {
 
                                 guard let uid = Auth.auth().currentUser?.uid else {return }
                                 self.keychain.set(uid, forKey: "userUID")
-                                //                                self.userDefaults.set(uid, forKey: "userUID")
 
                                 guard let userName
                                     = Auth.auth().currentUser?.displayName else { return }
-                                //                                self.userDefaults.set(userName, forKey: "userName")
 
                                 guard let photoURLString
                                     = Auth.auth().currentUser?.photoURL?.absoluteString else { return }
                                 let largePhotoURLString = photoURLString + "?type=large"
                                 let largePhotoURL = URL(string: largePhotoURLString)!
 
-                                //                                self.userDefaults.set(largePhotoURL, forKey: "userImageURL")
-
-                                //                                self.getUserDetail(with: uid, userName)
+                                //self.getUserDetail(with: uid, userName)
 
                                 self.uploadUserImageToStorage(with: uid, userName, largePhotoURL)
 
@@ -151,8 +147,7 @@ class EmptyPageViewController: UIViewController {
 
         let fileName: String = "\(uid)"
 
-        storageRef
-            .child(fileName)
+        storageRef.child("user-images").child(fileName)
             .putData(uploadData, metadata: metadata) { (metadata, error) in
 
                 guard metadata != nil else {
@@ -161,27 +156,26 @@ class EmptyPageViewController: UIViewController {
                     return
                 }
 
-                //                self.storageRef.child(fileName).downloadURL(completion: { (url, error) in
-                //
-                //                    guard let userImageURL = url else {
-                //                        return
-                //                    }
-                //
-                //                    self.uploadUserInfoToDatabase(with: uid, userName)
-                //
-                //                })
+                self.storageRef.child("user-images").child(fileName)
+                    .downloadURL(completion: { (url, error) in
 
-                self.uploadUserInfoToDatabase(with: uid, userName)
+                        guard let userImageURL = url else {
+                            print(error as Any)
+                            return
+                        }
 
+                        self.uploadUserInfoToDatabaseWith(uid, userName, userImageURL)
+                    })
         }
-
     }
 
-    func uploadUserInfoToDatabase(with uid: String, _ userName: String) {
+    func uploadUserInfoToDatabaseWith(_ uid: String, _ userName: String, _ userImage: URL) {
 
         ref.child("users/\(uid)").setValue(
             [
-                "name": userName
+                "name": userName,
+                "imageURL": userImage.absoluteString,
+                "uid": uid
             ]
         )
 

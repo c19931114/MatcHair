@@ -11,6 +11,8 @@ import UIKit
 class ChatMessageCell: UICollectionViewCell {
     // UItableViewCell 才有預設的 textLabel, 所以這邊全部要自己新增
 
+    var chatLogController: ChatLogController?
+
     var bubbleWidthAnchor: NSLayoutConstraint?
     var bubbleViewRightAnchor: NSLayoutConstraint?
     var bubbleViewLeftAnchor: NSLayoutConstraint?
@@ -55,7 +57,7 @@ class ChatMessageCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
 //        imageView.backgroundColor = .red
         imageView.isUserInteractionEnabled = true
-//        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
 
         return imageView
     }()
@@ -100,6 +102,14 @@ class ChatMessageCell: UICollectionViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc func handleZoomTap(tapGesture: UITapGestureRecognizer) {
+        
+        if let imageView = tapGesture.view as? UIImageView {
+            //PRO Tip: don't perform a lot of custom logic inside of a view class
+            self.chatLogController?.performZoomInForStartingImageView(imageView)
+        }
     }
 
 }

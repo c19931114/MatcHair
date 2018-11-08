@@ -25,7 +25,8 @@ class UserCell: UITableViewCell {
                 if messageInfo.message.imageURL == nil {
                     detailTextLabel?.text = messageInfo.message.text
                 } else {
-                    detailTextLabel?.text = "\(messageInfo.user.name) 傳送了一張圖片"
+//                    detailTextLabel?.text = "\(messageInfo.user.name) 傳送了一張圖片"
+                    detailTextLabel?.text = "傳送了一張圖片"
                 }
 
                 if messageInfo.isRead {

@@ -16,6 +16,7 @@ import KeychainSwift
 class ProfileViewController: UIViewController {
 
     let decoder = JSONDecoder()
+//    let encoder = JSONEncoder()
     let keychain = KeychainSwift()
     let fullScreenSize = UIScreen.main.bounds.size
     var ref: DatabaseReference!
@@ -30,18 +31,47 @@ class ProfileViewController: UIViewController {
     var designerName: String?
     var designerImageURL: URL?
 
+//    var designer: User?
+
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var emptyPage: UIView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
 
     @IBAction private func goToChatRoom(_ sender: Any) {
-        guard keychain.get("userUID") != nil else {
+
+        guard let currentUserUID = keychain.get("userUID") else {
             showVisitorAlert()
             return
         }
-        let messageController = MessageController()
-        let navController = NavigationController(rootViewController: messageController)
-        present(navController, animated: true, completion: nil)
+
+        if let designerUID = designerUID {
+
+            if designerUID != currentUserUID {
+
+                print("asdfghjkl")
+                showChatLogControllerForUser(user: User(name: designerName!, email: nil, imageURL: designerImageURL!.absoluteString, uid: designerUID, blockedUIDs: nil ))
+                self.tabBarController?.tabBar.isHidden = true
+
+            } else {
+                let messageController = MessageController()
+                let navController = NavigationController(rootViewController: messageController)
+                present(navController, animated: true, completion: nil)
+            }
+
+        } else {
+
+            let messageController = MessageController()
+            let navController = NavigationController(rootViewController: messageController)
+            present(navController, animated: true, completion: nil)
+        }
+
+    }
+
+    func showChatLogControllerForUser(user: User) {
+
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.user = user
+        navigationController?.pushViewController(chatLogController, animated: true)
     }
 
     override func viewDidLoad() {
@@ -64,8 +94,12 @@ class ProfileViewController: UIViewController {
 
             emptyPage.isHidden = true
             
-            getUserName(with: designerUID)
+            getUserInfo(with: designerUID)
             loadDesignerPosts(with: designerUID)
+
+            if designerUID != keychain.get("userUID") {
+                chatButton.setImage(#imageLiteral(resourceName: "btn_send").withRenderingMode(.alwaysTemplate), for: .normal)
+            }
 
         } else {
 
@@ -76,7 +110,7 @@ class ProfileViewController: UIViewController {
 
             emptyPage.isHidden = true
 
-            getUserName(with: currentUserUID)
+            getUserInfo(with: currentUserUID)
             loadDesignerPosts(with: currentUserUID)
 
         }
@@ -148,12 +182,23 @@ class ProfileViewController: UIViewController {
 
     }
 
-    func getUserName(with uid: String) {
+    func getUserInfo(with uid: String) {
 
         ref.child("users/\(uid)/name").observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? String else { return }
             self.designerName = value
             self.getUserImage(with: uid)
+
+//            guard let userJSONData = try? JSONSerialization.data(withJSONObject: value) else { return }
+//
+//            do {
+//
+//                let userData = try self.decoder.decode(User.self, from: userJSONData)
+//
+//                self.designer = User(
+//            } catch {
+//                print(error)
+//            }
 
         }
     }

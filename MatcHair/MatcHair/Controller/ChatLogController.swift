@@ -120,7 +120,7 @@ class ChatLogController: UICollectionViewController {
         inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
 
         let separatorLineView = UIView()
-        separatorLineView.backgroundColor = #colorLiteral(red: 0.9374653697, green: 0.7858970761, blue: 0.7262797952, alpha: 1) //UIColor.lightGray
+        separatorLineView.backgroundColor = #colorLiteral(red: 0.9374653697, green: 0.7858970761, blue: 0.7262797952, alpha: 1)
         separatorLineView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(separatorLineView)
         //x,y,w,h
@@ -142,8 +142,7 @@ class ChatLogController: UICollectionViewController {
         collectionView.backgroundColor = .white
         collectionView.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
 
-        //collectionView?.keyboardDismissMode = .interactive
-        //尚未處理 inputContainerView 會有黑畫面
+        //collectionView?.keyboardDismissMode = .interactive //尚未處理 inputContainerView 會有黑畫面
 
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(image: #imageLiteral(resourceName: "btn_more_three_dots"), style: .plain, target: self, action: #selector(handleBlockUser))
@@ -152,6 +151,11 @@ class ChatLogController: UICollectionViewController {
         ref = Database.database().reference()
         observeMessages()
 
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     @objc func handleBlockUser() {
@@ -232,11 +236,10 @@ class ChatLogController: UICollectionViewController {
     }
 
     @objc func handleSendTextMessage() {
+
         var text = [String: String]()
         let textString = inputTextField.text!
-//        print(sendButton)
-//        print(sendButton.titleLabel)
-//        print(sendButton.titleLabel?.text)
+
         if textString.trimmingCharacters(in: .whitespaces).isEmpty {
             print("emptyText")
             text = ["text": "👋"]
@@ -244,7 +247,6 @@ class ChatLogController: UICollectionViewController {
             text = ["text": inputTextField.text!]
         }
 
-//        if sendButton.titleLabel?.text
         sendMessage(with: text)
     }
 
@@ -488,7 +490,9 @@ extension ChatLogController: UIImagePickerControllerDelegate, UINavigationContro
         dismiss(animated: true, completion: nil)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
@@ -578,7 +582,7 @@ extension ChatLogController: UIImagePickerControllerDelegate, UINavigationContro
 
                     zoomingImageView.center = keyWindow.center
 
-            }, completion: nil)
+                }, completion: nil)
 
         }
     }
@@ -602,11 +606,11 @@ extension ChatLogController: UIImagePickerControllerDelegate, UINavigationContro
                     self.blackBackgroundView?.alpha = 0
                     self.inputContainerView.alpha = 1
 
-            }, completion: { (completed) in
+                }, completion: { (completed) in
                 
                     zoomOutImageView.removeFromSuperview()
                     self.startingImageView?.isHidden = false
-            })
+                })
         }
     }
 }

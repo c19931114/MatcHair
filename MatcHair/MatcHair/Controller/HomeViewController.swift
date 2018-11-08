@@ -384,18 +384,12 @@ extension HomeViewController: UICollectionViewDataSource {
 
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         navigationController?.pushViewController(chatLogController, animated: true)
-//        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "",
             style: .plain,
             target: self,
             action: #selector(showTabBar))
-//        present(chatLogController, animated: true, completion: nil)
-
-//        let messageController = MessageController()
-//        let navController = NavigationController(rootViewController: messageController)
-//        present(navController, animated: true, completion: nil)
-//        messageController.showChatLogControllerForUser()
 
     }
 

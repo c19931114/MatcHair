@@ -34,6 +34,7 @@
 		F13C31E72163ABF600498C2B /* PickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13C31E62163ABF500498C2B /* PickerDialog.swift */; };
 		F145D3FC21773CD3006801D6 /* EmptyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145D3FB21773CD3006801D6 /* EmptyPageViewController.swift */; };
 		F14794A2215B57AD005E864C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14794A1215B57AD005E864C /* HomeViewController.swift */; };
+		F147FCB921946CAF00D1D1EE /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147FCB821946CAF00D1D1EE /* PostCell.swift */; };
 		F1546C1721522DD6009AB3ED /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1621522DD6009AB3ED /* FacebookManager.swift */; };
 		F1546C1D215231A4009AB3ED /* MatcHairError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1C215231A4009AB3ED /* MatcHairError.swift */; };
 		F1546C1F21523244009AB3ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1546C1E21523244009AB3ED /* User.swift */; };
@@ -131,6 +132,7 @@
 		F145D3FB21773CD3006801D6 /* EmptyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPageViewController.swift; sourceTree = "<group>"; };
 		F14794A1215B57AD005E864C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F147FCB72192B5EC00D1D1EE /* MatcHair.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MatcHair.entitlements; sourceTree = "<group>"; };
+		F147FCB821946CAF00D1D1EE /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		F1546C1621522DD6009AB3ED /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		F1546C1C215231A4009AB3ED /* MatcHairError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatcHairError.swift; sourceTree = "<group>"; };
 		F1546C1E21523244009AB3ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 			children = (
 				F164B08C218734710033B019 /* UserCell.swift */,
 				F164B091218852110033B019 /* ChatMessageCell.swift */,
+				F147FCB821946CAF00D1D1EE /* PostCell.swift */,
 				F15B2CB42180226400DE4E3E /* RecruitInfoCell */,
 				F1A1A85A215DDA550038F0CF /* AppointmentCollectionViewCell */,
 				F1A1A856215CB03C0038F0CF /* ProfileCollectionViewCell */,
@@ -830,6 +833,7 @@
 				F1C2C3DF2153CED20065E4EB /* CameraController.swift in Sources */,
 				F1C2C3E72154C9660065E4EB /* NavigationController.swift in Sources */,
 				F1546C2621524D73009AB3ED /* UIView+Crystal.swift in Sources */,
+				F147FCB921946CAF00D1D1EE /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,11 +38,11 @@ class MessageController: UITableViewController {
 
         navigationItem.title = "Message"
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "New Message",
-            style: .plain,
-            target: self,
-            action: #selector(handleNewMessage))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            title: "New Message",
+//            style: .plain,
+//            target: self,
+//            action: #selector(handleNewMessage))
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
@@ -56,7 +56,7 @@ class MessageController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-//        observeUserMessages()
+        observeUserMessages()
         loadBlockedUser()
     }
 

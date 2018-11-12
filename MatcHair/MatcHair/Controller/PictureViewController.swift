@@ -107,8 +107,6 @@ class PictureViewController: UIViewController, UIImagePickerControllerDelegate, 
 
         emptyPage.isHidden = true
 
-        configureCameraController()
-
 //        cameraModeButton.isHidden = true
 //        videoModeButton.isHidden = true
 
@@ -118,6 +116,8 @@ class PictureViewController: UIViewController, UIImagePickerControllerDelegate, 
             toggleCameraButton.isHidden = true
             return
         }
+
+        configureCameraController()
 
     }
 

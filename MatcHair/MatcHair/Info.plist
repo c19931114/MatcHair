@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -26,7 +26,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>201811072210</string>
+	<string>201811121200</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -55,9 +55,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>允許開啟相機</string>
+	<string>請允許開啟相機來拍攝照片發文</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>允許取用相簿</string>
+	<string>請允許取用相簿來選取圖片發文</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

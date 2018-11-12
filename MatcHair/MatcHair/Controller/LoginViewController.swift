@@ -94,7 +94,7 @@ class LoginViewController: UIViewController {
 
                             } else {
 
-                                guard let uid = Auth.auth().currentUser?.uid else {return }
+                                guard let uid = Auth.auth().currentUser?.uid else { return }
                                 self.keychain.set(uid, forKey: "userUID")
 
                                 guard let userName

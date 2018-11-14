@@ -70,65 +70,6 @@ do {
 }
 ```
 ### MVC
-#### Take Message Page For Example 
-- Model
-``` Swift
-struct MessageInfo {
-
-    let message: Message
-    let user: User
-}
-
-struct Message: Codable {
-
-    let fromID: String
-    let text: String?
-    let timestamp: Int
-    let toID: String
-}
-```
-- Controller
-``` Swift
-// in MessageController
-var messageInfo = [MessageInfo]()
-
-override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? UserCell else {
-
-            return UITableViewCell()
-        }
-
-        let messageInfo = messageInfos[indexPath.row]
-
-        // throw data to UserCell
-        cell.messageInfo = messageInfo
-        
-        // accur couple below
-        // cell.profileImageView.kf.setImage(with: URL(string: messageInfo.user.imageURL))
-        // cell.textLabel?.text = messageInfo.user.name
-        // cell.detailTextLabel?.text = messageInfo.message.text
-
-        return cell
-    }
-```
-- View
-``` Swift
-// in UserCell
-var messageInfo: MessageInfo? {
-
-    didSet {
-    
-        if let messageInfo = messageInfo {
-            profileImageView.kf.setImage(with: URL(string: messageInfo.user.imageURL))
-            textLabel?.text = messageInfo.user.name
-            detailTextLabel?.text = messageInfo.message.text  
-        }
-    }  
-}
-
-```
-
 
 #### Take Post Page For Example
 ![](https://i.imgur.com/rRCpp7n.png)

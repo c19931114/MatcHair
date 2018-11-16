@@ -105,8 +105,6 @@ class LoginViewController: UIViewController {
                                 let largePhotoURLString = photoURLString + "?type=large"
                                 let largePhotoURL = URL(string: largePhotoURLString)!
 
-//                                self.getUserDetail(with: uid, userName)
-
                                 self.uploadUserImageToStorage(with: uid, userName, largePhotoURL)
 
                             }
@@ -122,37 +120,6 @@ class LoginViewController: UIViewController {
                     print(error as Any)
                 }
         })
-
-    }
-
-    func getUserDetail(with uid: String, _ userName: String) {
-
-        FBSDKGraphRequest(
-            graphPath: "me",
-            parameters: ["fields": "id, name, first_name, last_name, email, picture.type(large)"])?.start(
-                completionHandler: { (connection, result, error) in
-
-                    if error != nil {
-                        print("Error: \(String(describing: error))")
-                        
-                    } else {
-
-                        guard let userInfo = result as? [String: Any] else { return }
-
-//                        guard let userName = userInfo["name"] as? String else { return }
-//                        guard let userEmail = userInfo["email"] as? String else { return }
-
-                        guard let userImageInfo = userInfo["picture"] as? [String: Any] else { return }
-                        guard let userImageData = userImageInfo["data"] as? [String: Any] else { return }
-                        guard let userImageURLString = userImageData["url"] as? String else { return }
-                        guard let userImageURL = URL(string: userImageURLString) else { return }
-
-//                        self.userDefaults.set(userImageURL, forKey: "userImageURL")
-
-                        self.uploadUserImageToStorage(with: uid, userName, userImageURL)
-
-                    }
-            })
 
     }
 

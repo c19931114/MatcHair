@@ -121,7 +121,7 @@ extension DesignerCompleteViewController {
 
                         if appointmentInfo.statement == "complete" {
 
-                            self.getDesignerImageURLWith(appointmentInfo)
+                            self.getModelImageURLWith(appointmentInfo)
                         } else {
 
                             self.designerCompleteCollectionView.reloadData()
@@ -135,15 +135,15 @@ extension DesignerCompleteViewController {
 
     }
 
-    func getDesignerImageURLWith(_ appointmentInfo: AppointmentInfo) {
+    func getModelImageURLWith(_ appointmentInfo: AppointmentInfo) {
 
-        let fileName = appointmentInfo.designerUID
+        let fileName = appointmentInfo.modelUID
 
         self.storageRef.child("user-images").child(fileName).downloadURL(completion: { (url, error) in
 
-            if let designerImageURL = url {
+            if let modelImageURL = url {
 
-                self.getDesignerInfoWith(appointmentInfo, designerImageURL)
+                self.getModelInfoWith(appointmentInfo, modelImageURL)
 
             } else {
                 print(error as Any)
@@ -153,9 +153,9 @@ extension DesignerCompleteViewController {
 
     }
 
-    func getDesignerInfoWith(_ appointmentInfo: AppointmentInfo, _ designerImageURL: URL) {
+    func getModelInfoWith(_ appointmentInfo: AppointmentInfo, _ designerImageURL: URL) {
 
-        self.ref.child("users/\(appointmentInfo.designerUID)").observeSingleEvent(of: .value) { (snapshot) in
+        self.ref.child("users/\(appointmentInfo.modelUID)").observeSingleEvent(of: .value) { (snapshot) in
 
             guard let value = snapshot.value as? NSDictionary else {
 
@@ -163,11 +163,11 @@ extension DesignerCompleteViewController {
                 return
             }
 
-            guard let designerJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
+            guard let modelJSON = try? JSONSerialization.data(withJSONObject: value) else { return }
 
             do {
-                let designer = try self.decoder.decode(User.self, from: designerJSON)
-                self.getPostInfoWith(appointmentInfo, designer, designerImageURL)
+                let model = try self.decoder.decode(User.self, from: modelJSON)
+                self.getPostInfoWith(appointmentInfo, model, designerImageURL)
 
             } catch {
                 print(error)

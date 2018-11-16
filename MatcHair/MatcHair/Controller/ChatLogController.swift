@@ -33,7 +33,8 @@ class ChatLogController: UICollectionViewController {
                 navigationItem.titleView = titleView
 //                titleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showUserProfile)))
             }
-//            observeMessages() // 移到 viewDidLoad 不然會一直進來跑, 因為user一直丟進來
+//            observeMessages()
+            // 移到 viewDidLoad 不然會一直進來跑, 因為user一直丟進來, ref 尚未unwrap
         }
     }
 
